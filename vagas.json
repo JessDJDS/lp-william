@@ -1,0 +1,203 @@
+[
+  {
+    "id": "v001",
+    "cargo": "BIM Coordinator",
+    "empresa": "Rambøll",
+    "cidade": "Copenhagen",
+    "pais": "Dinamarca",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "senioridade": "Pleno",
+    "idioma": "Inglês obrigatório",
+    "visto": true,
+    "resumo": "Coordenação de modelos federados em projetos de infraestrutura hospitalar. Navisworks, Solibri e ISO 19650 no dia a dia, com interface direta com o canteiro.",
+    "requisitos": [
+      "Revit e Navisworks avançados",
+      "ISO 19650",
+      "3+ anos em coordenação",
+      "Inglês fluente",
+      "Experiência com clash detection"
+    ],
+    "fonte": "LinkedIn",
+    "url": "https://www.linkedin.com/jobs/",
+    "publicado": "2026-07-28"
+  },
+  {
+    "id": "v002",
+    "cargo": "Site Engineer",
+    "empresa": "John Sisk & Son",
+    "cidade": "Dublin",
+    "pais": "Irlanda",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "senioridade": "Júnior",
+    "idioma": "Inglês obrigatório",
+    "visto": true,
+    "resumo": "Engenheiro de campo em obra de data center. Controle de qualidade, levantamento topográfico e acompanhamento de subempreiteiros.",
+    "requisitos": [
+      "Graduação em Eng. Civil",
+      "Leitura de projeto executivo",
+      "Inglês fluente",
+      "Disponibilidade para campo"
+    ],
+    "fonte": "LinkedIn",
+    "url": "https://www.linkedin.com/jobs/",
+    "publicado": "2026-07-30"
+  },
+  {
+    "id": "v003",
+    "cargo": "Lean Construction Specialist",
+    "empresa": "BAM",
+    "cidade": "Amsterdam",
+    "pais": "Holanda",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "senioridade": "Sênior",
+    "idioma": "Inglês obrigatório",
+    "visto": true,
+    "resumo": "Implantação de Last Planner System e takt planning em obra industrial de grande porte. Treinamento de equipes e rotina de indicadores.",
+    "requisitos": [
+      "Last Planner System",
+      "Takt planning",
+      "6+ anos em obra",
+      "Inglês fluente",
+      "Experiência em treinamento"
+    ],
+    "fonte": "Empresa",
+    "url": "https://www.bam.com/en/careers",
+    "publicado": "2026-07-25"
+  },
+  {
+    "id": "v004",
+    "cargo": "BIM Modeler",
+    "empresa": "Quadrante",
+    "cidade": "Lisboa",
+    "pais": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": true,
+    "resumo": "Modelagem de estruturas e instalações em Revit para projetos de edificações e infraestrutura. Porta de entrada comum para brasileiros na Europa.",
+    "requisitos": [
+      "Revit intermediário",
+      "Leitura de projeto estrutural",
+      "Português nativo",
+      "Inglês técnico"
+    ],
+    "fonte": "LinkedIn",
+    "url": "https://www.linkedin.com/jobs/",
+    "publicado": "2026-08-01"
+  },
+  {
+    "id": "v005",
+    "cargo": "Construction Manager",
+    "empresa": "Ed. Züblin",
+    "cidade": "Munique",
+    "pais": "Alemanha",
+    "lat": 48.1351,
+    "lon": 11.582,
+    "senioridade": "Sênior",
+    "idioma": "Alemão obrigatório",
+    "visto": true,
+    "resumo": "Gestão de obra de edifício corporativo. Planejamento, contratação de subempreiteiros e interface com o cliente. Alemão B2 mínimo.",
+    "requisitos": [
+      "8+ anos em gestão de obra",
+      "Alemão B2+",
+      "Planejamento e custos",
+      "VOB (norma alemã de contratos)"
+    ],
+    "fonte": "Empresa",
+    "url": "https://www.zueblin.de/karriere",
+    "publicado": "2026-07-22"
+  },
+  {
+    "id": "v006",
+    "cargo": "VDC Engineer",
+    "empresa": "Veidekke",
+    "cidade": "Oslo",
+    "pais": "Noruega",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "senioridade": "Pleno",
+    "idioma": "Inglês obrigatório",
+    "visto": true,
+    "resumo": "Virtual Design and Construction em obra de túnel e infraestrutura. Modelos 4D, coordenação e suporte direto às equipes de produção.",
+    "requisitos": [
+      "Modelagem 4D (Synchro ou similar)",
+      "Navisworks",
+      "3+ anos em obra",
+      "Inglês fluente",
+      "Carteira de habilitação"
+    ],
+    "fonte": "LinkedIn",
+    "url": "https://www.linkedin.com/jobs/",
+    "publicado": "2026-07-27"
+  },
+  {
+    "id": "v007",
+    "cargo": "Project Coordinator",
+    "empresa": "EllisDon",
+    "cidade": "Toronto",
+    "pais": "Canadá",
+    "lat": 43.6532,
+    "lon": -79.3832,
+    "senioridade": "Júnior",
+    "idioma": "Inglês obrigatório",
+    "visto": true,
+    "resumo": "Coordenação de documentação, RFIs e submittals em obra de transporte público. Programa estruturado de desenvolvimento para recém-formados.",
+    "requisitos": [
+      "Graduação em Eng. Civil",
+      "Inglês fluente",
+      "Organização documental",
+      "Procore ou similar"
+    ],
+    "fonte": "Empresa",
+    "url": "https://www.ellisdon.com/careers",
+    "publicado": "2026-07-29"
+  },
+  {
+    "id": "v008",
+    "cargo": "Planning Engineer",
+    "empresa": "ALEC",
+    "cidade": "Dubai",
+    "pais": "Emirados Árabes",
+    "lat": 25.2048,
+    "lon": 55.2708,
+    "senioridade": "Pleno",
+    "idioma": "Inglês obrigatório",
+    "visto": true,
+    "resumo": "Planejamento de obra de grande porte com Primavera P6. Cronograma, medição de avanço físico e análise de pleitos. Pacote com moradia.",
+    "requisitos": [
+      "Primavera P6 avançado",
+      "4+ anos em planejamento",
+      "Inglês fluente",
+      "Experiência em pleitos (claims)"
+    ],
+    "fonte": "LinkedIn",
+    "url": "https://www.linkedin.com/jobs/",
+    "publicado": "2026-07-24"
+  },
+  {
+    "id": "v009",
+    "cargo": "Engenheiro de Planejamento",
+    "empresa": "Construtora nacional de grande porte",
+    "cidade": "São Paulo",
+    "pais": "Brasil",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "senioridade": "Pleno",
+    "idioma": "Português",
+    "visto": false,
+    "resumo": "Planejamento e controle de obra industrial no interior de SP. MS Project, curva S e rotina de campo. Sem exigência de inglês — a técnica é a mesma daqui.",
+    "requisitos": [
+      "MS Project ou Primavera",
+      "3+ anos em obra",
+      "Curva S e EVM",
+      "Disponibilidade para o interior de SP"
+    ],
+    "fonte": "LinkedIn",
+    "url": "https://www.linkedin.com/jobs/",
+    "publicado": "2026-08-02"
+  }
+]

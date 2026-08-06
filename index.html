@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>William Moura · Engenharia vista de dentro do canteiro</title>
+<meta name="description" content="Do interior de Sergipe pra uma obra farmacêutica na Dinamarca. Lean Construction, BIM e as vagas que eu achei — curadoria manual, atualizada toda segunda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ 01 · HEADER ============ -->
+<header>
+  <div class="wrap">
+    <a href="#topo" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="#vagas">Vagas</a>
+      <a href="#me-encontre">Me encontre</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#canal">O que eu faço</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram ↗</a>
+  </div>
+</header>
+
+<!-- ============ 02 · HERO ============ -->
+<section class="hero base-grafite" id="topo">
+  <div class="wrap">
+    <p class="eyebrow">Engenharia vista de dentro do canteiro</p>
+    <h1>Do interior de Sergipe pra uma obra farmacêutica na <span class="marca">Dinamarca</span>.</h1>
+    <p class="sub">Não porque eu era especial. Porque descobri, tarde, o que a faculdade não conta. É isso que eu documento aqui.</p>
+
+    <div class="selos" aria-hidden="true">
+      <span class="selo selo-1">7+<small>anos de experiência</small></span>
+      <span class="selo selo-2 selo-texto">EdificarSe (EJ) e LaInova (Liga)<small>membro fundador</small></span>
+      <span class="selo selo-3 selo-texto">Directa Engenharia, Verum Partners, Gerdau, WiiGroup<small>já passaram pelo meu caminho</small></span>
+    </div>
+
+    <div class="cota-hero" aria-hidden="true">
+      <span class="linha esq"></span>
+      <span>2021 ——— 2026</span>
+      <span class="linha dir"></span>
+    </div>
+    <div class="carimbo">
+      <span>Eng. Civil · CREA-SE</span>
+      <span>Lean + BIM · WIIGROUP</span>
+      <span>Kalundborg · DK · 55.68°N</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · VAGAS + GLOBO ============ -->
+<section class="sec-vagas base-papel malha" id="vagas">
+  <div class="wrap">
+    <div class="cota"><span class="linha esq"></span><span>02 · Oportunidades</span><span class="linha dir"></span></div>
+
+    <div class="vagas-head">
+      <div>
+        <h2>Onde estão as vagas que eu achei</h2>
+        <p class="sub">Curadoria manual. Eu não sou recrutador e não intermedeio nada — cada vaga leva direto pra fonte original. Atualizo toda segunda.</p>
+      </div>
+      <p class="rev-carimbo">Rev. 12 · 04.08.2026 · <span id="contagem-vagas">9</span> vagas abertas</p>
+    </div>
+
+    <div class="filtros" id="filtros">
+      <div class="filtro-grupo" id="grupo-pais" role="group" aria-label="Filtrar por país">
+        <span class="rotulo">País</span>
+      </div>
+      <div class="filtro-grupo" id="grupo-senioridade" role="group" aria-label="Filtrar por senioridade">
+        <span class="rotulo">Senioridade</span>
+      </div>
+      <div class="filtro-grupo" role="group" aria-label="Filtrar por patrocínio de visto">
+        <span class="rotulo">Patrocina visto</span>
+        <button class="chip" id="chip-visto" aria-pressed="false">Sim</button>
+      </div>
+    </div>
+
+    <div class="globo-grid">
+      <div id="globo-box" aria-hidden="false"></div>
+
+      <aside class="painel" id="painel" aria-live="polite" aria-label="Detalhe da vaga selecionada">
+        <!-- preenchido por JS -->
+      </aside>
+    </div>
+
+    <div class="lista-vagas" id="lista-vagas" role="list" aria-label="Lista de vagas"></div>
+    <p class="estado-vazio" id="estado-vazio">Nenhuma vaga com esse filtro nesta revisão. Eu atualizo toda segunda — ou me chama no direct que eu procuro.</p>
+  </div>
+</section>
+
+<!-- ============ 03B · ME ENCONTRE (GRID DE LINKS) ============ -->
+<section class="sec-links base-grafite" id="me-encontre">
+  <div class="wrap">
+    <div class="cota"><span class="linha esq"></span><span>03 · Me Encontre</span><span class="linha dir"></span></div>
+
+    <h2>Todos os lugares onde eu apareço</h2>
+
+    <div class="link-grid">
+      <a class="link-card" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">
+        <span class="link-seta">↗</span>
+        <span class="link-eyebrow">@owilliamoura</span>
+        <span class="link-titulo">Me acompanhe no Instagram</span>
+      </a>
+      <a class="link-card" href="https://www.linkedin.com/in/owilliamoura" target="_blank" rel="noopener">
+        <span class="link-seta">↗</span>
+        <span class="link-eyebrow">LinkedIn</span>
+        <span class="link-titulo">Me siga no LinkedIn</span>
+      </a>
+      <a class="link-card" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">
+        <span class="link-seta">↗</span>
+        <span class="link-eyebrow">Newsletter</span>
+        <span class="link-titulo">Direto do Campo Minado</span>
+      </a>
+      <a class="link-card" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">
+        <span class="link-seta">↗</span>
+        <span class="link-eyebrow">Comunidade</span>
+        <span class="link-titulo">Faça parte da melhor comunidade de Engenharia</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · TRAJETÓRIA ============ -->
+<section class="sec-traj base-grafite" id="trajetoria">
+  <div class="wrap">
+    <div class="cota"><span class="linha esq"></span><span>04 · Trajetória</span><span class="linha dir"></span></div>
+
+    <h2>Não foi sorte, mas também não foi plano.</h2>
+
+    <div class="timeline" tabindex="0" aria-label="Linha do tempo, rolagem horizontal">
+      <article class="marco">
+        <span class="ano">2019</span>
+        <p class="titulo">Formatura na UFS</p>
+        <p class="contexto">Primeiro da família a terminar faculdade.</p>
+        <figure class="foto-doc">
+          <img src="assets/images/webwl-009-formatura.png" alt="William de toga e capelo na formatura de Engenharia Civil, UFS, 2019" loading="lazy">
+        </figure>
+      </article>
+      <article class="marco">
+        <span class="ano">2021</span>
+        <p class="titulo">42 School, São Paulo</p>
+        <p class="contexto">Cortava o próprio cabelo porque R$10 fazia falta.</p>
+        <span class="prova">R$600 / mês</span>
+      </article>
+      <article class="marco">
+        <span class="ano">2021</span>
+        <p class="titulo">Começa a filmar tudo</p>
+        <p class="contexto">Sem saber por quê.</p>
+        <span class="prova">230 vlogs</span>
+      </article>
+      <article class="marco revisado">
+        <svg class="nuvem" viewBox="0 0 280 330" preserveAspectRatio="none" aria-hidden="true">
+          <path id="nuvem-path" fill="none" stroke="#7AC2DB" stroke-width="2"/>
+        </svg>
+        <span class="ano">2022</span>
+        <p class="titulo">Chevening negada</p>
+        <p class="contexto">Um ano e meio de tentativa. Fase final. Não passou.</p>
+        <span class="prova">18 meses</span>
+      </article>
+      <article class="marco">
+        <span class="ano">2022</span>
+        <p class="titulo">Chile</p>
+        <p class="contexto">Primeira vez fora do Brasil. Sozinho, a trabalho.</p>
+        <figure class="foto-doc">
+          <img src="assets/images/foto-chile.png" alt="William na praia, fazendo sinal de dois dedos, durante viagem ao Chile em 2022" loading="lazy">
+        </figure>
+      </article>
+      <article class="marco">
+        <span class="ano">2023</span>
+        <p class="titulo">LinkedIn estruturado</p>
+        <p class="contexto">Fui caçado sem ter me candidatado.</p>
+      </article>
+      <article class="marco">
+        <span class="ano">2024</span>
+        <p class="titulo">Irlanda</p>
+        <p class="contexto">Entrevistas em inglês.</p>
+        <span class="prova">4 rodadas</span>
+        <figure class="foto-doc">
+          <img src="assets/images/foto-irlanda.png" alt="William de mochila nas costas em frente a um castelo, na Irlanda" loading="lazy">
+        </figure>
+      </article>
+      <article class="marco">
+        <span class="ano">2026</span>
+        <p class="titulo">Kalundborg</p>
+        <p class="contexto">Obra farmacêutica. Lean e BIM.</p>
+        <span class="prova">55.68°N</span>
+        <figure class="foto-doc">
+          <img src="assets/images/foto-2026.png" alt="William de jaqueta vermelha, com braços cruzados, em 2026" loading="lazy">
+        </figure>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · O CANAL ============ -->
+<section class="sec-canal base-papel malha" id="canal">
+  <div class="wrap">
+    <div class="cota"><span class="linha esq"></span><span>05 · O Canal</span><span class="linha dir"></span></div>
+
+    <h2>O que eu publico e por quê</h2>
+
+    <div class="colunas-canal">
+      <div class="col-canal">
+        <span class="num">01</span>
+        <span class="etiqueta">Série diária</span>
+        <p class="titulo">Dia X: o diário</p>
+        <p>Os 230 vlogs de 2021 em diante, editados em ordem. Sem dramatização: é o arquivo cru.</p>
+      </div>
+      <div class="col-canal">
+        <span class="num">02</span>
+        <span class="etiqueta">Opinião</span>
+        <p class="titulo">Sem Filtro</p>
+        <p>Uma tese por semana sobre o mercado, dita sem amaciar.</p>
+      </div>
+      <div class="col-canal">
+        <span class="num">03</span>
+        <span class="etiqueta">Técnico</span>
+        <p class="titulo">Por dentro da obra</p>
+        <p>BIM, Lean, IA aplicada em obra de verdade, com o problema real na frente da ferramenta.</p>
+      </div>
+      <div class="col-canal">
+        <span class="num">04</span>
+        <span class="etiqueta">Humor</span>
+        <p class="titulo">As Engenharias em… / The Container</p>
+        <p>Porque canteiro é engraçado e ninguém filma isso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · SOBRE ============ -->
+<section class="sec-sobre base-grafite" id="sobre">
+  <div class="wrap">
+    <div class="cota"><span class="linha esq"></span><span>06 · Quem</span><span class="linha dir"></span></div>
+
+    <div class="sobre-grid">
+      <figure class="sobre-foto">
+        <img src="assets/images/webwl-026-1708x2560.jpg" alt="William sentado em canteiro de obra, com capacete branco e cinto de segurança, ao fundo uma chapa de metal vermelha" loading="lazy">
+      </figure>
+      <div>
+        <p class="eyebrow">Sobre</p>
+        <h2>Eu não sou exemplo de nada. Sou <span class="marca">relato</span>.</h2>
+        <p>Eu não tenho fórmula. Tenho um caminho específico que deu certo pra mim, com uns dez tropeços no meio que eu filmei sem querer. A parte útil não é o resultado — é o mecanismo. O que eu descobri e quando, e o que eu teria feito diferente.</p>
+        <p>Trabalho hoje com Lean Construction e BIM numa obra farmacêutica na Dinamarca. Antes disso eu não sabia o que era nenhuma das duas coisas, e ninguém na faculdade tinha me falado delas.</p>
+        <img class="assinatura" src="assets/images/assinatura-verde.png" alt="Assinatura manuscrita de William" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · RODAPÉ ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+    <div class="prancha">
+      <div class="cel"><span class="rot">Contato</span><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></div>
+      <div class="cel"><span class="rot">Telefone</span><a href="tel:+55911131937">+11 91113-1937</a></div>
+      <div class="cel"><span class="rot">Onde</span>Em algum lugar do mundo · Kalundborg, DK</div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="assets/js/script.js"></script>
+<a class="btn-zap" href="https://api.whatsapp.com/send/?phone=5511911131937" target="_blank" rel="noopener" aria-label="Falar no WhatsApp com William Moura">
+  <img src="assets/icons/whatsapp.svg" width="26" height="26" alt="" aria-hidden="true">
+  <span>Fala comigo</span>
+</a>
+
+</body>
+</html>
