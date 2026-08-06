@@ -492,3 +492,8 @@ nav.principal a:hover{background:var(--amarelo);color:var(--grafite)}
   .prancha .cel{border-right:none;border-bottom:1px solid var(--grafite2)}
   .prancha .cel:nth-child(3){border-bottom:1px solid var(--grafite2)}
 }
+
+/* ============ SETAS ↗ — ocultas no mobile ============ */
+@media (max-width:640px){
+  .link-seta,.seta-mobile{display:none}
+}

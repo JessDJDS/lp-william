@@ -51,7 +51,7 @@ function renderPainel(){
     </ul>
     <p class="resumo">${v.resumo}</p>
     <ul class="reqs">${v.requisitos.map(r => `<li>${r}</li>`).join("")}</ul>
-    <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener">Ver vaga original ↗</a>
+    <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener">Ver vaga original<span class="seta-mobile"> ↗</span></a>
     <div class="carimbo"><span>Fonte · ${v.fonte}</span><span>Publicada ${fmtData(v.publicado)}</span></div>
   `;
 }
