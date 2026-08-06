@@ -492,24 +492,3 @@ nav.principal a:hover{background:var(--amarelo);color:var(--grafite)}
   .prancha .cel{border-right:none;border-bottom:1px solid var(--grafite2)}
   .prancha .cel:nth-child(3){border-bottom:1px solid var(--grafite2)}
 }
-/* ============ BOTÃO FLUTUANTE WHATSAPP ============ */
-.btn-zap{
-  position:fixed;right:24px;bottom:24px;z-index:90;
-  display:flex;align-items:center;justify-content:center;
-  width:56px;height:56px;border-radius:50%;
-  background:var(--amarelo);color:var(--grafite);
-  box-shadow:0 12px 28px -8px rgba(1,61,74,.45);
-  transition:transform .18s ease,box-shadow .18s ease,width .18s ease,border-radius .18s ease;
-}
-.btn-zap img{width:26px;height:26px;flex:none;display:block}
-.btn-zap span{
-  max-width:0;overflow:hidden;white-space:nowrap;
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;
-  transition:max-width .18s ease,margin .18s ease;
-}
-.btn-zap:hover{transform:translateY(-3px);box-shadow:0 16px 32px -6px rgba(1,61,74,.5);border-radius:999px}
-.btn-zap:hover span{max-width:120px;margin-left:10px}
-@media (max-width:640px){
-  .btn-zap{right:16px;bottom:16px;width:52px;height:52px}
-  .btn-zap span{display:none}
-}
