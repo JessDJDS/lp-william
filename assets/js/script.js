@@ -313,11 +313,11 @@ function montarNuvem(){
 function configurarAnalytics() {
   document.querySelectorAll(".link-card").forEach(link => {
     link.addEventListener("click", () => {
-      const titulo = link.querySelector(".link-titulo")?.textContent?.trim() || "Sem título";
+      const analytics = link.dataset.analytics || "desconhecido";
       const destino = link.href;
 
       gtag("event", "click_link", {
-        link_name: titulo,
+        link_name: analytics,
         destination: destino
       });
     });
