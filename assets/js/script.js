@@ -309,6 +309,21 @@ function montarNuvem(){
   p.setAttribute("d", d);
 }
 
+/* ============ GOOGLE ANALYTICS ============ */
+function configurarAnalytics() {
+  document.querySelectorAll(".link-card").forEach(link => {
+    link.addEventListener("click", () => {
+      const titulo = link.querySelector(".link-titulo")?.textContent?.trim() || "Sem título";
+      const destino = link.href;
+
+      gtag("event", "click_link", {
+        link_name: titulo,
+        destination: destino
+      });
+    });
+  });
+}
+
 /* ============ INIT ============ */
 function iniciar(){
   montarFiltros();
@@ -316,6 +331,7 @@ function iniciar(){
   renderLista();
   montarGlobo();
   montarNuvem();
+  configurarAnalytics();
 }
 
 fetch("vagas.json")
