@@ -1,20 +1,28 @@
-/* ============================================================
-   William Moura — script principal da landing page
-   As vagas NÃO ficam neste arquivo: elas são carregadas de
-   ../../vagas.json (na raiz do projeto) via fetch(), logo
-   abaixo. Para adicionar/remover/editar uma vaga, edite só
-   o vagas.json — nunca precisa tocar neste arquivo.
-   ============================================================ */
-
-let VAGAS = [];
-
-
+/* ============ DADOS — editar à mão, uma vaga por objeto ============ */
+const VAGAS = [
+  {
+    id:"v001", cargo:"Chevening — Mestrado no Reino Unido", empresa:"Governo Britânico · FCDO",
+    cidade:"Londres", pais:"Reino Unido", lat:51.5074, lon:-0.1278,
+    senioridade:"2+ anos de experiência", idioma:"Inglês obrigatório", visto:true,
+    resumo:"Bolsa integral do governo britânico pra um ano de mestrado em qualquer universidade do Reino Unido: mensalidade, passagens, visto e ajuda de custo mensal. Cerca de 1.800 bolsas por ano no mundo. Candidatura aberta até 06/10/2026.",
+    requisitos:["Graduação concluída","2 anos de experiência profissional (2.800 horas)","Inglês fluente","Escolher 3 cursos de mestrado no Reino Unido","Voltar ao Brasil por 2 anos depois da bolsa"],
+    fonte:"Chevening.org", url:"https://www.chevening.org/scholarships/", publicado:"2026-08-05"
+  },
+  {
+    id:"v002", cargo:"Estágio em Planejamento de Obras", empresa:"Handsplan",
+    cidade:"Remoto", pais:"Brasil", lat:-15.7939, lon:-47.8828,
+    senioridade:"Estágio", idioma:"Português", visto:false,
+    resumo:"Duas vagas de estágio remoto. Cronograma de obra de verdade: atualizar, analisar o que saiu do previsto, organizar dados e montar os relatórios que a gerência usa pra decidir. Jornada flexível em cima do horário de aula e possibilidade de efetivação.",
+    requisitos:["Engenharias, do 7º período em diante","Excel, Power BI e MS Project ajudam — nenhum é obrigatório","Disponibilidade para viagens","Início em 30/08","100% remoto, jornada flexível"],
+    fonte:"Tally", url:"https://tally.so/r/obZODV", publicado:"2026-08-09"
+  }
+];
 
 const KALUNDBORG = { lat:55.6867, lon:11.0879 };
 
 /* ============ ESTADO ============ */
 const filtro = { pais:null, senioridade:null, visto:false };
-let vagaAtiva = null;
+let vagaAtiva = VAGAS[0].id;
 const reduzMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function vagasFiltradas(){
@@ -51,7 +59,7 @@ function renderPainel(){
     </ul>
     <p class="resumo">${v.resumo}</p>
     <ul class="reqs">${v.requisitos.map(r => `<li>${r}</li>`).join("")}</ul>
-    <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener">Ver vaga original<span class="seta-mobile"> ↗</span></a>
+    <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener" data-analytics="vaga-${v.id}">Ver vaga original ↗</a>
     <div class="carimbo"><span>Fonte · ${v.fonte}</span><span>Publicada ${fmtData(v.publicado)}</span></div>
   `;
 }
@@ -82,38 +90,22 @@ function renderLista(){
 
 /* ============ FILTROS ============ */
 function montarFiltros(){
-  const paises = [...new Set(VAGAS.map(v => v.pais))];
-  const sens = ["Júnior","Pleno","Sênior"];
-  const gp = document.getElementById("grupo-pais");
-  const gs = document.getElementById("grupo-senioridade");
-  paises.forEach(p => {
-    const b = document.createElement("button");
-    b.className = "chip"; b.textContent = p; b.setAttribute("aria-pressed","false");
-    b.addEventListener("click", () => {
-      filtro.pais = (filtro.pais === p) ? null : p;
-      gp.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.textContent === filtro.pais)));
-      atualizar();
-    });
-    gp.appendChild(b);
-  });
-  sens.forEach(s => {
-    const b = document.createElement("button");
-    b.className = "chip"; b.textContent = s; b.setAttribute("aria-pressed","false");
-    b.addEventListener("click", () => {
-      filtro.senioridade = (filtro.senioridade === s) ? null : s;
-      gs.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.textContent === filtro.senioridade)));
-      atualizar();
-    });
-    gs.appendChild(b);
-  });
-  document.getElementById("chip-visto").addEventListener("click", e => {
-    filtro.visto = !filtro.visto;
-    e.currentTarget.setAttribute("aria-pressed", String(filtro.visto));
-    atualizar();
-  });
+  // slicers: opções derivadas dos dados — vaga nova cria opção nova sozinha
+  const selPais = document.getElementById("sel-pais");
+  const selSen = document.getElementById("sel-senioridade");
+  const selVisto = document.getElementById("sel-visto");
+  [...new Set(VAGAS.map(v => v.pais))].forEach(p => selPais.add(new Option(p, p)));
+  [...new Set(VAGAS.map(v => v.senioridade))].forEach(s => selSen.add(new Option(s, s)));
+  selPais.addEventListener("change", () => { filtro.pais = selPais.value || null; atualizar(); });
+  selSen.addEventListener("change", () => { filtro.senioridade = selSen.value || null; atualizar(); });
+  selVisto.addEventListener("change", () => { filtro.visto = selVisto.value === "sim"; atualizar(); });
 }
 
 /* ============ GLOBO ============ */
+/* o globo vive no hero (base grafite): traço ciano clareado pra ler no escuro */
+const COR_TRACO   = "#6FA9BD";  // esfera, grade, países — ciano clareado pro fundo grafite
+const COR_CHAMADA = "#F1EDE2";  // linha de chamada e rótulo da cidade
+const COR_KAL     = "#B23A1E";  // tijolo — marcador Kalundborg, único tijolo da seção
 const TAM = 560;
 let projection, path, svgG, paises110, girando = true, arrastando = false;
 let rotacaoAnimada = null;
@@ -135,17 +127,17 @@ function montarGlobo(){
   // esfera
   svgG.append("path").datum({type:"Sphere"})
     .attr("class","esfera")
-    .attr("fill","none").attr("stroke","#008EAC").attr("stroke-width",1);
+    .attr("fill","none").attr("stroke",COR_TRACO).attr("stroke-width",1);
 
   // graticule 15°
   svgG.append("path").datum(d3.geoGraticule().step([15,15])())
     .attr("class","graticule")
-    .attr("fill","none").attr("stroke","#008EAC")
+    .attr("fill","none").attr("stroke",COR_TRACO)
     .attr("stroke-width",0.4).attr("opacity",0.35);
 
   // países (preenchido quando o topojson chegar)
   svgG.append("path").attr("class","paises")
-    .attr("fill","none").attr("stroke","#008EAC").attr("stroke-width",0.6);
+    .attr("fill","none").attr("stroke",COR_TRACO).attr("stroke-width",0.6);
 
   // grupo de pins
   svgG.append("g").attr("class","pins");
@@ -210,17 +202,18 @@ function desenharPins(){
   const gc = svgG.select(".chamada");
   gc.selectAll("*").remove();
 
-  // Kalundborg — círculo vazado no acento sky, único marcador azul da seção
+  // Kalundborg — círculo vazado em tijolo, único tijolo da seção
   if(visivel(KALUNDBORG.lon, KALUNDBORG.lat)){
     const [x,y] = projection([KALUNDBORG.lon, KALUNDBORG.lat]);
     g.append("circle")
       .attr("cx",x).attr("cy",y).attr("r",6)
-      .attr("fill","none").attr("stroke","#7AC2DB").attr("stroke-width",1.5);
+      .attr("fill","none").attr("stroke",COR_KAL).attr("stroke-width",1.5);
+    // rótulo abaixo do pin: ≥18px de folga do rótulo de Copenhagen (que fica acima)
     g.append("text")
-      .attr("x", x + 12).attr("y", y - 8)
-      .attr("font-family","'Space Grotesk',sans-serif").attr("font-size","9px")
-      .attr("letter-spacing",".12em").attr("fill","#7AC2DB")
-      .text("VOCÊ ESTÁ AQUI · EU TAMBÉM");
+      .attr("x", x + 12).attr("y", y + 20)
+      .attr("font-family","'Space Mono',monospace").attr("font-size","10px")
+      .attr("letter-spacing",".12em").attr("fill",COR_KAL)
+      .text("KALUNDBORG · EU");
   }
 
   lista.forEach(v => {
@@ -229,15 +222,15 @@ function desenharPins(){
     const ativo = v.id === vagaAtiva;
     g.append("rect")
       .attr("class","pin-globo")
-      .attr("x", x-4.5).attr("y", y-4.5)
-      .attr("width",9).attr("height",9)
-      .attr("fill","#00E67F").attr("stroke","#013D4A").attr("stroke-width",1.5)
+      .attr("x", x-5.5).attr("y", y-5.5)
+      .attr("width",11).attr("height",11)
+      .attr("fill","#F4C70F").attr("stroke","#16130E").attr("stroke-width",1.5)
       .attr("tabindex",0)
       .attr("role","button")
       .attr("aria-label",`${v.cargo} em ${v.cidade}, ${v.pais}`)
-      .on("click", () => selecionarVaga(v.id, true))
+      .on("click", () => selecionarVaga(v.id, true, true))
       .on("keydown", ev => {
-        if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); selecionarVaga(v.id, true); }
+        if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); selecionarVaga(v.id, true, true); }
       });
 
     // linha de chamada tracejada no pin ativo
@@ -246,13 +239,13 @@ function desenharPins(){
       const lx = x + dx, ly = y - 34;
       gc.append("line")
         .attr("x1",x).attr("y1",y).attr("x2",lx).attr("y2",ly)
-        .attr("stroke","#013D4A").attr("stroke-width",1)
+        .attr("stroke",COR_CHAMADA).attr("stroke-width",1)
         .attr("stroke-dasharray","4 3");
       gc.append("text")
         .attr("x", lx).attr("y", ly - 5)
         .attr("text-anchor", dx < 0 ? "end" : "start")
-        .attr("font-family","'Space Grotesk',sans-serif").attr("font-size","10px")
-        .attr("letter-spacing",".12em").attr("fill","#013D4A")
+        .attr("font-family","'Space Mono',monospace").attr("font-size","10px")
+        .attr("letter-spacing",".12em").attr("fill",COR_CHAMADA)
         .text(v.cidade.toUpperCase());
     }
   });
@@ -260,27 +253,39 @@ function desenharPins(){
 
 function girarAte(lon, lat){
   if(reduzMotion){
-    projection.rotate([-lon, -lat > 60 ? 60 : (-lat < -60 ? -60 : -lat)]);
+    projection.rotate([-lon, Math.max(-60, Math.min(60, -lat))]);
     desenhar();
     return;
   }
+  if(rotacaoAnimada){ rotacaoAnimada.stop(); rotacaoAnimada = null; }
   const alvo = [-lon, Math.max(-60, Math.min(60, -lat))];
   const interp = d3.interpolate(projection.rotate(), alvo);
-  rotacaoAnimada = d3.timer(t => {
+  const timer = d3.timer(t => {
     const p = Math.min(1, t / 700);
     projection.rotate(interp(d3.easeCubicInOut(p)));
     desenhar();
-    if(p >= 1){ rotacaoAnimada.stop(); rotacaoAnimada = null; }
+    if(p >= 1){
+      timer.stop();
+      if(rotacaoAnimada === timer) rotacaoAnimada = null;
+    }
   });
+  rotacaoAnimada = timer;
 }
 
-function selecionarVaga(id, girar){
+function selecionarVaga(id, girar, rolarAtePainel){
   vagaAtiva = id;
   const v = VAGAS.find(x => x.id === id);
   renderPainel();
   renderLista();
   if(girar && projection) girarAte(v.lon, v.lat);
   else desenharPins();
+  // pin clicado no hero: painel fica abaixo da dobra — rola até ele se não estiver visível
+  if(rolarAtePainel){
+    const painel = document.getElementById("painel");
+    const r = painel.getBoundingClientRect();
+    const visivelNaTela = r.top >= 0 && r.top < window.innerHeight * 0.7;
+    if(!visivelNaTela) painel.scrollIntoView({behavior: reduzMotion ? "auto" : "smooth", block: "center"});
+  }
 }
 
 function atualizar(){
@@ -289,66 +294,318 @@ function atualizar(){
   if(projection) desenharPins();
 }
 
-/* ============ NUVEM DE REVISÃO (marco Chevening) ============ */
-function montarNuvem(){
-  const p = document.getElementById("nuvem-path");
-  if(!p) return;
-  // elipse recortada em arcos — contorno de nuvem de revisão de prancha
-  const cx = 140, cy = 165, rx = 128, ry = 152, n = 18;
-  let d = "";
-  for(let i = 0; i < n; i++){
-    const a1 = (i / n) * 2 * Math.PI;
-    const a2 = ((i + 1) / n) * 2 * Math.PI;
-    const x1 = cx + rx * Math.cos(a1), y1 = cy + ry * Math.sin(a1);
-    const x2 = cx + rx * Math.cos(a2), y2 = cy + ry * Math.sin(a2);
-    if(i === 0) d += `M ${x1.toFixed(1)} ${y1.toFixed(1)} `;
-    // arco pequeno pra fora entre os dois pontos
-    d += `A 30 30 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)} `;
+/* ============ TRAJETÓRIA — carrossel em laço infinito ============ */
+function montarTrajetoria(){
+  const sec = document.querySelector(".sec-traj");
+  if(!sec) return;
+  const vp = document.getElementById("traj-vp");
+  const track = document.getElementById("traj-track");
+  const conjunto = document.getElementById("traj-conjunto");
+  const escala = document.getElementById("traj-escala");
+  const janela = document.getElementById("esc-janela");
+  const GAP = 20;
+
+  // flip do CARD INTEIRO: frente = conteúdo atual; verso = clone com foto -b
+  // (ou padrão sem-registro) e título B. Card com texto B vira mesmo sem foto.
+  // (montado ANTES da clonagem pra estrutura existir nas três cópias)
+  conjunto.querySelectorAll(".card").forEach(card => {
+    const slot = card.querySelector(".slot");
+    const img = slot ? slot.querySelector("img") : null;
+    const temB = !!card.dataset.tituloB;
+    if(!img && !temB) return; // nada pra virar
+
+    const flip = document.createElement("div");
+    flip.className = "card-flip";
+    const frente = document.createElement("div");
+    frente.className = "card-face frente";
+    while(card.firstChild) frente.appendChild(card.firstChild);
+
+    const verso = frente.cloneNode(true);
+    verso.className = "card-face verso";
+    verso.setAttribute("aria-hidden", "true");
+    const vslot = verso.querySelector(".slot");
+    // verso: padrão sem-registro por baixo; foto -b por cima quando o arquivo existir
+    vslot.className = "slot vazio";
+    vslot.innerHTML = '<span class="cruz"></span><span class="sr-rotulo">Sem registro</span>';
+    if(img){
+      const imgV = document.createElement("img");
+      imgV.alt = "";
+      imgV.className = "verso-img";
+      // padrão yyyy-a (frente) / yyyy-b (verso): tira o -a, põe -b; extensão testada no clique
+      imgV.dataset.base = img.getAttribute("src").replace(/\.\w+$/, "").replace(/-a$/, "") + "-b";
+      vslot.appendChild(imgV);
+    }
+    if(temB) verso.querySelector(".titulo").innerHTML = card.dataset.tituloB;
+    if(card.dataset.etiquetaB) verso.querySelector(".etiqueta").textContent = card.dataset.etiquetaB;
+
+    flip.appendChild(frente);
+    flip.appendChild(verso);
+    card.appendChild(flip);
+    card.classList.add("flipavel");
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", "Virar o card");
+    card.setAttribute("aria-expanded", "false");
+    // affordance: marca de corte A—A + rótulo de instrução — só em card com verso de texto
+    if(temB){
+      card.insertAdjacentHTML("beforeend",
+        '<span class="mk-corte" aria-hidden="true">' +
+          '<svg width="34" height="30" viewBox="0 0 34 30" fill="none">' +
+            '<rect width="34" height="30" class="mk-placa"/>' +
+            '<path class="mk-seta" d="M26 8v14M26 22l-4-4M26 22l4-4" stroke-width="1.5"/>' +
+            '<text class="mk-letra" x="12" y="20" text-anchor="middle" font-family="\'Space Mono\',monospace" font-size="13" font-weight="700">B</text>' +
+          '</svg>' +
+        '</span>');
+    }
+  });
+
+  // track triplicado: [A][B][C], scroll vive no B
+  const copiaA = conjunto.cloneNode(true);
+  const copiaC = conjunto.cloneNode(true);
+  [copiaA, copiaC].forEach(c => {
+    c.removeAttribute("id");
+    c.setAttribute("aria-hidden", "true");
+    c.classList.add("copia");
+    c.querySelectorAll("a,button,[tabindex]").forEach(el => el.setAttribute("tabindex", "-1"));
+    // lazy nunca carrega fora da tela → cópia não dispararia o fallback de slot vazio
+    c.querySelectorAll(".slot img").forEach(img => img.loading = "eager");
+  });
+  track.insertBefore(copiaA, conjunto);
+  track.appendChild(copiaC);
+
+  // foto de FRENTE ausente vira slot vazio — é conteúdo, não erro
+  track.querySelectorAll(".card-face.frente .slot img, .card:not(.flipavel) .slot img").forEach(img => {
+    const troca = () => {
+      const s = img.closest(".slot");
+      img.remove();
+      s.classList.add("vazio");
+      s.setAttribute("aria-hidden", "true");
+      s.insertAdjacentHTML("beforeend", '<span class="cruz"></span><span class="sr-rotulo">Sem registro</span>');
+    };
+    if(img.complete && img.naturalWidth === 0) troca();
+    else img.addEventListener("error", troca);
+  });
+
+  // aplica o lado ao card + acessibilidade das faces + notação da marca de corte
+  function aplicaVirado(card, alvo){
+    card.classList.toggle("virado", alvo);
+    card.setAttribute("aria-expanded", String(alvo));
+    card.querySelector(".card-face.frente")?.setAttribute("aria-hidden", String(alvo));
+    card.querySelector(".card-face.verso")?.setAttribute("aria-hidden", String(!alvo));
+    // virado: seta aponta de volta e a letra vira A — retorno ao corte de origem
+    const seta = card.querySelector(".mk-seta");
+    const letra = card.querySelector(".mk-letra");
+    if(seta) seta.setAttribute("d", alvo ? "M26 22V8M26 8l-4 4M26 8l4 4" : "M26 8v14M26 22l-4-4M26 22l4-4");
+    if(letra) letra.textContent = alvo ? "A" : "B";
   }
-  d += "Z";
-  p.setAttribute("d", d);
+
+  // vira o card clicado (e o gêmeo nas outras cópias, pra emenda do laço não trair)
+  function alternaFlip(cardClicado){
+    if(cardClicado.classList.contains("sem-verso")) return;
+    const i = [...cardClicado.parentElement.children].indexOf(cardClicado);
+    const alvo = !cardClicado.classList.contains("virado");
+    track.querySelectorAll(".cj-row").forEach(row => {
+      const card = row.children[i];
+      if(!card || !card.classList.contains("flipavel")) return;
+      const imgV = card.querySelector(".verso-img");
+      // sem img de verso (card só de texto) ou verso já resolvido: vira direto
+      if(!imgV || imgV.dataset.ok || imgV.dataset.falhou){
+        aplicaVirado(card, alvo);
+        return;
+      }
+      // verso só baixa no primeiro clique; tenta as extensões
+      const exts = [".jpg", ".jpeg", ".png", ".webp"];
+      let tentativa = 0;
+      const tenta = () => {
+        if(tentativa >= exts.length){
+          // sem arquivo -b: com texto B ainda vira (fica o padrão sem-registro); sem texto, desarma
+          if(card.dataset.tituloB){
+            imgV.dataset.falhou = "1";
+            imgV.remove();
+            aplicaVirado(card, alvo);
+          } else {
+            card.classList.add("sem-verso");
+            card.removeAttribute("role");
+            card.removeAttribute("tabindex");
+          }
+          return;
+        }
+        imgV.onload = () => { imgV.dataset.ok = "1"; aplicaVirado(card, alvo); };
+        imgV.onerror = () => { tentativa++; tenta(); };
+        imgV.src = imgV.dataset.base + exts[tentativa];
+      };
+      tenta();
+    });
+  }
+
+  track.addEventListener("click", e => {
+    const card = e.target.closest(".card.flipavel");
+    if(card) alternaFlip(card);
+  });
+  track.addEventListener("keydown", e => {
+    if(e.key !== "Enter" && e.key !== " ") return;
+    const card = e.target.closest(".card.flipavel");
+    if(card){ e.preventDefault(); alternaFlip(card); }
+  });
+
+  let trackW = 0, passoCard = 0;
+
+  function medir(){
+    trackW = conjunto.offsetWidth + GAP;
+    passoCard = conjunto.querySelector(".card").offsetWidth + GAP;
+    vp.scrollLeft = trackW;
+    atualizaEscala();
+  }
+
+  // cruzou pra cópia lateral → reposiciona na equivalente do B, sem animação
+  function normaliza(){
+    const sl = vp.scrollLeft;
+    if(sl < trackW * 0.5) vp.scrollLeft = sl + trackW;
+    else if(sl > trackW * 1.5) vp.scrollLeft = sl - trackW;
+  }
+
+  // escala: um tick por card, trecho tijolo cobre os cards do intervalo 2016–2021
+  const nCards = conjunto.querySelectorAll(".card").length;
+  const nIntervalo = conjunto.querySelectorAll(".card.intervalo").length;
+  for(let i = 0; i < nCards; i++){
+    const t = document.createElement("span");
+    t.className = "esc-tick";
+    t.style.left = (i / (nCards - 1) * 100) + "%";
+    escala.appendChild(t);
+  }
+  escala.querySelector(".esc-intervalo").style.width =
+    ((nIntervalo - 1) / (nCards - 1) * 100) + "%";
+
+  function atualizaEscala(){
+    if(!trackW) return;
+    const frac = ((vp.scrollLeft % trackW) + trackW) % trackW / trackW;
+    const escW = escala.clientWidth;
+    janela.style.width = Math.min(1, vp.clientWidth / trackW) * escW + "px";
+    janela.style.transform = `translateX(${frac * escW}px)`;
+  }
+
+  vp.addEventListener("scroll", () => { normaliza(); atualizaEscala(); }, {passive: true});
+
+  // arraste com mouse (toque usa o scroll nativo).
+  // a captura do ponteiro só começa depois do limiar de 6px: capturar já no
+  // pointerdown re-endereça o clique pro viewport e o flip do slot nunca dispara
+  let arrastando = false, pendente = false, x0 = 0, sl0 = 0, moveu = false;
+  vp.addEventListener("pointerdown", e => {
+    if(e.pointerType !== "mouse" || e.button !== 0) return;
+    pendente = true; moveu = false; x0 = e.clientX; sl0 = vp.scrollLeft;
+  });
+  vp.addEventListener("pointermove", e => {
+    if(!pendente && !arrastando) return;
+    const dx = e.clientX - x0;
+    if(!arrastando){
+      if(Math.abs(dx) <= 6) return;
+      arrastando = true; moveu = true;
+      try{ vp.setPointerCapture(e.pointerId); }catch(_){}
+      vp.classList.add("arrastando");
+    }
+    e.preventDefault();
+    vp.scrollLeft = sl0 - dx;
+  });
+  ["pointerup", "pointercancel"].forEach(ev =>
+    vp.addEventListener(ev, () => {
+      pendente = false; arrastando = false;
+      vp.classList.remove("arrastando");
+    })
+  );
+  // arraste não pode terminar em flip acidental
+  vp.addEventListener("click", e => {
+    if(moveu){ e.stopPropagation(); e.preventDefault(); moveu = false; }
+  }, true);
+  // arrasto nativo de imagem sequestraria o gesto
+  vp.addEventListener("dragstart", e => e.preventDefault());
+
+  // um card por vez: setas do teclado e botões
+  function passo(dir){
+    vp.scrollBy({left: dir * passoCard, behavior: reduzMotion ? "auto" : "smooth"});
+  }
+  vp.addEventListener("keydown", e => {
+    if(e.key === "ArrowRight"){ e.preventDefault(); passo(1); }
+    if(e.key === "ArrowLeft"){ e.preventDefault(); passo(-1); }
+  });
+  sec.querySelector(".seta-esq").addEventListener("click", () => passo(-1));
+  sec.querySelector(".seta-dir").addEventListener("click", () => passo(1));
+
+  // entrada única: fade + 20px, stagger 60ms, uma vez só
+  if(!reduzMotion){
+    sec.classList.add("anim");
+    track.querySelectorAll(".cj-row").forEach(row => {
+      row.querySelectorAll(".card").forEach((c, i) => c.style.transitionDelay = (i * 60) + "ms");
+    });
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if(e.isIntersecting){
+          sec.classList.add("entrou");
+          io.disconnect();
+          // dica única: primeira dobra cresce e volta, 1,2s depois da entrada
+          setTimeout(() => {
+            const cardDica = conjunto.querySelector(".card .dobra")?.closest(".card");
+            if(cardDica){
+              cardDica.classList.add("dica");
+              setTimeout(() => cardDica.classList.remove("dica"), 600);
+            }
+          }, 1200);
+        }
+      });
+    }, {threshold: 0.15});
+    io.observe(vp);
+  }
+
+  medir();
+  window.addEventListener("resize", medir);
+  window.addEventListener("load", medir);
 }
 
-/* ============ GOOGLE ANALYTICS ============ */
-function configurarAnalytics() {
-  document.querySelectorAll(".link-card").forEach(link => {
-    link.addEventListener("click", () => {
-      const analytics = link.dataset.analytics || "desconhecido";
-      const destino = link.href;
-
-      gtag("event", "click_link", {
-        link_name: analytics,
-        destination: destino
-      });
+/* ============ ANALYTICS (cliques em links marcados) ============ */
+function montarAnalytics(){
+  document.addEventListener("click", ev => {
+    const el = ev.target.closest("[data-analytics]");
+    if(!el || typeof gtag !== "function") return;
+    gtag("event", "click_link", {
+      link_id: el.dataset.analytics,
+      link_url: el.href || ""
     });
   });
 }
 
-/* ============ INIT ============ */
-function iniciar(){
-  montarFiltros();
-  renderPainel();
-  renderLista();
-  montarGlobo();
-  montarNuvem();
-  configurarAnalytics();
+/* ============ O ARQUIVO — embeds do Instagram sob demanda ============ */
+function montarArquivo(){
+  const sec = document.getElementById("arquivo");
+  if(!sec || !sec.querySelector(".instagram-media")) return;
+
+  // um único embed.js pros três, injetado quando a seção se aproxima
+  const obs = new IntersectionObserver(entries => {
+    if(!entries[0].isIntersecting) return;
+    obs.disconnect();
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.instagram.com/embed.js";
+    s.onload = () => window.instgrm?.Embeds?.process();
+    document.body.appendChild(s);
+  }, {rootMargin: "400px"});
+  obs.observe(sec);
+
+  // placeholder some quando o iframe do embed entra no DOM
+  sec.querySelectorAll(".embed-corpo").forEach(corpo => {
+    const mo = new MutationObserver(() => {
+      if(corpo.querySelector("iframe")){
+        corpo.classList.add("carregado");
+        mo.disconnect();
+      }
+    });
+    mo.observe(corpo, {childList: true, subtree: true});
+  });
 }
 
-fetch("vagas.json")
-  .then(r => {
-    if(!r.ok) throw new Error("HTTP " + r.status);
-    return r.json();
-  })
-  .then(data => {
-    VAGAS = data;
-    vagaAtiva = VAGAS[0] ? VAGAS[0].id : null;
-    iniciar();
-  })
-  .catch(err => {
-    console.error("Não foi possível carregar vagas.json:", err);
-    const vazio = document.getElementById("estado-vazio");
-    if(vazio){
-      vazio.style.display = "block";
-      vazio.textContent = "Não foi possível carregar as vagas agora. Tenta recarregar a página.";
-    }
-  });
+/* ============ INIT ============ */
+montarFiltros();
+renderPainel();
+renderLista();
+montarGlobo();
+montarTrajetoria();
+montarArquivo();
+montarAnalytics();
