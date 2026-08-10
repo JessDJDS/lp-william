@@ -1,28 +1,15 @@
-/* ============ DADOS — editar à mão, uma vaga por objeto ============ */
-const VAGAS = [
-  {
-    id:"v001", cargo:"Chevening — Mestrado no Reino Unido", empresa:"Governo Britânico · FCDO",
-    cidade:"Londres", pais:"Reino Unido", lat:51.5074, lon:-0.1278,
-    senioridade:"2+ anos de experiência", idioma:"Inglês obrigatório", visto:true,
-    resumo:"Bolsa integral do governo britânico pra um ano de mestrado em qualquer universidade do Reino Unido: mensalidade, passagens, visto e ajuda de custo mensal. Cerca de 1.800 bolsas por ano no mundo. Candidatura aberta até 06/10/2026.",
-    requisitos:["Graduação concluída","2 anos de experiência profissional (2.800 horas)","Inglês fluente","Escolher 3 cursos de mestrado no Reino Unido","Voltar ao Brasil por 2 anos depois da bolsa"],
-    fonte:"Chevening.org", url:"https://www.chevening.org/scholarships/", publicado:"2026-08-05"
-  },
-  {
-    id:"v002", cargo:"Estágio em Planejamento de Obras", empresa:"Handsplan",
-    cidade:"Remoto", pais:"Brasil", lat:-15.7939, lon:-47.8828,
-    senioridade:"Estágio", idioma:"Português", visto:false,
-    resumo:"Duas vagas de estágio remoto. Cronograma de obra de verdade: atualizar, analisar o que saiu do previsto, organizar dados e montar os relatórios que a gerência usa pra decidir. Jornada flexível em cima do horário de aula e possibilidade de efetivação.",
-    requisitos:["Engenharias, do 7º período em diante","Excel, Power BI e MS Project ajudam — nenhum é obrigatório","Disponibilidade para viagens","Início em 30/08","100% remoto, jornada flexível"],
-    fonte:"Tally", url:"https://tally.so/r/obZODV", publicado:"2026-08-09"
-  }
-];
+/* ============ DADOS ============
+   As vagas NÃO ficam mais neste arquivo. Elas são carregadas de
+   vagas.json (na raiz do projeto) via fetch(), logo no fim deste
+   arquivo. Pra adicionar/remover/editar uma vaga, edite só o
+   vagas.json — nunca precisa tocar neste script. */
+let VAGAS = [];
 
 const KALUNDBORG = { lat:55.6867, lon:11.0879 };
 
 /* ============ ESTADO ============ */
 const filtro = { pais:null, senioridade:null, visto:false };
-let vagaAtiva = VAGAS[0].id;
+let vagaAtiva = null;
 const reduzMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function vagasFiltradas(){
@@ -602,10 +589,31 @@ function montarArquivo(){
 }
 
 /* ============ INIT ============ */
-montarFiltros();
-renderPainel();
-renderLista();
-montarGlobo();
-montarTrajetoria();
-montarArquivo();
-montarAnalytics();
+function iniciar(){
+  montarFiltros();
+  renderPainel();
+  renderLista();
+  montarGlobo();
+  montarTrajetoria();
+  montarArquivo();
+  montarAnalytics();
+}
+
+fetch("vagas.json")
+  .then(r => {
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  })
+  .then(data => {
+    VAGAS = data;
+    vagaAtiva = VAGAS[0] ? VAGAS[0].id : null;
+    iniciar();
+  })
+  .catch(err => {
+    console.error("Não foi possível carregar vagas.json:", err);
+    const vazio = document.getElementById("estado-vazio");
+    if(vazio){
+      vazio.style.display = "block";
+      vazio.textContent = "Não foi possível carregar as vagas agora. Tenta recarregar a página.";
+    }
+  });
