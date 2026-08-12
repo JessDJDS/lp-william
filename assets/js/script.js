@@ -588,13 +588,39 @@ function montarArquivo(){
   });
 }
 
+/* ============ MENU MOBILE ============ */
+function montarMenuMobile(){
+  const btn = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-mobile");
+  if(!btn || !nav) return;
+
+  function fechar(){
+    nav.classList.remove("aberto");
+    btn.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("no-scroll");
+  }
+  function abrir(){
+    nav.classList.add("aberto");
+    btn.setAttribute("aria-expanded", "true");
+    document.body.classList.add("no-scroll");
+  }
+
+  btn.addEventListener("click", () => {
+    nav.classList.contains("aberto") ? fechar() : abrir();
+  });
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", fechar));
+  document.addEventListener("keydown", e => { if(e.key === "Escape") fechar(); });
+  window.addEventListener("resize", () => { if(window.innerWidth > 980) fechar(); });
+}
+
 /* ============ INIT ============ */
-// Essas três NÃO dependem de VAGAS — rodam sempre, mesmo se o
+// Essas quatro NÃO dependem de VAGAS — rodam sempre, mesmo se o
 // vagas.json falhar em carregar (rede instável, path errado no
 // deploy, etc.). Antes estavam todas presas atrás do fetch abaixo:
 // se vagas.json falhasse por qualquer motivo, a trajetória (cards
 // e setas) e os embeds do Instagram simplesmente nunca ganhavam
 // os listeners de clique — o que parecia "nada no site reage".
+montarMenuMobile();
 montarTrajetoria();
 montarArquivo();
 montarAnalytics();
