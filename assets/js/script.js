@@ -589,14 +589,22 @@ function montarArquivo(){
 }
 
 /* ============ INIT ============ */
-function iniciar(){
+// Essas três NÃO dependem de VAGAS — rodam sempre, mesmo se o
+// vagas.json falhar em carregar (rede instável, path errado no
+// deploy, etc.). Antes estavam todas presas atrás do fetch abaixo:
+// se vagas.json falhasse por qualquer motivo, a trajetória (cards
+// e setas) e os embeds do Instagram simplesmente nunca ganhavam
+// os listeners de clique — o que parecia "nada no site reage".
+montarTrajetoria();
+montarArquivo();
+montarAnalytics();
+
+// Só isso aqui de fato precisa de VAGAS.
+function iniciarVagas(){
   montarFiltros();
   renderPainel();
   renderLista();
   montarGlobo();
-  montarTrajetoria();
-  montarArquivo();
-  montarAnalytics();
 }
 
 fetch("vagas.json")
@@ -607,7 +615,7 @@ fetch("vagas.json")
   .then(data => {
     VAGAS = data;
     vagaAtiva = VAGAS[0] ? VAGAS[0].id : null;
-    iniciar();
+    iniciarVagas();
   })
   .catch(err => {
     console.error("Não foi possível carregar vagas.json:", err);
