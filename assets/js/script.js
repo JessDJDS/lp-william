@@ -487,9 +487,12 @@ function montarTrajetoria(){
   // pointerdown re-endereça o clique pro viewport e o flip do slot nunca dispara
   let arrastando = false, pendente = false, x0 = 0, sl0 = 0, moveu = false;
   vp.addEventListener("pointerdown", e => {
-    if(e.pointerType !== "mouse" || e.button !== 0) return;
-    pendente = true; moveu = false; x0 = e.clientX; sl0 = vp.scrollLeft;
+    // CORREÇÃO MOBILE: Garante que qualquer nova tentativa de toque destrave o clique anterior
+    moveu = false; 
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    pendente = true; x0 = e.clientX; sl0 = vp.scrollLeft;
   });
+
   vp.addEventListener("pointermove", e => {
     if(!pendente && !arrastando) return;
     const dx = e.clientX - x0;
