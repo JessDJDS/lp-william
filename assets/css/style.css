@@ -51,13 +51,14 @@ h1,h2,h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400
 /* em display (Anton, line-height <1) o fundo inline transborda pra linha de cima;
    o fundo passa pra um pseudo-elemento atrás do texto */
 h1,h2,.fecho-frase{position:relative;z-index:0}
-h1 .marca,h2 .marca,.fecho-frase .marca{
-  position:relative;
-  background:none;
-  padding:0 .06em;
-  color:var(--grafite);
-  -webkit-box-decoration-break:clone;
-          box-decoration-break:clone;
+h1 .marca, h2 .marca, .fecho-frase .marca {
+  position: relative;
+  display: inline-block; /* FORÇA o pseudo-elemento a ficar preso dentro do span, sem sumir atrás do fundo */
+  background: none;
+  padding: 0 .06em;
+  color: var(--grafite);
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
 }
 h1 .marca::before,h2 .marca::before,.fecho-frase .marca::before{
   content:"";
