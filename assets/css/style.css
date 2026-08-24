@@ -14,6 +14,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* rede de segurança: qualquer elemento que vaze 1px além do viewport
+   (comum em Android com certas combinações de largura/scrollbar) não
+   deve virar uma faixa de scroll horizontal na página inteira */
+html,body{overflow-x:hidden;max-width:100vw}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
@@ -417,6 +421,16 @@ body.no-scroll{overflow:hidden}
   .so-mobile{display:inline}
 
   .sec-vagas .wrap{display:flex;flex-direction:column}
+  /* min-width:0 é o pulo do gato aqui: sem isso, um item flex nunca
+     encolhe além da largura do próprio conteúdo, então a faixa de
+     filtros (com overflow-x:auto) empurra o .wrap pra fora do viewport
+     em vez de cortar — daí a faixa em branco no scroll horizontal */
+  .sec-vagas .cota,
+  .sec-vagas .vagas-head,
+  .sec-vagas .filtros,
+  .sec-vagas .vagas-corpo,
+  .sec-vagas .vagas-aviso,
+  .sec-vagas .estado-vazio{min-width:0}
   .sec-vagas .cota{order:1}
   .sec-vagas .vagas-head{order:2}
   .sec-vagas .filtros{order:3}
@@ -441,6 +455,24 @@ body.no-scroll{overflow:hidden}
   .slicer{flex:0 0 auto;display:flex;align-items:center;gap:8px}
   .slicer .rotulo{font-size:9.5px;letter-spacing:.10em;white-space:nowrap}
   .slicer select{padding:7px 26px 7px 10px;font-size:12px}
+
+  /* lista de vagas em carrossel horizontal — evita que N vagas virem
+     N linhas empilhadas até o fim da página; toca num cartão, o painel
+     de detalhe abaixo atualiza no lugar */
+  .lista-vagas{
+    display:flex;gap:10px;
+    overflow-x:auto;scroll-snap-type:x proximity;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    border-top:none;
+    margin:0 -20px;padding:4px 20px 10px;
+  }
+  .lista-vagas::-webkit-scrollbar{display:none}
+  .linha-vaga{
+    flex:0 0 220px;scroll-snap-align:start;
+    display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+    border:1px solid var(--cinza);border-bottom:1px solid var(--cinza);
+  }
+  .linha-vaga .pais{margin-top:2px}
 }
 
 /* ============ CARDS DE LINK (vivem no fecho da seção 05) ============ */

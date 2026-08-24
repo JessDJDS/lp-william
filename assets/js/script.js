@@ -450,6 +450,7 @@ function montarTrajetoria(){
     if(sl < trackW * 0.5) vp.scrollLeft = sl + trackW;
     else if(sl > trackW * 1.5) vp.scrollLeft = sl - trackW;
   }
+  let normalizaTimer = null;
 
   // escala: um tick por card, trecho tijolo cobre os cards do intervalo 2016–2021
   const nCards = conjunto.querySelectorAll(".card").length;
@@ -471,7 +472,16 @@ function montarTrajetoria(){
     janela.style.transform = `translateX(${frac * escW}px)`;
   }
 
-  vp.addEventListener("scroll", () => { normaliza(); atualizaEscala(); }, {passive: true});
+  vp.addEventListener("scroll", () => {
+    atualizaEscala();
+    // normaliza() reposiciona scrollLeft de forma abrupta (sem animação).
+    // Fazer isso a cada tick de scroll briga com a inércia/momentum nativo
+    // do toque no celular — sensação de delay entre os cards e, em alguns
+    // aparelhos, o gesto de scroll da página fica "preso" dentro do
+    // carrossel. Adiar pro fim do gesto (debounce) resolve os dois.
+    clearTimeout(normalizaTimer);
+    normalizaTimer = setTimeout(normaliza, 120);
+  }, {passive: true});
 
   // arraste com mouse (toque usa o scroll nativo).
   // a captura do ponteiro só começa depois do limiar de 6px: capturar já no
