@@ -424,10 +424,32 @@ function montarTrajetoria(){
     });
   }
 
-  track.addEventListener("click", e => {
-    const card = e.target.closest(".card.flipavel");
-    if(card) alternaFlip(card);
+  // Variáveis para medir se o usuário arrastou o carrossel ou se foi só um toque rápido
+  let toqueX0 = 0;
+  let toqueY0 = 0;
+
+  track.addEventListener("pointerdown", e => {
+    toqueX0 = e.clientX;
+    toqueY0 = e.clientY;
   });
+
+  track.addEventListener("pointerup", e => {
+    const card = e.target.closest(".card.flipavel");
+    if (!card) return;
+
+    // Calcula a distância que o dedo percorreu desde o toque inicial
+    const deltaX = Math.abs(e.clientX - toqueX0);
+    const deltaY = Math.abs(e.clientY - toqueY0);
+
+    // Se o dedo moveu mais de 8 pixels para qualquer lado, o usuário estava arrastando o carrossel.
+    // Se moveu menos que isso, foi um clique/toque intencional para virar o card!
+    if (deltaX < 8 && deltaY < 8) {
+      // Previne comportamentos fantasmas do clique nativo
+      if (e.cancelable) e.preventDefault(); 
+      alternaFlip(card);
+    }
+  });
+
   track.addEventListener("keydown", e => {
     if(e.key !== "Enter" && e.key !== " ") return;
     const card = e.target.closest(".card.flipavel");
