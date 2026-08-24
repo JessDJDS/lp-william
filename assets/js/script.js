@@ -318,10 +318,34 @@ function montarTrajetoria(){
       const imgV = document.createElement("img");
       imgV.alt = "";
       imgV.className = "verso-img";
-      // padrão yyyy-a (frente) / yyyy-b (verso): tira o -a, põe -b; extensão testada no clique
       imgV.dataset.base = img.getAttribute("src").replace(/\.\w+$/, "").replace(/-a$/, "") + "-b";
       vslot.appendChild(imgV);
+
+      // --- Início da melhoria de pré-carregamento ---
+      const exts = [".jpg", ".jpeg", ".png", ".webp"];
+      let tentativa = 0;
+      const preCarregarVerso = () => {
+        if(tentativa >= exts.length){
+          if(card.dataset.tituloB){
+            imgV.dataset.falhou = "1";
+            imgV.remove();
+          } else {
+            card.classList.add("sem-verso");
+          }
+          return;
+        }
+        const testeImg = new Image();
+        testeImg.onload = () => { 
+          imgV.src = imgV.dataset.base + exts[tentativa];
+          imgV.dataset.ok = "1"; 
+        };
+        testeImg.onerror = () => { tentativa++; preCarregarVerso(); };
+        testeImg.src = imgV.dataset.base + exts[tentativa];
+      };
+      preCarregarVerso();
+      // --- Fim da melhoria de pré-carregamento ---
     }
+
     if(temB) verso.querySelector(".titulo").innerHTML = card.dataset.tituloB;
     if(card.dataset.etiquetaB) verso.querySelector(".etiqueta").textContent = card.dataset.etiquetaB;
 
@@ -386,7 +410,7 @@ function montarTrajetoria(){
     if(letra) letra.textContent = alvo ? "A" : "B";
   }
 
-  // vira o card clicado (e o gêmeo nas outras cópias, pra emenda do laço não trair)
+  // vira o card clicado instantaneamente (gêmeos inclusos)
   function alternaFlip(cardClicado){
     if(cardClicado.classList.contains("sem-verso")) return;
     const i = [...cardClicado.parentElement.children].indexOf(cardClicado);
@@ -394,34 +418,9 @@ function montarTrajetoria(){
     track.querySelectorAll(".cj-row").forEach(row => {
       const card = row.children[i];
       if(!card || !card.classList.contains("flipavel")) return;
-      const imgV = card.querySelector(".verso-img");
-      // sem img de verso (card só de texto) ou verso já resolvido: vira direto
-      if(!imgV || imgV.dataset.ok || imgV.dataset.falhou){
-        aplicaVirado(card, alvo);
-        return;
-      }
-      // verso só baixa no primeiro clique; tenta as extensões
-      const exts = [".jpg", ".jpeg", ".png", ".webp"];
-      let tentativa = 0;
-      const tenta = () => {
-        if(tentativa >= exts.length){
-          // sem arquivo -b: com texto B ainda vira (fica o padrão sem-registro); sem texto, desarma
-          if(card.dataset.tituloB){
-            imgV.dataset.falhou = "1";
-            imgV.remove();
-            aplicaVirado(card, alvo);
-          } else {
-            card.classList.add("sem-verso");
-            card.removeAttribute("role");
-            card.removeAttribute("tabindex");
-          }
-          return;
-        }
-        imgV.onload = () => { imgV.dataset.ok = "1"; aplicaVirado(card, alvo); };
-        imgV.onerror = () => { tentativa++; tenta(); };
-        imgV.src = imgV.dataset.base + exts[tentativa];
-      };
-      tenta();
+      
+      // Vira na hora, sem testar nada no clique!
+      aplicaVirado(card, alvo);
     });
   }
 
