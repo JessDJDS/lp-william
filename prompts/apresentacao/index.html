@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de painel da obra num arquivo HTML que abre offline · William Moura</title>
+<meta name="description" content="Prompt aberto que monta curva S, cronograma e histograma da obra num único arquivo HTML, sem biblioteca, sem CDN e sem internet. Sem cadastro.">
+<link rel="canonical" href="https://engnextgen.com.br/prompts/apresentacao/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://engnextgen.com.br/prompts/apresentacao/">
+<meta property="og:title" content="O painel da obra num arquivo que abre com duplo clique">
+<meta property="og:description" content="Curva S, cronograma e histograma em SVG puro. Onde falta dado aparece uma caixa dizendo qual dado falta, não uma linha bonita em zero. Passo 04 de 04.">
+<meta property="og:image" content="https://engnextgen.com.br/assets/og/prompt-apresentacao.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="O painel da obra num arquivo que abre com duplo clique">
+<meta name="twitter:description" content="Curva S, cronograma e histograma em SVG puro. Onde falta dado aparece uma caixa dizendo qual dado falta, não uma linha bonita em zero. Passo 04 de 04.">
+<meta name="twitter:image" content="https://engnextgen.com.br/assets/og/prompt-apresentacao.svg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 04 de 04 · Apresentação interativa da obra</p>
+
+    <div class="p-cabeca">
+      <h1>O painel da obra num arquivo que abre com <span class="marca">duplo clique</span></h1>
+    </div>
+
+    <p class="p-sub">Uma tela com o veredito da obra, o avanço ao longo do tempo e as decisões travadas — num arquivo que abre sem servidor, sem internet e sem plugin.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-apresentacao" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-apresentacao" tabindex="0" role="region" aria-label="Prompt do passo 04, rolável"><span class="ph">PAPEL</span>
+
+Você é designer de informação técnica escrevendo para quem paga a obra, não para quem a executa. Seu trabalho é fazer um gestor entender a situação em trinta segundos e sair sabendo três coisas: quando entrega, o que está travado e o que ele precisa decidir.
+
+Você trata gráfico bonito com dado incerto como falha grave. E trata excesso de dado correto como a mesma falha: se o leitor precisa procurar, você errou.
+
+<span class="ph">QUEM LÊ</span>
+
+Chefe ou cliente. Não abre planilha. Não conhece CPM, folga total, EDT, homem-hora, vínculo TI/II nem código SINAPI. Lê no celular ou projetado numa reunião de quinze minutos. Vai tomar uma decisão a partir desta tela — ou vai encerrar a reunião sem tomar nenhuma, e a culpa será do documento.
+
+<span class="ph">CONTEXTO</span>
+
+Anexei a planilha de homem-hora e o cronograma da obra.
+
+<span class="ph">TAREFA</span>
+
+Monte um resumo executivo em um único arquivo HTML, que abre em qualquer navegador, sem dependência externa e sem conexão com a internet.
+
+O essencial cabe em uma tela de 1280 × 800, sem rolagem. O que não couber ali não é essencial: vai para detalhe sob o mouse ou para um bloco recolhido no fim.
+
+<span class="ph">CONTEÚDO, NESTA ORDEM</span>
+
+1. Veredito — uma frase de até 20 palavras dizendo a situação da obra. Abaixo dela, no máximo quatro números grandes: data de entrega prevista, prazo total, percentual do escopo que está efetivamente medido, e número de decisões travadas. Nada mais.
+2. Linha do tempo por área — no máximo 8 barras, uma por área de obra, em escala de mês. Marcar onde a obra está hoje. Barra que depende de decisão pendente recebe marca de alerta. Sem barra por atividade, sem código, sem folga, sem seta de vínculo.
+3. Avanço previsto ao longo do tempo — uma única curva, em percentual acumulado, com o mês no eixo e a posição de hoje marcada. Ao passar o mouse: mês, percentual previsto, percentual realizado e diferença. Sem tabela ao lado.
+4. Mão de obra — uma faixa horizontal, não um gráfico: quantas pessoas no pico, em que mês, e quantas em média. Só entra se responder à pergunta "quantas pessoas eu vou ter na obra e quando". Se não responder, corte o bloco.
+5. Decisões pendentes — no máximo três. Cada uma em quatro campos curtos: o que está parado · o que muda se ninguém decidir · quem decide · até quando. O campo de responsável fica em branco, para preencher na reunião.
+6. O que este documento não sabe — no máximo quatro linhas, em linguagem comum, no fim da tela. Sem numeração de premissa, sem nome de aba, sem nome de prancha.
+
+<span class="ph">O QUE NÃO ENTRA — LISTA FECHADA</span>
+
+Código de orçamento · EDT · WBS · folga total · caminho crítico nomeado como tal · tipo de vínculo e lag · homem-hora como unidade visível · nome de prancha · número de premissa · dicionário de dados · tabela semana a semana · barra por atividade · qualquer sigla não traduzida na primeira aparição · qualquer número sem unidade e sem período · qualquer bloco que exista só porque o dado existe.
+
+Rastreabilidade não desaparece: cada número guarda a origem sob o mouse, e um bloco recolhido no fim lista a origem de todos eles. Na tela, o número aparece limpo.
+
+<span class="ph">TOM</span>
+
+Sem linguagem promocional. Sem tranquilizar. Sem "estamos confiantes", "dentro do esperado", "seguindo conforme planejado". Frase curta, verbo no presente, número com unidade. Incerteza dita em uma linha, em palavras comuns: "não sabemos X porque falta Y".
+
+<span class="ph">REGRAS</span>
+
+1. Nenhum dado inventado. O que não estiver nas planilhas aparece como campo vazio rotulado — nunca como zero, nunca como linha interpolada.
+2. Gráficos em SVG puro, escritos à mão. Sem biblioteca, sem CDN, sem canvas.
+3. Todo número exibido é rastreável a uma célula das planilhas anexadas, com a origem acessível sob o mouse.
+4. No máximo 12 números na tela inteira. Se passar disso, corte — não diminua a fonte.
+5. Percentual sempre com a base escrita ao lado. "32% do escopo" é mentira sem dizer 32% de quê.
+6. Funciona offline, em um arquivo só, aberto por duplo clique.
+
+<span class="ph">FALLBACKS</span>
+
+- Sem dado de realizado: desenhe só o previsto e escreva no eixo "realizado não informado". Não desenhe uma linha plana em zero. O veredito passa a dizer que a obra não tem apontamento, porque isso é a informação executiva mais importante da tela.
+- Obra ainda não iniciada: a marca de "hoje" sai da tela e vira uma frase com a data de início adotada. Não force um marcador fora do intervalo.
+- Cronograma sem datas absolutas: use mês relativo (Mês 1, Mês 2) e diga isso no veredito, não em nota de rodapé.
+- Menos de três decisões pendentes: mostre as que existem. Não complete a grade.
+- Bloco que não pode ser desenhado com integridade: substitua o gráfico por uma frase dizendo qual dado falta e o que ele destravaria. Nunca desenhe decoração.
+- Escopo medido abaixo de 50%: isso vira a primeira linha do veredito, com o número na cara. Um cronograma que cobre meio escopo não é um prazo — e o leitor precisa saber disso antes de olhar qualquer gráfico.
+- Arquivo passando de 2 MB: reduza densidade de pontos, nunca a rastreabilidade.
+
+<span class="ph">PADRÃO VISUAL</span>
+
+Base `#F1EDE2` (papel). Tinta `#16130E` (grafite, preto quente — nunca `#000000`). Amarelo `#F4C70F`: só no marcador de hoje e no número principal do veredito. Máximo 15% da área. Nunca preenche fundo, nunca gradiente, nunca brilho. Cianotipia `#14556B`: linha de previsto, cabeçalho, grade forte. Máx 30%. Tijolo `#B23A1E`: exclusivo para decisão pendente, alerta e divergência. Máx 5%. Cinza cota `#8C8577`: metadado, carimbo, texto secundário.
+
+Malha de 5 mm ao fundo, em `#16130E` a 4,5% de opacidade. Tipografia: Anton (títulos, caixa alta), Montserrat 400–700 (corpo, nunca 800 ou 900), Space Mono (rótulo de eixo, legenda, carimbo e todo metadado). Nenhuma animação de entrada. Transição só no hover. Sem emoji. Sem ícone decorativo. Sem sombra. Sem canto arredondado.
+
+Carimbo no rodapé, em Space Mono caixa alta: `PROJETO · REV. 00 · DATA · RESUMO EXECUTIVO · FOLHA 1/1`
+
+<span class="ph">REGRAS GERAIS</span>
+
+Não invente. Nenhum número, índice, norma, fonte, dimensão ou prazo pode ser estimado, arredondado ou completado por inferência. Dado ausente é dado ausente.
+
+Não me faça perguntas. Onde faltar informação, assuma o mais conservador, siga em frente e registre a suposição.
+
+A entrega no chat começa com um bloco SUPOSIÇÕES E LACUNAS de até 8 linhas: o que faltou, o que você assumiu, e qual o impacto se a suposição estiver errada. Esse bloco fica no chat, para mim — no arquivo entra só a versão de quatro linhas, em linguagem comum. Se não faltou nada, escreva "nenhuma".
+
+Precisão acima de completude. Marque, não apague: informação incerta permanece na entrega, sinalizada em tijolo `#B23A1E`, com o motivo escrito ao lado.
+
+Se a tarefa inteira for inviável com o material anexado, diga isso na primeira linha e explique o que falta. Não entregue um arquivo bonito e vazio.
+
+<span class="ph">CHECAGEM ANTES DE ENTREGAR</span>
+
+- Um gestor lê por trinta segundos e sabe dizer a data de entrega, o que está travado e o que ele precisa decidir?
+- O essencial cabe em uma tela de 1280 × 800 sem rolagem?
+- Tem mais de 12 números na tela? Tem número sem unidade ou sem período?
+- Tem sigla ou jargão de planejamento não traduzido?
+- Algum gráfico está desenhado com dado ausente?
+- Algum bloco existe só porque o dado existia?
+- A área amarela passa de 15% de qualquer tela? A tijolo passa de 5%?
+- O arquivo abre com duplo clique, sem servidor e sem internet?</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Relatório de obra costuma chegar como PDF de quarenta páginas que ninguém abre, ou como planilha que só quem montou entende. O gestor quer saber em trinta segundos se a obra está atrasada e onde.</p>
+      <p>Este prompt entrega um arquivo HTML único, sem dependência externa, e recusa desenhar gráfico com dado que não existe — onde falta informação aparece uma caixa dizendo qual dado falta, não uma linha bonita em zero.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-print p-print-svg">
+        <svg viewBox="0 0 820 300" class="p-mock" role="img"
+             aria-label="Exemplo de saída: curva S de homem-hora com previsto acumulado em cianotipia, realizado acumulado em grafite até a semana 8, desvio marcado em tijolo e marcador amarelo na semana atual">
+
+          <!-- malha de fundo -->
+          <g class="mk-malha">
+            <path d="M60 30V220M115 30V220M171 30V220M226 30V220M282 30V220M337 30V220M392 30V220M448 30V220M503 30V220M558 30V220M614 30V220M669 30V220M725 30V220M780 30V220"/>
+            <path d="M60 30H780M60 78H780M60 125H780M60 173H780"/>
+          </g>
+
+          <!-- eixos -->
+          <path class="mk-eixo" d="M60 30V220H780"/>
+
+          <!-- rótulos do eixo Y -->
+          <g class="mk-meta" text-anchor="end">
+            <text x="52" y="223">0%</text>
+            <text x="52" y="176">25%</text>
+            <text x="52" y="128">50%</text>
+            <text x="52" y="81">75%</text>
+            <text x="52" y="34">100%</text>
+          </g>
+
+          <!-- rótulos do eixo X -->
+          <g class="mk-meta" text-anchor="middle">
+            <text x="60" y="236">S1</text>
+            <text x="171" y="236">S3</text>
+            <text x="282" y="236">S5</text>
+            <text x="392" y="236">S7</text>
+            <text x="503" y="236">S9</text>
+            <text x="614" y="236">S11</text>
+            <text x="725" y="236">S13</text>
+          </g>
+
+          <!-- marcador da semana atual — único amarelo do gráfico -->
+          <path class="mk-agora" d="M448 30V220"/>
+          <rect class="mk-agora-tag" x="425" y="16" width="46" height="12"/>
+          <text class="mk-agora-txt" x="448" y="25" text-anchor="middle">S8 HOJE</text>
+
+          <!-- previsto acumulado -->
+          <polyline class="mk-previsto" points="60,216.2 115.4,208.6 170.8,197.2 226.2,180.1 281.5,157.3 336.9,132.6 392.3,109.8 447.7,88.9 503.1,71.8 558.5,58.5 613.8,49 669.2,41.4 724.6,35.7 780,30"/>
+
+          <!-- realizado acumulado — só até a semana 8 -->
+          <polyline class="mk-realizado" points="60,217.2 115.4,210.5 170.8,201 226.2,187.7 281.5,168.7 336.9,147.8 392.3,126.9 447.7,109.8"/>
+
+          <!-- desvio da semana 8: previsto 69% contra realizado 58% -->
+          <path class="mk-desvio" d="M447.7 88.9V109.8"/>
+          <circle class="mk-desvio-pt" cx="447.7" cy="109.8" r="3.5"/>
+          <text class="mk-desvio-txt" x="458" y="104">−11 p.p.</text>
+
+          <!-- fallback: sem dado de realizado a partir de S9 -->
+          <rect class="mk-vazio" x="455" y="150" width="318" height="34"/>
+          <text class="mk-vazio-txt" x="467" y="164">S9 A S14 · REALIZADO NÃO INFORMADO</text>
+          <text class="mk-vazio-sub" x="467" y="177">curva não desenhada — planilha sem apontamento</text>
+
+          <!-- legenda -->
+          <g class="mk-meta">
+            <line class="mk-previsto" x1="60" y1="262" x2="86" y2="262"/>
+            <text x="94" y="266">PREVISTO ACUMULADO</text>
+            <line class="mk-realizado" x1="252" y1="262" x2="278" y2="262"/>
+            <text x="286" y="266">REALIZADO ACUMULADO</text>
+            <line class="mk-desvio" x1="450" y1="262" x2="476" y2="262"/>
+            <text x="484" y="266">DESVIO</text>
+          </g>
+        </svg>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Avanço em percentual acumulado · Dados ilustrativos</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Não vai dar uma de doido e mascarar dado não. Ética em primeiro lugar. Gráfico é danado pra fingir que tá tudo bem quando o mundo tá acabando. Presta atenção na plotagem ponto a ponto.</li>
+          <li>Abra o arquivo com o wi-fi desligado antes de enviar. Você não quer que seu chefe ou cliente encontre uma tela em branco quando tentar abrir o arquivo, né?</li>
+          <li>Painel bonito com planilha velha é pior que planilha feia com dado de hoje. Já falei e vou repetir: CONFERE ESSA JABIROSCA ANTES DE MANDAR.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../quantitativo/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Quantitativo</span>
+        </a>
+        <a class="p-passo" href="../ponderador/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Ponderador</span>
+        </a>
+        <a class="p-passo" href="../cronograma/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Cronograma</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 04</span>
+          <span class="nome">Apresentação</span>
+        </span>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

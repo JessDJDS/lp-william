@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de EAP e quantitativos em 15 minutos a partir das plantas · William Moura</title>
+<meta name="description" content="Prompt aberto que monta a EAP e os quantitativos a partir das plantas do projeto, com memória de cálculo em toda linha. Sem cadastro.">
+<link rel="canonical" href="https://engnextgen.com.br/prompts/quantitativo/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://engnextgen.com.br/prompts/quantitativo/">
+<meta property="og:title" content="EAP e quantitativos em 15 minutos a partir das plantas">
+<meta property="og:description" content="IA faz o levantamento rápido, mas sem auditoria. Este prompt entrega o registro que deixa você rastrear e defender cada número. Passo 01 de 04.">
+<meta property="og:image" content="https://engnextgen.com.br/assets/og/prompt-quantitativo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EAP e quantitativos em 15 minutos a partir das plantas">
+<meta name="twitter:description" content="IA faz o levantamento rápido, mas sem auditoria. Este prompt entrega o registro que deixa você rastrear e defender cada número. Passo 01 de 04.">
+<meta name="twitter:image" content="https://engnextgen.com.br/assets/og/prompt-quantitativo.svg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 01 de 04 · Levantamento a partir de projeto</p>
+
+    <div class="p-cabeca">
+      <h1>EAP e quantitativos <span class="marca">em 15 minutos</span> a partir das plantas do projeto</h1>
+    </div>
+
+    <p class="p-sub">Com esse prompt, você vai fazer em minutos o trabalho que levaria dias para criação do seu cronograma ou orçamento.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-quantitativo" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-quantitativo" tabindex="0" role="region" aria-label="Prompt do passo 01, rolável"><span class="ph">PAPEL</span>
+Você é engenheiro orçamentista sênior fazendo levantamento de quantitativos a partir de projeto. Sua reputação depende de cada número ser auditável por um terceiro sem falar com você. Você prefere entregar uma pendência a entregar um número que não consegue defender.
+
+<span class="ph">CONTEXTO</span>
+Anexei as pranchas do projeto em PDF.
+
+<span class="ph">TAREFA</span>
+Monte a estrutura analítica da obra em três níveis — área, subárea e serviço — e extraia o quantitativo de cada serviço.
+
+<span class="ph">REGRAS</span>
+1. Toda quantidade vem com memória de cálculo na coluna ao lado: fórmula literal, dimensões usadas e a prancha de origem. Sem memória, a linha não existe.
+2. Unidade declarada em coluna própria (m², m³, kg, un, m). Nunca misture unidades numa mesma linha.
+3. Código hierárquico em toda linha (1.0, 1.1, 1.1.1).
+4. Serviço que aparece em mais de uma prancha é conferido entre elas. Divergência entre pranchas vira pendência, não vira média.
+5. Não converta unidade por conta própria. Se a prancha dá em cm, a planilha dá em cm e sinaliza.
+
+<span class="ph">FALLBACKS</span>
+- Escala ausente ou ilegível: não estime por proporção. Registre o serviço com quantidade vazia e motivo "escala não declarada em prancha".
+- Cota faltando: use a cota mais próxima disponível apenas se ela for suficiente para fechar a geometria; caso contrário, deixe vazio e explique.
+- PDF vetorial ilegível ou escaneado em baixa resolução: liste o que conseguiu ler e declare a limitação na primeira linha da entrega.
+- Projeto sem especificação de material: extraia a quantidade geométrica mesmo assim e marque o serviço como "sem especificação".
+- Mais de 120 serviços identificados: entregue os de maior representatividade geométrica e liste os demais numa aba TRIAGEM, sem quantificar.
+
+<span class="ph">SAÍDA</span>
+XLSX com três abas:
+  ESTRUTURA  — a planilha hierárquica completa
+  PENDÊNCIAS — só as linhas incompletas, com o motivo de cada uma
+  TRIAGEM    — serviços identificados e não quantificados (se houver)
+
+<span class="ph">CHECAGEM ANTES DE ENTREGAR</span>
+- Toda linha da aba ESTRUTURA tem memória de cálculo preenchida? Se não, ela pertence a PENDÊNCIAS.
+- Alguma quantidade é número redondo suspeito (100, 500, 1000)? Reconfira.
+- A soma das subáreas bate com a área que as contém?</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Levantamentos de quantitativos baseados em plantas são lentos, e baseados em trabalhos repetitivos que podem ser apoiados por IA. O problema de trazer a IA para fazer o processo inteiro é a dificuldade de auditoria.</p>
+      <p>Esse prompt permite que você consiga auditar o levantamento de quantitativos a partir do registro que sua IA vai te entregar. Dessa forma, você consegue defender os números depois. Quando o cliente pergunta de onde saiu aquele valor, agora você consegue rastrear.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Exemplo de saída do prompt: aba ESTRUTURA com código, serviço, unidade, quantidade, memória de cálculo e prancha de origem</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Serviço</th>
+              <th scope="col">Und</th>
+              <th scope="col" class="col-num">Quant</th>
+              <th scope="col">Memória de cálculo</th>
+              <th scope="col">Prancha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">1.1.1</td>
+              <td class="col-serv">Escavação mecanizada de vala, solo 2ª cat.</td>
+              <td>m³</td>
+              <td class="col-num">312,48</td>
+              <td class="col-mem">(1,20 × 1,80 × 144,67)</td>
+              <td class="col-pr">FUN-02 R03</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.1</td>
+              <td class="col-serv">Lastro de concreto magro, e = 5 cm</td>
+              <td>m³</td>
+              <td class="col-num">17,36</td>
+              <td class="col-mem">347,20 × 0,05</td>
+              <td class="col-pr">FUN-04 R02</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.3</td>
+              <td class="col-serv">Concreto estrutural 30 MPa — blocos de fundação</td>
+              <td>m³</td>
+              <td class="col-num">96,72</td>
+              <td class="col-mem">24 un × (2,20 × 2,20 × 0,90) = 104,54 − 7,82 (rebaixos)</td>
+              <td class="col-pr">FUN-05 R03</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.4</td>
+              <td class="col-serv">Armadura CA-50, blocos de fundação</td>
+              <td>kg</td>
+              <td class="col-num">8.114,60</td>
+              <td class="col-mem">Ø12,5: 4.208,4 + Ø16: 3.906,2 (quadro de ferro, prancha)</td>
+              <td class="col-pr">FUN-06 R01</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">1.3.2</td>
+              <td class="col-serv">Concreto estrutural 30 MPa — viga baldrame VB-07</td>
+              <td>m³</td>
+              <td class="col-num"><span class="tag-pend">Pendência</span></td>
+              <td class="col-mem">Cota de comprimento não localizada na prancha EST-03 R01</td>
+              <td class="col-pr">EST-03 R01</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.1.1</td>
+              <td class="col-serv">Fôrma de madeira compensada plastificada, pilares</td>
+              <td>m²</td>
+              <td class="col-num">648,00</td>
+              <td class="col-mem">36 un × (0,40 + 0,60) × 2 × 9,00</td>
+              <td class="col-pr">EST-08 R02</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.2.1</td>
+              <td class="col-serv">Concreto estrutural 25 MPa — laje maciça L1 a L6</td>
+              <td>m³</td>
+              <td class="col-num">143,55</td>
+              <td class="col-mem">1.196,25 × 0,12</td>
+              <td class="col-pr">EST-11 R02</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.1.1</td>
+              <td class="col-serv">Alvenaria de bloco cerâmico 14 × 19 × 39</td>
+              <td>m²</td>
+              <td class="col-num">1.874,20</td>
+              <td class="col-mem">2.106,40 (bruto) − 232,20 (vãos, quadro de esquadrias)</td>
+              <td class="col-pr">ARQ-14 R04</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Aba estrutura · Dados ilustrativos</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Modelo de linguagem inventa referência com facilidade. Cota, escala e prancha de origem citadas podem não bater com o projeto — confira na fonte antes de virar contrato.</li>
+          <li>Quantidade extraída de PDF escaneado tem margem de erro maior que a de PDF vetorial. O prompt declara a limitação na entrega, mas quem decide se ela é aceitável é você.</li>
+          <li>Leia a aba PENDÊNCIAS como lista de trabalho, não como exceção.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 01</span>
+          <span class="nome">Quantitativo</span>
+        </span>
+        <a class="p-passo" href="../ponderador/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Ponderador</span>
+        </a>
+        <a class="p-passo" href="../cronograma/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Cronograma</span>
+        </a>
+        <a class="p-passo" href="../apresentacao/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Apresentação</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

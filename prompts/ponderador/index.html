@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de horas totais gerando peso de cronograma automaticamente · William Moura</title>
+<meta name="description" content="Prompt aberto que busca o índice de produtividade de cada serviço, converte tudo em homem-hora e devolve o peso de avanço com a fonte ao lado. Sem cadastro.">
+<link rel="canonical" href="https://engnextgen.com.br/prompts/ponderador/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://engnextgen.com.br/prompts/ponderador/">
+<meta property="og:title" content="Horas totais da sua obra gerando peso pro cronograma">
+<meta property="og:description" content="Ponderar cronograma é trabalho repetitivo de dado e correlação. A IA faz a varredura; a rastreabilidade fica com você. Passo 02 de 04.">
+<meta property="og:image" content="https://engnextgen.com.br/assets/og/prompt-ponderador.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Horas totais da sua obra gerando peso pro cronograma">
+<meta name="twitter:description" content="Ponderar cronograma é trabalho repetitivo de dado e correlação. A IA faz a varredura; a rastreabilidade fica com você. Passo 02 de 04.">
+<meta name="twitter:image" content="https://engnextgen.com.br/assets/og/prompt-ponderador.svg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 02 de 04 · Ponderador de avanço físico</p>
+
+    <div class="p-cabeca">
+      <h1>Horas totais da sua obra gerando peso pro cronograma <span class="marca">automaticamente</span></h1>
+    </div>
+
+    <p class="p-sub">O prompt varre os índices de produtividade serviço por serviço, converte tudo em homem-hora e devolve o peso de cada linha com a fonte rastreável ao lado.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-ponderador" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-ponderador" tabindex="0" role="region" aria-label="Prompt do passo 02, rolável"><span class="ph">PAPEL</span>
+Você é planejador de obras especialista em Primavera P6 e MS Project, com vasta experiência em construção de obras residenciais de alto padrão. Você é responsável por definir o ponderador de avanço físico e já viu obra apresentar percentual que não existia porque alguém somou unidades diferentes, e trata isso como erro grave.
+
+<span class="ph">CONTEXTO</span>
+Use a planilha de quantitativos gerada no passo anterior, que está na pasta.
+
+<span class="ph">TAREFA</span>
+Converta cada quantidade em homem-hora usando índices de produtividade de referência de mercado, e calcule o peso percentual de cada serviço.
+
+<span class="ph">REGRAS</span>
+1. Cada índice aplicado aparece em coluna própria, com a fonte nomeada ao lado (publicação, tabela, edição). Índice sem fonte identificável não é aplicado.
+2. A conversão para hora acontece ANTES de qualquer somatório. Quantidades de unidades diferentes nunca são somadas entre si, em nenhuma etapa intermediária.
+3. Peso percentual calculado sobre o total de homem-hora da obra, com fórmula viva na célula — não valor colado.
+4. Linha de verificação ao final: soma dos pesos igual a 100,00%. Se não fechar, diga isso em vez de ajustar.
+5. Não aplique índice de um serviço em outro por semelhança de nome.
+
+<span class="ph">FALLBACKS</span>
+- Serviço sem índice de referência disponível: deixe a hora vazia, marque a linha e escreva "índice não localizado em referência pública". Não estime por analogia.
+- Índice existe mas com faixa (mínimo e máximo): use o valor mais conservador, declare a faixa inteira na coluna de fonte e sinalize a linha.
+- Serviço com unidade incompatível com qualquer índice conhecido: mantenha na planilha, sem hora, em aba SEM CONVERSÃO.
+- Se mais de 30% do total de serviços ficar sem índice, avise na primeira linha: o peso resultante não é confiável como ponderador de avanço.
+
+<span class="ph">SAÍDA</span>
+XLSX mantendo a estrutura hierárquica original, com três abas:
+  PONDERAÇÃO    — planilha com quantidade, índice, fonte, homem-hora e peso %
+  SEM CONVERSÃO — serviços que não receberam índice, com motivo
+  VERIFICAÇÃO   — a soma dos pesos e a checagem de fechamento
+
+<span class="ph">CHECAGEM ANTES DE ENTREGAR</span>
+- Existe alguma célula somando m³ com m², direta ou indiretamente?
+- Toda linha com hora preenchida tem índice E fonte?
+- A soma dos pesos fecha em 100,00%? Se arredondou, diga o quanto.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Ponderação do cronograma (aqui, a gente tá falando de unidades de trabalho) é um trabalho repetitivo, que envolve dados e correlação de informação. Um prato cheio pra ser tratado com IA de forma inteligente e salvar horas do seu dia.</p>
+      <p>Este prompt faz a varredura, de acordo com os quantitativos da etapa anterior, dos índices de produtividade de cada serviço, e recusa índice sem fonte identificável. Todos os índices usados são rastreáveis, graças ao módulo de rastreabilidade implantado.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Exemplo de saída do prompt: aba PONDERAÇÃO com código, serviço, unidade, quantidade, índice, fonte, homem-hora e peso percentual</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Serviço</th>
+              <th scope="col">Und</th>
+              <th scope="col" class="col-num">Quant</th>
+              <th scope="col" class="col-num">Índice Hh/und</th>
+              <th scope="col">Fonte do índice</th>
+              <th scope="col" class="col-num">Homem-hora</th>
+              <th scope="col" class="col-num">Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">1.1.1</td>
+              <td class="col-serv">Escavação mecanizada de vala, solo 2ª cat.</td>
+              <td>m³</td>
+              <td class="col-num">312,48</td>
+              <td class="col-num">0,148</td>
+              <td class="col-mem">SINAPI · comp. 93358 · 07/2026</td>
+              <td class="col-num">46,25</td>
+              <td class="col-num">0,42%</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.1</td>
+              <td class="col-serv">Lastro de concreto magro, e = 5 cm</td>
+              <td>m³</td>
+              <td class="col-num">17,36</td>
+              <td class="col-num">3,820</td>
+              <td class="col-mem">SINAPI · comp. 96617 · 07/2026</td>
+              <td class="col-num">66,32</td>
+              <td class="col-num">0,60%</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.3</td>
+              <td class="col-serv">Concreto estrutural 30 MPa — blocos</td>
+              <td>m³</td>
+              <td class="col-num">96,72</td>
+              <td class="col-num">8,640</td>
+              <td class="col-mem">SINAPI · comp. 94965 · 07/2026</td>
+              <td class="col-num">835,66</td>
+              <td class="col-num">7,54%</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.4</td>
+              <td class="col-serv">Armadura CA-50, blocos de fundação</td>
+              <td>kg</td>
+              <td class="col-num">8.114,60</td>
+              <td class="col-num">0,092</td>
+              <td class="col-mem">SINAPI · comp. 96545 · 07/2026</td>
+              <td class="col-num">746,54</td>
+              <td class="col-num">6,74%</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.1.1</td>
+              <td class="col-serv">Fôrma de compensado plastificado, pilares</td>
+              <td>m²</td>
+              <td class="col-num">648,00</td>
+              <td class="col-num">2,910</td>
+              <td class="col-mem">SINAPI · comp. 92410 · 07/2026</td>
+              <td class="col-num">1.885,68</td>
+              <td class="col-num">17,02%</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.2.1</td>
+              <td class="col-serv">Concreto estrutural 25 MPa — lajes</td>
+              <td>m³</td>
+              <td class="col-num">143,55</td>
+              <td class="col-num">9,110</td>
+              <td class="col-mem">SINAPI · comp. 94964 · 07/2026</td>
+              <td class="col-num">1.307,74</td>
+              <td class="col-num">11,80%</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">2.4.2</td>
+              <td class="col-serv">Montagem de estrutura metálica de cobertura</td>
+              <td>kg</td>
+              <td class="col-num">42.180,00</td>
+              <td class="col-num"><span class="tag-pend">Sem conversão</span></td>
+              <td class="col-mem">Índice não localizado em referência pública</td>
+              <td class="col-num">—</td>
+              <td class="col-num">—</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.1.1</td>
+              <td class="col-serv">Alvenaria de bloco cerâmico 14 × 19 × 39</td>
+              <td>m²</td>
+              <td class="col-num">1.874,20</td>
+              <td class="col-num">1,240</td>
+              <td class="col-mem">SINAPI · comp. 87473 · 07/2026</td>
+              <td class="col-num">2.324,01</td>
+              <td class="col-num">20,97%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Aba ponderação · Índices ilustrativos</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>IA inventa fonte com a maior cara de quem sabe do que está falando. Publicação, tabela e edição podem ser chute puro com aparência de verdade. Confere composição por composição antes de virar contrato.</li>
+          <li>Com o tempo, seu prompt vai ficar mais refinado e adaptado à sua realidade. Você será capaz de criar uma skill e até um agente que faça o trabalho gerando resultados com muito mais confiança. Tudo vai depender da qualidade dos seus dados. Lembre-se da máxima da análise de dados: shit in, shit out.</li>
+          <li>Tem a tabela de índices da sua empresa? Anexa.</li>
+          <li>Índice de tabela pública não é o da sua equipe. Calibra com apropriação de campo antes de amarrar medição contratual nesse peso.</li>
+          <li>Serviço sem índice sai zerado e bem visível na aba SEM CONVERSÃO. Passou de 30% dos serviços? O próprio prompt te avisa que aquilo não serve como ponderador. Escuta o aviso… Que foi? Pensou que ia sair tudo perfeito logo de primeira? Isso aqui é IA, né milagre não.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../quantitativo/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Quantitativo</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 02</span>
+          <span class="nome">Ponderador</span>
+        </span>
+        <a class="p-passo" href="../cronograma/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Cronograma</span>
+        </a>
+        <a class="p-passo" href="../apresentacao/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Apresentação</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

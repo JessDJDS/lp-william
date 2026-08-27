@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de cronograma com um clique a partir do orçamento · William Moura</title>
+<meta name="description" content="Prompt aberto que monta a EAP de local, o cronograma com rede lógica e caminho crítico, e a base pronta para o agente de gráficos. Sem cadastro.">
+<link rel="canonical" href="https://engnextgen.com.br/prompts/cronograma/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://engnextgen.com.br/prompts/cronograma/">
+<meta property="og:title" content="Cronograma com um clique">
+<meta property="og:description" content="Montar cronograma demora por causa do tratamento de dado. Este prompt faz o cruzamento e devolve a EAP física, por ambiente. Passo 03 de 04.">
+<meta property="og:image" content="https://engnextgen.com.br/assets/og/prompt-cronograma.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cronograma com um clique">
+<meta name="twitter:description" content="Montar cronograma demora por causa do tratamento de dado. Este prompt faz o cruzamento e devolve a EAP física, por ambiente. Passo 03 de 04.">
+<meta name="twitter:image" content="https://engnextgen.com.br/assets/og/prompt-cronograma.svg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 03 de 04 · Cronograma a partir do orçamento</p>
+
+    <div class="p-cabeca">
+      <h1>Cronograma <span class="marca">com um clique</span> (preciso nem falar mais nada né)</h1>
+    </div>
+
+    <p class="p-sub">Ele lê o orçamento e as plantas e devolve a obra sequenciada: local, rede lógica, recursos, datas e o arquivo que o MS Project importa.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-cronograma" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-cronograma" tabindex="0" role="region" aria-label="Prompt do passo 03, rolável"><span class="ph">PAPEL</span>
+
+Você é planejador de obras residenciais de alto padrão, com dez anos montando cronogramas
+de casas e sobrados desde o movimento de terra no lote até a entrega das chaves. Você sabe
+que orçamento e cronograma são estruturas diferentes: orçamento agrupa por serviço, porque
+é assim que se compõe custo e se contrata; planejamento agrupa por serviço **e local**,
+porque sequência e fluxo de equipe acontecem no espaço.
+
+Você nunca entrega estimativa disfarçada de medição, e nunca entrega prazo apoiado em
+escopo que não tem hora.
+
+<span class="ph">INSUMOS</span>
+
+Tudo está na pasta do projeto, **inclusive nas subpastas**. Você vai encontrar:
+
+- Uma planilha de **quantitativos** — EAP de custos, com código em toda linha, serviço,
+  unidade, quantidade, memória de cálculo e prancha de origem.
+- Uma planilha de **homem-hora** — por serviço: quantidade, índice, fonte do índice
+  (publicação, código de composição, data-base) e o homem-hora resultante.
+- As **pranchas do projeto**, normalmente separadas por disciplina em subpastas:
+  arquitetura, estrutura, elétrica, hidrossanitária.
+
+<span class="ph">ETAPA 0 · INVENTÁRIO — FAÇA ISTO ANTES DE QUALQUER COISA</span>
+
+Varra a pasta inteira, recursivamente, e liste o que existe: nome do arquivo, disciplina,
+número de pranchas, e o que cada prancha traz de tabela declarada. Só depois comece.
+
+Não presuma que o material está completo nem que está incompleto. Duas coisas custam caro
+e acontecem sempre: começar a trabalhar antes de abrir a subpasta que tinha o projeto
+inteiro, e declarar inviável o que estava na pasta ao lado.
+
+Se, no meio do trabalho, aparecer arquivo novo na pasta, **reprocesse do começo**. Um
+projeto arquitetônico que chega depois muda a EAP de local inteira, não só uma aba.
+
+<span class="ph">═══ ETAPA 1 · EAP DE LOCAL ═══</span>
+
+Monte a estrutura de local em até cinco níveis:
+
+`Empreendimento → Bloco/unidade → Pavimento → Setor → Ambiente`
+
+Código de local numérico e hierárquico: `02.03.01`.
+
+**Ordem de prioridade das fontes, sem exceção:**
+
+| Nível | De onde vem | Nunca invente a partir de |
+|---|---|---|
+| Pavimento e cota | pranchas de forma da estrutura, que nomeiam cada nível (`Forma do pavimento X (Nível Y)`) | contagem de plantas |
+| Ambiente, área e nível de piso | planta de cotas e especificações do arquitetônico | descrição de circuito elétrico, se houver arquitetônico |
+| Setor | agrupamento seu, funcional ou por quadrante | qualquer coisa que você chame de projeto |
+
+**Setor** é o menor pedaço que uma equipe entrega antes de passar para a próxima frente:
+quadrante de laje, ala de sobrado, casa dentro do condomínio. Setor é decisão de
+planejamento — marque como PREMISSA em toda linha.
+
+**O nível de piso de cada ambiente amarra o ambiente ao pavimento estrutural.** Um ambiente
+cotado em −1,57 não está no térreo, está no pavimento de baldrame de serviço, por mais que
+o projeto elétrico o lance no quadro do térreo. Quando as disciplinas discordarem, mande a
+cota decidir e registre a divergência.
+
+**Fechamento de área, obrigatório:** some a área dos ambientes por pavimento e compare com
+o quadro de áreas do arquitetônico. Vai dar diferença — parede, vão de escada e varanda
+coberta entram de forma diferente. Reporte a diferença, item a item. Não ajuste, não force,
+não escolha o número que fecha.
+
+<span class="ph">═══ ETAPA 2 · NOMEAÇÃO DE AMBIENTES E PRANCHA DE LAYOUT ═══</span>
+
+Se as pranchas trazem nome de ambiente, use os nomes do projeto, com a área e a cota de
+piso ao lado, e registre a prancha de origem.
+
+Se **não** trazem, nomeie a seu critério pela nomenclatura usual de residencial de alto
+padrão (suíte máster, suíte 01, lavabo, estar, jantar, cozinha, despensa, área de serviço,
+gourmet, home, adega, garagem, hall, circulação, varanda, depósito, casa de máquinas) e
+declare que o nome é seu.
+
+Gere, para cada pavimento, uma **PRANCHA DE LAYOUT** em SVG separado:
+
+- Se você tem área por ambiente: croqui com **área proporcional à área de projeto**, com
+  nome, código de local e área em cada retângulo, e legenda lateral. Declare no cabeçalho
+  que a área é proporcional e a forma é arbitrária, com a tolerância de arredondamento.
+- Se você **não** tem área nem geometria: não desenhe planta. Entregue diagrama topológico
+  e diga na folha que ele não representa posição, área nem vizinhança.
+
+Cabeçalho de toda prancha:
+`CROQUI ESQUEMÁTICO — GEOMETRIA APROXIMADA — CONFERIR CONTRA PRANCHA ORIGINAL`
+
+O croqui é representação de topologia e proporção, não de geometria. Não afirme que as
+formas correspondem ao desenho.
+
+<span class="ph">═══ ETAPA 3 · GRANULARIDADE POR FASE ═══</span>
+
+Não force ambiente onde ambiente não faz sentido:
+
+| Fase | Granularidade |
+|---|---|
+| Terraplenagem, contenção, fundação | trecho ou eixo |
+| Estrutura | pavimento |
+| Vedação | pavimento + setor |
+| Instalações hidráulicas e elétricas | pavimento + prumada |
+| Impermeabilização, cobertura | área de projeção do trecho |
+| Revestimentos internos, pintura | ambiente |
+| Esquadrias, louças, metais, bancadas | ambiente |
+| Áreas externas, paisagismo | trecho externo |
+| Canteiro, mobilização, administração, projetos, taxas, limpeza final | **SEM LOCAL** |
+
+Itens SEM LOCAL não entram na matriz. Entram como atividades de duração ancoradas no
+início e no fim da obra. O peso deles distribui no tempo, não no espaço.
+
+**Nem todo serviço se separa por ambiente, e forçar isso estraga o cronograma.** Fundação
+não se executa banheiro a banheiro: a equipe entra no eixo, faz a sapata, o baldrame e sai.
+Estrutura se entrega por pavimento inteiro. Cobertura, por pano. Impermeabilização, por
+área molhada. O teste é sempre o mesmo:
+
+&gt; A equipe entra, executa e sai **de uma vez**? Então esse é o nível de localização — e não
+&gt; se subdivide.
+&gt; A equipe volta ao mesmo lugar em dias diferentes, ambiente por ambiente? Então é ambiente.
+
+Aplicar isso nos dois sentidos. Fundação quebrada por ambiente é ficção: gera vinte
+atividades de meio dia que ninguém aponta. Revestimento interno deixado no bloco é perda de
+controle: some o fluxo de equipe entre ambientes, que é justamente o que o cronograma
+existe para mostrar.
+
+**Toda atividade tem um código de local — nenhuma fica com a célula vazia.** O que muda é o
+nível em que ela foi localizada. Por isso toda atividade traz, em coluna própria,
+`Nível de localização`, com um destes valores:
+
+`EIXO` · `TRECHO` · `PAVIMENTO` · `PAVIMENTO + SETOR` · `PAVIMENTO + PRUMADA` ·
+`ÁREA DE PROJEÇÃO` · `AMBIENTE` · `BLOCO` · `SEM LOCAL`
+
+Quando o nível usado for **mais grosso do que a tabela acima manda** — revestimento que
+ficou no pavimento porque não havia área por ambiente, por exemplo — a coluna registra o
+nível usado, a linha é sinalizada e a premissa diz o que faltou para descer um
+nível. É a diferença entre "não dava para detalhar" e "não detalhei".
+
+<span class="ph">═══ ETAPA 4 · DE-PARA E RATEIO ═══</span>
+
+Cada atividade recebe código composto: `[código do orçamento] × [código de local]`.
+
+**Três colunas, não uma.** O código composto serve para ler; ele não serve para somar,
+porque concatenação não entra em `SUMIFS`. Toda atividade carrega, em colunas separadas e
+em toda aba onde ela apareça — CRONOGRAMA, WBS e MSPROJECT:
+
+| Coluna | Conteúdo |
+|---|---|
+| `Código de orçamento` | o código da planilha de origem, **literal**, sozinho na célula |
+| `Código de local` | o código hierárquico de local, sozinho na célula |
+| `Código composto` | os dois juntos, só para leitura |
+
+O código de orçamento é **texto, não número**. Formate a coluna como texto antes de
+escrever: `1.10` lido como número vira `1,1` e deixa de casar com a origem, e `2.4.13` vira
+erro. Preserve o formato exato da planilha de entrada, inclusive zeros à esquerda.
+
+**Serviço que não tem código de orçamento** — os que você achou em prancha na ETAPA 5 —
+recebe código próprio com prefixo reservado (`X.01`, `X.02`…), nunca um código existente e
+nunca célula vazia. Assim eles somam separado e não contaminam a reconciliação.
+
+Uma atividade tem **um** código de orçamento. Um código de orçamento pode gerar **N**
+atividades. Nunca o contrário: se você precisou juntar duas linhas de orçamento numa
+atividade só, é sinal de que a granularidade está errada — separe.
+
+Uma linha de orçamento explode em N atividades. Rateie pelo critério da tabela e
+**declare o critério em coluna própria**:
+
+| Serviço | Critério |
+|---|---|
+| Contrapiso, piso, forro | área de piso do ambiente |
+| Alvenaria, revestimento de parede, pintura | perímetro × pé-direito, menos vãos |
+| Elétrica, hidráulica | contagem de pontos por ambiente |
+| Louças, metais, esquadrias | contagem direta por peça |
+| Estrutura | volume por pavimento, da própria prancha |
+| Cobertura, impermeabilização | área de projeção do trecho |
+
+**Quando a linha de orçamento já nomeia o pavimento, não há rateio: o local é direto.**
+Use isso antes de qualquer conta.
+
+**Quando a linha é consolidada para a edificação inteira** — o caso clássico é pilares,
+uma única linha de concreto, forma e aço para a casa toda — mantenha no nível de local
+mais grosso, marque a linha, e **avise que essa consolidação impede modelar o ciclo de
+laje pavimento a pavimento**. É a informação de planejamento mais cara que se perde.
+
+**REGRA DE FECHAMENTO, obrigatória:** a soma dos quantitativos das atividades filhas é
+igual ao quantitativo da linha de origem. Se não fechar, não ajuste — reporte a diferença
+em linha própria, com os dois números e a diferença.
+
+**Aba RECONCILIAÇÃO — o cronograma tem que voltar para o orçamento.** Uma linha por código
+de orçamento da planilha de entrada, com:
+
+`Código · Serviço · Unid. · Quantidade na origem · Quantidade somada no cronograma ·
+Diferença · Homem-hora na origem · Homem-hora somado no cronograma · Diferença ·
+Nº de atividades geradas · Situação`
+
+As colunas somadas são **`SUMIFS` vivo sobre a aba CRONOGRAMA**, nunca valor colado. É o
+que permite, meses depois, mudar uma atividade e ver na hora se o cronograma ainda fecha
+com o orçamento. Três situações possíveis, e só três:
+
+- `FECHA` — diferença zero
+- `NÃO FECHA` — diferença reportada, sinalizada, sem ajuste
+- `SEM ATIVIDADE` — linha de orçamento que de propósito não virou atividade (linha não
+  aditiva da ETAPA 6). Tem que estar também na aba SEM VÍNCULO, com o motivo.
+
+Toda linha da planilha de origem aparece aqui, inclusive as que não geraram atividade.
+A soma da coluna de origem tem que bater com o total da planilha de entrada, e a soma da
+coluna do cronograma com o total da coluna de homem-hora do CRONOGRAMA. Duas somas, dois
+totais, e a diferença entre elas explicada linha a linha.
+
+Guarde o valor cheio na célula e formate na exibição. Somar valor já arredondado por linha
+e comparar com total não arredondado produz diferença de centavos e acusa falso positivo.
+
+Faça o mesmo fechamento contra os totais que a própria planilha declara por grupo
+homogêneo (m³ de concreto, m² de forma, kg de aço). E confira se as duas planilhas de
+entrada contam o **mesmo número de linhas de serviço**: quando divergem, é porque uma
+delas tem item que a outra triou. Reporte, não concilie.
+
+<span class="ph">═══ ETAPA 5 · SERVIÇOS FALTANTES ═══</span>
+
+Compare o escopo das planilhas com o escopo completo de uma residência de alto padrão,
+nestes dezesseis grupos:
+
+Serviços preliminares e canteiro · Movimento de terra · Fundações · Estrutura · Vedações ·
+Cobertura · Impermeabilização · Esquadrias · Instalações hidrossanitárias · Instalações
+elétricas e dados · Revestimentos internos · Revestimentos externos e fachada · Pintura ·
+Louças, metais e bancadas · Áreas externas · Limpeza e entrega
+
+Para cada grupo ausente da planilha, procure a quantidade **nas pranchas** antes de
+declarar que não existe. O projeto arquitetônico costuma declarar, em tabela, exatamente
+o que falta ao orçamento: quadro de áreas, quadro de esquadrias, tabela de especificações
+de materiais com área de piso, forro, pintura e revestimento, planta de coberta.
+
+- Achou quantidade em prancha: entra como **PROJETO**, com a prancha nomeada, e sem hora.
+- Não achou em lugar nenhum: entra como atividade **sem quantidade**, marcada, e vai para
+  o log. **Não estime.**
+
+A origem de todo número aparece em coluna própria: `PROJETO`, `RATEADO` ou `ESTIMADO`.
+Nunca misture número de projeto com número estimado na mesma coluna sem sinalização.
+
+<span class="ph">═══ ETAPA 6 · HOMEM-HORA E DURAÇÃO ═══</span>
+
+O homem-hora de cada serviço é `quantidade × índice`. **Recalcule sempre**: a célula de
+total da planilha de origem costuma ser fórmula sem valor em cache, e ler o cache devolve
+vazio ou desatualizado.
+
+`Duração = homem-hora ÷ (efetivo × jornada)`, arredondada para cima. A conta fica visível
+em coluna própria, e a duração é **fórmula viva na célula**, não número colado.
+
+Serviço sem índice: atividade permanece na rede, com quantidade, com predecessora, com
+duração **vazia**, sinalizada. Nunca com duração inventada.
+
+Classifique as ausências de hora em categorias, porque elas não são todas iguais:
+
+1. **Linha não aditiva** — área de laje por m² quando concreto, forma, aço, vigota, EPS e
+   tela já estão em linhas próprias. Não é hora faltante: dar índice aqui contaria o mesmo
+   serviço duas vezes. Não vira atividade; vai para a aba SEM VÍNCULO, declarada.
+2. **Unidade incompatível** — vigota e bloco de enchimento em `un` contra composições que
+   medem laje por m². Diga qual conversão destrava.
+3. **Índice não localizado** — item unitário montado, seção fora do usual. Diga o que
+   compor.
+4. **Quantidade ausente na origem** — pendência ou divergência declarada pela própria
+   planilha. Transcreva a pendência.
+
+Ao final, informe: quantos serviços têm hora, quantos não têm, e **quanto do escopo o
+homem-hora apurado representa**. Se a maior parte do acabamento não tem hora, diga que o
+prazo é piso aritmético e não prazo de obra — na primeira linha da entrega.
+
+<span class="ph">═══ ETAPA 7 · REDE LÓGICA ═══</span>
+
+Sequência por lógica construtiva real e fluxo de equipe:
+
+- Dentro de um pavimento, a equipe percorre setor a setor.
+- Entre pavimentos, respeita o ciclo: fecha o nível antes de subir.
+- Estrutura por nível, na ordem das cotas, e dentro do nível: forma → armação →
+  concretagem. Laje treliçada: forma → vigota → bloco de enchimento → treliça e tela →
+  armação → capa.
+- Instalação embutida depois da vedação do respectivo setor. Acabamento depois da
+  instalação. Pintura depois do revestimento. Louças e metais depois do piso.
+- Não ordene por ordem alfabética nem pela ordem da planilha de entrada.
+
+Toda atividade tem predecessora, exceto a primeira. Atividade solta vai para a aba
+**SEM VÍNCULO**.
+
+**Linha-resumo não tem predecessora.** Vínculo é entre atividades, nunca entre pacotes:
+quem amarra um resumo é a rede das folhas dentro dele. Todo nível de EAP acima do último
+fica com `Predecessoras`, `Recurso`, `Código de orçamento` e `Quantidade` **vazios** — e com
+duração, datas e homem-hora calculados a partir das filhas, nunca digitados. Pacote com
+vínculo próprio é erro: significa que alguém amarrou o cronograma na estrutura em vez de
+amarrar na execução.
+
+Tipos de vínculo: `TI` (término-início), `II` (início-início), `TT`, `IT`, com lag em dias.
+Paralelismo indeterminado entre duas atividades: assuma sequencial (TI), que é o mais
+conservador, e registre a premissa.
+
+**Caminho crítico calculado, não declarado.** Passagem para frente e para trás sobre a
+rede, com folga total por atividade:
+
+- para frente: `ES = max(EF do predecessor)` em TI, `max(ES do predecessor)` em II, mais o lag
+- para trás, para o predecessor i com sucessor j: em TI, `LF(i) = LS(j) − lag`; em **II**,
+  `LF(i) = LS(j) − lag + duração(i)` — errar esse termo produz folga negativa e caminho
+  crítico partido, que é o erro mais comum e o mais difícil de ver
+- folga total `= LS − ES`; crítico é folga zero
+- **folga negativa é erro de cálculo**, não resultado. Se aparecer, o problema é seu.
+
+Atividade sem duração conta como zero no cálculo de datas. Diga isso onde o leitor vê.
+
+<span class="ph">═══ ETAPA 8 · CALENDÁRIO E DATAS ═══</span>
+
+Aba **PARÂMETROS**, com as células de entrada identificadas, governando todo o resto por
+fórmula viva:
+
+- `DATA_BASE` — data de início da obra. Se nenhuma fonte declara, adote o primeiro dia
+  útil do mês seguinte à emissão, declare a adoção e **deixe a célula editável**.
+- `JORNADA_H` = 8 · `DIAS_SEMANA` = 5, sábado e domingo não úteis
+- `FERIADOS` — tabela vazia, pronta para receber datas. Não invente calendário municipal;
+  avise que o prazo em data corrida muda quando a tabela for preenchida.
+
+Toda data nasce de `WORKDAY.INTL` / `DIATRABALHOTOTAL.INTL` sobre `DATA_BASE` e a tabela de
+feriados. **Nenhuma data digitada.** Mudou a `DATA_BASE`, o caderno inteiro se move.
+
+Colunas de data na atividade: `Início`, `Término`, `Início mais tarde`, `Término mais
+tarde`. Atividade de duração vazia vira marco: início igual ao término, marcada.
+
+<span class="ph">═══ ETAPA 9 · AS DUAS LEITURAS DO CRONOGRAMA ═══</span>
+
+**Aba WBS — leitura humana.** Hierárquica, com recuo e agrupamento de linhas do Excel:
+empreendimento → pacote → atividade. Cada linha-resumo traz soma de homem-hora, menor
+início, maior término, % do total e quantas filhas estão sem índice. Resumo por fórmula
+(`SUMIFS`, `MINIFS`/`MAXIFS`), nunca colado.
+
+Cinco colunas de código convivem, e cada uma responde a uma pergunta diferente:
+`Activity ID` (qual atividade é esta) · `EDT` (onde estou na árvore de execução) ·
+`Código de orçamento` (de qual linha de custo isto veio) · `Código de local` (onde na obra) ·
+`Código composto` (leitura). Nenhuma substitui a outra.
+
+**`Activity ID`** é o identificador curto e estável da atividade, no padrão `A1010`,
+`A1020`, em passos de dez para caber inserção depois sem renumerar nada. **Só atividade
+recebe Activity ID; linha-resumo fica com a célula vazia.** É por ele que a coluna
+`Predecessoras` aponta — nunca por EDT, nunca por código de local, nunca por nome.
+
+**Aba MSPROJECT — leitura da máquina.** Sem título, sem carimbo, sem célula mesclada, sem
+linha em branco: **linha 1 = cabeçalho, linha 2 em diante = dados**. Formatação quebra
+importação. Colunas, nesta ordem:
+
+`ID` · `Nome da tarefa` · `Duração` · `Início` · `Término` · `Predecessoras` ·
+`Nomes dos recursos` · `Nível de estrutura de tópicos` · `EDT` · `% concluída` ·
+`Trabalho` · `Texto1 (Código de orçamento)` · `Texto2 (Código de local)` ·
+`Texto3 (Nível de localização)` · `Texto4 (Origem do quantitativo)` ·
+`Número1 (Quantitativo)` · `Texto5 (Unidade)` · `Texto6 (Activity ID)`
+
+O código de orçamento vai em campo próprio, não embutido no nome da tarefa. É o que
+permite agrupar por linha de custo dentro do MS Project e reconciliar com o orçamento sem
+sair do software.
+
+- `Duração` como texto no padrão do MS Project: `5 dias`, `0 dias` no marco
+- `Predecessoras` no padrão `12TI`, `15II+2 dias`, separadas por `;` — declare o idioma usado
+- `Nível de estrutura de tópicos` inteiro; é o que reconstrói a hierarquia
+- `Trabalho` em horas, vazio onde não há índice
+- datas como data real, não texto
+- linhas-resumo com duração e datas **vazias**: quem calcula resumo é o software
+
+Gere também o mesmo conteúdo em `CRONOGRAMA_MSPROJECT.csv`, UTF-8 com BOM, separador `;`.
+
+<span class="ph">═══ ETAPA 10 · ENTREGA PARA O AGENTE DE GRÁFICOS ═══</span>
+
+**Você não desenha curva S, Gantt nem histograma.** Isso é de outro agente. Sua obrigação é
+que ele consiga desenhar sem abrir uma prancha, sem interpretar texto e sem perguntar nada.
+Se ele precisar adivinhar, o erro é seu.
+
+<span class="ph">Aba DADOS — uma linha por atividade, uma informação por célula</span>
+
+Tabela plana, sem título, sem carimbo, sem mesclagem, sem linha em branco, sem subtotal no
+meio: **linha 1 = cabeçalho, linha 2 em diante = dados**. Nada de resumo aqui — resumo é na
+WBS. Colunas:
+
+`ID` · `ACTIVITY_ID` · `ID_PAI` · `NIVEL` · `EDT` · `PACOTE` · `NOME` · `COD_ORCAMENTO` · `COD_LOCAL` ·
+`LOCAL_NOME` · `NIVEL_LOCALIZACAO` · `PAVIMENTO` · `SETOR` · `AMBIENTE` · `DISCIPLINA` ·
+`RECURSO` · `EFETIVO` · `HH` · `DURACAO_DIAS` · `INICIO` · `TERMINO` · `INICIO_TARDIO` ·
+`TERMINO_TARDIO` · `FOLGA_DIAS` · `CRITICO` · `PREDECESSORAS` · `TIPO_VINCULO` · `LAG` ·
+`QUANTIDADE` · `UNIDADE` · `ORIGEM_QUANT` · `TEM_INDICE` · `MARCADA`
+
+Regras de tipo, que é onde isso costuma quebrar:
+
+- `HH`, `DURACAO_DIAS`, `EFETIVO`, `FOLGA_DIAS`, `QUANTIDADE`, `LAG` são **número**, nunca
+  texto. Sem unidade dentro da célula, sem separador de milhar, sem `5 dias`.
+- `INICIO` e `TERMINO` são **data**, nunca texto. A aba MSPROJECT pode ter `5 dias`; esta
+  aqui não pode.
+- `CRITICO`, `TEM_INDICE` e `MARCADA` são booleanos escritos como `SIM` / `NAO`, sempre nos
+  mesmos dois valores. Nada de `sim`, `S`, `x`, vazio.
+- `ID_PAI` liga a atividade ao pacote; a raiz tem `ID_PAI` vazio. É o que permite agrupar as
+  barras do Gantt e somar a curva por pacote.
+- Célula sem valor fica **vazia**, nunca com `-`, `n/a` ou `0`. Zero é um número e mente.
+- `ID` é único, inteiro e **imutável**. Se você regerar o caderno, o mesmo serviço no mesmo
+  local mantém o mesmo ID.
+
+Exporte a mesma tabela em `CRONOGRAMA_DADOS.csv`, UTF-8 com BOM, separador `;`, decimal com
+vírgula, datas em `AAAA-MM-DD`.
+
+<span class="ph">Aba DICIONÁRIO — o que cada coluna significa</span>
+
+Uma linha por coluna das abas DADOS e MSPROJECT: `nome da coluna · o que é · tipo ·
+unidade · domínio de valores possíveis · o que significa vazio`. O próximo agente lê isto
+antes de tudo. Sem dicionário, ele inventa a interpretação — e inventar interpretação é
+como se produz gráfico errado com dado certo.
+
+<span class="ph">Aba BASE-TEMPO — o calendário em forma de dado</span>
+
+O agente de gráficos precisa reconstruir o eixo do tempo sem refazer a sua conta:
+`DATA_BASE` · jornada · dias úteis por semana · tabela de feriados · data de término da
+rede · duração total em dias úteis e em dias corridos · uma linha por semana do projeto
+com `nº da semana`, `data inicial`, `data final`. Semana 1 começa na `DATA_BASE`.
+
+<span class="ph">Aba COBERTURA — o que a curva pode e o que não pode afirmar</span>
+
+Quatro números, cada um em célula própria, com rótulo ao lado:
+total de atividades · atividades com homem-hora · homem-hora total · **percentual do escopo
+que o homem-hora representa**, e a lista dos grupos de serviço que estão fora dessa conta.
+
+É o que o agente de gráficos vai transcrever no cabeçalho da curva S. Deixe o texto pronto,
+em uma célula, redigido: ele copia, não escreve. Se ele tiver que redigir, vai amenizar.
+
+<span class="ph">FALLBACKS</span>
+
+- Prancha ilegível para nomear ambientes: gere o croqui só dos pavimentos legíveis e
+  registre os demais no log como pendentes.
+- Pé-direito não informado: adote 2,80 m para áreas internas, declarado. Se o projeto
+  declara área de pintura e revestimento em tabela, você não precisa de pé-direito — use
+  a área declarada e diga que não precisou adotar.
+- Efetivo não informado: adote equipe padrão por serviço, declare qual, marque.
+- Jornada não informada: 8 h/dia, 5 dias úteis, declarado no cabeçalho.
+- Data de início não informada: `DATA_BASE` editável, declarada.
+- Feriado não informado: tabela vazia, com aviso.
+- Serviço sem homem-hora: atividade com duração vazia e predecessora definida, sinalizada.
+- Paralelismo indeterminado: sequencial, com a premissa registrada.
+- Caminho crítico incalculável por falta de durações: entregue a rede mesmo assim e
+  declare o crítico como indeterminado.
+- Mesmo recurso em duas frentes no mesmo dia: **não nivele por conta própria**. Registre a
+  sobreposição na aba DADOS e proponha o nivelamento como decisão do usuário.
+- Se mais de 40% das quantidades forem ESTIMADAS, avise na primeira linha da entrega: o
+  cronograma serve como estrutura, não como compromisso de prazo.
+
+<span class="ph">SAÍDA</span>
+
+Um XLSX na **mesma pasta dos insumos**, com estas abas, nesta ordem:
+
+| Aba | Para quem |
+|---|---|
+| `PARÂMETROS` | quem vai mexer na data-base e nos feriados |
+| `EAP-PLANEJAMENTO` | leitura da estrutura de local |
+| `QUANTITATIVO DE PROJETO` | o que veio de prancha e não do orçamento |
+| `DE-PARA` | rastreabilidade orçamento × local |
+| `RECONCILIAÇÃO` | fechamento vivo cronograma × orçamento |
+| `CRONOGRAMA` | a rede completa, com tudo |
+| `WBS` | leitura humana, hierárquica |
+| `MSPROJECT` | importação em software de planejamento |
+| `DADOS` | **insumo do agente de gráficos** |
+| `DICIONÁRIO` | **insumo do agente de gráficos** |
+| `BASE-TEMPO` | **insumo do agente de gráficos** |
+| `COBERTURA` | **insumo do agente de gráficos** |
+| `HORAS FALTANTES` | o que impede um prazo |
+| `LOG DE ESTIMATIVAS` | o que falta, por grupo de escopo |
+| `PREMISSAS` | o que você adotou |
+| `SEM VÍNCULO` | o que não virou atividade e por quê |
+| `FONTES` | de onde veio cada número |
+
+Mais, na mesma pasta: `CRONOGRAMA_MSPROJECT.csv` · `CRONOGRAMA_DADOS.csv` · uma
+`PRANCHA_LAYOUT_&lt;pavimento&gt;.svg` por pavimento.
+
+Curva S, Gantt e histograma **não são seus**. Não desenhe, não esboce, não deixe aba vazia
+reservada para eles.
+
+<span class="ph">CHECAGEM ANTES DE ENTREGAR</span>
+
+- A soma das atividades filhas bate com a linha de origem, item a item? Onde não bate, está
+  reportado com os dois números?
+- Toda linha tem origem declarada (PROJETO, RATEADO, ESTIMADO ou ÁREA DE REFERÊNCIA)?
+- Toda linha ESTIMADA está no log e tem premissa escrita?
+- Algum item SEM LOCAL foi forçado dentro da matriz de ambientes?
+- Alguma atividade sem predecessora além da primeira? Alguma predecessora aponta para ID
+  inexistente ou para frente?
+- Alguma linha-resumo ficou com predecessora, recurso ou código de orçamento preenchido?
+  Vínculo em pacote é erro, não detalhe.
+- Todo `Activity ID` é único e existe **só** em atividade? Toda predecessora aponta para um
+  `Activity ID`, e não para EDT ou nome de tarefa?
+- Alguma folga negativa? Alguma atividade com folga zero marcada como não crítica?
+- Toda data nasce de fórmula sobre `DATA_BASE`? Mudando a data-base, tudo se move junto?
+- Toda atividade tem `Código de orçamento` em coluna própria, como texto, no formato exato
+  da origem? Algum código virou número e perdeu o ponto?
+- A aba RECONCILIAÇÃO cobre **todas** as linhas da planilha de entrada, inclusive as que
+  não geraram atividade? As colunas somadas são `SUMIFS` vivo?
+- Toda atividade tem `Código de local` preenchido e `Nível de localização` declarado?
+  Alguma ficou com local vazio?
+- Algum serviço que a equipe executa de uma vez foi picado por ambiente? Algum serviço de
+  ambiente ficou parado no bloco sem a linha estar marcada?
+- A aba MSPROJECT tem cabeçalho na linha 1, zero célula mesclada e zero linha em branco?
+- Na aba DADOS, todo número é número e toda data é data? Alguma célula tem `5 dias`, `-`
+  ou `n/a`? Algum booleano fora de `SIM`/`NAO`?
+- Todo `ID_PAI` aponta para um `ID` que existe? A raiz é a única com `ID_PAI` vazio?
+- O DICIONÁRIO cobre todas as colunas de DADOS e de MSPROJECT, inclusive o significado de
+  célula vazia?
+- A aba COBERTURA traz o texto de aviso **já redigido**, pronto para o próximo agente copiar?
+- Abrindo só as abas DADOS, DICIONÁRIO, BASE-TEMPO e COBERTURA, um agente que nunca viu
+  este projeto consegue desenhar curva S, Gantt e histograma sem perguntar nada? Se a
+  resposta for não, falta coluna.
+- Os croquis estão marcados como geometria aproximada?
+- O caderno abre sem erro de fórmula? Recalcule antes de entregar.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Montar cronograma é uma das etapas mais demoradas do planejamento, e o gargalo quase nunca é a técnica — é tratamento de dado. Este prompt faz esse cruzamento e devolve a EAP física, por ambiente: cada atividade já vem com o local, o item de orçamento de origem, o critério de rateio e a rede lógica montada.</p>
+      <p>Esse aqui é o prompt junior. Nos meus testes, já chegamos em níveis de criar um cronograma INTEIRO, com todas as ponderações, EAP, recursos, marcos, e no formato consumível pelos softwares de mercado. Para uma base de dados desconhecida, ele já vai te ajudar a salvar bastante tempo.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-print">
+        <table class="p-wbs">
+          <caption class="sr-only">Exemplo de saída do prompt: WBS do cronograma com código hierárquico, Activity ID, nível, atividade, duração, predecessora, recurso e item do orçamento de origem. Linhas de resumo não recebem Activity ID nem predecessora.</caption>
+          <thead>
+            <tr>
+              <th scope="col">WBS</th>
+              <th scope="col">Activity ID</th>
+              <th scope="col">Nível</th>
+              <th scope="col">Atividade · Local</th>
+              <th scope="col" class="col-num">Dur.</th>
+              <th scope="col">Pred.</th>
+              <th scope="col">Recurso</th>
+              <th scope="col">Item do orçamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="wbs-n1">
+              <td class="col-cod">1</td>
+              <td class="col-pr"></td>
+              <td class="col-pr">Obra</td>
+              <td class="col-serv nv1">Residencial Alto Padrão</td>
+              <td class="col-num">214</td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+            </tr>
+            <tr class="wbs-n2">
+              <td class="col-cod">1.2</td>
+              <td class="col-pr"></td>
+              <td class="col-pr">Fase</td>
+              <td class="col-serv nv2">Vedação e acabamento</td>
+              <td class="col-num">68</td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+            </tr>
+            <tr class="wbs-n3">
+              <td class="col-cod">1.2.1</td>
+              <td class="col-pr"></td>
+              <td class="col-pr">Local</td>
+              <td class="col-serv nv3">Térreo · Setor A</td>
+              <td class="col-num">31</td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.1.01</td>
+              <td class="col-cod">A1010</td>
+              <td class="col-pr">Atividade</td>
+              <td class="col-serv nv4">Alvenaria de vedação, bloco cerâmico</td>
+              <td class="col-num">6</td>
+              <td class="col-pr">A1000 TI</td>
+              <td class="col-pr">Pedreiro ×4</td>
+              <td class="col-mem">03.1 · rateado</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.1.02</td>
+              <td class="col-cod">A1020</td>
+              <td class="col-pr">Atividade</td>
+              <td class="col-serv nv4">Contrapiso desempenado, e = 4 cm</td>
+              <td class="col-num">2</td>
+              <td class="col-pr">A1010 TI</td>
+              <td class="col-pr">Pedreiro ×2</td>
+              <td class="col-mem">07.2 · projeto</td>
+            </tr>
+            <tr class="wbs-n3">
+              <td class="col-cod">1.2.2</td>
+              <td class="col-pr"></td>
+              <td class="col-pr">Local</td>
+              <td class="col-serv nv3">Superior · Suíte máster</td>
+              <td class="col-num">37</td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.2.01</td>
+              <td class="col-cod">A1030</td>
+              <td class="col-pr">Atividade</td>
+              <td class="col-serv nv4">Alvenaria de vedação, bloco cerâmico</td>
+              <td class="col-num">5</td>
+              <td class="col-pr">A1010 TI+2</td>
+              <td class="col-pr">Pedreiro ×4</td>
+              <td class="col-mem">03.1 · rateado</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.2.2.02</td>
+              <td class="col-cod">A1040</td>
+              <td class="col-pr">Atividade</td>
+              <td class="col-serv nv4">Impermeabilização de box, manta líquida</td>
+              <td class="col-num">2</td>
+              <td class="col-pr">A1030 TI</td>
+              <td class="col-pr">Impermeabilizador ×1</td>
+              <td class="col-mem">09.4 · projeto</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">1.2.2.03</td>
+              <td class="col-cod">A1050</td>
+              <td class="col-pr">Atividade</td>
+              <td class="col-serv nv4">Forro de gesso acartonado</td>
+              <td class="col-num">3</td>
+              <td class="col-pr">A1040 TI</td>
+              <td class="col-pr">Gesseiro ×2</td>
+              <td class="col-mem"><span class="tag-pend">Estimado</span> sem item de origem</td>
+            </tr>
+            <tr class="wbs-n2">
+              <td class="col-cod">1.3</td>
+              <td class="col-pr"></td>
+              <td class="col-pr">Fase</td>
+              <td class="col-serv nv2">Entrega</td>
+              <td class="col-num">4</td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+              <td class="col-pr"></td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.3.1</td>
+              <td class="col-cod">A1060</td>
+              <td class="col-pr">Atividade</td>
+              <td class="col-serv nv4">Limpeza final e entrega de chave</td>
+              <td class="col-num">4</td>
+              <td class="col-pr">A1050 TI</td>
+              <td class="col-pr">Servente ×3</td>
+              <td class="col-mem">14.1 · sem local</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Aba cronograma · WBS resumida · Dados ilustrativos</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Ambiente nomeado "a critério" é o modelo chutando o que a planta não falou. Confere nome por nome contra a prancha: um ambiente trocado bagunça o rateio, a duração e a sequência de uma vez só.</li>
+          <li>As plantas que ele desenha são croqui, não projeto. Servem pra mostrar o que se liga com o quê. Não vai medir nada em cima delas.</li>
+          <li>Duração sai de efetivo e jornada que ele assumiu, não da sua equipe. Abre a aba PREMISSAS e calibra antes de prometer prazo pra alguém.</li>
+          <li>Quantidade ESTIMADA entra marcada em vermelho. Passou de 40% do escopo? Então aquilo ali é rascunho de cronograma, não compromisso de prazo. Lê o LOG DE ESTIMATIVAS antes de mandar pro cliente.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../quantitativo/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Quantitativo</span>
+        </a>
+        <a class="p-passo" href="../ponderador/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Ponderador</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 03</span>
+          <span class="nome">Cronograma</span>
+        </span>
+        <a class="p-passo" href="../apresentacao/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Apresentação</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>
