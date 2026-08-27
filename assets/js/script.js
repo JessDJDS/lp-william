@@ -42,7 +42,7 @@ function renderPainel(){
       <li>${v.cidade} · ${v.pais}</li>
       <li>${v.senioridade}</li>
       <li>${v.idioma}</li>
-      <li>${v.visto ? "Patrocina visto" : "Não patrocina visto"}</li>
+      ${v.visto === true ? '<li>Patrocina visto</li>' : v.visto === false ? '<li>Não patrocina visto</li>' : ''}
     </ul>
     <p class="resumo">${v.resumo}</p>
     <ul class="reqs">${v.requisitos.map(r => `<li>${r}</li>`).join("")}</ul>
