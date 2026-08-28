@@ -28,7 +28,9 @@
     "idioma": "Português",
     "visto": null,
     "resumo": "ESTÁGIO EM ENGENHARIA CIVIL — Grupo Direcional Engenharia (Fortaleza, Ceará).",
-    "requisitos": [],
+    "requisitos": [
+      "Cursando graduação em Engenharia Civil ou Arquitetura a partir do 4º semestre."
+    ],
     "fonte": "gupy",
     "url": "https://direcionalengenharia.gupy.io/job/eyJqb2JJZCI6MTIxOTc3MjMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publicado": "2026-08-28"
@@ -46,7 +48,7 @@
     "visto": null,
     "resumo": "Estágio em Engenharia Civil - Jurerê — CBA Corp (Florianópolis, Santa Catarina).",
     "requisitos": [
-      "Graduação cursando em Engenharia Civil, Arquitetura e Urbanismo, ou correlatas."
+      "Cursando graduação em Engenharia Civil, Arquitetura e Urbanismo, ou correlatas."
     ],
     "fonte": "gupy",
     "url": "https://cbaempreendimentos.gupy.io/job/eyJqb2JJZCI6MTIwOTU2NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
@@ -146,7 +148,10 @@
     "idioma": "Português",
     "visto": null,
     "resumo": "VITTA | PROGRAMA ESCALADA - ESTÁGIO EM ENGENHARIA CIVIL — Programa de Estágio Grupo Bild (Londrina, Paraná).",
-    "requisitos": [],
+    "requisitos": [
+      "Estão cursando ensino superior (a partir do 4º período) em ENGENHARIA CIVIL."
+      "Tenham disponibilidade para residir na cidade de Londrina.
+    ],
     "fonte": "gupy",
     "url": "https://programadeestagiogrupobild.gupy.io/job/eyJqb2JJZCI6MTE5NzgyNTksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publicado": "2026-08-28"
@@ -180,7 +185,9 @@
     "idioma": "Português",
     "visto": null,
     "resumo": "ESTÁGIO EM ENGENHARIA CIVIL — Grupo Direcional Engenharia (Manaus, Amazonas).",
-    "requisitos": [],
+    "requisitos": [
+      "Cursando Engenharia Civil (2° ao 7° período)."
+    ],
     "fonte": "gupy",
     "url": "https://direcionalengenharia.gupy.io/job/eyJqb2JJZCI6MTIxNjM0MzksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publicado": "2026-08-28"
@@ -189,7 +196,7 @@
     "id": "v011",
     "cargo": "Trainee Global Ambev",
     "empresa": "Ambev",
-    "cidade": null,
+    "cidade": "Nacional",
     "pais": "Brasil",
     "lat": null,
     "lon": null,
@@ -231,12 +238,12 @@
     "id": "v013",
     "cargo": "Erasmus Mundus",
     "empresa": "Comissão Europeia",
-    "cidade": null,
+    "cidade": "Nacional",
     "pais": "Brasil",
     "lat": null,
     "lon": null,
-    "senioridade": null,
-    "idioma": "Português",
+    "senioridade": "Geral",
+    "idioma": "Inglês",
     "visto": null,
     "resumo": "Estude em diversas universidades na Europa e em outras regiões. Bolsas de estudo integrais estão disponíveis para os melhores alunos.",
     "requisitos": [],
@@ -248,12 +255,12 @@
     "id": "v014",
     "cargo": "NASA Space Apps Challenge",
     "empresa": "NASA",
-    "cidade": null,
-    "pais": "Brasil",
+    "cidade": "Internacional",
+    "pais": "Mundo",
     "lat": null,
     "lon": null,
-    "senioridade": null,
-    "idioma": "Português",
+    "senioridade": "Geral",
+    "idioma": "Inglês",
     "visto": null,
     "resumo": "Oferece oportunidades para qualquer pessoa interessada em espaço e ciência enfrentar desafios do mundo real por meio de um hackathon e da comunidade global.",
     "requisitos": [],
