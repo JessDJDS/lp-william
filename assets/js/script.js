@@ -320,30 +320,15 @@ function montarTrajetoria(){
       imgV.className = "verso-img";
       imgV.dataset.base = img.getAttribute("src").replace(/\.\w+$/, "").replace(/-a$/, "") + "-b";
       vslot.appendChild(imgV);
-
-      // --- Início da melhoria de pré-carregamento ---
-      const exts = [".jpg", ".jpeg", ".png", ".webp"];
-      let tentativa = 0;
-      const preCarregarVerso = () => {
-        if(tentativa >= exts.length){
-          if(card.dataset.tituloB){
-            imgV.dataset.falhou = "1";
-            imgV.remove();
-          } else {
-            card.classList.add("sem-verso");
-          }
-          return;
-        }
-        const testeImg = new Image();
-        testeImg.onload = () => { 
-          imgV.src = imgV.dataset.base + exts[tentativa];
-          imgV.dataset.ok = "1"; 
-        };
-        testeImg.onerror = () => { tentativa++; preCarregarVerso(); };
-        testeImg.src = imgV.dataset.base + exts[tentativa];
-      };
-      preCarregarVerso();
-      // --- Fim da melhoria de pré-carregamento ---
+      // O carregamento em si só começa DEPOIS da clonagem do carrossel,
+      // logo abaixo — cada uma das 3 cópias (A/B/C) precisa da própria
+      // tentativa de carregamento. Se disparássemos aqui, só a cópia do
+      // meio (a original) ganharia a foto: cloneNode() copia o HTML como
+      // ele está NAQUELE INSTANTE, e carregamento de imagem é sempre
+      // assíncrono — as cópias clonadas ficariam com uma <img> vazia,
+      // "congelada", pra sempre. Era essa a causa do "às vezes carrega,
+      // às vezes não, nunca os mesmos anos": dependia de qual das 3
+      // cópias o carrossel infinito te colocava na frente.
     }
 
     if(temB) verso.querySelector(".titulo").innerHTML = card.dataset.tituloB;
@@ -383,6 +368,37 @@ function montarTrajetoria(){
   });
   track.insertBefore(copiaA, conjunto);
   track.appendChild(copiaC);
+
+  // carrega a foto B em CADA cópia (original + 2 clones), separadamente.
+  // Antes, isso rodava uma vez só, antes da clonagem — e só a cópia do
+  // meio (a original) recebia a foto de verdade; as duas clonadas
+  // ficavam congeladas sem imagem. Agora cada .verso-img, em qualquer
+  // uma das 3 cópias, tem sua própria tentativa de carregamento,
+  // independente das outras.
+  track.querySelectorAll(".verso-img").forEach(imgV => {
+    const card = imgV.closest(".card");
+    const exts = [".jpg", ".jpeg", ".png", ".webp"];
+    let tentativa = 0;
+    const preCarregarVerso = () => {
+      if(tentativa >= exts.length){
+        if(card.dataset.tituloB){
+          imgV.dataset.falhou = "1";
+          imgV.remove();
+        } else {
+          card.classList.add("sem-verso");
+        }
+        return;
+      }
+      const testeImg = new Image();
+      testeImg.onload = () => {
+        imgV.src = imgV.dataset.base + exts[tentativa];
+        imgV.dataset.ok = "1";
+      };
+      testeImg.onerror = () => { tentativa++; preCarregarVerso(); };
+      testeImg.src = imgV.dataset.base + exts[tentativa];
+    };
+    preCarregarVerso();
+  });
 
   // foto de FRENTE ausente vira slot vazio — é conteúdo, não erro
   track.querySelectorAll(".card-face.frente .slot img, .card:not(.flipavel) .slot img").forEach(img => {
@@ -610,7 +626,13 @@ function montarArquivo(){
   }, {rootMargin: "400px"});
   obs.observe(sec);
 
-  // placeholder some quando o iframe do embed entra no DOM
+  // placeholder some quando o iframe do embed entra no DOM — OU, se isso
+  // nunca acontecer (ex.: o navegador interno do próprio app do Instagram
+  // costuma bloquear/falhar o carregamento do embed.js dele mesmo), some
+  // de qualquer forma depois de um tempo, revelando o link de fallback
+  // que já existe dentro do <blockquote> ("Ver o Dia XX no Instagram").
+  // Sem isso, o placeholder "Carregando" ficava preso pra sempre, tampando
+  // esse link que já estava pronto e estilizado, só nunca visível.
   sec.querySelectorAll(".embed-corpo").forEach(corpo => {
     const mo = new MutationObserver(() => {
       if(corpo.querySelector("iframe")){
@@ -619,6 +641,16 @@ function montarArquivo(){
       }
     });
     mo.observe(corpo, {childList: true, subtree: true});
+    // se o iframe nunca chegar, desiste do placeholder e mostra o link
+    // de fallback — SEM reaproveitar .carregado, que muda a proporção
+    // do card pro tamanho do iframe (inexistente aqui); isso faria o
+    // card colapsar quase pra zero de altura e esconder o link de novo
+    setTimeout(() => {
+      if(!corpo.querySelector("iframe")){
+        mo.disconnect();
+        corpo.classList.add("sem-embed");
+      }
+    }, 6000);
   });
 }
 

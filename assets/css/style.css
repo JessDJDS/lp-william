@@ -756,6 +756,11 @@ body.no-scroll{overflow:hidden}
 }
 .embed-corpo.carregado{aspect-ratio:auto}
 .embed-corpo.carregado .embed-placeholder{display:none}
+/* fallback: iframe do Instagram nunca chegou (comum no navegador interno
+   do próprio app do Instagram) — some só o "Carregando", mantém a
+   proporção 9/16 do card pra que o link de fallback, já dentro do
+   <blockquote>, fique visível e com espaço decente pra tocar */
+.embed-corpo.sem-embed .embed-placeholder{display:none}
 /* placeholder do sistema enquanto o embed.js não processa */
 .embed-placeholder{
   position:absolute;inset:0;
