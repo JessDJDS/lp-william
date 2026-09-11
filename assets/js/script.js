@@ -24,6 +24,27 @@ function fmtData(iso){
   return `${d}.${m}.${a}`;
 }
 
+/* dias corridos até o prazo (ISO YYYY-MM-DD). null se a vaga não tem prazo. */
+function diasRestantes(prazoIso){
+  if(!prazoIso) return null;
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  const [a,m,d] = prazoIso.split("-").map(Number);
+  const prazo = new Date(a, m-1, d);
+  const diffMs = prazo - hoje;
+  return Math.round(diffMs / (1000*60*60*24));
+}
+
+/* rótulo pronto pra exibir — null quando não há prazo (a linha inteira some) */
+function rotuloPrazo(prazoIso){
+  const dias = diasRestantes(prazoIso);
+  if(dias === null) return null;
+  if(dias < 0) return "Encerrada";
+  if(dias === 0) return "Encerra hoje";
+  if(dias === 1) return "Encerra amanhã";
+  return `Encerra em ${dias} dias`;
+}
+
 /* ============ PAINEL ============ */
 function renderPainel(){
   const lista = vagasFiltradas();
@@ -43,12 +64,54 @@ function renderPainel(){
       <li>${v.senioridade}</li>
       <li>${v.idioma}</li>
       ${v.visto === true ? '<li>Patrocina visto</li>' : v.visto === false ? '<li>Não patrocina visto</li>' : ''}
+      ${rotuloPrazo(v.prazo) ? `<li class="prazo${diasRestantes(v.prazo) <= 3 ? ' prazo-urgente' : ''}">${rotuloPrazo(v.prazo)}</li>` : ''}
     </ul>
     <p class="resumo">${v.resumo}</p>
     <ul class="reqs">${v.requisitos.map(r => `<li>${r}</li>`).join("")}</ul>
-    <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener" data-analytics="vaga-${v.id}">Ver vaga original ↗</a>
+    <div class="painel-acoes">
+      <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener" data-analytics="vaga-${v.id}">Ver vaga original ↗</a>
+      <button type="button" class="btn-compartilhar" data-compartilhar="${v.id}" data-analytics="compartilhar-${v.id}">Compartilhe essa vaga</button>
+    </div>
     <div class="carimbo"><span>Fonte · ${v.fonte}</span><span>Publicada ${fmtData(v.publicado)}</span></div>
   `;
+  ligaCompartilhar(painel, v);
+}
+
+/* liga o botão de compartilhar: Web Share API nativa (abre o share sheet
+   do celular — WhatsApp, Instagram etc.) com fallback de copiar o link.
+   O rastreio de clique já acontece via data-analytics + montarAnalytics()
+   mais abaixo — aqui só cuida do comportamento de compartilhar em si. */
+function ligaCompartilhar(painel, v){
+  const btn = painel.querySelector("[data-compartilhar]");
+  if(!btn) return;
+  const rotuloPadrao = btn.textContent;
+  let timer = null;
+
+  function feedback(texto){
+    btn.textContent = texto;
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(() => { btn.textContent = rotuloPadrao; }, 2000);
+  }
+
+  btn.addEventListener("click", () => {
+    const dadosCompartilhar = {
+      title: v.cargo,
+      text: `${v.cargo} — ${v.empresa}`,
+      url: v.url
+    };
+    if(navigator.share){
+      navigator.share(dadosCompartilhar).catch(() => { /* usuário cancelou o share sheet: sem erro */ });
+      return;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v.url).then(
+        () => feedback("LINK COPIADO ✓"),
+        () => feedback("NÃO FOI POSSÍVEL COPIAR")
+      );
+    } else {
+      feedback("NÃO FOI POSSÍVEL COPIAR");
+    }
+  });
 }
 
 /* ============ LISTA ============ */
@@ -65,7 +128,7 @@ function renderLista(){
       aria-label="${v.cargo}, ${v.empresa}, ${v.cidade}, ${v.pais}">
       <span>
         <span class="cargo">${v.cargo}</span><br>
-        <span class="meta">${v.empresa} · ${v.cidade}</span>
+        <span class="meta">${v.empresa} · ${v.cidade}${rotuloPrazo(v.prazo) ? ` · <span class="prazo${diasRestantes(v.prazo) <= 3 ? ' prazo-urgente' : ''}">${rotuloPrazo(v.prazo)}</span>` : ''}</span>
       </span>
       <span class="pais">${v.pais}</span>
     </button>

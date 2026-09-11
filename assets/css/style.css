@@ -388,6 +388,30 @@ body.no-scroll{overflow:hidden}
 .btn-vaga:hover{background:var(--grafite);color:var(--amarelo)}
 .painel .carimbo{font-size:9px}
 
+/* ações do painel: "ver vaga" (principal, amarelo) + "compartilhar"
+   (secundário, contorno) lado a lado — empilha no mobile se não couber */
+.painel-acoes{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin:20px 0 18px;
+}
+.painel-acoes .btn-vaga{margin:0;flex:1 1 180px}
+
+.btn-compartilhar{
+  display:block;text-align:center;flex:1 1 180px;
+  font-family:'Space Mono',monospace;font-size:12px;
+  text-transform:uppercase;letter-spacing:.16em;
+  background:transparent;color:var(--grafite);
+  padding:13px 16px;
+  border:1px solid var(--grafite);
+}
+.btn-compartilhar:hover{background:var(--grafite);color:var(--papel)}
+
+/* "Encerra em X dias" — ciano padrão; vira tijolo (alerta) a 3 dias ou menos */
+.painel .metas li.prazo{color:var(--ciano)}
+.painel .metas li.prazo-urgente{color:var(--tijolo);font-weight:700}
+.linha-vaga .meta .prazo{color:var(--ciano)}
+.linha-vaga .meta .prazo-urgente{color:var(--tijolo);font-weight:700}
+
 /* lista de vagas */
 .lista-vagas{border-top:1px solid var(--grafite)}
 .linha-vaga{

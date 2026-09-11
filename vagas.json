@@ -1,25 +1,5 @@
 [
   {
-    "id": "v001",
-    "cargo": "Estágio em Engenharia Civil ou Arquitetura — Apereforma",
-    "empresa": "APEREFORMA",
-    "cidade": "São Paulo",
-    "pais": "Brasil",
-    "lat": -23.5505,
-    "lon": -46.6333,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Atuar em Engenharia Civil ou Arquitetura, apoiando o time na rotina de obras e na integração entre projeto, execução e orçamento.",
-    "requisitos": [
-      "Estar cursando Engenharia Civil ou Arquitetura.",
-      "Ter concluído entre o 4º e o 8º semestre do curso"
-    ],
-    "fonte": "gupy",
-    "url": "https://vaga-ja.com/vagas/apereforma/estagio-em-engenharia-civil-ou-arquitetura-apereforma?jobBoardSource=gupy_portal",
-    "publicado": "2026-08-28"
-  },
-  {
     "id": "v002",
     "cargo": "ESTÁGIO EM ENGENHARIA CIVIL",
     "empresa": "Grupo Direcional Engenharia",
@@ -36,6 +16,7 @@
     ],
     "fonte": "gupy",
     "url": "https://direcionalengenharia.gupy.io/job/eyJqb2JJZCI6MTIxOTc3MjMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-30",
     "publicado": "2026-08-28"
   },
   {
@@ -55,6 +36,7 @@
     ],
     "fonte": "gupy",
     "url": "https://cbaempreendimentos.gupy.io/job/eyJqb2JJZCI6MTIwOTU2NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-13",
     "publicado": "2026-08-28"
   },
   {
@@ -72,6 +54,7 @@
     "requisitos": [],
     "fonte": "gupy",
     "url": "https://santacasa.gupy.io/job/eyJqb2JJZCI6MTE3NjIxNDAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-21",
     "publicado": "2026-08-28"
   },
   {
@@ -95,28 +78,7 @@
     ],
     "fonte": "gupy",
     "url": "https://baptistaleal.gupy.io/job/eyJqb2JJZCI6MTIwNTgwMTIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v006",
-    "cargo": "Estágio Engenharia Civil - Qualidade (Nova Lima/MG)",
-    "empresa": "BTS / Witplan / Proxy",
-    "cidade": "Nova Lima",
-    "pais": "Brasil",
-    "lat": -19.985,
-    "lon": -43.8467,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Estágio Engenharia Civil - Qualidade (Nova Lima/MG) — BTS / Witplan / Proxy (Nova Lima, Minas Gerais).",
-    "requisitos": [
-      "Educação: Estar cursando a partir do 2º ano de engenharia civil ou curso técnico de edificações.",
-      "Experiência Profissional: Sem necessidade de experiência prévia.",
-      "Habilidades Técnicas: Pacote Office completo.",
-      "Habilidades Interpessoais: Bom relacionamento interpessoal, Liderança técnica, proatividade, resolutividade, habilidades de comunicação, organização e comprometimento."
-    ],
-    "fonte": "gupy",
-    "url": "https://bts.gupy.io/job/eyJqb2JJZCI6MTE2Mjc3ODQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-30",
     "publicado": "2026-08-28"
   },
   {
@@ -137,26 +99,7 @@
     ],
     "fonte": "gupy",
     "url": "https://vemser7lm.gupy.io/job/eyJqb2JJZCI6MTIwNzE3NzMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v008",
-    "cargo": "VITTA | PROGRAMA ESCALADA - ESTÁGIO EM ENGENHARIA CIVIL",
-    "empresa": "Programa de Estágio Grupo Bild",
-    "cidade": "Londrina",
-    "pais": "Brasil",
-    "lat": -23.3103,
-    "lon": -51.1628,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "VITTA | PROGRAMA ESCALADA - ESTÁGIO EM ENGENHARIA CIVIL — Programa de Estágio Grupo Bild (Londrina, Paraná).",
-    "requisitos": [
-      "Estão cursando ensino superior (a partir do 4º período) em ENGENHARIA CIVIL.",
-      "Tenham disponibilidade para residir na cidade de Londrina."
-    ],
-    "fonte": "gupy",
-    "url": "https://programadeestagiogrupobild.gupy.io/job/eyJqb2JJZCI6MTE5NzgyNTksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-12",
     "publicado": "2026-08-28"
   },
   {
@@ -174,6 +117,7 @@
     "requisitos": [],
     "fonte": "gupy",
     "url": "https://programadeestagiogrupobild.gupy.io/job/eyJqb2JJZCI6MTIyMDIxMzUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-20",
     "publicado": "2026-08-28"
   },
   {
@@ -193,10 +137,166 @@
     ],
     "fonte": "gupy",
     "url": "https://direcionalengenharia.gupy.io/job/eyJqb2JJZCI6MTIxNjM0MzksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-17",
     "publicado": "2026-08-28"
   },
   {
     "id": "v011",
+    "cargo": "ANALISTA DE PLANEJAMENTO DE OBRAS JR",
+    "empresa": "@novarotadooeste",
+    "cidade": "Cuiabá",
+    "pais": "Brasil",
+    "lat": -15.599,
+    "lon": -56.095,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Tem como missão apoiar o planejamento, acompanhamento e controle das obras de adequação e implantação, contribuindo para o cumprimento dos cronogramas, prazos, custos e metas estabelecidas. Atua na coleta, consolidação e análise de informações técnicas, atualização dos cronogramas, elaboração de relatórios e indicadores, fornecendo suporte às equipes de Engenharia e Obras para a tomada de decisão e acompanhamento da evolução física e financeira dos contratos.",
+    "requisitos": ["Possuir CNH B e disponibilidade para viagens, conforme necessidade da área."],
+    "fonte": "gupy",
+    "url": "https://rotadooeste.gupy.io/job/eyJqb2JJZCI6MTIzODc0NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-31",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v012",
+    "cargo": "Project & Construction Manager",
+    "empresa": "Braskem",
+    "cidade": "Marcus Hook",
+    "pais": "USA",
+    "lat": 39.8182,
+    "lon": -75.4155,
+    "senioridade": "Sênior",
+    "idioma": "Inglês",
+    "visto": false,
+    "resumo": "O Gerente de Projetos para a unidade de Marcus Hook é responsável pela entrega integral de projetos de capital, atuando como ponto focal tanto para a gestão do projeto quanto para a gestão da construção no local.",
+    "requisitos": ["Bacharelado em Engenharia Mecânica, Civil, Elétrica ou Química, com pelo menos 10 anos de experiência em gerenciamento de projetos/engenharia."],
+    "fonte": "greenhouse:braskem",
+    "url": "https://job-boards.greenhouse.io/braskem/jobs/7985382003",
+    "prazo": "2026-10-31",
+    "publicado": "2026-09-11"
+  },
+    {
+    "id": "v013",
+    "cargo": "Analista de Planejamento de Obras Jr. | Presidente Prudente",
+    "empresa": "BRN Construtora",
+    "cidade": "Presidente Prudente",
+    "pais": "Brasil",
+    "lat": -22.1256,
+    "lon": -51.3889,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Análise e aprovação de solicitações de materiais e mão de obra, conferência de levantamentos quantitativos com verificação em projetos, apropriação de acordo com a EAP do orçamento. Elaboração de cronograma de obras de acordo com planejamento estratégico do ano. Conferência e acompanhamento de produção semanal – Plataforma Prevision, elaboração de gestão dos próximos 30 / 60 e 90 dias. Acompanhamento mensal de sobreconsumos da curva ABC.",
+    "requisitos": [],
+    "fonte": "gupy",
+    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE2NDkzMTEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-30",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v014",
+    "cargo": "Engenheiro Civil de Obras Jr. | São Paulo/SP",
+    "empresa": "Cyrela",
+    "cidade": "São Paulo",
+    "pais": "Brasil",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Coordenar as tarefas administrativas e operacionais do canteiro. Controlar a mão de obra própria e/ou de terceiros. Assegurar as medidas de segurança do trabalho;",
+    "requisitos": [
+      "Experiência em construtoras de obras residenciais e prediais alto padrão de médio a grande porte",
+      "Ter gerenciado obras do início ao fim como Engenheiro(a) principal"
+    ],
+    "fonte": "gupy",
+    "url": "https://cyrela.gupy.io/job/eyJqb2JJZCI6MTE5NzU5NDUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-05",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v015",
+    "cargo": "Analista de Planejamento de Obras Jr.",
+    "empresa": "BRN Construtora",
+    "cidade": "Araras",
+    "pais": "Brasil",
+    "lat": -22.3573,
+    "lon": -47.3823,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Análise e aprovação de solicitações de materiais e mão de obra, conferência de levantamentos quantitativos com verificação em projetos, apropriação de acordo com a EAP do orçamento. Elaboração de cronograma de obras de acordo com planejamento estratégico do ano. Conferência e acompanhamento de produção semanal – Plataforma Prevision, elaboração de gestão dos próximos 30 / 60 e 90 dias. Acompanhamento mensal de sobreconsumos da curva ABC;",
+    "requisitos": [],
+    "fonte": "gupy",
+    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE2NDkyNDIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-30",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v016",
+    "cargo": "Analista de Planejamento e Controle de Obras - Aracaju/SE",
+    "empresa": "Construtora Stanza",
+    "cidade": "Aracaju",
+    "pais": "Brasil",
+    "lat": -10.9472,
+    "lon": -37.0731,
+    "senioridade": "Pleno",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Monitorar indicadores das obras, avaliando impactos operacionais e de caixa. Acompanhar e monitorar as medições de serviços terceirizados, assegurando conformidade com contratos e entregas.",
+    "requisitos": [],
+    "fonte": "gupy",
+    "url": "https://stanza.gupy.io/job/eyJqb2JJZCI6MTE4NDMyMzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-26",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v017",
+    "cargo": "Pessoa Engenheira de Projetos (Civil)",
+    "empresa": "Timenow",
+    "cidade": "Goiânia",
+    "pais": "Brasil",
+    "lat": -16.6869,
+    "lon": -49.2648,
+    "senioridade": "Pleno",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Contribuir com a elaboração e implantação de projetos do cliente, realizar estudos de viabilidade, contribuir com o processo de validação de projetos, contribuir com processos de contratação e serviços e , bem como fazendo acompanhamento da realização de obras e supervisionando o respeito ao escopo definido",
+    "requisitos": [
+      "Experiência na implantação de projetos industriais",
+      "Capacidade de leitura e interpretação de projetos multidisciplinares, uso do Autocad e Navisworks"
+    ],
+    "fonte": "gupy",
+    "url": "https://time-now.gupy.io/job/eyJqb2JJZCI6MTIyODY4ODgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-16",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v018",
+    "cargo": "Engenheiro (a) Civil de Planejamento Sênior",
+    "empresa": "7LM",
+    "cidade": "Formosa",
+    "pais": "Brasil",
+    "lat": -15.5372,
+    "lon": -47.3346,
+    "senioridade": "Sênior",
+    "idioma": "Português",
+    "visto": false,
+    "resumo": "Desenvolver o cronograma físico detalhado, curva física da obra e linha de balanço para o projeto de construção. Detalhar o caminho crítico do cronograma, prazos, marcos importantes e restrições para cada pacote de trabalho com lógica executiva. Acompanhar o avanço físico semanal e mensal do cronograma, identificar e justificar desvios e realizar as divulgações de resultados apurados.",
+    "requisitos": [
+      "Superior completo em Engenharia Civil",
+      "Pós-graduação na área",
+      "Sólida experiência na área de Planejamento e controle de obras",
+      "Experiência com obras MCMV"
+    ],
+    "fonte": "gupy",
+    "url": "https://vemser7lm.gupy.io/job/eyJqb2JJZCI6MTIwNDYxNDEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-10-10",
+    "publicado": "2026-09-11"
+  },
+  {
+    "id": "v019",
     "cargo": "Trainee Global Ambev",
     "empresa": "Ambev",
     "cidade": "Nacional",
@@ -219,7 +319,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v012",
+    "id": "v020",
     "cargo": "Estágio Votorantim Cimentos",
     "empresa": "Votorantim Cimentos",
     "cidade": "Laranjeiras",
@@ -238,7 +338,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v013",
+    "id": "v021",
     "cargo": "Erasmus Mundus",
     "empresa": "Comissão Europeia",
     "cidade": "Nacional",
@@ -255,7 +355,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v014",
+    "id": "v022",
     "cargo": "NASA Space Apps Challenge",
     "empresa": "NASA",
     "cidade": "Internacional",
@@ -272,7 +372,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v015",
+    "id": "v023",
     "cargo": "Chevening — Mestrado no Reino Unido",
     "empresa": "Governo Britânico · FCDO",
     "cidade": "Londres",
