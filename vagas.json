@@ -1,26 +1,6 @@
 [
   {
     "id": "v001",
-    "cargo": "ESTÁGIO EM ENGENHARIA CIVIL",
-    "empresa": "Grupo Direcional Engenharia",
-    "cidade": "Fortaleza",
-    "pais": "Brasil",
-    "lat": -3.7319,
-    "lon": -38.5267,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "ESTÁGIO EM ENGENHARIA CIVIL — Grupo Direcional Engenharia (Fortaleza, Ceará).",
-    "requisitos": [
-      "Cursando graduação em Engenharia Civil ou Arquitetura a partir do 4º semestre."
-    ],
-    "fonte": "gupy",
-    "url": "https://direcionalengenharia.gupy.io/job/eyJqb2JJZCI6MTIxOTc3MjMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-30",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v002",
     "cargo": "Estágio em Engenharia Civil - Jurerê",
     "empresa": "CBA Corp",
     "cidade": "Florianópolis",
@@ -40,7 +20,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v003",
+    "id": "v002",
     "cargo": "Estágio - Engenharia Civil",
     "empresa": "Venha ser Santa Casa",
     "cidade": "Porto Alegre",
@@ -58,7 +38,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v004",
+    "id": "v003",
     "cargo": "Engenheiro(a) Civil - Gestão de Obra",
     "empresa": "Construtora Baptista Leal",
     "cidade": "Recife",
@@ -82,7 +62,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v005",
+    "id": "v004",
     "cargo": "Engenheiro Civil Junior",
     "empresa": "7LM",
     "cidade": "Brasília",
@@ -103,7 +83,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v006",
+    "id": "v005",
     "cargo": "BILD | PROGRAMA ESCALADA - ESTÁGIO EM ENGENHARIA CIVIL",
     "empresa": "Programa de Estágio Grupo Bild",
     "cidade": "Uberaba",
@@ -121,7 +101,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v007",
+    "id": "v006",
     "cargo": "ESTÁGIO EM ENGENHARIA CIVIL",
     "empresa": "Grupo Direcional Engenharia",
     "cidade": "Manaus",
@@ -141,7 +121,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v008",
+    "id": "v007",
     "cargo": "ANALISTA DE PLANEJAMENTO DE OBRAS JR",
     "empresa": "@novarotadooeste",
     "cidade": "Cuiabá",
@@ -159,7 +139,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v009",
+    "id": "v008",
     "cargo": "Project & Construction Manager",
     "empresa": "Braskem",
     "cidade": "Marcus Hook",
@@ -177,7 +157,7 @@
     "publicado": "2026-09-11"
   },
     {
-    "id": "v010",
+    "id": "v009",
     "cargo": "Analista de Planejamento de Obras Jr. | Presidente Prudente",
     "empresa": "BRN Construtora",
     "cidade": "Presidente Prudente",
@@ -195,7 +175,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v011",
+    "id": "v010",
     "cargo": "Engenheiro Civil de Obras Jr. | São Paulo/SP",
     "empresa": "Cyrela",
     "cidade": "São Paulo",
@@ -216,7 +196,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v012",
+    "id": "v011",
     "cargo": "Analista de Planejamento de Obras Jr.",
     "empresa": "BRN Construtora",
     "cidade": "Araras",
@@ -234,7 +214,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v013",
+    "id": "v012",
     "cargo": "Analista de Planejamento e Controle de Obras - Aracaju/SE",
     "empresa": "Construtora Stanza",
     "cidade": "Aracaju",
@@ -252,7 +232,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v014",
+    "id": "v013",
     "cargo": "Pessoa Engenheira de Projetos (Civil)",
     "empresa": "Timenow",
     "cidade": "Goiânia",
@@ -273,7 +253,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v015",
+    "id": "v014",
     "cargo": "Engenheiro (a) Civil de Planejamento Sênior",
     "empresa": "7LM",
     "cidade": "Formosa",
@@ -296,8 +276,8 @@
     "publicado": "2026-09-11"
   },
     {
-    "id": "v016",
-    "cargo": "PROJETISTA JR. / MODELADOR BIM",
+    "id": "v015",
+    "cargo": "PROJETISTA JR. / MODELADOR BIM - Hidrossanitários",
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
     "pais": "Brasil",
@@ -318,8 +298,8 @@
     "publicado": "2026-09-11"
   },
       {
-    "id": "v017",
-    "cargo": "PROJETISTA JR. / MODELADOR BIM",
+    "id": "v016",
+    "cargo": "PROJETISTA JR. / MODELADOR BIM - Incêndio",
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
     "pais": "Brasil",
@@ -340,7 +320,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v018",
+    "id": "v017",
     "cargo": "Trainee Global Ambev",
     "empresa": "Ambev",
     "cidade": "Nacional",
@@ -363,7 +343,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v019",
+    "id": "v018",
     "cargo": "Estágio Votorantim Cimentos",
     "empresa": "Votorantim Cimentos",
     "cidade": "Laranjeiras",
@@ -382,7 +362,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v020",
+    "id": "v019",
     "cargo": "Erasmus Mundus",
     "empresa": "Comissão Europeia",
     "cidade": "Nacional",
@@ -399,7 +379,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v021",
+    "id": "v020",
     "cargo": "NASA Space Apps Challenge",
     "empresa": "NASA",
     "cidade": "Internacional",
@@ -416,7 +396,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v022",
+    "id": "v021",
     "cargo": "Chevening — Mestrado no Reino Unido",
     "empresa": "Governo Britânico · FCDO",
     "cidade": "Londres",
