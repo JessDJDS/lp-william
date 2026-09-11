@@ -241,7 +241,7 @@
     "pais": "Brasil",
     "lat": -10.9472,
     "lon": -37.0731,
-    "senioridade": "Pleno,
+    "senioridade": "Pleno",
     "idioma": "Português",
     "visto": null,
     "resumo": "Monitorar indicadores das obras, avaliando impactos operacionais e de caixa. Acompanhar e monitorar as medições de serviços terceirizados, assegurando conformidade com contratos e entregas.",
@@ -301,8 +301,8 @@
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
     "pais": "Brasil",
-    "lat": -15.5372,
-    "lon": -47.3346,
+    "lat": -10.9472,
+    "lon": -37.0731,
     "senioridade": "Júnior",
     "idioma": "Português",
     "visto": false,
@@ -323,8 +323,8 @@
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
     "pais": "Brasil",
-    "lat": -15.5372,
-    "lon": -47.3346,
+    "lat": -10.9472,
+    "lon": -37.0731,
     "senioridade": "Júnior",
     "idioma": "Português",
     "visto": false,
@@ -436,6 +436,7 @@
     ],
     "fonte": "Chevening.org",
     "url": "https://www.chevening.org/scholarships/",
+    "prazo": "2026-10-06",
     "publicado": "2026-08-05"
   }
 ]
