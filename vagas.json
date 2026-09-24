@@ -1,7 +1,7 @@
 [
   {
     "id": "v001",
-    "cargo": "Estágio em Engenharia Civil - Jurerê",
+    "cargo": "Estágio em Engenharia Civil / Arquitetura",
     "empresa": "CBA Corp",
     "cidade": "Florianópolis",
     "pais": "Brasil",
@@ -21,25 +21,7 @@
   },
   {
     "id": "v002",
-    "cargo": "Estágio - Engenharia Civil",
-    "empresa": "Venha ser Santa Casa",
-    "cidade": "Porto Alegre",
-    "pais": "Brasil",
-    "lat": -30.0346,
-    "lon": -51.2177,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Estágio - Engenharia Civil — Venha ser Santa Casa (Porto Alegre, Rio Grande do Sul).",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://santacasa.gupy.io/job/eyJqb2JJZCI6MTE3NjIxNDAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-21",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v003",
-    "cargo": "Engenheiro(a) Civil - Gestão de Obra",
+    "cargo": "Engenheiro Civil - Gestão de Obra",
     "empresa": "Construtora Baptista Leal",
     "cidade": "Recife",
     "pais": "Brasil",
@@ -62,7 +44,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v004",
+    "id": "v003",
     "cargo": "Engenheiro Civil Junior",
     "empresa": "7LM",
     "cidade": "Brasília",
@@ -83,26 +65,8 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v005",
-    "cargo": "BILD | PROGRAMA ESCALADA - ESTÁGIO EM ENGENHARIA CIVIL",
-    "empresa": "Programa de Estágio Grupo Bild",
-    "cidade": "Uberaba",
-    "pais": "Brasil",
-    "lat": -19.7472,
-    "lon": -47.9381,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "BILD | PROGRAMA ESCALADA - ESTÁGIO EM ENGENHARIA CIVIL — Programa de Estágio Grupo Bild (Uberaba, Minas Gerais).",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://programadeestagiogrupobild.gupy.io/job/eyJqb2JJZCI6MTIyMDIxMzUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-20",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v006",
-    "cargo": "ESTÁGIO EM ENGENHARIA CIVIL",
+    "id": "v004",
+    "cargo": "Estágio em Engenharia Civil",
     "empresa": "Grupo Direcional Engenharia",
     "cidade": "Manaus",
     "pais": "Brasil",
@@ -121,7 +85,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v007",
+    "id": "v005",
     "cargo": "ANALISTA DE PLANEJAMENTO DE OBRAS JR",
     "empresa": "@novarotadooeste",
     "cidade": "Cuiabá",
@@ -139,7 +103,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v008",
+    "id": "v006",
     "cargo": "Project & Construction Manager",
     "empresa": "Braskem",
     "cidade": "Marcus Hook",
@@ -157,8 +121,8 @@
     "publicado": "2026-09-11"
   },
     {
-    "id": "v009",
-    "cargo": "Analista de Planejamento de Obras Jr. | Presidente Prudente",
+    "id": "v007",
+    "cargo": "Analista de Planejamento de Obras Jr.",
     "empresa": "BRN Construtora",
     "cidade": "Presidente Prudente",
     "pais": "Brasil",
@@ -175,8 +139,8 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v010",
-    "cargo": "Engenheiro Civil de Obras Jr. | São Paulo/SP",
+    "id": "v008",
+    "cargo": "Engenheiro Civil de Obras Jr.",
     "empresa": "Cyrela",
     "cidade": "São Paulo",
     "pais": "Brasil",
@@ -196,7 +160,7 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v011",
+    "id": "v009",
     "cargo": "Analista de Planejamento de Obras Jr.",
     "empresa": "BRN Construtora",
     "cidade": "Araras",
@@ -214,47 +178,8 @@
     "publicado": "2026-09-11"
   },
   {
-    "id": "v012",
-    "cargo": "Analista de Planejamento e Controle de Obras - Aracaju/SE",
-    "empresa": "Construtora Stanza",
-    "cidade": "Aracaju",
-    "pais": "Brasil",
-    "lat": -10.9472,
-    "lon": -37.0731,
-    "senioridade": "Pleno",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Monitorar indicadores das obras, avaliando impactos operacionais e de caixa. Acompanhar e monitorar as medições de serviços terceirizados, assegurando conformidade com contratos e entregas.",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://stanza.gupy.io/job/eyJqb2JJZCI6MTE4NDMyMzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-26",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v013",
-    "cargo": "Pessoa Engenheira de Projetos (Civil)",
-    "empresa": "Timenow",
-    "cidade": "Goiânia",
-    "pais": "Brasil",
-    "lat": -16.6869,
-    "lon": -49.2648,
-    "senioridade": "Pleno",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Contribuir com a elaboração e implantação de projetos do cliente, realizar estudos de viabilidade, contribuir com o processo de validação de projetos, contribuir com processos de contratação e serviços e , bem como fazendo acompanhamento da realização de obras e supervisionando o respeito ao escopo definido",
-    "requisitos": [
-      "Experiência na implantação de projetos industriais",
-      "Capacidade de leitura e interpretação de projetos multidisciplinares, uso do Autocad e Navisworks"
-    ],
-    "fonte": "gupy",
-    "url": "https://time-now.gupy.io/job/eyJqb2JJZCI6MTIyODY4ODgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-16",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v014",
-    "cargo": "Engenheiro (a) Civil de Planejamento Sênior",
+    "id": "v010",
+    "cargo": "Engenheiro Civil de Planejamento Sênior",
     "empresa": "7LM",
     "cidade": "Formosa",
     "pais": "Brasil",
@@ -262,7 +187,7 @@
     "lon": -47.3346,
     "senioridade": "Sênior",
     "idioma": "Português",
-    "visto": false,
+    "visto": null,
     "resumo": "Desenvolver o cronograma físico detalhado, curva física da obra e linha de balanço para o projeto de construção. Detalhar o caminho crítico do cronograma, prazos, marcos importantes e restrições para cada pacote de trabalho com lógica executiva. Acompanhar o avanço físico semanal e mensal do cronograma, identificar e justificar desvios e realizar as divulgações de resultados apurados.",
     "requisitos": [
       "Superior completo em Engenharia Civil",
@@ -276,7 +201,7 @@
     "publicado": "2026-09-11"
   },
     {
-    "id": "v015",
+    "id": "v011",
     "cargo": "PROJETISTA JR. / MODELADOR BIM - Hidrossanitários",
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
@@ -285,7 +210,7 @@
     "lon": -37.0731,
     "senioridade": "Júnior",
     "idioma": "Português",
-    "visto": false,
+    "visto": null,
     "resumo": "Profissional organizado e proativo, com disponibilidade para trabalho PRESENCIAL em Aracaju/SE. Desejo de atuar no desenvolvimento de projetos de instalações elétricas e hidrossanitárias prediais em BIM.",
     "requisitos": [
       "Noções de projetos de instalações hidrossanitárias",
@@ -298,7 +223,7 @@
     "publicado": "2026-09-11"
   },
       {
-    "id": "v016",
+    "id": "v012",
     "cargo": "PROJETISTA JR. / MODELADOR BIM - Incêndio",
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
@@ -307,7 +232,7 @@
     "lon": -37.0731,
     "senioridade": "Júnior",
     "idioma": "Português",
-    "visto": false,
+    "visto": null,
     "resumo": "Profissional organizado e proativo, com disponibilidade para trabalho PRESENCIAL em Aracaju/SE. Desejo de atuar no desenvolvimento de projetos de instalações elétricas e hidrossanitárias prediais em BIM.",
     "requisitos": [
       "Noções de projetos de prevenção e combate à incêndio",
@@ -319,31 +244,49 @@
     "prazo": "2026-10-31",
     "publicado": "2026-09-11"
   },
-  {
-    "id": "v017",
-    "cargo": "Trainee Global Ambev",
-    "empresa": "Ambev",
-    "cidade": "Nacional",
+   {
+    "id": "v013",
+    "cargo": "Analista de Engenharia I - Planejamento e Orçamento de Obras",
+    "empresa": "Cidade Center Norte",
+    "cidade": "São Paulo",
     "pais": "Brasil",
-    "lat": null,
-    "lon": null,
-    "senioridade": "Trainee",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "senioridade": "Júnior",
     "idioma": "Português",
     "visto": null,
-    "resumo": "O Global Trainee Ambev é uma jornada intensiva de desenvolvimento para quem quer acelerar a carreira, assumir desafios de alto impacto e gerar resultados reais desde o primeiro dia.",
+    "resumo": "Responsável por apoiar a Coordenação de Engenharia no planejamento, orçamento e controle de custos de obras.",
     "requisitos": [
-      "Estar cursando ou ter cursado Bacharelado, Licenciatura ou Tecnólogo.",
-      "Ter previsão de conclusão entre dezembro de 2024 e dezembro de 2026.",
-      "Ter disponibilidade para morar em qualquer estado do Brasil e atuar presencialmente.",
-      "Ter, até dezembro de 2026, no máximo 2 anos de experiência profissional full-time (com vínculo empregatício) após a conclusão da primeira graduação.",
-      "Ter nível intermediário ou avançado/fluente de inglês."
+      "Formação superior completa ou cursando em Engenharia Civil, Arquitetura ou áreas correlatas",
+      "Necessário possuir conhecimento em planejamento e controle físico-financeiro de obras",
+      "Necessário possuir conhecimento em orçamento de obras e composição de custos",
+      "Necessário possuir conhecimento em Excel, Autocad"
     ],
-    "fonte": "programas:trainee-ambev",
-    "url": "https://ambev.kolab.ee/k-abv-t4d8/2916-global-trainee-ambev",
-    "publicado": "2026-08-28"
+    "fonte": "gupy",
+    "url": "https://cidadecenternorte.gupy.io/job/eyJqb2JJZCI6MTIzMjA5MDAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-12-31",
+    "publicado": "2026-09-24"
   },
   {
-    "id": "v018",
+    "id": "v014",
+    "cargo": "Analista de Planejamento de Obras Jr.",
+    "empresa": "BRN Construtora",
+    "cidade": "Campinas",
+    "pais": "Brasil",
+    "lat": -22.9099,
+    "lon": -47.0626,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Análise e aprovação de solicitações de materiais e mão de obra, conferência de levantamentos quantitativos com verificação em projetos, apropriação de acordo com a EAP do orçamento.",
+    "requisitos": [],
+    "fonte": "gupy",
+    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE1MjU4MTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-09-30",
+    "publicado": "2026-09-24"
+  },
+  {
+    "id": "v015",
     "cargo": "Estágio Votorantim Cimentos",
     "empresa": "Votorantim Cimentos",
     "cidade": "Laranjeiras",
@@ -362,8 +305,8 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v019",
-    "cargo": "Erasmus Mundus",
+    "id": "v016",
+    "cargo": "Erasmus Mundus - Bolsas Internacionais de Estudo",
     "empresa": "Comissão Europeia",
     "cidade": "Nacional",
     "pais": "Brasil",
@@ -379,8 +322,8 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v020",
-    "cargo": "NASA Space Apps Challenge",
+    "id": "v017",
+    "cargo": "NASA Space Apps Challenge - Hackathon",
     "empresa": "NASA",
     "cidade": "Internacional",
     "pais": "Mundo",
@@ -396,7 +339,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v021",
+    "id": "v018",
     "cargo": "Chevening — Mestrado no Reino Unido",
     "empresa": "Governo Britânico · FCDO",
     "cidade": "Londres",
