@@ -120,65 +120,8 @@
     "prazo": "2026-10-31",
     "publicado": "2026-09-11"
   },
-    {
+  {
     "id": "v007",
-    "cargo": "Analista de Planejamento de Obras Jr.",
-    "empresa": "BRN Construtora",
-    "cidade": "Presidente Prudente",
-    "pais": "Brasil",
-    "lat": -22.1256,
-    "lon": -51.3889,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Análise e aprovação de solicitações de materiais e mão de obra, conferência de levantamentos quantitativos com verificação em projetos, apropriação de acordo com a EAP do orçamento. Elaboração de cronograma de obras de acordo com planejamento estratégico do ano. Conferência e acompanhamento de produção semanal – Plataforma Prevision, elaboração de gestão dos próximos 30 / 60 e 90 dias. Acompanhamento mensal de sobreconsumos da curva ABC.",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE2NDkzMTEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-30",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v008",
-    "cargo": "Engenheiro Civil de Obras Jr.",
-    "empresa": "Cyrela",
-    "cidade": "São Paulo",
-    "pais": "Brasil",
-    "lat": -23.5505,
-    "lon": -46.6333,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Coordenar as tarefas administrativas e operacionais do canteiro. Controlar a mão de obra própria e/ou de terceiros. Assegurar as medidas de segurança do trabalho;",
-    "requisitos": [
-      "Experiência em construtoras de obras residenciais e prediais alto padrão de médio a grande porte",
-      "Ter gerenciado obras do início ao fim como Engenheiro(a) principal"
-    ],
-    "fonte": "gupy",
-    "url": "https://cyrela.gupy.io/job/eyJqb2JJZCI6MTE5NzU5NDUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-05",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v009",
-    "cargo": "Analista de Planejamento de Obras Jr.",
-    "empresa": "BRN Construtora",
-    "cidade": "Araras",
-    "pais": "Brasil",
-    "lat": -22.3573,
-    "lon": -47.3823,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Análise e aprovação de solicitações de materiais e mão de obra, conferência de levantamentos quantitativos com verificação em projetos, apropriação de acordo com a EAP do orçamento. Elaboração de cronograma de obras de acordo com planejamento estratégico do ano. Conferência e acompanhamento de produção semanal – Plataforma Prevision, elaboração de gestão dos próximos 30 / 60 e 90 dias. Acompanhamento mensal de sobreconsumos da curva ABC;",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE2NDkyNDIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-30",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v010",
     "cargo": "Engenheiro Civil de Planejamento Sênior",
     "empresa": "7LM",
     "cidade": "Formosa",
@@ -201,7 +144,7 @@
     "publicado": "2026-09-11"
   },
     {
-    "id": "v011",
+    "id": "v008",
     "cargo": "PROJETISTA JR. / MODELADOR BIM - Hidrossanitários",
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
@@ -223,7 +166,7 @@
     "publicado": "2026-09-11"
   },
       {
-    "id": "v012",
+    "id": "v009",
     "cargo": "PROJETISTA JR. / MODELADOR BIM - Incêndio",
     "empresa": "Singular Projetos",
     "cidade": "Aracaju",
@@ -245,7 +188,7 @@
     "publicado": "2026-09-11"
   },
    {
-    "id": "v013",
+    "id": "v010",
     "cargo": "Analista de Engenharia I - Planejamento e Orçamento de Obras",
     "empresa": "Cidade Center Norte",
     "cidade": "São Paulo",
@@ -268,25 +211,7 @@
     "publicado": "2026-09-24"
   },
   {
-    "id": "v014",
-    "cargo": "Analista de Planejamento de Obras Jr.",
-    "empresa": "BRN Construtora",
-    "cidade": "Campinas",
-    "pais": "Brasil",
-    "lat": -22.9099,
-    "lon": -47.0626,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Análise e aprovação de solicitações de materiais e mão de obra, conferência de levantamentos quantitativos com verificação em projetos, apropriação de acordo com a EAP do orçamento.",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE1MjU4MTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-09-30",
-    "publicado": "2026-09-24"
-  },
-  {
-    "id": "v015",
+    "id": "v011",
     "cargo": "Estágio Votorantim Cimentos",
     "empresa": "Votorantim Cimentos",
     "cidade": "Laranjeiras",
@@ -305,7 +230,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v016",
+    "id": "v012",
     "cargo": "Erasmus Mundus - Bolsas Internacionais de Estudo",
     "empresa": "Comissão Europeia",
     "cidade": "Nacional",
@@ -322,7 +247,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v017",
+    "id": "v013",
     "cargo": "NASA Space Apps Challenge - Hackathon",
     "empresa": "NASA",
     "cidade": "Internacional",
@@ -337,29 +262,5 @@
     "fonte": "programas:nasa-space-apps-challenge",
     "url": "https://www.spaceappschallenge.org/",
     "publicado": "2026-08-28"
-  },
-  {
-    "id": "v018",
-    "cargo": "Chevening — Mestrado no Reino Unido",
-    "empresa": "Governo Britânico · FCDO",
-    "cidade": "Londres",
-    "pais": "Reino Unido",
-    "lat": 51.5074,
-    "lon": -0.1278,
-    "senioridade": "2+ anos de experiência",
-    "idioma": "Inglês obrigatório",
-    "visto": true,
-    "resumo": "Bolsa integral do governo britânico pra um ano de mestrado em qualquer universidade do Reino Unido: mensalidade, passagens, visto e ajuda de custo mensal. Cerca de 1.800 bolsas por ano no mundo. Candidatura aberta até 06/10/2026.",
-    "requisitos": [
-      "Graduação concluída",
-      "2 anos de experiência profissional (2.800 horas)",
-      "Inglês fluente",
-      "Escolher 3 cursos de mestrado no Reino Unido",
-      "Voltar ao Brasil por 2 anos depois da bolsa"
-    ],
-    "fonte": "Chevening.org",
-    "url": "https://www.chevening.org/scholarships/",
-    "prazo": "2026-10-06",
-    "publicado": "2026-08-05"
   }
 ]

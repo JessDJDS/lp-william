@@ -1,0 +1,126 @@
+/* ============================================================
+   SIMULADOR — /milionario/completo
+   Carrega DEPOIS de style.css e dashboard.css (ambos embutidos
+   no <head> da página). Reaproveita os tokens da marca e as
+   classes .dash/.card/.row/.tile do dashboard.css — este arquivo
+   só acrescenta o que é específico do simulador, prefixado m-.
+   ============================================================ */
+
+:root{
+  /* cores das áreas empilhadas do gráfico de patrimônio */
+  --m-sal:  #14556B;  /* aportes do salário = --ciano */
+  --m-ext:  #7FA6B3;  /* aportes do 13º/férias = --ciano2 */
+  --m-neg:  #F4C70F;  /* aportes do negócio = --amarelo */
+  --m-jur:  #B23A1E;  /* juros acumulados = --tijolo */
+  --m-meta: #16130E;  /* linha da meta de R$ 1 milhão = --grafite */
+}
+
+/* ---- card de escolha da engenharia ---- */
+.m-pick .cardhead{margin-bottom:10px}
+.m-select{
+  width:100%;
+  font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px;
+  color:var(--grafite);background:var(--papel);
+  border:1px solid var(--grafite);border-radius:0;
+  padding:10px 34px 10px 12px;cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2316130E'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+}
+.m-select:hover{background-color:var(--hl-bg)}
+.m-select option:disabled{color:var(--d-ink-3)}
+
+/* ---- tiles de resumo ---- */
+.m-row{margin-top:0}
+.tile.m-destaque{background:var(--grafite)}
+.tile.m-destaque .k,.tile.m-destaque .d{color:var(--cinza)}
+.tile.m-destaque .v{color:var(--amarelo)}
+
+/* ---- aviso de amostra pequena ---- */
+.m-aviso{
+  background:var(--hl-bg);border:1px solid var(--tijolo);border-left:4px solid var(--tijolo);
+  color:var(--grafite2);font-size:13px;line-height:1.5;
+  padding:12px 14px;margin:0 0 20px;
+}
+
+/* ---- controles: sliders e checkbox ---- */
+.m-ctrls{display:grid;gap:22px}
+.m-slider{display:grid;gap:6px}
+.m-slider label{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  font-family:'Montserrat',sans-serif;font-weight:600;font-size:13.5px;color:var(--grafite2);
+}
+.m-slider label output{
+  font-family:'Space Mono',monospace;font-weight:700;font-size:13px;color:var(--grafite);
+  font-variant-numeric:tabular-nums;
+}
+.m-slider input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:4px;background:var(--linha);
+  outline:none;cursor:pointer;
+}
+.m-slider input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:16px;height:16px;border-radius:0;
+  background:var(--amarelo);border:1.5px solid var(--grafite);
+  cursor:pointer;margin-top:0;
+}
+.m-slider input[type=range]::-moz-range-thumb{
+  width:16px;height:16px;border-radius:0;
+  background:var(--amarelo);border:1.5px solid var(--grafite);cursor:pointer;
+}
+.m-slider input[type=range]:disabled{opacity:.4;cursor:not-allowed}
+.m-slider input[type=range]:disabled::-webkit-slider-thumb{background:var(--cinza);cursor:not-allowed}
+.m-slider input[type=range]:disabled::-moz-range-thumb{background:var(--cinza);cursor:not-allowed}
+.m-slider small{font-size:11.5px;color:var(--d-ink-3);line-height:1.5}
+
+.m-chk{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;
+  border:1px solid var(--linha);padding:7px 10px;color:var(--grafite2);
+}
+.m-chk:has(input:checked){background:var(--amarelo);border-color:var(--grafite);color:var(--grafite);font-weight:700}
+.m-chk input{accent-color:var(--grafite);width:14px;height:14px}
+
+/* ---- legenda do gráfico ---- */
+.m-legenda{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--d-ink-3);margin-bottom:14px}
+.m-legenda i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;border-radius:0}
+.m-legenda i.m-traco{
+  width:14px;height:0;border-top:2px dashed var(--m-meta);vertical-align:2px;
+}
+.m-legenda i.m-ref{
+  width:0;height:12px;border-left:1px dashed var(--grafite);background:none;vertical-align:-1px;
+}
+
+/* ---- tabela ano a ano ---- */
+.m-tbl{overflow-x:auto}
+.m-tbl table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+.m-tbl th,.m-tbl td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--d-borda);font-family:'Montserrat',sans-serif;color:var(--grafite2)}
+.m-tbl th:first-child,.m-tbl td:first-child{text-align:left}
+.m-tbl th{
+  font-family:'Space Mono',monospace;color:var(--d-ink-3);font-weight:700;
+  font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;border-bottom:1px solid var(--grafite);white-space:nowrap;
+}
+.m-tbl td{font-family:'Space Mono',monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.m-tbl tbody tr:hover{background:rgba(244,199,15,.14)}
+.m-tbl tr.fim{background:var(--hl-bg)}
+.m-tbl tr.fim td{font-weight:700;color:var(--grafite)}
+
+/* ---- conclusão ---- */
+.m-conclusao{background:var(--d-card);border:1px solid var(--tijolo);padding:20px 22px;margin:20px 0}
+.m-conclusao-k{
+  font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;
+  color:var(--tijolo);margin-bottom:8px;
+}
+.m-conclusao p{font-size:16px;line-height:1.6;color:var(--grafite2)}
+.m-conclusao strong{color:var(--tijolo)}
+
+/* ---- listas de premissas/limites ---- */
+.m-lista{display:grid;gap:8px;list-style:none}
+.m-lista li{font-size:13px;color:var(--grafite2);line-height:1.5;padding-left:16px;position:relative}
+.m-lista li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--amarelo);border:1px solid var(--grafite)}
+
+@media (max-width:600px){
+  .m-ctrls{gap:18px}
+  .m-tbl table{font-size:12px}
+}

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantos engenheiros o Brasil forma por ano · INEP · William Moura</title>
+<meta name="description" content="Painel aberto com os concluintes de bacharelado em cada engenharia de 2014 a 2024, a partir dos microdados do Censo da Educação Superior (INEP). Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/formados/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/formados/">
+<meta property="og:title" content="Quantos engenheiros o Brasil forma por ano">
+<meta property="og:description" content="Concluintes de bacharelado em cada engenharia, de 2014 a 2024, curso a curso. Direto dos microdados do INEP.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/formados.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quantos engenheiros o Brasil forma por ano">
+<meta name="twitter:description" content="Concluintes de bacharelado em cada engenharia, de 2014 a 2024, curso a curso. Direto dos microdados do INEP.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/formados.svg">
+
+<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../assets/icons/favicon.ico">
+<link rel="icon" href="../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+
+<!-- ============ PAINEL (gerado de Empregabilidade/painel_inep_formados.html por site/sincronizar_site.ps1; edite lá, não aqui) ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Sistema visual do site (papel de obra, grafite, amarelo-sinal, ciano técnico).
+   Tema claro único, por decisão de marca: todas as cores são pintadas explicitamente. */
+:root{
+  color-scheme:light;
+  --papel:#F1EDE2; --card:#FAF7EE; --grafite:#16130E; --grafite2:#3A342A;
+  --ink3:#7C7565; --amarelo:#F4C70F; --ciano:#14556B; --ciano2:#7FA6B3;
+  --tijolo:#B23A1E; --cinza:#A8A091; --linha:#C9C2B0; --hl-bg:#FBEFC0;
+  --f-disp:'Anton','Impact','Arial Narrow',sans-serif;
+  --f-body:'Montserrat',system-ui,'Segoe UI',sans-serif;
+  --f-mono:'Space Mono',ui-monospace,'Consolas',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background-color:var(--papel);color:var(--grafite);font-family:var(--f-body);font-weight:500;
+  background-image:linear-gradient(rgba(22,19,14,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(22,19,14,.045) 1px,transparent 1px);
+  background-size:28px 28px;line-height:1.5;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ciano);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:32px}
+@media (max-width:600px){.wrap{padding-inline:16px}}
+
+/* topo */
+.topo{background:var(--grafite);color:var(--papel);border-bottom:1px solid var(--grafite2)}
+.topo .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:64px;max-width:1200px}
+/* botoes iguais aos do cabecalho do site; somem abaixo de 1100px, o mesmo corte do style.css */
+.topo nav.principal{display:flex;gap:6px}
+.topo nav.principal a{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;padding:5px 8px;white-space:nowrap}
+.topo nav.principal a:hover{background:var(--amarelo);color:var(--grafite)}
+@media (max-width:1100px){.topo nav.principal{display:none}}
+.topo .wordmark{font-family:var(--f-disp);font-size:20px;letter-spacing:.02em}
+.topo .btn-insta{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;border:1px solid var(--cinza);padding:7px 12px}
+.topo .btn-insta:hover{background:var(--amarelo);color:var(--grafite);border-color:var(--amarelo)}
+
+/* cabeça */
+main{padding-top:48px}
+.d-origem{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink3);display:flex;align-items:center;gap:14px}
+.d-origem::before{content:"";width:38px;height:9px;background:var(--amarelo);flex:none}
+.d-cabeca{display:grid;grid-template-columns:1fr auto;gap:24px 32px;align-items:start;margin-top:20px}
+/* position+z-index criam o contexto onde o amarelo da .marca (z-index:-1) fica atrás do texto, e não atrás do fundo da seção */
+h1,h2{font-family:var(--f-disp);text-transform:uppercase;font-weight:400;text-wrap:balance;position:relative;z-index:0}
+h1{font-size:clamp(34px,6vw,60px);line-height:.98;letter-spacing:-.015em;max-width:13em;position:relative;z-index:0}
+.marca{position:relative;padding:0 .06em}
+.marca::before{content:"";position:absolute;inset:.10em 0 .04em;background:var(--amarelo);z-index:-1}
+.d-rev{display:flex;flex-direction:column;align-items:flex-end;gap:5px;margin-top:8px;white-space:nowrap}
+.rev-n{font-family:var(--f-disp);text-transform:uppercase;font-size:22px;line-height:1}
+.rev-d{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.d-sub{font-weight:500;font-size:17px;color:var(--grafite2);margin-top:16px;max-width:62ch}
+.d-ficha{margin-top:18px;font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;line-height:1.9;color:var(--ink3);border-top:1px solid var(--linha);padding-top:12px}
+.d-ficha b{color:var(--grafite2)}
+@media (max-width:720px){
+  .d-cabeca{grid-template-columns:1fr;gap:10px}
+  .d-rev{flex-direction:row;align-items:baseline;gap:12px;margin-top:0}
+  .rev-n{font-size:15px}.d-sub{font-size:16px}
+}
+
+/* tiles */
+.row{display:flex;flex-wrap:wrap;gap:1px;border:1px solid var(--grafite);background:var(--grafite);margin:28px 0 24px}
+.tile{flex:1 1 200px;background:var(--card);padding:16px 18px;min-width:0}
+.tile .k{font-family:var(--f-mono);font-size:9.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.16em}
+.tile .v{font-family:var(--f-mono);font-size:clamp(20px,2.3vw,26px);font-weight:700;margin-top:5px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;overflow-wrap:anywhere}
+.tile .d{font-size:11.5px;color:var(--ink3);margin-top:4px;line-height:1.4}
+.tile.destaque{background:var(--grafite)}
+.tile.destaque .k,.tile.destaque .d{color:var(--cinza)}
+.tile.destaque .v{color:var(--amarelo)}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--grafite);padding:20px 22px;margin-bottom:20px;min-width:0}
+.card h2{font-size:19px;letter-spacing:.005em;margin-bottom:5px}
+.note{font-size:12px;color:var(--ink3);margin-bottom:14px;line-height:1.5;max-width:75ch}
+.cardhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.d-par{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
+.d-par > .card{margin-bottom:0}
+.d-par + .card,.d-par + .d-par,.card + .d-par{margin-top:20px}
+@media (max-width:600px){.card{padding:16px 12px}.card h2{font-size:17px}}
+
+/* controles */
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.sel{font-family:var(--f-body);font-weight:600;font-size:14px;color:var(--grafite);background:var(--papel);border:1px solid var(--grafite);border-radius:0;padding:8px 10px;max-width:100%;cursor:pointer}
+.sel:hover{background:var(--hl-bg)}
+.seg{display:inline-flex;border:1px solid var(--linha)}
+.seg button{font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;background:var(--card);color:var(--grafite2);border:0;padding:8px 12px;cursor:pointer}
+.seg button + button{border-left:1px solid var(--linha)}
+.seg button[aria-pressed="true"]{background:var(--amarelo);color:var(--grafite);font-weight:700}
+.seg button:hover{background:var(--hl-bg)}
+.tbtn{font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;background:none;border:1px solid var(--linha);color:var(--grafite2);padding:5px 10px;cursor:pointer}
+.tbtn:hover{background:var(--amarelo);border-color:var(--grafite)}
+
+/* barras horizontais em HTML: escala linear única por gráfico */
+.bars{display:grid}
+.bar{display:grid;grid-template-columns:minmax(120px,210px) 1fr 70px;align-items:center;gap:0 12px;padding:3px 4px;background:none;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer;width:100%}
+.bar:hover,.bar:focus-visible{background:rgba(244,199,15,.16)}
+.bar.sel-on{background:var(--hl-bg)}
+.bar .bl{font-size:12.5px;color:var(--grafite2);line-height:1.25}
+.bar .bl small{display:block;font-family:var(--f-mono);font-size:9.5px;color:var(--ink3);letter-spacing:.04em}
+.bar .bt{position:relative;height:16px}
+.bar .bt i{position:absolute;left:0;top:1px;bottom:1px;background:var(--ciano)}
+.bar.sel-on .bt i{background:var(--amarelo);box-shadow:inset 0 0 0 1px var(--grafite)}
+.bar .bt b{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1px dashed var(--grafite)}
+.bar .bv{font-family:var(--f-mono);font-size:12px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.bars.dim .bar:not(.sel-on) .bt i{opacity:.45}
+@media (max-width:600px){
+  .bar{grid-template-columns:1fr auto;gap:2px 10px;padding:5px 2px}
+  .bar .bt{grid-column:1 / -1;grid-row:2}
+}
+.eixo{display:grid;grid-template-columns:minmax(120px,210px) 1fr 70px;gap:0 12px;padding:0 4px 4px;font-family:var(--f-mono);font-size:10px;color:var(--ink3)}
+.eixo .ticks{position:relative;height:14px}
+.eixo .ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.eixo .ticks span:first-child{transform:none}
+@media (max-width:600px){.eixo{grid-template-columns:1fr}.eixo > span:not(.ticks){display:none}}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--ink3);margin:-4px 0 10px}
+.legenda i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px}
+.legenda i.ref{width:0;height:12px;border-left:1px dashed var(--grafite)}
+
+/* tabela */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--linha);color:var(--grafite2)}
+th:nth-child(-n+4),td:nth-child(-n+4){text-align:left}
+th{font-family:var(--f-mono);color:var(--ink3);font-weight:700;font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;border-bottom:1px solid var(--grafite);white-space:nowrap}
+th button{all:unset;cursor:pointer}
+th button:hover{color:var(--grafite)}
+th button:focus-visible{outline:2px solid var(--ciano)}
+th[aria-sort] button{color:var(--grafite)}
+th[aria-sort="descending"] button::after{content:" ▼"}
+th[aria-sort="ascending"] button::after{content:" ▲"}
+td.n{font-family:var(--f-mono);font-size:12px;color:var(--grafite);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.fam{font-size:12px;color:var(--ink3)}
+tbody tr:hover{background:rgba(244,199,15,.14)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--tijolo);color:var(--tijolo);padding:0 4px;margin-left:6px;vertical-align:1px}
+
+/* conclusão, listas, rodapé */
+.conclusao{background:var(--card);border:1px solid var(--tijolo);padding:20px 22px;margin:20px 0}
+.conclusao .k{font-family:var(--f-mono);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--tijolo);margin-bottom:8px}
+.conclusao p + p{margin-top:10px}
+.conclusao p:not(.k){font-size:16.5px;line-height:1.6;color:var(--grafite2)}
+.conclusao strong{color:var(--tijolo)}
+.lista{display:grid;gap:8px;list-style:none}
+.lista li{font-size:13px;color:var(--grafite2);line-height:1.5;padding-left:16px;position:relative}
+.lista li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--amarelo);border:1px solid var(--grafite)}
+.d-foot{color:var(--ink3);font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;line-height:1.9;margin-top:8px;border-top:1px solid var(--linha);padding-block:14px 8px}
+.cta{background:var(--grafite);color:var(--papel);padding-block:56px 40px;margin-top:40px}
+.cta h2{font-size:clamp(26px,4vw,40px);line-height:1.05;max-width:16em}
+.cta h2 .marca{color:var(--grafite)}
+.cta p{color:var(--cinza);margin-top:14px;max-width:48ch;font-size:16px}
+.cta-acoes{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:24px}
+.d-btn{background:var(--amarelo);color:var(--grafite);font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;padding:13px 20px}
+.d-btn:hover{background:var(--papel)}
+.d-link{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;border-bottom:1px solid var(--cinza);padding-bottom:2px}
+.d-link:hover{background:var(--amarelo);color:var(--grafite)}
+.copy{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);margin-top:36px;border-top:1px solid var(--grafite2);padding-top:14px}
+/* rodapé idêntico ao do site: contato e copyright soltos, centralizados */
+.cta.com-rodape{padding-bottom:16px}
+.sec-rodape{background:var(--grafite);color:var(--papel);padding-block:24px 8px}
+.prancha .cel{padding:14px 18px;text-align:center}
+.prancha .cel .k{display:block;margin-bottom:4px;font-family:var(--f-mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--cinza)}
+.prancha .cel .v{display:block;font-family:var(--f-body);font-weight:600;font-size:15px;color:var(--papel);user-select:all}
+.prancha .cel-full{padding:14px 18px;text-align:center;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--cinza)}
+
+#tip{position:fixed;z-index:99;background:var(--grafite);color:var(--papel);padding:9px 11px;font-size:12px;line-height:1.5;pointer-events:none;max-width:280px;box-shadow:4px 4px 0 rgba(22,19,14,.22)}
+#tip b{font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--amarelo)}
+
+/* ---- específicos deste painel ---- */
+.chart{width:100%;min-height:200px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--f-mono);font-size:11px;fill:var(--ink3);font-variant-numeric:tabular-nums}
+.chart text.lbl{fill:var(--grafite);font-weight:700}
+.chart text.pico{fill:var(--tijolo);font-weight:700}
+.chart .hit{fill:transparent;cursor:pointer}
+.chart .hit:hover,.chart .hit:focus{fill:rgba(244,199,15,.18);outline:none}
+.legenda i.pres{background:var(--ciano)}
+.legenda i.ead{background:var(--ciano2)}
+/* 12 cartões: colunas sempre divisoras de 12 (2, 3, 4 ou 6), para a última linha fechar sem célula vazia */
+.multi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--grafite);border:1px solid var(--grafite)}
+@media (min-width:600px){.multi{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:800px){.multi{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1040px){.multi{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.sm{background:var(--card);padding:12px 14px 10px;display:grid;gap:2px;min-width:0;cursor:default}
+.sm:hover,.sm:focus-visible{background:var(--hl-bg)}
+@media (max-width:420px){.sm{padding:10px}.sm .val{font-size:17px}}
+.bar.estatica{cursor:default}
+.filtros{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 20px;padding:12px 14px;background:var(--card);border:1px solid var(--grafite)}
+.filtros p{flex:1 1 320px;font-size:12px;color:var(--ink3);line-height:1.5}
+.filtros.topo-filtros{margin:28px 0 0}
+.row.first{margin-top:16px}
+.sm .nome{font-size:12.5px;font-weight:600;color:var(--grafite2);line-height:1.25;min-height:2.5em}
+.sm .val{font-family:var(--f-mono);font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.sm svg{width:100%;height:44px;display:block;margin:4px 0 2px}
+.sm .var{font-family:var(--f-mono);font-size:10.5px;color:var(--ink3)}
+.sm .var.sobe{color:var(--ciano);font-weight:700}
+.sm .var.cai{color:var(--tijolo);font-weight:700}
+.bar .bt i.e{background:var(--ciano2)}
+.chk{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--linha);padding:7px 10px;color:var(--grafite2)}
+.chk:has(input:checked){background:var(--amarelo);border-color:var(--grafite);color:var(--grafite);font-weight:700}
+.chk input{accent-color:var(--grafite);width:14px;height:14px}
+.tbl2 table{min-width:1060px}
+.tbl2 th:nth-child(n+2),.tbl2 td:nth-child(n+2){text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{position:sticky;left:0;background:var(--card);z-index:1;min-width:220px;max-width:260px}
+.tbl2 td.pk{background:var(--hl-bg)}
+.tbl2 td.cai{color:var(--tijolo)}
+.tbl2 td.sobe{color:var(--ciano)}
+</style>
+
+<!-- cabeçalho da landing: mesmas regras de assets/css/style.css, escopadas em .site-hdr
+     porque o painel não carrega style.css e tem .wrap/.wordmark/.btn-insta próprios -->
+<style>
+header.site-hdr{position:sticky;top:0;z-index:100;height:64px;background:#16130E;color:#F1EDE2;border-bottom:1px solid #3A342A;display:flex;align-items:center}
+header.site-hdr .site-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+@media (max-width:600px){header.site-hdr .site-wrap{padding:0 20px}}
+header.site-hdr .wordmark{font-family:'Anton',sans-serif;font-size:20px;letter-spacing:.02em;color:#F1EDE2;text-decoration:none}
+header.site-hdr nav.principal{display:flex;gap:6px}
+header.site-hdr nav.principal a{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.16em;padding:5px 8px;color:inherit;text-decoration:none}
+header.site-hdr nav.principal a:hover{background:#F4C70F;color:#16130E}
+header.site-hdr .btn-insta{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.16em;background:#F4C70F;color:#16130E;border:0;padding:10px 16px;display:inline-block;white-space:nowrap;text-decoration:none}
+header.site-hdr .btn-insta:hover{background:#F1EDE2;border-color:transparent}
+header.site-hdr a:focus-visible{outline:2px solid #14556B;outline-offset:2px}
+@media (max-width:1100px){header.site-hdr nav.principal{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header class="site-hdr">
+  <div class="site-wrap">
+    <a href="../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../index.html#vagas">Oportunidades</a>
+      <a href="../index.html#trajetoria">Trajetória</a>
+      <a href="../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../index.html#geracao">A nova geração</a>
+      <a href="../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="d-origem">Censo da Educação Superior · INEP</p>
+    <div class="d-cabeca">
+      <h1>Quantos engenheiros o Brasil <span class="marca">forma por ano</span></h1>
+      <p class="d-rev"><span class="rev-n">Rev. 01</span><span class="rev-d">27.09.2026</span></p>
+    </div>
+    <p class="d-sub">Concluintes de bacharelado em cada engenharia, e em Agronomia, de 2014 a 2024, curso a curso.</p>
+    <p class="d-ficha">
+      <b>Base:</b> Censo da Educação Superior 2014 a 2024 (INEP), microdados de cursos &nbsp;·&nbsp;
+      <b>Recorte:</b> bacharelado, presencial e EAD &nbsp;·&nbsp;
+      <b>Medida:</b> concluintes no ano
+    </p>
+
+    <div class="filtros topo-filtros">
+      <label class="chk" for="inclComp"><input type="checkbox" id="inclComp" checked> incluir Eng. de Computação</label>
+      <p>Vale para a página inteira. Desmarcada, tira Eng. de Computação de todos os números, do total aos cartões. Até 2023 o INEP contava o curso em dois rótulos e em 2024 passou a usar um só; incluída, ela aparece somada numa linha única.</p>
+    </div>
+
+    <h2 class="sr-only">Resumo</h2>
+    <div class="row first" id="tiles"></div>
+
+    <section class="card">
+      <h2>Formados por ano, todas as engenharias</h2>
+      <p class="note" id="notaTotal"></p>
+      <div class="legenda"><span><i class="pres"></i>Presencial</span><span><i class="ead"></i>EAD</span></div>
+      <div class="chart" id="chTotal"></div>
+    </section>
+
+    <section class="card">
+      <h2>As 12 maiores de 2024, de 2014 a 2024</h2>
+      <p class="note">Cada cartão tem a própria escala: compare o desenho da curva, não a altura entre cartões. O ponto amarelo marca 2024.</p>
+      <div class="multi" id="multi"></div>
+    </section>
+
+    <section class="card">
+      <h2>Ranking de formados em 2024</h2>
+      <p class="note">Concluintes de 2024, presencial e EAD empilhados.</p>
+      <div class="ctrls">
+        <div class="seg" role="group" aria-label="Quantos cursos mostrar">
+          <button type="button" id="top20" aria-pressed="true">Top 20</button>
+          <button type="button" id="todos" aria-pressed="false">Todos</button>
+        </div>
+      </div>
+      <div class="legenda"><span><i class="pres"></i>Presencial</span><span><i class="ead"></i>EAD</span></div>
+      <div class="bars" id="rank24" role="list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Série completa</h2>
+      <p class="note">Concluintes por ano. Fundo amarelo marca o pico de cada curso. Clique no título de uma coluna para ordenar.</p>
+      <div class="tbl tbl2"><table>
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table></div>
+    </section>
+
+    <div class="conclusao" aria-live="polite">
+      <p class="k">Conclusão</p>
+      <div id="lede"></div>
+    </div>
+
+    <div class="d-par">
+      <section class="card">
+        <h2>Premissas de cálculo</h2>
+        <ul class="lista">
+          <li>Microdados oficiais do Censo da Educação Superior, arquivo de cadastro de cursos, de 2014 a 2024. A edição de 2025 ainda não foi publicada.</li>
+          <li>Cursos pelo rótulo CINE Brasil (<code>NO_CINE_ROTULO</code>) com "Engenharia" ou "Agronomia" no nome, só grau bacharelado. A série inteira já vem na classificação CINE.</li>
+          <li>Curso EAD aparece em uma linha por polo, com números diferentes em cada um. A soma dos polos dá o total do curso, sem duplicar.</li>
+          <li>Engenharia de Computação: até 2023 o INEP separava dois rótulos, um pela diretriz de engenharia e outro pela de computação. Em 2024 os dois viraram um só. Com a opção marcada, o painel soma os dois até 2023 para a série ficar comparável.</li>
+          <li>Engenharia Ambiental e Engenharia Ambiental e Sanitária são dois rótulos no INEP. Aqui aparecem sempre somados numa linha só, "Eng. ambiental (e sanitária)".</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>Limites do cálculo</h2>
+        <ul class="lista">
+          <li>Concluinte é quem terminou o curso no ano, não quem tirou registro no CREA.</li>
+          <li>O rótulo CINE junta cursos de nomes parecidos (por exemplo, "Engenharia civil" inclui variações de nome da instituição).</li>
+          <li>Agronomia entra porque o engenheiro agrônomo é uma das ocupações de engenharia da RAIS.</li>
+          <li>Diploma e ocupação são bases diferentes: este painel não cruza formados com empregos.</li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+
+  <section class="cta com-rodape">
+    <div class="wrap">
+      <h2>E aqui é <span class="marca">só o começo</span>.</h2>
+      <p>Para outras análises como essa, me segue no Instagram.</p>
+      <div class="cta-acoes">
+        <a class="d-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="d-link" href="../salarios/">Quanto ganha cada engenharia</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="sec-rodape">
+  <div class="wrap">
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v">william@engnextgen.com.br</span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<div id="tip" hidden></div>
+
+<script>
+const RAW = {"d":[{"r":"Engenharia ambiental e sanitária","c":[2365,2432,2788,3122,3062,2696,2116,1657,1308,1182,1224],"e":[1,6,1,4,0,0,1,0,9,73,122]},{"r":"Engenharia de agrimensura e cartográfica","c":[70,92,130,168,166,182,125,131,126,119,120],"e":[0,0,0,0,0,0,0,0,0,1,3]},{"r":"Engenharia de recursos hídricos","c":[47,68,66,109,136,115,97,74,94,118,89],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de alimentos","c":[1305,1299,1334,1465,1448,1303,1172,1291,1280,1278,1271],"e":[0,0,0,0,0,0,0,0,39,17,10]},{"r":"Engenharia de bioprocessos","c":[119,101,152,155,251,218,178,230,300,415,335],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia florestal","c":[1409,1517,1815,1660,1659,1467,1060,1047,1287,1068,1044],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia cartográfica","c":[60,52,79,82,77,53,79,45,38,46,42],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de manufatura","c":[20,31,43,35,48,39,53,59,38,24,27],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia física","c":[41,46,50,85,82,97,111,91,106,100,120],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia naval","c":[108,137,110,169,151,164,118,132,162,130,136],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de software","c":[128,138,158,261,313,459,603,833,1224,1864,3024],"e":[0,0,0,0,22,65,168,231,369,680,1573]},{"r":"Engenharia de agrimensura","c":[167,153,157,81,110,85,77,47,36,39,32],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de computação (DCN Computação)","c":[833,751,861,986,1124,1394,1140,1273,1241,1487,0],"e":[0,0,0,0,0,57,53,6,5,3,0]},{"r":"Agronomia","c":[7562,8554,9631,10366,11610,12253,10868,11760,13197,12856,14761],"e":[0,0,0,0,0,0,35,34,855,837,3294]},{"r":"Engenharia de materiais","c":[528,634,702,851,913,853,775,679,713,630,640],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de computação (DCN Engenharia)","c":[1040,1050,1294,1352,1562,1750,1724,1957,2726,3848,0],"e":[0,0,0,0,0,69,87,159,742,1583,0]},{"r":"Engenharia industrial","c":[71,88,78,101,61,67,33,40,79,39,52],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia bioquímica","c":[31,35,31,35,52,38,38,42,31,42,36],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Programas interdisciplinares abrangendo engenharia, produção e construção","c":[35,35,35,12,30,22,12,15,20,46,82],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de energia","c":[194,179,274,324,318,327,329,363,335,322,334],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia acústica","c":[6,2,12,8,12,13,8,7,16,13,5],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia ambiental","c":[2899,3345,3308,3459,3780,3366,2985,2582,2226,2078,1897],"e":[73,214,243,219,301,295,415,543,574,592,697]},{"r":"Engenharia de telecomunicações","c":[495,439,465,418,501,377,357,265,277,354,243],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de transportes","c":[10,22,38,56,62,56,72,84,94,75,96],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia bioenergética","c":[45,32,32,24,12,3,0,0,0,0,0],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia química","c":[3429,3575,4541,4910,5565,5470,5605,4731,4717,4334,4008],"e":[0,0,0,0,0,0,0,0,5,90,117]},{"r":"Engenharia de biotecnologia","c":[33,47,57,64,53,47,37,37,32,11,15],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de informação","c":[3,11,11,19,19,18,18,18,21,12,8],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de controle e automação","c":[2200,2660,3119,3244,3373,3323,2849,2491,2531,2566,2754],"e":[0,0,0,0,0,0,0,2,4,185,400]},{"r":"Engenharia têxtil","c":[47,53,53,55,42,53,35,37,61,75,44],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia agrícola","c":[423,393,446,434,456,491,409,337,460,458,498],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de minas","c":[397,459,590,575,549,562,553,403,322,313,306],"e":[0,0,0,0,0,0,0,0,0,0,31]},{"r":"Engenharia de produção","c":[12306,14605,17038,18725,21026,21138,19837,16947,15902,16243,14135],"e":[96,449,589,727,987,1505,2294,2604,3499,5507,5177]},{"r":"Engenharia ferroviária e metroviária","c":[2,2,1,3,14,12,3,6,13,10,11],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia biomédica","c":[75,102,192,178,208,191,150,209,219,257,234],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia elétrica","c":[6362,7735,8974,9711,11445,11784,11815,11223,10936,10996,11162],"e":[19,50,32,74,281,182,664,1244,1657,2541,4064]},{"r":"Engenharia mecânica","c":[8000,9653,11783,13510,15753,15902,14747,14491,13677,13006,12510],"e":[0,0,0,0,0,23,156,468,883,1384,2959]},{"r":"Engenharia aeronáutica","c":[86,86,96,116,175,153,98,154,137,169,197],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia geológica","c":[10,3,15,16,23,22,6,13,13,16,0],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia metalúrgica","c":[332,368,313,334,400,306,262,227,197,196,161],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de pesca","c":[265,320,281,342,343,304,195,206,294,263,264],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de nanotecnologia","c":[0,2,2,2,3,7,2,4,3,2,2],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia nuclear","c":[8,3,9,8,9,14,8,7,16,11,5],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia de computação","c":[0,0,0,0,0,0,0,0,0,0,5669],"e":[0,0,0,0,0,0,0,0,0,0,1792]},{"r":"Engenharia de biossistemas","c":[24,33,38,40,63,54,43,54,68,56,66],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia eletrônica","c":[1024,1169,1150,1390,1222,1196,900,986,983,843,757],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia aeroespacial","c":[46,67,74,97,142,168,136,159,171,156,169],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia automotiva","c":[16,16,40,49,52,61,35,31,45,72,73],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia civil","c":[18406,25606,35556,43731,49945,48779,45332,38460,31883,26501,22650],"e":[14,81,77,219,824,1269,2105,2681,3163,3764,5345]},{"r":"Engenharia de petróleo","c":[841,958,1107,1047,1091,758,541,293,262,232,201],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia","c":[133,118,172,156,103,118,95,65,97,3,1],"e":[0,0,0,0,0,0,0,0,0,1,0]},{"r":"Engenharia portuária","c":[0,0,1,2,0,0,0,0,0,0,0],"e":[0,0,0,0,0,0,0,0,0,0,0]},{"r":"Engenharia mecatrônica","c":[561,601,671,593,770,764,587,633,669,736,838],"e":[0,0,0,0,0,1,6,6,50,127,182]}]}.d;
+const ANOS = Array.from({length: 11}, (_, i) => 2014 + i);
+const U = ANOS.length - 1;
+
+const fmt = n => n.toLocaleString('pt-BR');
+const pct = (x, d = 1) => (x * 100).toLocaleString('pt-BR', {minimumFractionDigits: d, maximumFractionDigits: d}) + '%';
+const sinal = (x, d = 0) => (x > 0 ? '+' : x < 0 ? '−' : '') + pct(Math.abs(x), d);
+const curto = r => r.replace(/^Engenharia /, 'Eng. ');
+
+const COMP = ['Engenharia de computação', 'Engenharia de computação (DCN Engenharia)', 'Engenharia de computação (DCN Computação)'];
+const soma = (a, b) => a.map((v, i) => v + b[i]);
+
+/* Rótulos CINE que o painel sempre apresenta numa linha só (decisão editorial; o CSV guarda os originais) */
+const AMB = ['Engenharia ambiental', 'Engenharia ambiental e sanitária'];
+
+/* junta as linhas de `nomes` numa só, somando concluintes e EAD ano a ano */
+function junta(L, nomes, novo) {
+  const g = L.filter(x => nomes.includes(x.r));
+  const resto = L.filter(x => !nomes.includes(x.r));
+  if (!g.length) return resto;
+  resto.push({r: novo, c: g.reduce((a, x) => soma(a, x.c), Array(11).fill(0)), e: g.reduce((a, x) => soma(a, x.e), Array(11).fill(0)), somado: true});
+  return resto;
+}
+
+/* incluir = true: os três rótulos de Eng. de Computação viram uma linha só; false: saem de tudo, inclusive do total */
+function montaCursos(incluir) {
+  let L = RAW.map(x => ({r: x.r, c: x.c.slice(), e: x.e.slice()}));
+  L = junta(L, AMB, 'Engenharia ambiental (e sanitária)');
+  L = incluir ? junta(L, COMP, 'Engenharia de computação') : L.filter(x => !COMP.includes(x.r));
+  return L.map(x => {
+    const max = Math.max(...x.c);
+    const ip = x.c.lastIndexOf(max);
+    return {...x, pico: max, anoPico: ANOS[ip], ip};
+  }).sort((a, b) => b.c[U] - a.c[U] || b.c[U - 1] - a.c[U - 1]);
+}
+
+let incluir = true;
+let CURSOS = montaCursos(incluir);
+const somaTotal = L => ({c: ANOS.map((_, i) => L.reduce((a, x) => a + x.c[i], 0)), e: ANOS.map((_, i) => L.reduce((a, x) => a + x.e[i], 0))});
+let TOTAL = somaTotal(CURSOS);
+let rankTodos = false;
+let ordem = {col: 'a' + U, dir: -1};
+
+/* ---- tooltip ---- */
+const tip = document.getElementById('tip');
+function mostraTip(e, html) {
+  tip.innerHTML = html; tip.hidden = false;
+  const r = tip.getBoundingClientRect();
+  let x, y;
+  if (e.clientX || e.clientY) { x = e.clientX + 14; y = e.clientY + 14; }
+  else { const b = e.currentTarget.getBoundingClientRect(); x = b.left + 12; y = b.bottom + 6; }
+  x = Math.min(x, innerWidth - r.width - 8); y = Math.min(y, innerHeight - r.height - 8);
+  tip.style.left = Math.max(8, x) + 'px'; tip.style.top = Math.max(8, y) + 'px';
+}
+const escondeTip = () => { tip.hidden = true; };
+function ligaTip(el, html) {
+  el.addEventListener('mousemove', e => mostraTip(e, html));
+  el.addEventListener('mouseleave', escondeTip);
+  el.addEventListener('focus', e => mostraTip(e, html));
+  el.addEventListener('blur', escondeTip);
+}
+
+/* ---- tiles ---- */
+function tile(c, k, v, d) { return `<div class="tile ${c}"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`; }
+function tiles() {
+  const c = TOTAL.c, ip = c.indexOf(Math.max(...c));
+  document.getElementById('tiles').innerHTML =
+    tile('destaque', 'Formados em 2024', fmt(c[U]), incluir ? 'engenharias e Agronomia, bacharelado' : 'engenharias e Agronomia, sem Eng. de Computação') +
+    tile('', 'Pico da série', fmt(c[ip]), `em ${ANOS[ip]}`) +
+    tile('', 'Desde o pico', sinal((c[U] - c[ip]) / c[ip], 1), `${fmt(c[U] - c[ip])} formados por ano, ${ANOS[ip]} → 2024`) +
+    tile('', 'Formados em EAD', pct(TOTAL.e[U] / c[U]), `${fmt(TOTAL.e[U])} em 2024; eram ${pct(TOTAL.e[0] / c[0])} em 2014`);
+}
+
+/* ---- colunas empilhadas (SVG desenhado na largura real do contêiner) ---- */
+const NS = 'http://www.w3.org/2000/svg';
+function passo(max) {
+  const bruto = max / 4, mag = Math.pow(10, Math.floor(Math.log10(bruto)));
+  const n = bruto / mag;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+}
+const fmtTick = v => v >= 10000 ? (v / 1000).toLocaleString('pt-BR') + ' mil' : fmt(v);
+
+function colunas(el, serie, nome) {
+  const W = Math.max(280, el.clientWidth);
+  const estreito = W < 560;
+  const H = estreito ? 250 : 320;
+  const m = {l: estreito ? 44 : 58, r: 6, t: 26, b: 26};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const max = Math.max(...serie.c, 1);
+  const st = passo(max), top = Math.ceil(max / st) * st;
+  const y = v => m.t + ih - v / top * ih;
+  const bw = iw / ANOS.length, gap = Math.max(4, bw * 0.28);
+  const ip = serie.c.lastIndexOf(max);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${nome}: concluintes por ano de 2014 a 2024">`;
+  for (let v = 0; v <= top + 1e-9; v += st) {
+    s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? 'var(--grafite)' : 'rgba(22,19,14,.10)'}" stroke-width="1"/>`;
+    s += `<text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${fmtTick(v)}</text>`;
+  }
+  ANOS.forEach((a, i) => {
+    const x = m.l + i * bw + gap / 2, w = bw - gap;
+    const tot = serie.c[i], ead = serie.e[i], pres = tot - ead;
+    if (pres > 0) s += `<rect x="${x}" y="${y(pres)}" width="${w}" height="${y(0) - y(pres)}" fill="var(--ciano)"/>`;
+    if (ead > 0) {
+      const yt = y(tot), yb = y(pres) - (pres > 0 ? 2 : 0);
+      if (yb - yt > 0.5) s += `<rect x="${x}" y="${yt}" width="${w}" height="${yb - yt}" fill="var(--ciano2)"/>`;
+    }
+    const cx = x + w / 2;
+    if (!estreito || i % 2 === 0 || i === U) s += `<text x="${cx}" y="${H - 8}" text-anchor="middle">${estreito ? "'" + String(a).slice(2) : a}</text>`;
+    if (i === ip || i === U || i === 0) {
+      const cls = i === ip && ip !== U ? 'pico' : 'lbl';
+      s += `<text class="${cls}" x="${cx}" y="${y(tot) - 7}" text-anchor="middle">${estreito && tot >= 10000 ? (tot / 1000).toLocaleString('pt-BR', {maximumFractionDigits: 1}) + 'k' : fmt(tot)}</text>`;
+    }
+  });
+  s += `</svg>`;
+  el.innerHTML = s;
+  const svg = el.querySelector('svg');
+  ANOS.forEach((a, i) => {
+    const r = document.createElementNS(NS, 'rect');
+    r.setAttribute('class', 'hit'); r.setAttribute('tabindex', '0');
+    r.setAttribute('x', m.l + i * bw); r.setAttribute('y', m.t); r.setAttribute('width', bw); r.setAttribute('height', ih);
+    const tot = serie.c[i], ead = serie.e[i];
+    r.setAttribute('aria-label', `${a}: ${fmt(tot)} concluintes`);
+    ligaTip(r, `<b>${a}</b><br>${fmt(tot)} concluintes<br>Presencial: ${fmt(tot - ead)}<br>EAD: ${fmt(ead)}${tot ? ` (${pct(ead / tot)})` : ''}` +
+      (i > 0 && serie.c[i - 1] ? `<br>vs ${a - 1}: ${sinal((tot - serie.c[i - 1]) / serie.c[i - 1], 1)}` : ''));
+    svg.appendChild(r);
+  });
+}
+
+function varPico(x) {
+  if (x.ip === U) return {txt: '2024 é o maior da série', cls: 'sobe'};
+  const v = (x.c[U] - x.pico) / x.pico;
+  return {txt: `${sinal(v)} desde o pico de ${x.anoPico}`, cls: v < 0 ? 'cai' : ''};
+}
+
+/* ---- múltiplos pequenos ---- */
+function multiplos() {
+  const el = document.getElementById('multi'); el.replaceChildren();
+  CURSOS.slice(0, 12).forEach(x => {
+    const max = Math.max(...x.c), min = 0;
+    const px = i => i / U * 100, py = v => 40 - (v - min) / (max - min || 1) * 36;
+    const pts = x.c.map((v, i) => `${px(i).toFixed(2)},${py(v).toFixed(2)}`).join(' ');
+    const vp = varPico(x);
+    const b = document.createElement('div');
+    b.className = 'sm'; b.tabIndex = 0;
+    b.innerHTML = `<span class="nome">${curto(x.r)}${x.somado ? '<span class="chip">somado</span>' : ''}</span>
+      <span class="val">${fmt(x.c[U])}</span>
+      <svg viewBox="0 0 100 44" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="0,40 ${pts} 100,40" fill="rgba(20,85,107,.10)" stroke="none"/>
+        <polyline points="${pts}" fill="none" stroke="var(--ciano)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+        <line x1="${px(x.ip)}" x2="${px(x.ip)}" y1="${py(max)}" y2="40" stroke="var(--tijolo)" stroke-width="1" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <span class="var ${vp.cls}">${vp.txt}</span>`;
+    const svg = b.querySelector('svg');
+    const dot = document.createElement('i');
+    dot.style.cssText = `position:absolute;width:9px;height:9px;background:var(--amarelo);border:1.5px solid var(--grafite);transform:translate(-50%,-50%);left:100%;top:${py(x.c[U]) / 44 * 100}%`;
+    const wrapSvg = document.createElement('span');
+    wrapSvg.style.cssText = 'position:relative;display:block';
+    svg.replaceWith(wrapSvg); wrapSvg.append(svg, dot);
+    ligaTip(b, `<b>${x.r}</b><br>${ANOS.map((a, i) => `${a}: ${fmt(x.c[i])}`).join('<br>')}`);
+    el.append(b);
+  });
+}
+
+/* ---- ranking 2024 ---- */
+function ranking() {
+  const L = CURSOS.filter(x => x.c[U] > 0);
+  const vis = rankTodos ? L : L.slice(0, 20);
+  const max = L[0].c[U];
+  const el = document.getElementById('rank24'); el.replaceChildren();
+  vis.forEach((x, i) => {
+    const tot = x.c[U], ead = x.e[U], pres = tot - ead;
+    const wp = pres / max * 100, we = ead / max * 100;
+    const b = document.createElement('div');
+    b.className = 'bar estatica'; b.tabIndex = 0; b.setAttribute('role', 'listitem');
+    b.innerHTML = `<span class="bl">${i + 1}. ${curto(x.r)}${x.somado ? '<span class="chip">somado</span>' : ''}</span>
+      <span class="bt"><i style="width:${wp.toFixed(2)}%"></i>${ead > 0 ? `<i class="e" style="left:calc(${wp.toFixed(2)}% + ${pres > 0 ? 2 : 0}px);width:max(1px,calc(${we.toFixed(2)}% - ${pres > 0 ? 2 : 0}px))"></i>` : ''}</span>
+      <span class="bv">${fmt(tot)}</span>`;
+    ligaTip(b, `<b>${x.r}</b><br>${fmt(tot)} concluintes em 2024<br>Presencial: ${fmt(pres)}<br>EAD: ${fmt(ead)} (${pct(ead / tot)})`);
+    el.append(b);
+  });
+  document.getElementById('top20').hidden = document.getElementById('todos').hidden = L.length <= 20;
+}
+const bTop = document.getElementById('top20'), bTodos = document.getElementById('todos');
+function modo(t) { rankTodos = t; bTop.setAttribute('aria-pressed', !t); bTodos.setAttribute('aria-pressed', t); ranking(); }
+bTop.addEventListener('click', () => modo(false));
+bTodos.addEventListener('click', () => modo(true));
+
+/* ---- tabela ---- */
+function tabela() {
+  const cols = [{id: 'r', t: 'Curso'}, ...ANOS.map((a, i) => ({id: 'a' + i, t: String(a)})), {id: 'pico', t: 'Pico'}, {id: 'vp', t: '2024 vs pico'}];
+  const rows = CURSOS.map(x => {
+    const o = {x, r: x.r, pico: x.pico, vp: x.pico ? (x.c[U] - x.pico) / x.pico : null};
+    ANOS.forEach((_, i) => { o['a' + i] = x.c[i]; });
+    return o;
+  }).sort((a, b) => {
+    const p = a[ordem.col], q = b[ordem.col];
+    if (p == null) return 1; if (q == null) return -1;
+    return (typeof p === 'string' ? p.localeCompare(q, 'pt-BR') : p - q) * ordem.dir;
+  });
+  document.getElementById('thead').innerHTML = cols.map(c =>
+    `<th ${ordem.col === c.id ? `aria-sort="${ordem.dir < 0 ? 'descending' : 'ascending'}"` : ''}><button type="button" data-col="${c.id}">${c.t}</button></th>`).join('');
+  document.getElementById('tbody').innerHTML = rows.map(o => {
+    const x = o.x;
+    return `<tr><td>${x.r}${x.somado ? '<span class="chip">somado</span>' : ''}</td>` +
+      x.c.map((v, i) => `<td class="n${i === x.ip && x.pico > 0 ? ' pk' : ''}">${fmt(v)}</td>`).join('') +
+      `<td class="n">${fmt(x.pico)} <span style="color:var(--ink3)">(${x.anoPico})</span></td>` +
+      `<td class="n ${o.vp < 0 ? 'cai' : ''}">${x.ip === U ? 'no pico' : o.vp == null ? '—' : sinal(o.vp)}</td></tr>`;
+  }).join('');
+}
+document.getElementById('thead').addEventListener('click', e => {
+  const b = e.target.closest('button[data-col]'); if (!b) return;
+  const col = b.dataset.col;
+  ordem = ordem.col === col ? {col, dir: -ordem.dir} : {col, dir: col === 'r' ? 1 : -1};
+  tabela();
+});
+
+/* ---- conclusão ---- */
+function conclusao() {
+  const c = TOTAL.c, ip = c.indexOf(Math.max(...c));
+  const queda = c[ip] - c[U];
+  const civil = CURSOS.find(x => x.r === 'Engenharia civil');
+  const dc = civil.c[ip] - civil.c[U];
+  const soft = CURSOS.find(x => x.r === 'Engenharia de software');
+  const agro = CURSOS.find(x => x.r === 'Agronomia');
+  document.getElementById('lede').innerHTML = `
+    <p>Em 2024 o Brasil formou <strong>${fmt(c[U])}</strong> bacharéis em engenharia e Agronomia${incluir ? '' : ' (sem contar Eng. de Computação)'}, ${pct(queda / c[ip], 0)} menos que no pico de ${ANOS[ip]} (${fmt(c[ip])}). A Engenharia Civil responde por <strong>${pct(dc / queda, 0)} da queda</strong>: passou de ${fmt(civil.c[ip])} para ${fmt(civil.c[U])} formados por ano.</p>
+    <p>Na direção contrária, a Engenharia de Software saiu de ${fmt(soft.c[ip])} para <strong>${fmt(soft.c[U])}</strong> formados desde ${ANOS[ip]}, e Agronomia teve em 2024 o maior número da série (${fmt(agro.c[U])}). O ensino a distância já forma <strong>${pct(TOTAL.e[U] / c[U], 0)}</strong> dos engenheiros; em 2014 eram ${pct(TOTAL.e[0] / c[0])}.</p>`;
+}
+
+function total() {
+  document.getElementById('notaTotal').textContent = incluir
+    ? 'Soma de todos os cursos de engenharia e de Agronomia.'
+    : 'Soma de todos os cursos de engenharia e de Agronomia, sem Eng. de Computação.';
+  colunas(document.getElementById('chTotal'), TOTAL, 'Todas as engenharias');
+}
+function render() { tiles(); total(); multiplos(); ranking(); tabela(); conclusao(); }
+document.getElementById('inclComp').addEventListener('change', e => {
+  incluir = e.target.checked; CURSOS = montaCursos(incluir); TOTAL = somaTotal(CURSOS); render();
+});
+
+render();
+
+let rz;
+addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(total, 150); });
+</script>
+</body>
+</html>
