@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de escopo da reforma com antes e depois a partir das pranchas · William Moura</title>
+<meta name="description" content="Prompt aberto que lê as pranchas e devolve o 3D antes e depois da reforma, o escopo com prancha de origem e o cronograma pra preencher. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/escopo/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/escopo/">
+<meta property="og:title" content="Escopo da reforma com antes e depois">
+<meta property="og:description" content="Escopo de reforma costuma morar na cabeça de quem leu as pranchas. Este prompt devolve o 3D antes e depois, o escopo com a prancha de origem em cada linha e o cronograma pronto pra preencher. Passo 01 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-escopo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Escopo da reforma com antes e depois">
+<meta name="twitter:description" content="Escopo de reforma costuma morar na cabeça de quem leu as pranchas. Este prompt devolve o 3D antes e depois, o escopo com a prancha de origem em cada linha e o cronograma pronto pra preencher. Passo 01 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-escopo.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 01 de 04 · Definição de escopo de reforma</p>
+
+    <div class="p-cabeca">
+      <h1>Escopo da reforma <span class="marca">com antes e depois</span> a partir das pranchas do projeto</h1>
+    </div>
+
+    <p class="p-sub">Ele lê as pranchas da reforma e devolve um relatório com o 3D antes e depois, o escopo com a prancha de origem em cada linha, o cronograma pronto pra você preencher e as pendências do projeto.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-escopo" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-escopo" tabindex="0" role="region" aria-label="Prompt do passo 01, rolável"># Etapa 1/2 — Relatório de reforma: 3D antes/depois, escopo e fornecedores
+
+<span class="ph">## Contexto</span>
+Sou [função — ex.: engenheiro responsável pela execução] de uma reforma de [tipo — ex.: apartamento residencial, ~100 m²].
+O projeto de arquitetura de interiores está em: [pasta conectada ou "arquivos em anexo"].
+Pranchas (PDF): [ex.: planta baixa construtiva com legenda manter/demolir/construir, planta de forro, elétrica, iluminação, paginação de pintura, detalhamentos construtivos (bancadas, louças, metais) e detalhamentos de marcenaria por ambiente].
+Não identifique cidade, endereço, cliente ou escritório em nenhum entregável — use o código "[ex.: ABM]" para o projeto.
+Esta é a primeira de duas sessões. Nesta, não pesquise produtos nem faça quantitativos; isso fica para a etapa 2, que vai receber o HTML desta etapa como entrada. Deixe o arquivo preparado para isso (ver "Preparação para a etapa 2").
+
+<span class="ph">## Entregável</span>
+Um único arquivo HTML autocontido (abre offline, scripts inline, sem CDN obrigatório), salvo na pasta do projeto e enviado no chat.
+Nome: [PROJ]_Relatorio_Reforma_Antes_Depois.html
+
+<span class="ph">### Seções, nesta ordem</span>
+1. **Resumo** — área total (soma dos ambientes cotados, com a soma escrita), ambientes com piso mantido, nº de itens de escopo, nº de pacotes, nº de pendências; três listas curtas: "Sai", "Entra", "Fica".
+
+2. **Visualização 3D antes/depois** (three.js inline), construída a partir da planta baixa construtiva na escala indicada:
+   - duas vistas lado a lado com a mesma câmera; botões lado a lado / só antes / só depois; isométrica / planta; rótulos de ambiente com área, em tamanho fixo na tela;
+   - modo "status": a manter / a demolir / a construir / piso a substituir / piso novo / piso mantido;
+   - modo "acabamentos" no depois: pisos, paredes, forro, bancadas, marcenaria e metais com cor e textura procedural do material especificado em prancha (azulejo na dimensão real da peça, veios de pedra, madeira, ripado, textura, laca, inox, cromo, dourado, red gold etc.). Cores de tinta pelo código do fabricante, aproximadas, com a fonte da aproximação declarada. O que não estiver especificado em prancha aparece hachurado e marcado "A DEFINIR";
+   - mobiliário, marcenaria e louças como peças compostas, não caixas: sofá com encosto/braços/almofadas, cadeiras com pernas e encosto, poltronas, mesas, camas com cabeceira e travesseiros, bacias com caixa acoplada, bancadas com cuba esculpida, rodapia, traves laterais ou armário inferior exatamente como o detalhamento mostra, armários com portas/gavetas/ripado/nichos/básculas, box de vidro, chuveiro, cooktop e forno, máquina de lavar, geladeira, torneiras no acabamento certo. Dimensões anotadas nas pranchas; posição conforme o layout. Itens sem dimensão em prancha entram como volume indicativo e a nota diz isso;
+   - portas e janelas existentes nos vãos da construtiva (pintadas na cor da paginação);
+   - checkboxes: bancadas/marcenaria, mobiliário/louças, cobertura, forro, rótulos, acabamentos, corte a 1,20 m;
+   - abaixo do visualizador, um **mapa de acabamentos**: amostra de cor, superfície/material, prancha de origem, estado "especificado" / "a definir";
+   - antes de fechar, **audite peça por peça contra as vistas e cortes dos detalhamentos** (forma, dimensão, material, cor, posição) e corrija. Me liste o que foi corrigido.
+
+3. **Escopo e cronograma** — lista de serviços extraída das pranchas: código hierárquico, descrição, ambiente e **prancha de origem em cada linha**. O que não consta em prancha (mobilização, caçamba, impermeabilização, limpeza) marcado "proposta". Campos editáveis de início e duração; fim e Gantt simplificado (semanas, barra de resumo por pacote, linha de hoje) calculados; exportar/importar CSV; imprimir.
+
+4. **Fornecedores sugeridos** — por pacote de contratação: itens, o que está especificado em prancha (só marcas e materiais que aparecem nos detalhamentos), tipo de fornecedor a procurar, referência ao escopo, três campos livres de cotação. Não invente lojas.
+
+5. **Pendências e divergências** — o que as pranchas deixam em aberto ou que diverge entre revisões (material não especificado, áreas diferentes entre revisões, prancha de pintura contradizendo detalhamento, "a definir"), com referência ao item de escopo. Não estime nem complete.
+   Rodapé com a lista de pranchas consultadas.
+
+<span class="ph">### Preparação para a etapa 2</span>
+- Cada elemento do 3D deve carregar uma **chave de acabamento** (ex.: `onix`, `carvalho`, `redgold`) e o nome da peça; o mapa de acabamentos usa as mesmas chaves. Deixe um objeto JavaScript `PRODUTOS = []` vazio e uma função que, ao clicar num elemento, abre um painel com nome da peça, prancha de origem e acabamento — a etapa 2 vai preencher `PRODUTOS` com as referências e exibi-las nesse painel.
+- Mantenha o catálogo de acabamentos (chave → descrição, prancha, especificado/a definir) legível no código, com comentário dizendo onde a etapa 2 deve inserir produtos.
+- No final da sessão, me entregue uma lista em texto com: todas as marcas/modelos/códigos que apareceram nas pranchas (metais, louças, porcelanatos, MDF por padrão, tintas por código, texturas, pedras, inox, box), o ambiente de cada um e a chave de acabamento usada no 3D. Eu vou colar essa lista no prompt da etapa 2.
+
+<span class="ph">## Identidade visual</span>
+[Escolha: "use a identidade do meu escritório: paleta ____, fontes ____, carimbo de rodapé ____" / "fique à vontade, sóbrio, sem emoji e sem ícone decorativo".]
+
+<span class="ph">## Como trabalhar</span>
+- Liste as pranchas e pergunte só o decisivo (qual projeto, formato de entrega). Depois siga até o fim.
+- Renderize e olhe o HTML (screenshots) antes de entregar; teste os botões, o Gantt com datas de exemplo e o modo acabamentos de perto (corte a 1,20 m).
+- A cada entrega, diga em poucas linhas o que foi extraído, o que a auditoria corrigiu e o que ficou pendente. Não repita o conteúdo do arquivo no chat.
+
+## Exemplo de preenchimento (fictício — substitua)
+- Projeto RFX — apartamento residencial, 8 ambientes, 98,9 m² (soma das áreas cotadas).
+- Pranchas: construtiva rev. 01 e 02 (área descoberta diverge: 16,00 vs 17,44 m²), forro rev. 05, elétrica, iluminação, paginação de pintura, 5 detalhamentos construtivos, 12 de marcenaria.
+- Escopo típico: demolir esquadria e parede do vão varanda/sala; trecho do closet; parede do banheiro de serviço (vira lavabo); retirar pisos exceto suítes e um banheiro; bancadas novas em quartzo e mármore; forro de gesso 2,40/2,50 com rasgos de iluminação; cobertura metálica aprovada pelo condomínio; marcenaria completa; pintura acetinada em cor de catálogo.
+- Pendências esperadas: piso da sala "a definir"; rodapé "a definir"; comprimento da parede de pedra não cotado.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Fechar escopo de reforma é ler prancha por prancha pra descobrir o que sai, o que entra e o que fica. Quando isso fica só na cabeça de quem leu, o cliente não enxerga a reforma e o orçamento herda o buraco.</p>
+      <p>Esse prompt monta o <strong>3D antes e depois</strong> a partir da planta construtiva e lista o escopo com a <strong>prancha de origem em cada linha</strong>, marcando como proposta o que não está em prancha. O cronograma sai com o Gantt vazio, esperando as suas datas, e o que o projeto deixa em aberto vira pendência: ele recusa estimar ou completar.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><a class="p-shot-zoom" href="../../assets/prompts/escopo/3d-antes-depois.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/escopo/3d-antes-depois.webp" alt="Modelo 3D do apartamento lado a lado: à esquerda o antes, com paredes e pisos a demolir em amarelo; à direita o depois, com living integrado, lavabo novo, marcenaria e paredes a construir em azul" width="1704" height="960" loading="lazy"></a><figcaption><b>01 · 3D antes/depois</b> Mesma câmera nas duas vistas, montadas a partir da planta construtiva: o que sai em amarelo à esquerda, o que se constrói em azul à direita.</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="860" height="620" poster="../../assets/prompts/escopo/giro-3d.jpg" aria-label="Gravação do relatório: o modelo 3D em Só antes gira, troca para Só depois e gira no sentido contrário"><source src="../../assets/prompts/escopo/giro-3d.mp4" type="video/mp4"></video><figcaption><b>02 · O modelo girando</b> Gravado do relatório: só antes, depois só depois, girando com o mouse. Dá para alternar entre isométrica e planta e ligar forro, cobertura e corte a 1,20 m.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/escopo/escopo-cronograma.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/escopo/escopo-cronograma.webp" alt="Seção Escopo e cronograma: lista de serviços com código, prancha de origem e ambiente, campos de início e duração em branco e, abaixo, o Gantt sem barras com o aviso para preencher início e duração" width="1424" height="1384" loading="lazy"></a><figcaption><b>03 · Escopo e cronograma</b> 61 itens em 14 pacotes, cada um com a prancha de origem. O Gantt sai vazio de propósito: as barras aparecem quando você preenche início e duração; o relatório não inventa datas.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/escopo/resumo-sai-entra-fica.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/escopo/resumo-sai-entra-fica.webp" alt="Resumo do relatório: área interna, ambientes com piso mantido, itens de escopo, pacotes e pendências, e o quadro do que sai, entra e fica na reforma" width="1424" height="1456" loading="lazy"></a><figcaption><b>04 · Resumo da reforma</b> Área interna somada, ambientes com piso mantido, 61 itens em 14 pacotes de serviço, 9 pendências de projeto e o quadro do que sai, entra e fica. Os 18 pacotes de fornecimento são assunto do passo 2.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Trecho da lista de escopo do relatório: escopo da reforma com código, serviço, ambiente, pendência de projeto e prancha de origem</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Serviço</th>
+              <th scope="col">Ambiente</th>
+              <th scope="col">Pendência</th>
+              <th scope="col">Prancha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">1.1</td>
+              <td class="col-serv">Mobilização, proteção de pisos mantidos (suítes 01/02, sanit. 02), esquadrias e mobiliário</td>
+              <td>Geral</td>
+              <td class="col-mem">—</td>
+              <td class="col-pr">Proposta (não consta em prancha)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.2</td>
+              <td class="col-serv">Demolição da parede de alvenaria do vão varanda/living</td>
+              <td>Living / varanda</td>
+              <td class="col-mem">—</td>
+              <td class="col-pr">Planta construtiva — obs. 1</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.7</td>
+              <td class="col-serv">Retirada de revestimentos de parede: lavabo, sanit. 01, cozinha e área de serviço</td>
+              <td>Molhadas</td>
+              <td class="col-mem">—</td>
+              <td class="col-pr">Planta construtiva — obs. 6</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.2</td>
+              <td class="col-serv">Nova parede lavabo / cozinha</td>
+              <td>Lavabo</td>
+              <td class="col-mem">—</td>
+              <td class="col-pr">Planta construtiva — legenda “a construir”</td>
+            </tr>
+            <tr>
+              <td class="col-cod">6.1</td>
+              <td class="col-serv">Forro de gesso H=2,50 m (living, closet, suítes) e H=2,40 m (molhadas, cozinha)</td>
+              <td>Geral</td>
+              <td class="col-mem">—</td>
+              <td class="col-pr">Planta de forro</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">7.1</td>
+              <td class="col-serv">Cobertura em estrutura metálica conforme modelo aprovado pelo condomínio</td>
+              <td>Área externa</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> Posição/limite a confirmar (áreas divergem entre revisões)</td>
+              <td class="col-pr">Planta construtiva — obs. 17/18</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">8.1</td>
+              <td class="col-serv">Piso living integrado + antiga varanda</td>
+              <td>Living</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> Especificação não consta nas pranchas</td>
+              <td class="col-pr">Planta construtiva — tab. revestimento</td>
+            </tr>
+            <tr>
+              <td class="col-cod">9.3</td>
+              <td class="col-serv">Lavabo 1,30 × 0,50 em mármore Marrom Imperador c/ cuba esculpida</td>
+              <td>Lavabo</td>
+              <td class="col-mem">—</td>
+              <td class="col-pr">Detalhamento construtivo do lavabo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Relatório de escopo: 3D, escopo e cronograma · Dados reais anonimizados</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Linha marcada <strong>proposta</strong> não saiu de prancha: é o modelo dizendo o que costuma ter numa reforma, tipo mobilização, caçamba, impermeabilização e limpeza. Confere se aquilo é seu, do condomínio ou de outro contrato antes de levar pro orçamento.</li>
+          <li>A prancha de origem em cada linha é pra você abrir e conferir, não pra enfeitar. Modelo cita referência com muita confiança: pega uns itens no meio da lista e vai na prancha ver se o serviço tá lá mesmo.</li>
+          <li>O resumo soma a área dos ambientes cotados, mas área que muda de uma revisão pra outra vira pendência, e ele não escolhe por você. Isso se resolve com o projetista, não com média nem com a revisão que fecha a conta.</li>
+          <li>O Gantt aparece vazio de propósito: início e duração são campos pra você preencher, e fim e barras por pacote são calculados a partir do que você digitar. Esse prompt fecha escopo, não prazo — data que vale sai do seu sequenciamento e da sua equipe. Preencheu? Exporta o CSV e guarda junto com as pranchas.</li>
+          <li>O 3D é o modelo lendo a planta construtiva, não levantamento: confere o que tá em amarelo (sai) e em azul (entra) contra a legenda da prancha antes de mostrar pro cliente. No modo acabamentos, o que aparece hachurado e marcado A DEFINIR não é acabamento escolhido, é buraco do projeto. Mostra isso pro cliente antes que ele se apaixone pelo render e queira aquele piso que ninguém especificou.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Do escopo ao custo, na ordem da obra</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 01</span>
+          <span class="nome">Escopo</span>
+        </span>
+        <a class="p-passo" href="../lista-de-compras/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Compras</span>
+        </a>
+        <a class="p-passo" href="../equalizacao/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Equalização</span>
+        </a>
+        <a class="p-passo" href="../desembolso/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Desembolso</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

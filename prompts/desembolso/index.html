@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de curva de desembolso por categoria em 3D, que abre em qualquer navegador · William Moura</title>
+<meta name="description" content="Prompt aberto que gera a curva de desembolso da obra em 3D, com prédio de valor, barras por família e lacuna marcada, sem nada estimado. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/desembolso/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/desembolso/">
+<meta property="og:title" content="Curva de desembolso por categoria em 3D">
+<meta property="og:description" content="Gráfico de custo que esconde mês sem lançamento não convence ninguém. Este prompt devolve a curva de desembolso em torres 3D, prédio de valor e barras por família, com lacuna marcada e nada estimado. Passo 04 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-desembolso.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Curva de desembolso por categoria em 3D">
+<meta name="twitter:description" content="Gráfico de custo que esconde mês sem lançamento não convence ninguém. Este prompt devolve a curva de desembolso em torres 3D, prédio de valor e barras por família, com lacuna marcada e nada estimado. Passo 04 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-desembolso.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 04 de 04 · Curva de desembolso de obra</p>
+
+    <div class="p-cabeca">
+      <h1>Curva de desembolso por categoria em 3D, <span class="marca">que abre em qualquer navegador</span></h1>
+    </div>
+
+    <p class="p-sub">Ele lê os custos que você vai registrando na obra, consolida mês a mês sem completar o que falta e devolve um HTML com os indicadores, torres 3D que sobem mês a mês, um prédio de valor que explode por família, barras mensais, curva acumulada e a conferência contra a sua planilha.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-desembolso" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-desembolso" tabindex="0" role="region" aria-label="Prompt do passo 04, rolável"><span class="ph">CONTEXTO</span>
+Sou [[engenheiro de planejamento]] e quero um relatório HTML interativo de curva de
+desembolso de obra: rigoroso nos números e com peças 3D animadas que chamem atenção.
+Tipo de obra: [[reforma de apartamento residencial, 32 meses]]. Não cite cidade nem país.
+
+<span class="ph">MINHA SITUAÇÃO DE ENTRADA (marque uma)</span>
+[ ] A · Já tenho a planilha de controle no formato descrito na Etapa 0 → pule para a Etapa 1.
+[ ] B · Tenho dados, mas fora do formato. Ex.: [[extrato bancário em PDF, fotos de notas
+        fiscais, planilha única sem padrão, anotações no caderno]] → anexei; converta.
+[x] C · Ainda não tenho dados → gere o template e preencha com dados mock realistas.
+
+<span class="ph">ETAPA 0 · PREPARAR OS INPUTS</span>
+1. Gere um template .xlsx de controle de gastos com esta estrutura:
+   - Uma aba por ciclo mensal, nomeada [[03.12.2018 a 02.01.2019]] (ciclo do dia 03 ao 02)
+   - Colunas: ITEM | FORNECEDOR | SERVIÇOS | NF | EMISSÃO | VALOR | BAIXA
+   - BAIXA = "OK" quando pago; vazio quando a pagar
+   - Linha TOTAL GERAL ao pé de cada aba, com fórmula SOMA
+   - Aba AUXILIAR com a lista de famílias de gasto e um exemplo de SERVIÇOS para cada uma
+   - Aba Resumo com o total por mês
+   - Aba LEIA-ME explicando como preencher
+2. Situação B: converta meus dados para esse template. Não invente nada. O que não puder
+   ser lido ou classificado fica em branco e entra numa lista de pendências (arquivo,
+   página, motivo). Me mostre essa lista antes de seguir.
+3. Situação C: preencha com dados MOCK, coerentes com [[uma reforma de ~R$ 650 mil em
+   32 meses, ~400 lançamentos]]: curva em S, pico de gastos no meio da obra, mão de obra
+   como a maior família e fornecedores fictícios. Inclua de propósito os defeitos que o
+   relatório precisa saber tratar, para que todas as seções tenham o que mostrar:
+   - 2 meses isolados e 1 sequência de 5 meses sem aba (lacunas)
+   - ~12 lançamentos com SERVIÇOS vazio
+   - 2 valores gravados como texto ("117,3")
+   - 1 aba com a SOMA do TOTAL GERAL pulando as 2 primeiras linhas
+   - 1 lançamento duplicado (mesma NF, mesmo valor)
+   - ~R$ 50 mil sem baixa
+   Liste esses defeitos plantados num arquivo à parte (gabarito), para eu conferir depois
+   se a Etapa 1 encontrou todos.
+4. Me entregue o .xlsx (e o gabarito, se for mock) e espere meu OK.
+   Se os dados forem mock, o relatório final leva a tarja "DADOS FICTÍCIOS" no cabeçalho
+   e no rodapé.
+
+<span class="ph">ETAPA 1 · CONSOLIDAÇÃO (sem visual ainda)</span>
+Consolide todas as abas com estas regras:
+- Competência = mês de abertura do ciclo.
+- Realizado = só BAIXA = OK; o resto é "a pagar".
+- Mês sem aba ou sem lançamento é LACUNA, nunca zero.
+- Agrupe SERVIÇOS nas famílias da aba AUXILIAR. Sem descrição não é inferido pelo
+  fornecedor: vai para "Sem descrição na origem", marcado como alerta.
+- Converta valores em texto e registre a linha de cada um.
+- Confira contra o TOTAL GERAL de cada aba e contra a aba Resumo, sem ajustar nada.
+  Para cada divergência, dê a causa com aba e linha.
+- Nada estimado, interpolado ou completado.
+Entregue: totais, meses com dado e em lacuna, totais por família e divergências com causa.
+Se for mock, compare com o gabarito e diga o que foi e o que não foi encontrado.
+Espere meu OK.
+
+<span class="ph">ETAPA 2 · RELATÓRIO HTML</span>
+Um único HTML autocontido, com dados embutidos e bibliotecas só via cdnjs
+(three.js r128 para o 3D).
+- Cabeçalho com KPIs: período, nº de lançamentos, desembolsado, a pagar e meses em lacuna
+  (os dois últimos em cor de alerta).
+- Suposições e lacunas: cada regra adotada e o impacto se ela estiver errada.
+- 0 · Curva em volume (3D): uma torre por mês, todas com a mesma planta, numa escala
+  vertical única. A base clara é o acumulado anterior; o topo é o mês, em blocos coloridos
+  por família. Os topos formam a curva acumulada. Lacunas viram gaiola tracejada em alerta
+  com rótulo "SEM DADO · N MESES".
+  Animação ao entrar na tela: torres sobem mês a mês, blocos caem e encaixam, e o contador
+  sobe até o total. Depois, câmera ortográfica oscilando devagar.
+  Interação: arrastar para girar, hover com tooltip (mês · família · valor · % do mês),
+  botões RECONSTRUIR e PARAR/GIRAR.
+- 1 · Curva acumulada 2D: lacunas hachuradas, traço pontilhado onde a curva não avança,
+  tooltip por mês.
+- 2 · Barras mensais empilhadas por família: lacunas hachuradas, nunca zeradas.
+- 3 · Prédio de valor (axonometria SVG): camadas por família na ordem construtiva, mão de
+  obra como plataforma abaixo da cota zero, Canteiro/Outros/Sem descrição fora do prédio.
+  Planta FIXA (só a altura codifica valor), com régua e texto explicando por quê.
+  Ao entrar na tela, as camadas sobem uma a uma e o prédio começa a girar.
+  Interação: arrastar para girar, clique para isolar uma camada com os maiores lançamentos
+  (aba e linha de origem), vistas iso/frontal/superior, botão explodir e vista fixa para impressão.
+- 4 · Ranking de famílias, com % do desembolsado.
+- 5 · Conferência: totais contra as bases do arquivo, cards das abas divergentes com a causa,
+  e tabela aba a aba.
+- Gráficos 2D se revelam da esquerda para a direita ao entrar na tela. Layout responsivo.
+
+IDENTIDADE VISUAL (preencha ou apague este bloco para deixar a seu critério)
+- Paleta: [[fundo #F5F3EE · texto #1A1A1A · destaque #E8B400 · dado técnico #1F5C73 · alerta #B5371F · secundário #8A857A]]
+- Tipografia: [[títulos: Anton · corpo: Montserrat · números/metadados: Space Mono]]
+- Regras: [[sem sombras, sem cantos arredondados, sem emoji; cor de alerta só para erro/lacuna]]
+- Rodapé: [[NOME DO PROJETO · REV. 00 · DATA · FOLHA 1/1]]
+- Alternativa: [[use as cores e fontes do site https://exemplo.com.br]]
+
+<span class="ph">VALIDAÇÃO ANTES DE ENTREGAR</span>
+- Os dados embutidos no HTML somam o mesmo total da Etapa 1.
+- Screenshots da animação no meio e no fim, e do prédio girando, sem sobreposições.
+- Nenhum valor estimado; toda divergência citada com aba e linha.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Com a obra rodando, o custo mora numa planilha com uma aba por mês, nota sem descrição, valor digitado como texto e mês que ninguém lançou. Na hora de mostrar pro cliente, vira um gráfico de Excel que esconde tudo isso, e ele tem que confiar no número sem ver de onde saiu.</p>
+      <p>Esse prompt consolida e confere antes de desenhar: só entra o que tem baixa, e cada divergência com o total da aba sai com aba e linha. Mês sem lançamento é <strong>lacuna, nunca zero</strong>: vira gaiola tracejada SEM DADO nas torres e coluna hachurada nas barras. E nota sem descrição não ganha família pelo nome do fornecedor, porque ele recusa estimar, interpolar ou completar.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><video muted autoplay loop playsinline preload="metadata" width="840" height="600" poster="../../assets/prompts/desembolso/curva-volume.jpg" aria-label="Curva de desembolso em 3D: uma torre por mês, de dez/18 a jul/21, subindo até R$ 669.431,89; a coluna clara é o acumulado, o bloco colorido no topo é o gasto do mês, e os meses sem lançamento aparecem como gaiola tracejada marcada SEM DADO"><source src="../../assets/prompts/desembolso/curva-volume.mp4" type="video/mp4"></video><figcaption><b>01 · Curva em volume</b> Uma torre por mês, de dez/18 a jul/21: a coluna clara alta é o acumulado até aquele mês e o bloco colorido no topo é o gasto do próprio mês, empilhado por família; os meses sem lançamento ficam como gaiola tracejada marcada SEM DADO, nunca como zero.</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1180" height="578" poster="../../assets/prompts/desembolso/predio-valor.jpg" aria-label="Prédio de valor: ao lado, a lista das famílias de gasto com valor e percentual; o prédio gira fechado, com uma camada por família na ordem construtiva, e se separa em camadas ao clicar EXPLODIR; canteiro, sem descrição e outros ficam fora do volume construído"><source src="../../assets/prompts/desembolso/predio-valor.mp4" type="video/mp4"></video><figcaption><b>02 · Prédio de valor</b> O mesmo dinheiro empilhado como obra: cada camada do prédio é uma família de gasto da lista ao lado, na ordem construtiva, com altura proporcional ao valor. Gira fechado e se separa ao clicar EXPLODIR; canteiro, sem descrição e outros ficam fora do volume construído.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/desembolso/indicadores.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/desembolso/indicadores.webp" alt="Cabeçalho do relatório com os indicadores: período dez/18 a jul/21, 400 lançamentos, R$ 669.431,89 desembolsados, R$ 56.035,97 a pagar, 25 de 32 meses com dado e 7 meses em lacuna" width="720" height="1144" loading="lazy"></a><figcaption><b>03 · Indicadores</b> O cabeçalho separa o que já saiu do caixa (R$ 669.431,89) do que ainda está a pagar (R$ 56.035,97) e conta os meses com dado (25 de 32) e os meses em lacuna (7).</figcaption></figure>
+        <figure class="p-shot p-shot-pend"><a class="p-shot-zoom" href="../../assets/prompts/desembolso/barras-familia.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/desembolso/barras-familia.webp" alt="Barras mensais empilhadas por família de gasto, de dez/18 a jul/21, com os 7 meses sem lançamento hachurados e marcados SEM DADO em vez de desenhados como zero; a última coluna, jul/21, é toda vermelha: gasto sem descrição na origem" width="1800" height="818" loading="lazy"></a><figcaption><b>04 · Mês a mês por família</b> Barras empilhadas por família de gasto; os 7 meses sem apontamento aparecem hachurados em tijolo. O vermelho é gasto sem descrição na origem: o topo de mai/19 e a última coluna, jul/21 (sem rótulo no eixo, que marca um mês sim, outro não), cujos R$ 17.250,00 vieram todos sem descrição.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Ranking de famílias de gasto do relatório: as seis maiores famílias e a categoria sem descrição na origem, marcada como pendência, somam 84,52%; as 5 famílias menores do relatório (canteiro, locação e entulho; esquadria, vidro e metal; pintura e impermeabilização; hidráulica; outros) somam R$ 103.619,94 (15,48%) e completam o total desembolsado</caption>
+          <thead>
+            <tr>
+              <th scope="col">Família de gasto</th>
+              <th scope="col">Desembolsado (R$)</th>
+              <th scope="col">% do total</th>
+              <th scope="col">Observação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-serv">Mão de obra</td>
+              <td class="col-num">175.093,50</td>
+              <td class="col-num">26,16%</td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr>
+              <td class="col-serv">Mármore, granito e piso</td>
+              <td class="col-num">105.038,57</td>
+              <td class="col-num">15,69%</td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr>
+              <td class="col-serv">Climatização e inst. especiais</td>
+              <td class="col-num">99.608,79</td>
+              <td class="col-num">14,88%</td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr>
+              <td class="col-serv">Gesso, forro e divisória</td>
+              <td class="col-num">66.125,00</td>
+              <td class="col-num">9,88%</td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr>
+              <td class="col-serv">Material de construção</td>
+              <td class="col-num">51.623,43</td>
+              <td class="col-num">7,71%</td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr>
+              <td class="col-serv">Elétrica</td>
+              <td class="col-num">45.882,66</td>
+              <td class="col-num">6,85%</td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-serv">Sem descrição na origem</td>
+              <td class="col-num">22.440,00</td>
+              <td class="col-num">3,35%</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> Coluna SERVIÇOS vazia na planilha; a família não foi deduzida pelo fornecedor</td>
+            </tr>
+            <tr>
+              <td class="col-serv">Total desembolsado (com baixa)</td>
+              <td class="col-num">669.431,89</td>
+              <td class="col-num">100,00%</td>
+              <td class="col-mem">Inclui as 5 famílias menores fora desta lista (canteiro, locação e entulho; esquadria, vidro e metal; pintura e impermeabilização; hidráulica; outros): R$ 103.619,94, 15,48%. R$ 56.035,97 ainda a pagar ficam fora da curva</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Relatório de curva de desembolso aberto no navegador</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Curva de desembolso aqui é dinheiro que saiu: só entra lançamento com BAIXA = OK. Os R$ 56.035,97 a pagar que aparecem nos indicadores ficam fora das torres e do acumulado. Se o cliente perguntar quanto a obra já custou, a resposta é pago <em>e</em> a pagar; não apresenta a torre mais alta sozinha como se fosse o custo da obra.</li>
+          <li>Mês em lacuna não é mês barato. Aqui são 7 meses SEM DADO: abr/20, jun/20 e de fev/21 a jun/21 em sequência. Antes da reunião, acha as notas desses meses ou escreve por que não existem. Gaiola tracejada no meio da curva chama mais atenção do cliente que qualquer torre, então chega com a resposta pronta.</li>
+          <li><strong>Sem descrição na origem</strong> não é família de obra: são R$ 22.440,00, 3,35% do desembolsado, que ninguém disse o que eram. Por isso ficam em tijolo nas barras e fora do volume do prédio. Ele não deduz a família pelo fornecedor, porque o prompt proíbe: preenche a coluna SERVIÇOS na planilha e roda de novo, em vez de jogar tudo em Outros no olho.</li>
+          <li>Situação C é pra testar: os números são mock e o relatório tem que sair com a tarja DADOS FICTÍCIOS no cabeçalho e no rodapé. Confere a Etapa 1 contra o gabarito de defeitos plantados; se ele não achou algum, o relatório com os seus dados também não vai achar. Na situação B, ele tem que parar e te mostrar a lista de pendências da conversão antes de seguir: se pulou essa parada, volta.</li>
+          <li>As capturas aqui em cima são um pedaço do relatório. O mesmo HTML traz a curva acumulada 2D, a conferência contra a planilha, a tabela das lacunas e as Suposições com o impacto de cada regra, e clicar numa camada do prédio mostra os maiores lançamentos com aba e linha. O 3D carrega o three.js pela internet: abre no computador e na rede da reunião antes de mostrar pro cliente. E começa pela Conferência: se o total não bate com a planilha, torre girando é enfeite.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Do escopo ao custo, na ordem da obra</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../escopo/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Escopo</span>
+        </a>
+        <a class="p-passo" href="../lista-de-compras/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Compras</span>
+        </a>
+        <a class="p-passo" href="../equalizacao/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Equalização</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 04</span>
+          <span class="nome">Desembolso</span>
+        </span>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>
