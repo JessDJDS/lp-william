@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de orçamento em Excel só com preço verificado e as pendências numa aba separada · William Moura</title>
+<meta name="description" content="Prompt aberto que monta o orçamento da reforma em Excel por etapa, com preço só de fonte verificada e as pendências numa aba à parte. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/orcamento-interiores/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/orcamento-interiores/">
+<meta property="og:title" content="Orçamento em Excel só com preço verificado">
+<meta property="og:description" content="Número sem origem no orçamento vira problema na obra. Este prompt zera o que não tem fonte e lista tudo na aba PENDÊNCIAS. Passo 03 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-orcamento-interiores.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Orçamento em Excel só com preço verificado">
+<meta name="twitter:description" content="Número sem origem no orçamento vira problema na obra. Este prompt zera o que não tem fonte e lista tudo na aba PENDÊNCIAS. Passo 03 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-orcamento-interiores.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 03 de 04 · Orçamento por etapa a partir da especificação</p>
+
+    <div class="p-cabeca">
+      <h1>Orçamento em Excel <span class="marca">só com preço verificado</span> e as pendências numa aba separada</h1>
+    </div>
+
+    <p class="p-sub">Ele lê a especificação e o levantamento e devolve o orçamento por etapa, com memória de cálculo, preço com link e data, e o que não tem fonte zerado e listado na aba PENDÊNCIAS.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-orcamento-interiores" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-orcamento-interiores" tabindex="0" role="region" aria-label="Prompt do passo 03, rolável"><span class="ph"># PEDIDO</span>
+Anexei essa tabela: a especificação, com produtos, preços e links. Monte o orçamento da reforma em Excel, por etapa de obra, com quantitativos e memória de cálculo. Regra: sem preço verificado (com fonte e data), pode deixar zerado e fora do total. Coloque todas as pendências numa aba separada, com o motivo de cada uma, e um resumo com o total só do que tem fonte.
+
+<span class="ph"># CONTEXTO</span>
+Este comando precisa de um chat que crie arquivo .xlsx (execução de código, ex.: Python com openpyxl). Se o seu chat não cria arquivo, diga isso na primeira linha da resposta e entregue as cinco abas como tabelas em texto, com cada fórmula escrita por extenso na célula, e a parte de pendencias.md também em texto. Não diga que gerou a planilha.
+
+Projeto de reforma de um cômodo residencial: [USO DO CÔMODO — ex.: home office com sofá-cama]. Os comandos anteriores entregaram o levantamento do estado atual e a especificação de produtos com links verificados. Agora é o orçamento.
+
+<span class="ph"># ENTRADA</span>
+Anexei (ou estão na pasta output/):
+- especificacao.md: a tabela de produtos do comando 2, com código, preço, quantidade, unidade, link verificado e data da consulta, e os quantitativos de revestimento com memória de cálculo.
+- levantamento.md: a tabela do comando 1, com código hierárquico, dimensões e origem de cada valor (COTADO, INFORMADO, CONFIRMADO, CALC., N/E).
+- planta_layout.svg: a planta de layout do comando 2.
+- pendencias.md: as pendências dos comandos anteriores, com código e situação (ABERTA, SUPOSIÇÃO, RESOLVIDA).
+- [BASE DE PREÇO DE SERVIÇO, se houver — ex.: tabela de referência de mão de obra com código e data-base, ou proposta escrita de um empreiteiro]. Se não houver, deixe em branco.
+Se faltar especificacao.md ou levantamento.md, pare e peça. Não reconstrua a especificação de memória.
+
+<span class="ph"># TAREFA</span>
+Grave o orçamento em orcamento.xlsx, com fórmulas vivas. Ele não é orçamento fechado: o que não tem fonte fica pendente.
+1. Produtos: cada linha da especificação vira uma linha do orçamento, com a quantidade, a unidade, o preço e o link que estão lá. Não busque preço novo.
+2. Serviços: liste os serviços que a especificação e o layout implicam (remoções, vedações, instalação de portas, assentamento de piso e revestimento, pintura, pontos elétricos, instalação de louças e metais, limpeza final). A quantidade de cada serviço sai das dimensões do levantamento, com a conta na memória de cálculo.
+3. Agrupe por etapa, com código hierárquico: [ETAPAS — ex.: 1 Remoções, 2 Revestimentos, 3 Pintura, 4 Elétrica e iluminação, 5 Marcenaria sob medida, 6 Mobiliário e decoração, 7 Limpeza final].
+
+Abas:
+- RESUMO: total por etapa, BDI (parâmetro editável), total geral e quantos itens pendentes há em cada etapa, contados por fórmula na aba PENDÊNCIAS.
+- ORÇAMENTO: código hierárquico | descrição | unidade | quantidade | memória de cálculo | preço unitário | total (fórmula) | fonte do preço (link verificado e data da consulta, ou base de referência + código + data-base).
+- QUANTITATIVOS: memória de cálculo detalhada por item, com as dimensões usadas e o código de origem no levantamento ou na especificação (ex.: "1.3 do levantamento", "R02 da especificação").
+- PRODUTOS: a tabela da especificação, com os links.
+- PENDÊNCIAS: itens sem preço ou quantidade confirmados, com o motivo e a linha correspondente no ORÇAMENTO.
+
+<span class="ph"># REGRAS</span>
+1. Sem preço verificado, pode deixar zerado e fora do total. Preço só entra com fonte: link verificado da especificação ou base de referência de fato consultada, com código e data-base. O item sem preço leva "PENDENTE — ver aba PENDÊNCIAS" na coluna de fonte e entra na aba PENDÊNCIAS com o motivo.
+2. Sem valor estimado ou digitado sem fonte. Mão de obra e material que a especificação não traz (ex.: argamassa, rejunte, impermeabilização) ficam sem preço, como pendência; não complete com valor "de mercado".
+3. Totais por fórmula, nunca valor fixo. Total da linha: =IF(OR(D5="",F5=""),0,D5*F5) (quantidade em D, preço em F). Subtotal de etapa, total geral e contagem de pendências também por fórmula.
+4. BDI é uma célula editável no RESUMO, em 0% até o usuário definir. BDI em reais = subtotal × BDI %; total geral = subtotal + BDI em reais. Escreva no RESUMO que o total geral não inclui os itens pendentes.
+5. Item que a especificação marcou sem link (ex.: marcenaria sob medida) entra com quantidade e sem preço, como pendência.
+6. Quantidade que depende de dado N/E no levantamento fica em branco, com o código do N/E na memória, e vai para PENDÊNCIAS como "falta quantidade". Não estime.
+7. Única exceção à regra 6: se pendencias.md já registra um valor adotado para esse dado, com situação SUPOSIÇÃO, use esse valor, escreva "suposto" na memória e cite o código da pendência (ex.: "parede 3,10 × 2,50 = 7,75 m² (pé-direito 2,50 suposto, P-04)"). Este comando não cria suposição nova.
+8. Quantidade de produto em unidade de compra (caixa, galão, peça) mostra a conversão na memória (ex.: "5,20 m² + 10% = 5,72 m² → 3 cx de 2,00 m²").
+9. Se a quantidade da especificação não bate com a conta feita a partir do levantamento, use a da especificação e registre a divergência como pendência. Não faça média.
+10. Cabeçalhos e pendências com cor de destaque: [CORES — ex.: cabeçalho azul-escuro com texto branco, pendência em vermelho].
+
+<span class="ph"># SAÍDA</span>
+- output/orcamento.xlsx, com as cinco abas.
+- output/pendencias.md: o arquivo é acumulado. Leia, não apague nem renumere as entradas anteriores e acrescente ao fim as deste comando, com prefixo OR- (OR-01, OR-02...) e situação ABERTA, SUPOSIÇÃO ou RESOLVIDA (com data e fonte). Registre quantos itens ficaram pendentes e por quê, o BDI em 0% até ser definido e se foi ou não usada base de referência de serviços.
+- Na resposta, em poucas linhas: a soma dos itens com preço, quantos itens ficaram pendentes e as maiores lacunas.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+Reabra o arquivo gravado e confira:
+- Toda célula de total, subtotal, BDI e contagem de pendências é fórmula, não número digitado.
+- Todo preço tem fonte na coluna ao lado. Toda linha "PENDENTE" está na aba PENDÊNCIAS, e toda linha da aba PENDÊNCIAS está no ORÇAMENTO.
+- Nenhum serviço tem preço sem base anexada.
+- A contagem de pendências do RESUMO bate com o número de linhas da aba PENDÊNCIAS.
+- Nenhuma célula mostra "None", "nan" ou erro de fórmula, e nenhuma marca ou descrição ficou vazia.
+- Toda memória da aba QUANTITATIVOS cita um código que existe no levantamento ou na especificação.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Orçamento de reforma de interiores costuma sair com um número redondo que ninguém sabe de onde veio, e é esse número que o cliente guarda. Quando a obra começa, aparece a argamassa que ninguém cotou, a mão de obra que entrou no chute e a caixa de piso que não fecha. O problema nunca foi somar: é saber o que cada linha tem por trás.</p>
+      <p>Aqui a regra é outra: preço só entra com fonte — link verificado da especificação ou base de referência com código e data-base — e o resto fica zerado, fora do total, com o motivo na aba PENDÊNCIAS. Ele não completa mão de obra, argamassa nem rejunte com valor “de mercado”. Sai uma planilha de cinco abas com fórmula viva em todo total: RESUMO, ORÇAMENTO, QUANTITATIVOS, PRODUTOS e PENDÊNCIAS.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque p-shot-pend"><a class="p-shot-zoom" href="../../assets/prompts/orcamento-interiores/pendencias.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/orcamento-interiores/pendencias.webp" alt="Aba PENDÊNCIAS do orçamento em Excel: 14 linhas em vermelho, do item 1.1 ao 11.1, com código, descrição e as colunas Falta preço e Falta quantidade." width="1068" height="524" loading="lazy"></a><figcaption><b>01 · Aba PENDÊNCIAS</b> Os 14 itens que ficaram sem preço ou sem quantidade, cada um com o código da linha do orçamento; a vedação da janela (2.1) falta as duas coisas. Na planilha, a coluna Motivo ao lado diz por quê: serviço sem preço de referência verificado, produto não especificado ou marcenaria a orçar com o marceneiro.</figcaption></figure>
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/orcamento-interiores/resumo.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/orcamento-interiores/resumo.webp" alt="Aba RESUMO: total por etapa com percentual e itens pendentes por etapa, BDI editável em 0%, total geral de R$ 16.469,65, 14 itens pendentes e a frase: o total geral NÃO inclui os itens pendentes." width="1200" height="606" loading="lazy"></a><figcaption><b>02 · Aba RESUMO</b> Total das 11 etapas, percentual de cada uma e quantos itens pendentes há em cada etapa, contados por fórmula na aba PENDÊNCIAS. BDI fica editável em 0%, a contagem dá 14 itens pendentes e a última linha avisa: o total geral NÃO inclui os itens pendentes. O rótulo da contagem, "Itens pendentes (sem preço ou quantidade confirmados)", aparece cortado porque é assim que a própria célula do Excel o mostra.</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="960" height="402" poster="../../assets/prompts/orcamento-interiores/pendencias-resumo.jpg" aria-label="Gravação da planilha: a aba PENDÊNCIAS com as 14 linhas selecionadas, depois a aba RESUMO com o total geral e a regra de que o total não inclui os pendentes."><source src="../../assets/prompts/orcamento-interiores/pendencias-resumo.mp4" type="video/mp4"></video><figcaption><b>03 · Da pendência ao total</b> O mesmo trecho do vídeo: a aba PENDÊNCIAS, a coluna que aponta a linha no orçamento e, na aba RESUMO, o total geral e a regra de que ele não inclui os pendentes.</figcaption></figure>
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/orcamento-interiores/orcamento-etapas.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/orcamento-interiores/orcamento-etapas.webp" alt="Aba ORÇAMENTO, etapas 1 a 3: código hierárquico, descrição, unidade e quantidade; serviços e itens sem preço em vermelho, a vedação da janela sem quantidade." width="1022" height="810" loading="lazy"></a><figcaption><b>04 · Aba ORÇAMENTO</b> Código hierárquico por etapa, com unidade e quantidade em cada linha; o que não tem preço sai em vermelho, e a vedação da janela (2.1) fica sem quantidade porque as dimensões não foram levantadas. A memória de cálculo, o preço e a fonte de cada linha estão na tabela abaixo. A planilha tem ainda as abas QUANTITATIVOS e PRODUTOS.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Etapa 3, revestimentos, da aba ORÇAMENTO: cinco produtos com quantidade, memória de cálculo, preço unitário, total e fonte com data da consulta, e dois itens pendentes zerados e fora do total</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Und</th>
+              <th scope="col" class="col-num">Quant</th>
+              <th scope="col">Memória de cálculo</th>
+              <th scope="col" class="col-num">Preço unit. (R$)</th>
+              <th scope="col" class="col-num">Total (R$)</th>
+              <th scope="col">Fonte do preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">3</td>
+              <td class="col-serv">REVESTIMENTOS</td>
+              <td></td>
+              <td class="col-num"></td>
+              <td class="col-mem"></td>
+              <td class="col-num"></td>
+              <td class="col-num">2.566,65</td>
+              <td class="col-pr"></td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.1</td>
+              <td class="col-serv">Piso vinílico colado — quarto — Dome Vinil Piso Vinílico127x18,7x0,2cm Cedro - Dome</td>
+              <td>m²</td>
+              <td class="col-num">8,26</td>
+              <td class="col-mem">Área 2,45 × 2,83 = 6,93 m² + perda 10% (cortes de régua) = 7,63 m² → 2 cx × 4,13 m² = 8,26 m²</td>
+              <td class="col-num">87,90</td>
+              <td class="col-num">726,05</td>
+              <td class="col-pr">Link da Loja A (consulta 2026-10-15 13:28)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.2</td>
+              <td class="col-serv">Rodapé liso 7 cm — quarto — Dome Rodapé Branco 7cm Slim Liso 2,40m – Dome</td>
+              <td>peça</td>
+              <td class="col-num">5</td>
+              <td class="col-mem">Perímetro 10,56 m − vãos (0,80 + 0,60) = 9,16 m + perda 10% = 10,08 m → 10,08 / 2,40 = 5 peças</td>
+              <td class="col-num">29,90</td>
+              <td class="col-num">149,50</td>
+              <td class="col-pr">Link da Loja A (consulta 2026-10-15 13:28)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.3</td>
+              <td class="col-serv">Porcelanato piso — banheiro — Biancogres Porcelanato Tipo A 20x120cm Acetinado Cumaru Uso Interno e Externo Borda Reta com Junta de 2mm - Biancogres</td>
+              <td>m²</td>
+              <td class="col-num">2,40</td>
+              <td class="col-mem">Área 2,10 × 0,79 = 1,66 m² + perda 15% (peça 120 cm em ambiente de 79 cm) = 1,91 m² → 1 cx × 2,4 m² = 2,40 m²</td>
+              <td class="col-num">119,90</td>
+              <td class="col-num">287,76</td>
+              <td class="col-pr">Link da Loja A (consulta 2026-10-15 13:28)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.4</td>
+              <td class="col-serv">Revestimento parede — banheiro (fora do box) — None Revestimento Cerâmico Tipo A 30x60 cm Branco Mate - Pointer</td>
+              <td>m²</td>
+              <td class="col-num">9,58</td>
+              <td class="col-mem">Perímetro 5,78 × 2,70 = 15,61 − porta 1,26 − paredes do box 5,64 = 8,70 m² (janela NÃO descontada: dimensões N/I) + perda 10% = 9,57 m² → arred. 9,58 m². Caixa não informada na ficha</td>
+              <td class="col-num">49,90</td>
+              <td class="col-num">478,04</td>
+              <td class="col-pr">Link da Loja A (consulta 2026-10-15 13:28)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.5</td>
+              <td class="col-serv">Revestimento parede — box — Eliane Revestimento Tipo A 7x26 cm Berlin Cotto - Eliane</td>
+              <td>m²</td>
+              <td class="col-num">6,21</td>
+              <td class="col-mem">Paredes do box (0,79 + 0,65 + 0,65) × 2,70 = 5,64 m² + perda 10% = 6,21 m² → arred. 6,21 m². Caixa (m²/cx) não informada na ficha</td>
+              <td class="col-num">149,00</td>
+              <td class="col-num">925,29</td>
+              <td class="col-pr">Link da Loja A (consulta 2026-10-15 13:28)</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">3.6</td>
+              <td class="col-serv">Argamassa colante, rejunte e impermeabilização do box <span class="tag-pend">Pendência</span></td>
+              <td>vb</td>
+              <td class="col-num">1</td>
+              <td class="col-mem">Não especificados na Etapa 3</td>
+              <td class="col-num"></td>
+              <td class="col-num">0,00</td>
+              <td class="col-pr">PENDENTE — ver aba PENDÊNCIAS</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">3.7</td>
+              <td class="col-serv">Mão de obra de assentamento de pisos, revestimentos e rodapé <span class="tag-pend">Pendência</span></td>
+              <td>vb</td>
+              <td class="col-num">1</td>
+              <td class="col-mem">Itens 3.1 a 3.5</td>
+              <td class="col-num"></td>
+              <td class="col-num">0,00</td>
+              <td class="col-pr">PENDENTE — ver aba PENDÊNCIAS</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída real · Abas PENDÊNCIAS, RESUMO e ORÇAMENTO · Dados reais anonimizados</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>O total geral do RESUMO <strong>não inclui os pendentes</strong>, e a própria planilha escreve isso. No exemplo ficaram 14 itens de fora, entre eles toda a mão de obra de assentamento (3.7). Manda essa frase junto com o número, senão o cliente lê o total como preço da obra.</li>
+          <li>BDI sai em 0%, numa célula editável do RESUMO. Coloca o seu antes de usar o total: do jeito que vem, o número não tem margem nenhuma.</li>
+          <li>Preço com link vale na data da consulta, que vem escrita na coluna de fonte de cada linha. O prompt não busca preço novo, só repete o da especificação: passou uns dias, abre o link de novo antes de comprar.</li>
+          <li>Quantidade que depende de medida não levantada sai em branco, como a vedação da janela (2.1). E onde a ficha não traz o rendimento da caixa, a memória avisa (3.4 e 3.5). Mede o vão e confirma a caixa com a loja antes de fechar o pedido.</li>
+          <li>A checagem final manda caçar <code>None</code> e célula vazia, e mesmo assim escapou um <code>None</code> na descrição do 3.4, herdado da marca em branco na especificação. Abre ORÇAMENTO e PENDÊNCIAS lado a lado e lê linha por linha. CONFERE ANTES QUE O CLIENTE CONFIRA POR VOCÊ.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../levantamento/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Levantamento</span>
+        </a>
+        <a class="p-passo" href="../especificacao/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Especificação</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 03</span>
+          <span class="nome">Orçamento</span>
+        </span>
+        <a class="p-passo" href="../entrega-3d/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Entrega 3D</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de modelo 3D, tour 360° e antes e depois num arquivo só · William Moura</title>
+<meta name="description" content="Prompt aberto que, com o Blender, gera modelo 3D, renders e tour 360° e junta tudo num HTML de entrega, com antes e depois e pendências. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/entrega-3d/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/entrega-3d/">
+<meta property="og:title" content="Modelo 3D, tour 360° e antes e depois num arquivo só">
+<meta property="og:description" content="Render solto no celular do cliente não é entrega. Este prompt roda o Blender por script e junta modelo 3D, tour 360°, antes e depois e pendências num HTML só. Passo 04 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-entrega-3d.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Modelo 3D, tour 360° e antes e depois num arquivo só">
+<meta name="twitter:description" content="Render solto no celular do cliente não é entrega. Este prompt roda o Blender por script e junta modelo 3D, tour 360°, antes e depois e pendências num HTML só. Passo 04 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-entrega-3d.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 04 de 04 · Modelo 3D, renders e página de entrega</p>
+
+    <div class="p-cabeca">
+      <h1>Modelo 3D, tour 360° e antes e depois <span class="marca">num arquivo só</span></h1>
+    </div>
+
+    <p class="p-sub">Com o Blender instalado, ele lê a pasta dos três passos anteriores, gera por script o modelo 3D, os renders e o tour 360° e junta tudo num HTML de entrega, com plantas, produtos, quantitativos e pendências.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-entrega-3d" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-entrega-3d" tabindex="0" role="region" aria-label="Prompt do passo 04, rolável"><span class="ph"># PEDIDO</span>
+Joguei tudo isso numa pasta: levantamento, plantas, conceito, especificação, orçamento e as fotos do cômodo. Gere no Blender, por script, o modelo 3D, os renders do antes e depois e o tour 360. Depois monte UM arquivo HTML só, com tudo dentro, que abre no navegador: modelo 3D navegável, tour 360 entre os ambientes, antes e depois lado a lado e as pendências.
+
+<span class="ph"># CONTEXTO</span>
+Este comando exige o Blender instalado e um chat com acesso a terminal e aos arquivos da máquina (ex.: Claude Code ou Cowork). Num chat sem terminal ele não roda: o modelo 3D, os renders e o tour 360° saem do Blender, rodando por script Python em background.
+Sem Blender: faça só a ETAPA 4 (página), com o que já estiver na pasta. Seção de modelo 3D, renders, antes e depois ou tour 360° sem arquivo fica fora da página e vai para pendencias.md com o motivo "Blender não disponível".
+Para o viewer 3D e o tour, a página carrega o three.js pela internet. Para testar a página, é preciso um navegador.
+Medida que o modelo precisa e o levantamento não tem (altura de porta, peitoril, posição de uma louça) não para o trabalho: entra como SUPOSIÇÃO, e você me mostra a lista no fim para eu confirmar.
+
+Projeto de reforma de um cômodo residencial. O uso e o estilo estão em conceito_layout.md.
+Identidade visual da página: [IDENTIDADE VISUAL — ex.: fundo creme, texto grafite, destaque amarelo, títulos em fonte condensada caixa alta, ou o caminho do manual da marca do escritório].
+Nome do projeto no carimbo: [NOME DO PROJETO — ex.: REFORMA HOME OFFICE].
+
+<span class="ph"># ENTRADA</span>
+Na pasta [PASTA — ex.: ./output] estão as saídas dos três comandos anteriores, junto com os renders que você já tiver:
+- levantamento.md e planta_atual.svg: medidas do cômodo, vãos, pé-direito e pontos fixos.
+- conceito_layout.md e planta_layout.svg: o conceito, a justificativa do layout e a posição e as cotas dos móveis.
+- especificacao.md: produtos com link, preço, dimensões L×P×A, material, cor e origem da geometria.
+- orcamento.xlsx.
+- pendencias.md.
+- As fotos originais do cômodo (o "antes").
+- Se já existirem: modelo .glb, renders e panorâmicas 360°. Use esses arquivos e não refaça a etapa correspondente.
+
+<span class="ph"># TAREFA</span>
+Faça o PEDIDO nesta ordem.
+
+<span class="ph">ETAPA 1 — MODELO 3D</span>
+- Ache o Blender instalado no computador. Se não achar, pergunte o caminho. Se a resposta for que não tem Blender, pule para a ETAPA 4.
+- Construa o cômodo exatamente com as dimensões do levantamento, em metros e escala real: espessura das paredes, pé-direito, vãos de porta e janela.
+- Posicione cada móvel como está na planta_layout.svg.
+- Se a especificação apontar um modelo 3D do fabricante e o arquivo estiver na pasta, importe esse modelo. Se não, modele paramétrico respeitando as dimensões da ficha, com forma, proporções, pés, braços e espessuras fiéis às fotos do produto.
+- Materiais PBR que reproduzam cor e textura reais de cada produto. Para usar texturas CC0 (Poly Haven, ambientCG), peça autorização antes de baixar. Sem autorização, use materiais procedurais do próprio Blender.
+- Valide: nenhum móvel no giro de porta, no vão de porta ou janela (mais 15 cm à frente), atravessando parede ou outro móvel. Liste as colisões encontradas em colisoes.json, também quando a lista sair vazia.
+- Exporte também o .glb, só com as cores base: as texturas procedurais não vão para esse formato. Registre isso em pendencias.md.
+
+<span class="ph">ETAPA 2 — RENDERS</span>
+- Cycles, denoise ativo, mínimo 512 samples, 2560×1440, gestão de cor AgX.
+- Iluminação: luz natural pelas janelas reais do levantamento (sol + céu/HDRI) e as luminárias especificadas, com a temperatura de cor da ficha. Janela marcada como vedada ou fechada não entra.
+- Câmeras: reproduzir os mesmos pontos de vista das fotos originais (comparativo antes/depois) e mais 2 vistas livres. Lente 24–28 mm, altura 1,50 m, verticais corrigidas. Se a foto for panorâmica ou grande-angular, o render é uma aproximação dela: escreva isso na legenda e em pendencias.md.
+- Faça um render de teste em baixa resolução, abra a imagem e analise: imagem preta (câmera dentro de um móvel), super ou subexposição, dominante de cor, peças sobrepostas. Corrija e só então rode o final.
+
+<span class="ph">ETAPA 3 — TOUR 360°</span>
+- Panorâmicas equirretangulares no Cycles, 4096×2048, com a mesma luz dos renders. Pontos: [PONTOS — ex.: centro do cômodo, entrada, banheiro, vista de quem está sentado na poltrona], cada um com altura declarada (1,50 m em pé; menor para quem está sentado ou deitado).
+- Primeiro uma panorâmica de teste em baixa resolução, para conferir a orientação e se o ponto não caiu dentro de um móvel.
+- Grave a posição de cada ponto (x, y, altura em metros) em tour360/pontos.json.
+
+<span class="ph">ETAPA 4 — PÁGINA</span>
+Um HTML autocontido, com imagens, plantas e o .glb embutidos no arquivo, e as seções:
+- levantamento;
+- plantas (atual e layout);
+- conceito e layout (de conceito_layout.md);
+- viewer 3D (three.js carregando o .glb);
+- tour 360°: visor arrastável, com marcadores clicáveis para pular de um ponto a outro;
+- antes e depois: cada foto original ao lado do render do mesmo ponto de vista;
+- tabela de produtos com links;
+- quantitativos com memória de cálculo;
+- colisões encontradas;
+- entregáveis: link relativo só para os arquivos que existem na pasta (ex.: orçamento, plantas, modelo; pranchas, só se existirem);
+- pendências.
+Aplique a identidade visual indicada no CONTEXTO. Sem endereço, cidade ou nome do cliente na página. Carimbo no rodapé: [NOME DO PROJETO] · REV. 00 · DATA · FOLHA X/Y.
+
+<span class="ph"># REGRAS</span>
+- Trabalhar numa pasta work ao lado da [PASTA] (crie se não existir); entregáveis finais na própria [PASTA].
+- Medida do modelo vem do levantamento ou da ficha. A que faltar é adotada e entra em pendencias.md como SUPOSIÇÃO, com o valor adotado e o motivo. Não apresente medida adotada como medida do levantamento.
+- Seção cujo arquivo não existe (sem Blender, render que falhou, foto que falta) fica fora da página e vira pendência com o motivo. Não preencha com imagem genérica.
+- Não copie para a página número que não esteja nos arquivos da pasta.
+- pendencias.md é acumulado: leia, não apague nem renumere o que os comandos anteriores escreveram, e acrescente ao fim. Prefixos deste comando: R3D- (modelo e renders) e PG- (página e tour). Situação: ABERTA, SUPOSIÇÃO ou RESOLVIDA (com data e fonte).
+
+<span class="ph"># SAÍDA</span>
+Na [PASTA]:
+- modelo_3d.glb
+- renders/ (vistas finais em PNG)
+- tour360/ (panorâmicas em PNG + pontos.json)
+- entrega.html
+- pendencias.md, com as entradas R3D- e PG- acrescentadas
+Em work: os scripts do Blender e colisoes.json.
+Na resposta: a lista das medidas adotadas como SUPOSIÇÃO, com o valor de cada uma, para eu confirmar.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+- Abra a página no navegador: o 3D carrega e gira? O tour arrasta e cada marcador leva ao ponto certo? Há erro no console ou id repetido? Sem navegador, registre "página não testada no navegador" em pendencias.md. Sem internet, o three.js não carrega: registre "3D e tour não testados (sem internet)".
+- Cada render final passou por um teste em baixa analisado antes?
+- colisoes.json existe e a seção de colisões da página diz o mesmo que ele?
+- Cada antes e depois compara o mesmo ponto de vista, e as aproximações estão marcadas?
+- Toda seção que ficou fora está em pendencias.md com o motivo?
+- Todo link da seção entregáveis abre um arquivo que existe na pasta?</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Entrega de projeto de interiores costuma ser imagem avulsa: um render por mensagem, a planta num PDF, a lista de produtos noutro arquivo, e o cliente montando o quebra-cabeça. E render bonito esconde o que ninguém conferiu: móvel no giro da porta, medida que ninguém tirou, ângulo que não é o da foto.</p>
+      <p>Esse prompt monta o cômodo no Blender em escala real com as medidas do levantamento, confere colisão de móvel com porta, janela e parede e só roda o render final depois de um teste em baixa que ele mesmo abre e analisa. Seção sem arquivo <strong>fica fora da página</strong> e vira pendência com o motivo, em vez de ganhar imagem genérica. Sem Blender não tem 3D, render nem tour: ele faz só a página com o que já está na pasta e anota o que ficou de fora.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><video muted autoplay loop playsinline preload="metadata" width="1116" height="560" poster="../../assets/prompts/entrega-3d/giro-3d.jpg" aria-label="Modelo 3D do quarto e do banheiro girando na própria página de entrega: paredes em escala real sem o teto, guarda-roupa ripado, cama com cabeceira em módulos, bancada com TV, trilho de spots e o box do banheiro"><source src="../../assets/prompts/entrega-3d/giro-3d.mp4" type="video/mp4"></video><figcaption><b>01 · Modelo 3D</b> O quarto e o banheiro modelados no Blender em escala real, sem o teto, girando dentro da própria página de entrega; na mesma seção, a checagem de interferências dá 7 verificações e nenhuma colisão.</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1116" height="620" poster="../../assets/prompts/entrega-3d/tour-360.jpg" aria-label="Tour 360° renderizado: a vista gira no centro do quarto, passando pelo quadro, pela TV e pela prateleira com fita de LED, e depois salta para o ponto Banheiro, com o revestimento em cotto e o espelho redondo"><source src="../../assets/prompts/entrega-3d/tour-360.mp4" type="video/mp4"></video><figcaption><b>02 · Tour 360°</b> Panorâmicas renderizadas no Cycles em 4 pontos (centro do quarto, entrada, banheiro e da cama): arrasta para olhar em volta e clica no ponto para mudar de lugar.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/entrega-3d/antes-depois-p1.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/entrega-3d/antes-depois-p1.webp" alt="Antes e depois do ponto P1 na página de entrega: em cima, a panorâmica original do quarto com paredes brancas e móveis soltos; embaixo, o render no mesmo ponto de vista com guarda-roupa ripado de freijó, porta do banheiro aberta para o revestimento em cotto e abajur aceso" width="1116" height="996" loading="lazy"></a><figcaption><b>03 · Antes e depois</b> A foto original do cômodo em cima e o render do mesmo ponto de vista embaixo; a página traz 3 pares assim (P1, P2 e P3) e mais 2 vistas livres, com a aproximação do ponto de vista marcada na legenda.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/entrega-3d/render-p1-detalhe.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/entrega-3d/render-p1-detalhe.webp" alt="Recorte em tamanho real do render P1 (2560 × 1440): o vão da porta do banheiro com o revestimento em cotto vertical, o box de vidro, a cuba de apoio sobre o gabinete ripado e o espelho redondo" width="620" height="1360" loading="lazy"></a><figcaption><b>04 · Render em tamanho real</b> Recorte 1:1 do render P1 (2560 × 1440, Cycles com 512 amostras): revestimento, vidro do box e ripado do gabinete aparecem no detalhe.</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot p-demo"><iframe class="p-demo-frame" src="../../assets/prompts/entrega-3d/demo.html" title="Prévia interativa de parte do modelo 3D: só o quarto" loading="lazy"></iframe><figcaption><b>05 · Prévia do 3D</b> Parte do modelo que o prompt devolveu, só o quarto: toque em Explorar o 3D, arraste para girar e use a roda do mouse ou o gesto de pinça para aproximar.</figcaption></figure>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Modelo 3D, tour 360° e antes e depois · Dados reais anonimizados</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>O HTML é um arquivo só, mas o viewer 3D e o tour carregam o three.js pela internet. Sem conexão, essas duas seções não abrem, e quando ele não consegue testar isso fica escrito em pendências. Antes de mandar pro cliente, abre o arquivo noutra máquina, com internet, e gira o modelo.</li>
+          <li><strong>Nenhuma colisão</strong> quer dizer nenhuma das que ele procurou: giro e vão de porta, vão de janela com 15 cm à frente, móvel atravessando parede ou outro móvel. No exemplo foram 7 verificações, todas limpas. Tomada, interruptor e ar-condicionado que não estão no levantamento não existem pro modelo: confere no local antes de mandar fazer marcenaria.</li>
+          <li>O antes e depois compara o mesmo ponto de vista, mas <em>aproximado</em>: foto panorâmica ou grande-angular não se reproduz com lente de 24–28 mm, e a legenda avisa. No exemplo são 3 pares (P1, P2 e P3) e mais 2 vistas livres. Mostra pro cliente como o mesmo canto do cômodo, não como montagem em cima da foto dele.</li>
+          <li>O <code>modelo_3d.glb</code> leva só a cor base: textura procedural não sai do Blender nesse formato, e o prompt manda registrar isso em pendências. Quem abrir o .glb noutro programa vê cor chapada, sem a textura que aparece nos renders. E textura CC0 baixada da internet, só com a sua autorização.</li>
+          <li>Altura de porta, peitoril, posição de louça: o que o levantamento não tem, ele adota, segue o trabalho e te devolve no fim como <strong>SUPOSIÇÃO</strong>, com o valor de cada uma. O render fica igualzinho com medida tirada ou chutada. Responde a lista antes de mandar a entrega, porque render lindo com peitoril chutado é só chute com iluminação boa.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../levantamento/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Levantamento</span>
+        </a>
+        <a class="p-passo" href="../especificacao/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Especificação</span>
+        </a>
+        <a class="p-passo" href="../orcamento-interiores/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Orçamento</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 04</span>
+          <span class="nome">Entrega 3D</span>
+        </span>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt do croqui à planta cotada em escala, com as pendências marcadas · William Moura</title>
+<meta name="description" content="Prompt aberto que lê croqui, fotos e vídeo do cômodo e devolve a planta cotada 1:50, com o que não dá pra medir marcado N/E. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/levantamento/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/levantamento/">
+<meta property="og:title" content="Do croqui à planta cotada em escala">
+<meta property="og:description" content="IA desenhando planta a partir de foto inventa medida. Este prompt cota só o que está no croqui e devolve a planta 1:50, a tabela com a origem de cada linha e a lista de pendências. Passo 01 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-levantamento.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Do croqui à planta cotada em escala">
+<meta name="twitter:description" content="IA desenhando planta a partir de foto inventa medida. Este prompt cota só o que está no croqui e devolve a planta 1:50, a tabela com a origem de cada linha e a lista de pendências. Passo 01 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-levantamento.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 01 de 04 · Levantamento do estado atual a partir de croqui</p>
+
+    <div class="p-cabeca">
+      <h1>Do croqui à <span class="marca">planta cotada em escala</span>, com as pendências marcadas</h1>
+    </div>
+
+    <p class="p-sub">Ele lê o croqui, as fotos e o vídeo do cômodo e devolve a planta 1:50 em SVG, a tabela do levantamento com status e origem de cada linha e a lista de pendências.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-levantamento" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-levantamento" tabindex="0" role="region" aria-label="Prompt do passo 01, rolável"><span class="ph"># PEDIDO</span>
+Anexei o croqui do cômodo feito à mão, com as cotas medidas, fotos e um vídeo do ambiente. Quero a planta do estado atual em escala 1:50, cotada, em SVG. Regra: use só as medidas do croqui e as que eu informar. Tudo o que não der para medir, marque como NÃO EXTRAÍVEL, na planta e numa tabela. Não invente medida. No fim, me dê a lista de todas as pendências.
+
+<span class="ph"># FERRAMENTAS</span>
+Este comando precisa ler imagens. Se o vídeo vier em .mp4, precisa também extrair quadros dele (ffmpeg ou execução de código). Se o seu chat não fizer isso, não descreva o vídeo por suposição: diga que não conseguiu abrir e peça os quadros como imagens, com o segundo de cada um.
+Precisa também gravar arquivos. Se o seu chat não grava arquivos, entregue cada arquivo da SAÍDA inteiro, num bloco de texto com o nome dele na primeira linha.
+
+<span class="ph"># CONTEXTO</span>
+Projeto de reforma de um cômodo residencial: [CÔMODO — ex.: quarto de casal com banheiro anexo].
+Escopo da reforma: [ESCOPO — ex.: só o quarto; o banheiro fica como está; ou "a definir"].
+O que eu já sei e não está no croqui: [DADOS INFORMADOS — ex.: pé-direito 2,60 m; paredes de 15 cm; ou "nada"].
+Convenção das cotas do croqui: [CONVENÇÃO — ex.: internas, de face a face; ou "não sei"].
+
+<span class="ph"># ENTRADA</span>
+Arquivos anexados:
+- croqui.[jpg/pdf]: rascunho da planta à mão, com cotas
+- fotos numeradas (foto_01, foto_02...): fotos ou panorâmicas do estado atual
+- video.mp4 (ou quadros dele): percurso pelo cômodo
+- pendencias.md, se já existir de uma volta anterior
+
+<span class="ph"># TAREFA</span>
+Levantamento do estado atual. Parar e pedir aprovação ao fim.
+1. Ler o croqui, as fotos e o vídeo e extrair paredes, vãos (portas/janelas), pé-direito e pontos fixos (elétrica, hidráulica, pilares).
+2. Usar as fotos e o vídeo para conferir e complementar: posição de janelas, peitoris, tomadas, piso e acabamentos existentes. Foto e vídeo mostram o que existe e onde; não servem para medir.
+3. Entregar uma tabela de levantamento: código hierárquico | elemento | dimensão | unidade (coluna própria) | memória de cálculo / origem (croqui, foto ou quadro do vídeo).
+4. Desenhar a planta pedida acima só com os valores da tabela.
+5. Parar e me perguntar o que faltou. Não seguir para layout, estilo ou produto.
+
+<span class="ph"># REGRAS</span>
+- Toda linha da tabela tem um status: COTADO (escrito no croqui), INFORMADO (eu disse), CONFIRMADO (leitura do croqui que eu validei), CALC. (conta feita só com cotas, escrita na memória) ou NÃO EXTRAÍVEL (N/E).
+- Linha N/E leva o motivo e fica sem valor: não estime, não arredonde, não complete. Na planta, o N/E aparece marcado, não desenhado como se fosse medida.
+- Não ver um elemento não prova que ele não existe. Escreva "não identificado", diga onde procurou e que isso não comprova que não exista.
+- No topo do levantamento: fontes com sigla (CR para o croqui, P1, P2... para as fotos, V para o vídeo), convenção das cotas, origem (0,0) e sentido dos eixos. Norte só se eu informar; senão, N/E.
+- Conta que depende de suposição diz qual é (ex.: área supõe cantos a 90°, não verificado).
+- Leitura duvidosa do croqui (algarismo sobre um risco, letra borrada): use o valor lido, marque "a confirmar" e pergunte.
+- Planta: escala 1:50 escrita na folha, formato da folha declarado (ex.: A4 paisagem), legenda e faces cotadas. Espessura de parede só se cotada ou informada; senão, linha simples e uma nota.
+- Vão sem largura conhecida aparece como zona marcada em tracejado, na cor de alerta definida na legenda da planta, sem largura inventada. Vão com largura, mas sem posição medida, fica na posição do croqui, na mesma cor de alerta, com a nota "posição não medida".
+
+<span class="ph"># SAÍDA</span>
+Salve na pasta de saída do projeto (ex.: output/):
+- levantamento.md: cabeçalho do topo, legenda de status, tabela e escopo.
+- planta_atual.svg: a planta do pedido.
+- pendencias.md: arquivo acumulado da série. Se já existir, leia, não apague e acrescente. Uma entrada por suposição, item não verificado ou aproximado, com código (E- para entradas, P- para levantamento, R- para representação na planta), situação (ABERTA, SUPOSIÇÃO ou RESOLVIDA, esta com data e fonte) e motivo.
+No fim, no chat: a lista de todas as pendências ABERTAS e SUPOSIÇÃO, por código, e depois perguntas numeradas para os N/E que travam o layout (pé-direito, largura e posição das portas, janelas, o que fica e o que sai, leituras a confirmar). Pare aí.
+Quando eu responder, atualize os três arquivos como rev. 01: a linha muda para INFORMADO ou CONFIRMADO, com a data, e a pendência vira RESOLVIDA, com a data e a fonte.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+- Toda linha tem status e origem?
+- Algum valor que não está no croqui, não foi informado e não é conta de cotas? Se sim, ele vira N/E.
+- Todo N/E tem motivo e aparece em pendencias.md ou nas perguntas?
+- A planta usa só valores da tabela? Medida na escala, ela dá as cotas do croqui?
+- Entrou móvel, layout ou estilo? Tire.
+
+Os três arquivos alimentam o comando 2, junto com o conceito.md que você escreve à mão com: uso do cômodo; estilo e referências; orçamento-alvo; o que fica e o que sai; exigências do morador.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Levantamento de reforma pequena quase sempre começa com um croqui à mão, umas fotos e um vídeo andando pelo cômodo. Pedir planta pra IA em cima disso é pedir pra ela adivinhar: a porta ganha largura, a janela ganha posição e o desenho sai bonito com medida que ninguém tirou.</p>
+      <p>Esse prompt só cota o que está no croqui ou o que você informou; foto e vídeo servem pra ver o que existe e onde, <strong>não pra medir</strong>. O que falta vira <strong>N/E</strong> com o motivo e sem número no lugar, sai tracejado na planta e entra na lista de pendências. E ele se recusa a dizer que não tem pilar só porque não viu nenhum.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><a class="p-shot-zoom" href="../../assets/prompts/levantamento/planta-cotada.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/levantamento/planta-cotada.webp" alt="Planta do estado atual em escala 1:50: quarto de 245 por 283 cm com área de 6,93 m² e pé-direito 270, banheiro com box de 65 e área de 145 por 79 cm, portas de 60 e 80 cm e a janela do shaft em linha tracejada azul, com o aviso de posição e dimensão não informadas" width="1875" height="1686" loading="lazy"></a><figcaption><b>01 · Planta cotada 1:50</b> Só as medidas do croqui viram cota: 245 × 283 no quarto, 65 + 145 × 79 no banheiro. Portas e a janela do shaft, que ninguém mediu, saem tracejadas e com aviso escrito.</figcaption></figure>
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/levantamento/planta-alertas.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/levantamento/planta-alertas.webp" alt="Quadro da planta com notas, alertas e legenda: posição das portas sem cota, janela do quarto sem medidas, janela do banheiro, louças e pontos não locados, esquadro e norte não informados, e a legenda do tracejado para elemento com posição ou medida a confirmar" width="966" height="705" loading="lazy"></a><figcaption><b>02 · Alertas na folha</b> O que falta medir fica na própria planta, com o código da pendência ao lado: posição das portas, janelas, louças, pontos, esquadro e norte.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/levantamento/levantamento-pontos-fixos.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/levantamento/levantamento-pontos-fixos.webp" alt="Trecho da tabela do levantamento, grupo Pontos fixos: tomadas e interruptores com altura N/E, pontos de luz do teto N/E, louças presentes e a linha 4.10 selecionada, pilares não identificados, isso não comprova que não existam" width="768" height="1784" loading="lazy"></a><figcaption><b>03 · Tabela do levantamento</b> Cada linha diz de onde veio (croqui, foto P1 a P3, quadro do vídeo V). Sem medida, a linha fica N/E com o motivo, sem número no lugar. Na 4.10: não ter visto pilar não prova que não exista.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito p-shot-pend"><a class="p-shot-zoom" href="../../assets/prompts/levantamento/pendencias-levantamento.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/levantamento/pendencias-levantamento.webp" alt="Lista de pendências, suposições e itens não verificados, rev. 03: entradas, as pendências do levantamento P-01 a P-15 com situação aberta, resolvida ou suposição, e as notas de representação" width="840" height="2214" loading="lazy"></a><figcaption><b>04 · Lista de pendências</b> Cada item com situação: aberta, resolvida ou suposição. Na lista, 6 seguem abertas: E-02 nas entradas e 5 no levantamento, entre elas alturas de portas e tomadas, pilares e a posição das louças.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Trecho do levantamento: elementos marcados como não extraíveis, com unidade e memória de origem, e a linha dos pilares</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Elemento</th>
+              <th scope="col">Dimensão</th>
+              <th scope="col">Unidade</th>
+              <th scope="col">Memória de cálculo / origem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">1.7</td>
+              <td class="col-serv">Esquadro (ângulos dos cantos)</td>
+              <td class="col-num">N/E</td>
+              <td>°</td>
+              <td class="col-mem">Croqui à mão, sem diagonais medidas</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.8</td>
+              <td class="col-serv">Rebaixo de teto / sanca junto ao armário</td>
+              <td class="col-num">N/E</td>
+              <td>cm</td>
+              <td class="col-mem">Visível em V f_14–f_15 e P2; não há medidas</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">3.2</td>
+              <td class="col-serv">Porta do banheiro — altura</td>
+              <td class="col-num">N/E</td>
+              <td>cm</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> Sem cota</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">3.4</td>
+              <td class="col-serv">Vão com batente removido (alvenaria exposta)</td>
+              <td class="col-num">N/E</td>
+              <td>cm</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> P1 (centro), V f_15–f_16: vão sem guarnição, tijolo aparente, dando para a sala de jantar. Falta confirmar se é a mesma "Door" de 3.3 (P-03)</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">3.6</td>
+              <td class="col-serv">Janela do banheiro — basculante de alumínio, 2 folhas, vidro canelado</td>
+              <td class="col-num">N/E</td>
+              <td>cm</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> P3 e V f_08. Sem medidas nem peitoril</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3.7</td>
+              <td class="col-serv">Janela pequena do quarto</td>
+              <td class="col-num">N/E</td>
+              <td>cm</td>
+              <td class="col-mem">Cliente: fica em um shaft, com luz muito baixa; será vedada. Dimensões e posição reais não levantadas; o cliente informou que a posição usada no rev. 01 estava errada</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">4.1</td>
+              <td class="col-serv">Elétrica — conjunto de 2 caixas 4×2 (interruptor/tomada) a meia altura</td>
+              <td class="col-num">N/E</td>
+              <td>un / cm</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> P1: parede à esquerda do vão 3.4. Quantidade visível: 1 conjunto. Altura não extraível</td>
+            </tr>
+            <tr>
+              <td class="col-cod">4.6</td>
+              <td class="col-serv">Pontos de luz no teto do quarto</td>
+              <td class="col-num">N/E</td>
+              <td>un</td>
+              <td class="col-mem">O teto do quarto não aparece de forma legível</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">4.10</td>
+              <td class="col-serv">Pilares</td>
+              <td class="col-num">não identificado</td>
+              <td>—</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> Nada no CR nem nas imagens. Isso não comprova que não existam</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída real · planta rev. 03, levantamento rev. 02 · anonimizada</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Porta com largura informada, mas sem posição medida, fica onde o croqui desenhou, tracejada na cor de alerta. Na tela parece medida e não é: antes de encostar marcenaria no vão, mede o afastamento do canto.</li>
+          <li>Área e perímetro saem de conta com as cotas, e a conta supõe cantos a 90°. Em croqui à mão ninguém mediu esquadro (a linha de esquadro sai N/E). Antes de comprar piso pela área, tira as diagonais do cômodo.</li>
+          <li>Vídeo só entra no levantamento se o seu chat extrair quadros dele. O prompt manda ele avisar quando não consegue e pedir os quadros como imagem. Se ele descreveu o vídeo mesmo assim, desconfia: é chute com cara de levantamento.</li>
+          <li>Lê a lista de pendências antes de seguir pro layout. <strong>SUPOSIÇÃO</strong> não é <strong>RESOLVIDA</strong>: no exemplo, a tabela saiu com 19 linhas N/E, a lista com 6 pendências abertas, e o pé-direito do banheiro foi assumido igual ao do quarto, sem conferir forro. Responde as perguntas que ele faz no fim e pede a rev. 01 dos três arquivos, senão o passo 02 herda o buraco.</li>
+          <li>Pilar "não identificado" não é pilar inexistente. Vai quebrar parede? Confere a estrutura, não a foto de celular.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo consome a saída do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 01</span>
+          <span class="nome">Levantamento</span>
+        </span>
+        <a class="p-passo" href="../especificacao/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Especificação</span>
+        </a>
+        <a class="p-passo" href="../orcamento-interiores/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Orçamento</span>
+        </a>
+        <a class="p-passo" href="../entrega-3d/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Entrega 3D</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>
