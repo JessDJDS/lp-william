@@ -20,9 +20,15 @@ function vagasFiltradas(){
   );
 }
 function fmtData(iso){
+  if(!iso) return "";
   const [a,m,d] = iso.split("-");
   return `${d}.${m}.${a}`;
 }
+
+/* campos opcionais: o vagas.json pode trazer null em cidade, senioridade,
+   lat/lon etc. Nada abaixo pode quebrar nem imprimir "null" quando vier vazio. */
+const temCoord = v => Number.isFinite(v.lat) && Number.isFinite(v.lon);
+const localDaVaga = v => [v.cidade, v.pais].filter(Boolean).join(" · ");
 
 /* dias corridos até o prazo (ISO YYYY-MM-DD). null se a vaga não tem prazo. */
 function diasRestantes(prazoIso){
@@ -60,14 +66,14 @@ function renderPainel(){
     <h3>${v.cargo}</h3>
     <p class="empresa">${v.empresa}</p>
     <ul class="metas">
-      <li>${v.cidade} · ${v.pais}</li>
-      <li>${v.senioridade}</li>
-      <li>${v.idioma}</li>
+      ${localDaVaga(v) ? `<li>${localDaVaga(v)}</li>` : ''}
+      ${v.senioridade ? `<li>${v.senioridade}</li>` : ''}
+      ${v.idioma ? `<li>${v.idioma}</li>` : ''}
       ${v.visto === true ? '<li>Patrocina visto</li>' : v.visto === false ? '<li>Não patrocina visto</li>' : ''}
       ${rotuloPrazo(v.prazo) ? `<li class="prazo${diasRestantes(v.prazo) <= 3 ? ' prazo-urgente' : ''}">${rotuloPrazo(v.prazo)}</li>` : ''}
     </ul>
     <p class="resumo">${v.resumo}</p>
-    <ul class="reqs">${v.requisitos.map(r => `<li>${r}</li>`).join("")}</ul>
+    ${(v.requisitos || []).length ? `<ul class="reqs">${v.requisitos.map(r => `<li>${r}</li>`).join("")}</ul>` : ''}
     <div class="painel-acoes">
       <a class="btn-vaga" href="${v.url}" target="_blank" rel="noopener" data-analytics="vaga-${v.id}">Ver vaga original ↗</a>
       <button type="button" class="btn-compartilhar" data-compartilhar="${v.id}" data-analytics="compartilhar-${v.id}">Compartilhe essa vaga</button>
@@ -125,10 +131,10 @@ function renderLista(){
   box.innerHTML = lista.map(v => `
     <button class="linha-vaga" role="listitem" data-id="${v.id}"
       aria-current="${v.id === vagaAtiva}"
-      aria-label="${v.cargo}, ${v.empresa}, ${v.cidade}, ${v.pais}">
+      aria-label="${[v.cargo, v.empresa, v.cidade, v.pais].filter(Boolean).join(", ")}">
       <span>
         <span class="cargo">${v.cargo}</span><br>
-        <span class="meta">${v.empresa} · ${v.cidade}${rotuloPrazo(v.prazo) ? ` · <span class="prazo${diasRestantes(v.prazo) <= 3 ? ' prazo-urgente' : ''}">${rotuloPrazo(v.prazo)}</span>` : ''}</span>
+        <span class="meta">${[v.empresa, v.cidade].filter(Boolean).join(" · ")}${rotuloPrazo(v.prazo) ? ` · <span class="prazo${diasRestantes(v.prazo) <= 3 ? ' prazo-urgente' : ''}">${rotuloPrazo(v.prazo)}</span>` : ''}</span>
       </span>
       <span class="pais">${v.pais}</span>
     </button>
@@ -144,8 +150,8 @@ function montarFiltros(){
   const selPais = document.getElementById("sel-pais");
   const selSen = document.getElementById("sel-senioridade");
   const selVisto = document.getElementById("sel-visto");
-  [...new Set(VAGAS.map(v => v.pais))].forEach(p => selPais.add(new Option(p, p)));
-  [...new Set(VAGAS.map(v => v.senioridade))].forEach(s => selSen.add(new Option(s, s)));
+  [...new Set(VAGAS.map(v => v.pais).filter(Boolean))].forEach(p => selPais.add(new Option(p, p)));
+  [...new Set(VAGAS.map(v => v.senioridade).filter(Boolean))].forEach(s => selSen.add(new Option(s, s)));
   selPais.addEventListener("change", () => { filtro.pais = selPais.value || null; atualizar(); });
   selSen.addEventListener("change", () => { filtro.senioridade = selSen.value || null; atualizar(); });
   selVisto.addEventListener("change", () => { filtro.visto = selVisto.value === "sim"; atualizar(); });
@@ -267,7 +273,7 @@ function desenharPins(){
   }
 
   lista.forEach(v => {
-    if(!visivel(v.lon, v.lat)) return;
+    if(!temCoord(v) || !visivel(v.lon, v.lat)) return;
     const [x,y] = projection([v.lon, v.lat]);
     const ativo = v.id === vagaAtiva;
     g.append("rect")
@@ -277,7 +283,7 @@ function desenharPins(){
       .attr("fill","#F4C70F").attr("stroke","#16130E").attr("stroke-width",1.5)
       .attr("tabindex",0)
       .attr("role","button")
-      .attr("aria-label",`${v.cargo} em ${v.cidade}, ${v.pais}`)
+      .attr("aria-label", localDaVaga(v) ? `${v.cargo} em ${localDaVaga(v)}` : v.cargo)
       .on("click", () => selecionarVaga(v.id, true, true))
       .on("keydown", ev => {
         if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); selecionarVaga(v.id, true, true); }
@@ -296,7 +302,7 @@ function desenharPins(){
         .attr("text-anchor", dx < 0 ? "end" : "start")
         .attr("font-family","'Space Mono',monospace").attr("font-size","10px")
         .attr("letter-spacing",".12em").attr("fill",COR_CHAMADA)
-        .text(v.cidade.toUpperCase());
+        .text((v.cidade || "").toUpperCase());
     }
   });
 }
@@ -327,7 +333,7 @@ function selecionarVaga(id, girar, rolarAtePainel){
   const v = VAGAS.find(x => x.id === id);
   renderPainel();
   renderLista();
-  if(girar && projection) girarAte(v.lon, v.lat);
+  if(girar && projection && temCoord(v)) girarAte(v.lon, v.lat);
   else desenharPins();
   // pin clicado no hero: painel fica abaixo da dobra — rola até ele se não estiver visível
   if(rolarAtePainel){
