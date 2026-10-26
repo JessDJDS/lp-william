@@ -1,0 +1,16 @@
+Este projeto usa Google Fonts via CDN (Space Grotesk + Montserrat),
+carregadas no <head> do index.html. Por isso esta pasta está vazia.
+
+Se quiser hospedar as fontes localmente (deixa o site 100% offline-first
+e um pouco mais rápido em algumas redes):
+
+1. Baixe os arquivos .woff2 de:
+   https://fonts.google.com/specimen/Space+Grotesk
+   https://fonts.google.com/specimen/Montserrat
+2. Coloque-os aqui dentro de assets/fonts/
+3. No topo do assets/css/style.css, adicione @font-face apontando
+   pra esses arquivos (ex: url("../fonts/SpaceGrotesk-Bold.woff2"))
+4. Remova as duas tags <link> do Google Fonts no <head> do index.html
+
+Sem isso, nada muda — o site funciona normalmente, só depende de
+uma conexão com fonts.googleapis.com no primeiro carregamento.

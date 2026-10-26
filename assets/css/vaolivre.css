@@ -1,0 +1,75 @@
+/* ============ VÃO LIVRE — estende style.css, não substitui ============ */
+
+/* hero da página — mesma receita do .hero principal, só sem o globo */
+.hero-vl{padding:110px 0 56px}
+.hero-vl .wrap{max-width:900px}
+
+/* "vão livre" como subtítulo logo abaixo do H1 — reaproveita .eyebrow,
+   que já nasce com a barrinha amarela e a tipografia mono; aqui ele
+   vem DEPOIS do título em vez de antes */
+.hero-vl .eyebrow{margin-top:0}
+
+/* ============ QUEM VAI TE ACOMPANHAR ============ */
+.sec-acompanha{padding-bottom:80px}
+.sec-acompanha h2{
+  font-size:clamp(28px,4vw,40px);
+  line-height:1.08;letter-spacing:-.015em;
+  max-width:16em;
+}
+/* cards ~40% menores que a versão anterior: grid deixa de ocupar o wrap
+   inteiro e passa a ter uma largura máxima própria, centralizada */
+.acompanha-grid{
+  display:grid;grid-template-columns:1.35fr 1fr;
+  gap:16px;margin:44px auto 0;
+  max-width:680px;
+  align-items:start;
+}
+.pessoa-card{
+  border:1.5px solid var(--grafite);
+  background:var(--papel);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.pessoa-foto{aspect-ratio:4/5;background:var(--papel2);overflow:hidden}
+.pessoa-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.pessoa-info{padding:14px 15px 16px}
+.pessoa-papel{
+  font-family:'Space Mono',monospace;font-size:9.5px;
+  text-transform:uppercase;letter-spacing:.14em;
+  color:var(--tijolo);
+}
+.pessoa-nome{
+  font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400;
+  line-height:1.05;color:var(--grafite);margin-top:5px;
+}
+.pessoa-principal .pessoa-nome{font-size:22px}
+.pessoa-card:not(.pessoa-principal) .pessoa-nome{font-size:14px}
+.pessoa-etiqueta{
+  display:inline-block;margin-top:9px;
+  background:var(--grafite);color:var(--amarelo);
+  font-family:'Space Mono',monospace;font-size:8px;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 7px;
+}
+/* botões de rede social nos cards */
+.pessoa-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.pessoa-link{
+  font-family:'Space Mono',monospace;font-size:8.5px;
+  text-transform:uppercase;letter-spacing:.1em;
+  border:1px solid var(--grafite);color:var(--grafite);
+  padding:5px 8px;
+}
+.pessoa-link:hover{background:var(--grafite);color:var(--papel)}
+@media (max-width:760px){
+  .acompanha-grid{grid-template-columns:1fr;max-width:280px}
+  .pessoa-principal .pessoa-nome{font-size:22px}
+}
+
+/* ============ FORMULÁRIO (TALLY) ============ */
+.sec-form{padding-bottom:90px}
+.sec-form h2{
+  font-size:clamp(26px,3.6vw,36px);
+  line-height:1.1;max-width:20em;
+}
+.tally-moldura{margin-top:36px}
+.tally-moldura iframe{display:block;width:100%;border:none}

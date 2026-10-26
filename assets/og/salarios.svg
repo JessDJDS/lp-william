@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Quanto ganha cada engenharia no Brasil — painel de salários da RAIS 2025">
+  <rect width="1200" height="630" fill="#16130E"/>
+  <g stroke="#3A342A" stroke-width="1">
+    <path d="M0 84.5H1200M0 168.5H1200M0 252.5H1200M0 336.5H1200M0 420.5H1200M0 504.5H1200M0 588.5H1200"/>
+    <path d="M84.5 0V630M168.5 0V630M252.5 0V630M336.5 0V630M420.5 0V630M504.5 0V630M588.5 0V630M672.5 0V630M756.5 0V630M840.5 0V630M924.5 0V630M1008.5 0V630M1092.5 0V630"/>
+  </g>
+
+  <rect x="80" y="94" width="52" height="12" fill="#F4C70F"/>
+  <text x="148" y="106" font-family="'Space Mono',monospace" font-size="18" letter-spacing="2.9" fill="#A8A091">DADOS ABERTOS · RAIS 2025 · MINISTÉRIO DO TRABALHO</text>
+
+  <g font-family="Anton,'Arial Black',sans-serif" font-size="78" fill="#F1EDE2" letter-spacing="-1">
+    <text x="80" y="230">QUANTO GANHA CADA</text>
+    <text x="80" y="312">ENGENHARIA</text>
+    <rect x="80" y="342" width="436" height="66" fill="#F4C70F"/>
+    <text x="84" y="394" fill="#16130E" textLength="400" lengthAdjust="spacingAndGlyphs">NO BRASIL</text>
+  </g>
+
+  <path d="M80 452H1120" stroke="#3A342A" stroke-width="1.5"/>
+  <text x="80" y="498" font-family="Montserrat,Arial,sans-serif" font-weight="500" font-size="26" fill="#A8A091">Mediana por engenharia, por ocupação, por região e por idade —</text>
+  <text x="80" y="534" font-family="Montserrat,Arial,sans-serif" font-weight="500" font-size="26" fill="#A8A091">direto dos vínculos formais. Filtra do jeito que quiser.</text>
+  <text x="80" y="596" font-family="'Space Mono',monospace" font-size="18" letter-spacing="2.5" fill="#F4C70F">SEM CADASTRO · SEM E-MAIL</text>
+
+  <text x="1120" y="106" text-anchor="end" font-family="'Space Mono',monospace" font-size="18" letter-spacing="2.5" fill="#A8A091">REV. 01</text>
+  <text x="1120" y="596" text-anchor="end" font-family="Anton,'Arial Black',sans-serif" font-size="26" fill="#F4C70F">@OWILLIAMOURA</text>
+</svg>
