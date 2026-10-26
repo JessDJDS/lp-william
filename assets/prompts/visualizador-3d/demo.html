@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modelo 3D Tubulações</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1EDE2; --bg2:#F8F5EE; --panel:rgba(248,245,238,.92); --line:#D8D1C2;
+  --text:#16130E; --muted:#6E685C; --accent:#F4C70F; --on-accent:#16130E; --cota:#16130E; --cia:#14556B;
+  --hid:#1080F8; --san:#80FF80; --vent:#008040; --dre:#800040; --dr:#F040A0; --pend:#B23A1E;
+  --arch:#8C8577; --grid:#D8D1C2; --grid2:#E7E1D4; --louca:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+  --bg:#16130E; --bg2:#221E17; --panel:rgba(30,26,20,.9); --line:#3A342A;
+  --text:#F1EDE2; --muted:#A39C8E; --accent:#F4C70F; --on-accent:#16130E; --cota:#F4C70F; --cia:#4E93AA;
+  --hid:#1080F8; --san:#80FF80; --vent:#008040; --dre:#800040; --dr:#F040A0; --pend:#D9573A;
+  --arch:#8C8577; --grid:#2E2921; --grid2:#221E17; --louca:#E7E1D4;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16130E; --bg2:#221E17; --panel:rgba(30,26,20,.9); --line:#3A342A;
+  --text:#F1EDE2; --muted:#A39C8E; --accent:#F4C70F; --on-accent:#16130E; --cota:#F4C70F; --cia:#4E93AA;
+  --hid:#1080F8; --san:#80FF80; --vent:#008040; --dre:#800040; --dr:#F040A0; --pend:#D9573A;
+  --arch:#8C8577; --grid:#2E2921; --grid2:#221E17; --louca:#E7E1D4;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:13px;overflow:hidden;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#app{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse 80% 70% at 55% 45%,var(--bg2),var(--bg) 75%)}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none}
+#app.measuring #gl{cursor:crosshair}
+
+.panel{position:absolute;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.panel::before,.panel::after{content:"";position:absolute;width:9px;height:9px;border:solid var(--accent);pointer-events:none}
+.panel::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.panel::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+.scroll{overflow:auto;max-height:100%;padding:14px 16px;width:100%}
+
+#side{top:14px;left:14px;width:300px;bottom:44px;display:flex}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+h1{font-size:18px;line-height:1.25;font-weight:600;margin:0;letter-spacing:-.01em}
+.sub{font-size:12px;color:var(--muted);margin-top:3px}
+.link{background:none;border:0;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;padding:2px 0;text-decoration:underline;text-underline-offset:3px}
+.link:hover{color:var(--text)}
+.sec{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+.collapsed .sec{display:none}
+#side.collapsed{bottom:auto}
+.sec-h{font-size:12px;color:var(--muted);margin-bottom:7px;display:flex;justify-content:space-between;gap:8px}
+
+.tog{display:grid;grid-template-columns:4px 1fr auto;gap:10px;align-items:center;width:100%;background:transparent;border:1px solid var(--line);color:var(--text);padding:6px 10px 6px 6px;margin-bottom:5px;cursor:pointer;font:inherit;text-align:left}
+.tog:hover{border-color:var(--muted)}
+.tog[aria-pressed="false"]{opacity:.4}
+.tog .sw{align-self:stretch;min-height:24px;background:var(--c)}
+.tog .sw.thin{width:2px;justify-self:center}
+.tog .n{font-size:13px;font-weight:500;line-height:1.2}
+.tog .n small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:2px}
+.tog .c{font-size:11.5px;color:var(--muted)}
+.tog.st{grid-template-columns:14px 1fr auto}
+.tog.pv{grid-template-columns:1fr auto;padding-left:10px}
+.gl{width:10px;height:10px;transform:rotate(45deg);margin-left:2px}
+.gl.EXT{background:var(--text)} .gl.INF{border:1.5px dashed var(--text)} .gl.PEN{background:var(--pend)}
+.tog:focus-visible,.btn:focus-visible,.link:focus-visible,.dv:focus-visible,.ct:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+
+.chk{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;user-select:none;font-size:12.5px}
+.chk input{accent-color:var(--accent);margin:0}
+select,input[type=text]{width:100%;font:inherit;font-size:12.5px;background:transparent;color:var(--text);border:1px solid var(--line);padding:6px 8px;border-radius:0}
+select option{background:var(--bg2);color:var(--text)}
+input[type=text]{font-family:"IBM Plex Mono",monospace}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.row{display:flex;gap:6px;margin-top:6px}
+.row>*{flex:1}
+.btn{background:var(--panel);border:1px solid var(--line);color:var(--text);font:inherit;font-size:12.5px;padding:7px 12px;cursor:pointer;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:0}
+.btn:hover{border-color:var(--muted)}
+.btn.on{border-color:var(--text);color:var(--text);box-shadow:inset 0 -3px 0 var(--accent)}
+.btn.sm{padding:5px 8px;font-size:12px;background:transparent}
+#sugg{max-height:130px;overflow:auto;margin-top:4px}
+#sugg button{display:block;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);font-family:"IBM Plex Mono",monospace;font-size:11.5px;padding:4px 2px;cursor:pointer}
+#sugg button:hover{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.stat{border:1px solid var(--line);padding:7px 9px}
+.stat b{display:block;font-size:20px;font-weight:500;line-height:1.1}
+.stat span{font-size:11px;color:var(--muted)}
+.stat.pen b{color:var(--pend)}
+.note{font-size:11.5px;color:var(--muted);line-height:1.45;margin:0}
+
+#tools{position:absolute;top:14px;right:14px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#tools .sepr{width:1px;background:var(--line);margin:0 2px}
+
+#detail{top:58px;right:14px;width:356px;bottom:44px;display:flex;flex-direction:column;border-top:2px solid var(--c,var(--text))}
+.tabs{display:flex;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;background:transparent;border:0;border-right:1px solid var(--line);color:var(--muted);font:inherit;font-size:12.5px;padding:8px 4px;cursor:pointer}
+.tabs button:last-child{border-right:0}
+.tabs button.on{color:var(--text);box-shadow:inset 0 -2px 0 var(--accent)}
+.tabs .mintab{flex:0 0 auto;padding:8px 10px;color:var(--muted)}
+#detail.mini{bottom:auto;width:auto}
+#detail.mini .pane,#detail.mini .tabs button[data-tab]{display:none}
+#detail.mini .tabs{border-bottom:0}
+#detail.mini .mintab{color:var(--text)}
+.pane{display:none;overflow:auto;padding:14px 16px;flex:1}
+.pane.act{display:block}
+.d-top{display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:11px;padding:2px 8px;border:1px solid currentColor}
+.badge.EXTRAÍDO{color:var(--text)} .badge.INFERIDO{color:var(--on-accent);background:var(--accent);border-color:var(--accent)} .badge.PENDENTE{color:var(--pend)}
+.d-id{font-size:13px;color:var(--text);margin-top:10px}
+.d-title{font-size:17px;font-weight:600;margin-top:2px;line-height:1.25}
+dl{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:12px 0 0;font-size:12.5px}
+dt{color:var(--muted)} dd{margin:0;word-break:break-word}
+.memo{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.memo p{margin:0;font-size:12.5px;line-height:1.55}
+.memo.warn{border-left:2px solid var(--pend);padding-left:10px}
+.d-sub{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.45}
+.field{margin-top:14px;border:1px solid var(--line)}
+.field .fr{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line)}
+.field .fr:last-child{border-bottom:0}
+.field .fr span{font-size:13px;color:var(--muted)}
+.field .fr b{font-size:17px;font-weight:500;text-align:right}
+.field .fr b.txt{font-size:13.5px;font-family:inherit}
+.tech{margin-top:14px;border-top:1px solid var(--line);padding-top:10px;font-size:12px}
+.tech summary{cursor:pointer;color:var(--muted);font-size:12.5px}
+.tech dl{font-size:12px}
+.empty{color:var(--muted);font-size:12.5px;line-height:1.5}
+
+.dv{display:block;width:100%;text-align:left;background:transparent;color:var(--text);font:inherit;border:0;border-left:2px solid var(--pend);padding:6px 10px;margin-bottom:9px;cursor:pointer;font-size:12px;line-height:1.45}
+.dv:hover{background:color-mix(in srgb,var(--pend) 8%,transparent)}
+.dv.cur{background:color-mix(in srgb,var(--pend) 12%,transparent)}
+.dv code{display:flex;justify-content:space-between;font-size:11px;color:var(--pend);margin-bottom:2px}
+.dv code span{color:var(--muted)}
+.dv small{display:block;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:10.5px;margin-top:3px}
+
+.ct{display:block;width:100%;text-align:left;background:transparent;color:var(--text);border:1px solid var(--line);border-left:2px solid var(--accent);padding:7px 9px;margin-bottom:7px;cursor:pointer;font:inherit;font-size:12px}
+.ct:hover{border-color:var(--muted);border-left-color:var(--accent)}
+.ct .h{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.ct .h b{color:var(--on-accent);background:var(--accent);padding:0 4px;font-family:"IBM Plex Mono",monospace;font-weight:500}
+.ct .h .acts{display:flex;gap:10px}
+.ct .ends{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.ct .vals{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 8px;margin-top:5px;font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+.ct .vals span:nth-child(odd){color:var(--muted)}
+.ct.dec{border-left-style:double;border-left-width:3px}
+
+table.t{width:100%;border-collapse:collapse;font-size:12px}
+table.t th{text-align:left;font-weight:500;color:var(--cia);padding:4px 6px 4px 0;vertical-align:top;border-bottom:1px solid var(--line);width:38%}
+table.t td{padding:4px 0;border-bottom:1px solid var(--line);vertical-align:top}
+h3{font-size:12.5px;font-weight:600;margin:14px 0 6px}
+h3:first-child{margin-top:0}
+
+#legend{left:328px;bottom:44px;padding:9px 12px;font-size:11.5px;min-width:208px}
+#legend .t{font-size:12px;color:var(--muted);margin-bottom:5px;display:flex;justify-content:space-between}
+#legend .l{display:flex;align-items:center;gap:8px;margin:3px 0}
+#legend .sw{width:22px;height:4px;background:var(--c)}
+#legend .sw.thin{height:2px}
+#legend .dash{width:22px;height:0;border-top:3px dashed var(--muted)}
+#legend .dots{width:22px;height:0;border-top:3px dotted var(--muted)}
+#legend .cot{width:22px;height:8px;border-left:1px solid var(--cota);border-right:1px solid var(--cota);position:relative}
+#legend .cot::after{content:"";position:absolute;left:0;right:0;top:3px;border-top:1px solid var(--cota)}
+#legend.mini .l{display:none}
+
+#hud{position:absolute;left:50%;transform:translateX(-50%);top:14px;font-size:11.5px;padding:6px 10px;pointer-events:none;white-space:nowrap}
+#hud.msr{border-color:var(--accent);color:var(--on-accent);background:var(--accent)}
+
+#stamp{position:absolute;left:0;right:0;bottom:0;height:30px;display:flex;justify-content:space-between;border-top:1px solid var(--line);background:var(--panel);font-size:11px;color:var(--muted)}
+#stamp .hint{display:flex;align-items:center;padding:0 14px;overflow:hidden;white-space:nowrap}
+#stamp .cells{display:flex}
+#stamp .cells span{display:flex;align-items:center;padding:0 12px;border-left:1px solid var(--line);white-space:nowrap}
+#stamp .cells b{color:var(--text);font-weight:500;margin-left:6px}
+
+#tip{position:fixed;pointer-events:none;background:var(--panel);border:1px solid var(--line);padding:4px 8px;font-size:11.5px;white-space:nowrap;z-index:5}
+#snap{position:fixed;pointer-events:none;z-index:6;transform:translate(-50%,-50%)}
+#snap i{display:block;width:14px;height:14px;border:1.5px solid var(--cota)}
+#snap.pt i{background:var(--accent);border-color:var(--on-accent);transform:rotate(45deg) scale(.8)}
+#snap.vx i{background:transparent}
+#snap.ax i{border-radius:50%}
+#snap.sf i{width:0;height:0;border:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:13px solid var(--cota)}
+#snap em{position:absolute;left:18px;top:-2px;font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;background:var(--panel);border:1px solid var(--on-accent);background:var(--accent);color:var(--on-accent);padding:2px 6px;white-space:nowrap}
+.hidden{display:none!important}
+
+@media (max-width:900px){
+  #side{left:8px;right:8px;top:8px;width:auto;bottom:auto;max-height:42%}
+  #tools{top:auto;bottom:40px;right:8px;left:8px}
+  #detail{left:8px;right:8px;top:auto;bottom:84px;width:auto;max-height:40%}
+  #legend,#hud{display:none}
+  #stamp .hint{display:none}
+  #stamp .cells span:nth-child(2),#stamp .cells span:nth-child(3){display:none}
+}
+@media (prefers-reduced-motion: reduce){ .btn,.tog{transition:none} }
+</style>
+<style>button[data-tab="div"],button[data-tab="res"],#p-div,#p-res,.sec:has(#bCsv),.sec:has(#search),.sec:has(.note),#cCsv,label:has(#cDiv),details.tech,#stamp .cells{display:none!important}
+
+#demo-capa{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;
+  background:rgba(241,237,226,.86);font-family:'Montserrat',system-ui,sans-serif;color:#16130E;cursor:pointer}
+#demo-capa b{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+#demo-capa p{margin:0;max-width:420px;font-size:14px;line-height:1.45}
+#demo-capa button{margin-top:6px;font:700 13px 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;
+  background:#F4C70F;color:#16130E;border:1.5px solid #16130E;border-radius:0;padding:10px 18px;cursor:pointer}
+</style></head>
+<body>
+<div id="app">
+  <canvas id="gl" tabindex="0" aria-label="Modelo 3D das tubulações"></canvas>
+
+  <aside id="side" class="panel">
+    <div class="scroll">
+      <div class="head">
+        <div><h1>Tubulações hidrossanitárias</h1><div class="sub">Residência unifamiliar · modelo gerado a partir das pranchas 2D</div></div>
+        <button class="link" id="collapse">Minimizar</button>
+      </div>
+      <div class="sec"><div class="sec-h">Resumo</div><div class="stats" id="stats"></div></div>
+      <div class="sec"><div class="sec-h">Sistemas</div><div id="sysList"></div></div>
+      <div class="sec"><div class="sec-h">Pavimentos</div><div id="pavList"></div></div>
+      <div class="sec"><div class="sec-h">Origem da posição</div><div id="stList"></div></div>
+      <div class="sec"><div class="sec-h">Camadas</div>
+        <label class="chk"><input type="checkbox" id="cArq" checked> Arquitetura fantasma</label>
+        <label class="chk"><input type="checkbox" id="cRooms" checked> Nomes dos ambientes</label>
+        <label class="chk"><input type="checkbox" id="cDiv" checked> Marcadores de divergência</label>
+        <label class="chk"><input type="checkbox" id="cFix" checked> Louças e equipamentos</label>
+        <label class="chk"><input type="checkbox" id="cGrid" checked> Grade de base</label>
+      </div>
+      <div class="sec"><div class="sec-h"><span>Corte horizontal</span><span class="mono" id="cutZ"></span></div>
+        <select id="cutSel"><option value="none">Sem corte</option><option value="T">Térreo</option><option value="S">Superior</option><option value="C">Cobertura</option></select>
+        <div id="cutBox" class="hidden" style="margin-top:8px"><input type="range" id="cutR" min="0" max="1" step="0.01" value="1" aria-label="Altura do plano de corte"></div>
+      </div>
+      <div class="sec"><div class="sec-h">Busca por ID</div>
+        <input type="text" id="search" placeholder="HID-T-BWC01-001" autocomplete="off" spellcheck="false">
+        <div id="sugg"></div>
+      </div>
+      <div class="sec"><div class="sec-h">Exportar CSV</div>
+        <div class="row"><button class="btn sm" id="bCsv">Pontos + cotas</button><button class="btn sm" id="bCsvT">Trechos</button></div>
+        <div class="row"><button class="btn sm" id="bCsvD">Divergências</button><button class="btn sm" id="bCsvN">Níveis</button></div>
+      </div>
+      <div class="sec"><p class="note">Origem 0,0,0 no ápice externo do térreo (ARQ 02/10). X para a direita da folha, Y para o topo da folha, Z na cota de projeto (garagem 0,00). Unidade: m.</p></div>
+    </div>
+  </aside>
+
+  <div id="tools">
+    <button class="btn on" data-view="3d">Perspectiva</button>
+    <button class="btn" data-view="top">Planta</button>
+    <button class="btn" data-view="under">Sob o piso</button>
+    <button class="btn" id="fit">Enquadrar</button>
+    <span class="sepr"></span>
+    <button class="btn" id="bMeas" aria-pressed="false">Medir</button>
+    <button class="btn" id="theme">Tema</button>
+  </div>
+
+  <div id="hud" class="panel mono">—</div>
+
+  <section id="detail" class="panel" aria-live="polite">
+    <div class="tabs"><button data-tab="rec" class="on">Registro</button><button data-tab="div">Divergências</button><button data-tab="cot">Cotas</button><button data-tab="res">Resumo</button><button id="dMin" class="mintab" title="Minimizar painel" aria-expanded="true">Minimizar</button></div>
+    <div class="pane act" id="p-rec"><p class="empty">Toque em um ponto ou tubo do modelo, ou busque pelo código.</p></div>
+    <div class="pane" id="p-div"></div>
+    <div class="pane" id="p-cot"></div>
+    <div class="pane" id="p-res"></div>
+  </section>
+
+  <div id="legend" class="panel">
+    <div class="t"><span>Legenda</span><button class="link" id="legT">Ocultar</button></div>
+    <div class="l"><span class="sw" style="--c:var(--hid)"></span>HID-AF · água fria</div>
+    <div class="l"><span class="sw" style="--c:var(--san)"></span>SAN-ESG · esgoto</div>
+    <div class="l"><span class="sw thin" style="--c:var(--vent)"></span>SAN-VENT · ventilação (traço fino)</div>
+    <div class="l"><span class="sw" style="--c:var(--dre)"></span>DRE · águas pluviais</div>
+    <div class="l"><span class="sw thin" style="--c:var(--dr)"></span>DRE · drenos de ar-condicionado Ø25</div>
+    <div class="l mono" style="font-size:10.5px;color:var(--muted)">cores das tubulações = cores das plantas</div>
+    <div class="l"><span class="dash"></span>tubulação enterrada / sob o piso do térreo (tracejado)</div>
+    <div class="l"><span class="dots"></span>trecho inferido (pontilhado)</div>
+    <div class="l"><span class="gl EXT"></span>&nbsp;ponto extraído</div>
+    <div class="l"><span class="gl INF"></span>&nbsp;ponto inferido</div>
+    <div class="l"><span class="gl PEN"></span>&nbsp;pendência ou divergência</div>
+    <div class="l"><span class="sw" style="--c:var(--arch);opacity:.6"></span>arquitetura fantasma</div>
+    <div class="l"><span class="sw" style="--c:var(--louca);height:8px;border:1px solid var(--arch)"></span>louças e equipamentos</div>
+    <div class="l"><span class="cot"></span>cota medida</div>
+  </div>
+
+  <footer id="stamp">
+    <div class="hint">Arraste para girar · Shift ou botão direito para mover · roda para aproximar · clique para detalhes · Esc cancela a medição</div>
+    <div class="cells mono">
+      <span>Projeto<b>Residência unifamiliar</b></span><span>Rev.<b>00</b></span><span>Esc.<b>—</b></span><span>Data<b>01/10/2026</b></span><span>Folha<b>1/1</b></span>
+    </div>
+  </footer>
+  <div id="tip" class="mono hidden"></div>
+  <div id="snap" class="hidden"><i></i><em></em></div>
+</div>
+
+<script id="model" type="application/json">{"loucas":[{"id":"L-S-BWC02-LV","tipo":"bancada","pav":"S","amb":"BWC02","x":2.41,"y":-13.53,"bx":2.135,"by":-13.53,"nx":1.0,"ny":0.0,"w":1.3,"d":0.55,"h":0.85,"z":3.62,"fonte":""},{"id":"L-S-BWC02-VS","tipo":"vaso","pav":"S","amb":"BWC02","x":2.475,"y":-14.6,"bx":2.135,"by":-14.6,"nx":1.0,"ny":0.0,"w":0.38,"d":0.68,"h":0.4,"z":3.62,"fonte":""},{"id":"L-S-BWC02-CH","tipo":"chuveiro","pav":"S","amb":"BWC02","x":2.26,"y":-15.48,"bx":2.135,"by":-15.48,"nx":1.0,"ny":0.0,"w":0.25,"d":0.25,"h":0.02,"z":5.72,"fonte":""},{"id":"L-S-BWC03-VS","tipo":"vaso","pav":"S","amb":"BWC03","x":3.93,"y":-9.01,"bx":3.59,"by":-9.01,"nx":1.0,"ny":0.0,"w":0.38,"d":0.68,"h":0.4,"z":3.62,"fonte":""},{"id":"L-S-BWC03-LV","tipo":"bancada","pav":"S","amb":"BWC03","x":3.865,"y":-10.1,"bx":3.59,"by":-10.1,"nx":1.0,"ny":0.0,"w":1.36,"d":0.55,"h":0.85,"z":3.62,"fonte":""},{"id":"L-S-BWC03-CH","tipo":"chuveiro","pav":"S","amb":"BWC03","x":3.715,"y":-8.12,"bx":3.59,"by":-8.12,"nx":1.0,"ny":0.0,"w":0.25,"d":0.25,"h":0.02,"z":5.72,"fonte":""},{"id":"L-S-BWCM-LV","tipo":"bancada2","pav":"S","amb":"BWCM","x":-1.885,"y":-11.422,"bx":-1.885,"by":-11.697,"nx":0.0,"ny":1.0,"w":1.53,"d":0.55,"h":0.85,"z":3.62,"fonte":""},{"id":"L-S-BWCM-VS","tipo":"vaso","pav":"S","amb":"BWCM","x":-3.08,"y":-11.357,"bx":-3.08,"by":-11.697,"nx":0.0,"ny":1.0,"w":0.38,"d":0.68,"h":0.4,"z":3.62,"fonte":""},{"id":"L-S-BWCM-BA","tipo":"banheira","pav":"S","amb":"BWCM","x":-5.36,"y":-10.868,"bx":-5.67,"by":-10.6,"nx":0.7572,"ny":-0.6532,"w":1.52,"d":0.82,"h":0.6,"z":3.62,"fonte":""},{"id":"L-S-BWCM-CH1","tipo":"chuveiro","pav":"S","amb":"BWCM","x":-4.08,"y":-10.175,"bx":-4.08,"by":-10.05,"nx":0.0,"ny":-1.0,"w":0.25,"d":0.25,"h":0.02,"z":5.72,"fonte":""},{"id":"L-S-BWCM-CH2","tipo":"chuveiro","pav":"S","amb":"BWCM","x":-4.08,"y":-11.572,"bx":-4.08,"by":-11.697,"nx":0.0,"ny":1.0,"w":0.25,"d":0.25,"h":0.02,"z":5.7,"fonte":""}],"equip":[],"verificacoes":[],"pontos":[{"id":"HID-S-BWC03-001","tipo":"Registro de gaveta (RG) — AF06","sistema":"HID-AF","dn":"32","x":3.57,"y":-8.49,"z":5.52,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":1.9},{"id":"HID-S-BWC03-002","tipo":"Ponto de chuveiro (CH)","sistema":"HID-AF","dn":"25","x":3.57,"y":-8.11,"z":5.72,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":2.1},{"id":"HID-S-BWC03-003","tipo":"Registro de pressão (RP) do chuveiro","sistema":"HID-AF","dn":"25","x":3.57,"y":-8.11,"z":4.87,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":1.25},{"id":"HID-S-BWC03-004","tipo":"Ponto de vaso sanitário (VS)","sistema":"HID-AF","dn":"20","x":3.57,"y":-8.95,"z":3.82,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":0.2},{"id":"HID-S-BWC03-005","tipo":"Ponto de ducha higiênica (DC)","sistema":"HID-AF","dn":"20","x":3.57,"y":-9.45,"z":4.12,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":0.5},{"id":"HID-S-BWC03-006","tipo":"Ponto de lavatório (LV)","sistema":"HID-AF","dn":"20","x":3.57,"y":-10.08,"z":4.22,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":0.6},{"id":"HID-S-BWC02-001","tipo":"Registro de gaveta (RG) — AF02","sistema":"HID-AF","dn":"32","x":2.13,"y":-14.71,"z":5.52,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":1.9},{"id":"HID-S-BWC02-002","tipo":"Ponto de lavatório (LV)","sistema":"HID-AF","dn":"25","x":2.09,"y":-13.53,"z":4.23,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":0.61},{"id":"HID-S-BWC02-003","tipo":"Ponto de vaso sanitário (VS)","sistema":"HID-AF","dn":"25","x":2.13,"y":-14.71,"z":3.82,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":0.2},{"id":"HID-S-BWC02-004","tipo":"Ponto de ducha higiênica (DC)","sistema":"HID-AF","dn":"25","x":2.11,"y":-14.85,"z":4.12,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":0.5},{"id":"HID-S-BWC02-005","tipo":"Ponto de chuveiro (CH)","sistema":"HID-AF","dn":"25","x":2.11,"y":-15.42,"z":5.72,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":2.1},{"id":"HID-S-BWC02-006","tipo":"Registro de pressão (RP) do chuveiro","sistema":"HID-AF","dn":"25","x":2.11,"y":-15.42,"z":4.87,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":1.25},{"id":"HID-S-BWCM-001","tipo":"Registro de gaveta (RG) — AF04","sistema":"HID-AF","dn":"32","x":-6.39,"y":-11.65,"z":5.52,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":1.9},{"id":"HID-S-BWCM-002","tipo":"Ponto de banheira (BA)","sistema":"HID-AF","dn":"25","x":-5.22,"y":-10.0,"z":3.92,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":0.3},{"id":"HID-S-BWCM-003","tipo":"Ponto de chuveiro (CH) — extremidade do ramal da banheira","sistema":"HID-AF","dn":"25","x":-4.08,"y":-10.0,"z":5.72,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":2.1},{"id":"HID-S-BWCM-004","tipo":"Registro de pressão (RP)","sistema":"HID-AF","dn":"25","x":-4.08,"y":-10.0,"z":4.87,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":1.25},{"id":"HID-S-BWCM-005","tipo":"Ponto de chuveiro (CH)","sistema":"HID-AF","dn":"25","x":-4.09,"y":-11.72,"z":5.7,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":2.08},{"id":"HID-S-BWCM-006","tipo":"Registro de pressão (RP)","sistema":"HID-AF","dn":"25","x":-4.09,"y":-11.72,"z":4.87,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":1.25},{"id":"HID-S-BWCM-007","tipo":"Ponto de vaso sanitário (VS)","sistema":"HID-AF","dn":"25","x":-3.0,"y":-11.72,"z":3.82,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":0.2},{"id":"HID-S-BWCM-008","tipo":"Ponto de ducha higiênica (DC)","sistema":"HID-AF","dn":"25","x":-2.81,"y":-11.72,"z":4.12,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":0.5},{"id":"HID-S-BWCM-009","tipo":"Ponto de lavatório (LV) — cuba 1","sistema":"HID-AF","dn":"25","x":-2.34,"y":-11.72,"z":4.22,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":0.6},{"id":"HID-S-BWCM-010","tipo":"Ponto de lavatório (LV) — cuba 2","sistema":"HID-AF","dn":"25","x":-1.56,"y":-11.72,"z":4.22,"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":0.6},{"id":"HID-S-BWCM-011","tipo":"Ponto de lavatório (LV) — 3º LV indicado no isométrico","sistema":"HID-AF","dn":"25","x":-6.3,"y":-11.95,"z":4.22,"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"PENDENTE","pav":"S","amb":"BWCM","h":0.6},{"id":"SAN-S-BWC02-001","tipo":"Lavatório (LV) — saída Ø40","sistema":"SAN-ESG","dn":"40","x":2.3,"y":-13.45,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":null},{"id":"SAN-S-BWC02-002","tipo":"Caixa sifonada (CS 100x140x50)","sistema":"SAN-ESG","dn":"50","x":2.41,"y":-13.51,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":null},{"id":"SAN-S-BWC02-003","tipo":"Vaso sanitário (VS) — saída Ø100","sistema":"SAN-ESG","dn":"100","x":2.83,"y":-14.65,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":null},{"id":"SAN-S-BWC02-004","tipo":"Caixa sifonada do box (CS 100x140x50)","sistema":"SAN-ESG","dn":"50","x":3.43,"y":-15.71,"z":3.6,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC02","h":null},{"id":"SAN-S-BWC03-001","tipo":"Ralo seco (RS) do box","sistema":"SAN-ESG","dn":"40","x":4.76,"y":-7.82,"z":3.6,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":null},{"id":"SAN-S-BWC03-002","tipo":"Caixa sifonada (CS 100x140x50)","sistema":"SAN-ESG","dn":"50","x":3.8,"y":-9.83,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":null},{"id":"SAN-S-BWC03-003","tipo":"Vaso sanitário (VS) — saída Ø100","sistema":"SAN-ESG","dn":"100","x":3.98,"y":-8.88,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":null},{"id":"SAN-S-BWC03-004","tipo":"Lavatório (LV) — saída Ø40","sistema":"SAN-ESG","dn":"40","x":3.63,"y":-10.02,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWC03","h":null},{"id":"SAN-S-BWCM-001","tipo":"Banheira (BA) — saída Ø40","sistema":"SAN-ESG","dn":"40","x":-4.97,"y":-10.35,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"SAN-S-BWCM-002","tipo":"Caixa sifonada (CS) junto à banheira","sistema":"SAN-ESG","dn":"50","x":-4.16,"y":-10.15,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"SAN-S-BWCM-003","tipo":"Ralo do box (RS)","sistema":"SAN-ESG","dn":"50","x":-4.09,"y":-11.32,"z":3.6,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"SAN-S-BWCM-004","tipo":"Vaso sanitário (VS) — saída Ø100","sistema":"SAN-ESG","dn":"100","x":-3.12,"y":-11.3,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"SAN-S-BWCM-005","tipo":"Caixa sifonada (CS 100x140x50)","sistema":"SAN-ESG","dn":"50","x":-2.17,"y":-11.47,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"SAN-S-BWCM-006","tipo":"Lavatório (LV) — cuba 1, saída Ø40","sistema":"SAN-ESG","dn":"40","x":-2.33,"y":-11.67,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"SAN-S-BWCM-007","tipo":"Lavatório (LV) — cuba 2, saída Ø40","sistema":"SAN-ESG","dn":"40","x":-1.58,"y":-11.67,"z":3.62,"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"BWCM","h":null},{"id":"DRE-S-COB-001","tipo":"Condutor AP02 Ø75 — captação no telhado","sistema":"DRE","dn":"75","x":1.88,"y":-1.94,"z":3.62,"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"INFERIDO","pav":"S","amb":"COB","h":null},{"id":"DRE-S-COB-002","tipo":"Condutor AP05 Ø75 — captação no telhado do serviço","sistema":"DRE","dn":"75","x":16.15,"y":-14.23,"z":3.62,"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"INFERIDO","pav":"S","amb":"COB","h":null},{"id":"DRE-S-VAR-001","tipo":"Ralo seco (RS) — varanda superior","sistema":"DRE","dn":"75","x":-8.85,"y":-11.19,"z":3.6,"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"VAR","h":null},{"id":"DRE-S-VAR-002","tipo":"Ralo seco (RS) — varanda superior","sistema":"DRE","dn":"75","x":-11.8,"y":-15.85,"z":3.6,"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","pav":"S","amb":"VAR","h":null},{"id":"DRE-S-CIRC-001","tipo":"Dreno de ar-condicionado DR01 Ø25 — início (norte)","sistema":"DRE","dn":"25","x":9.8,"y":-8.64,"z":3.3,"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"INFERIDO","pav":"S","amb":"CIRC","h":null},{"id":"DRE-S-CIRC-002","tipo":"Dreno de ar-condicionado DR01 Ø25 — início (oeste)","sistema":"DRE","dn":"25","x":2.41,"y":-11.74,"z":3.3,"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"INFERIDO","pav":"S","amb":"CIRC","h":null}],"trechos":[{"id":"T-HID-S-001","sistema":"HID-AF","dn":"32","pts":[[9.71,-11.85,6.8],[9.75,-11.6,6.8],[3.66,-11.6,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":6.343,"segs":[[[9.71,-11.85,6.8],[9.75,-11.6,6.8],false],[[9.75,-11.6,6.8],[3.66,-11.6,6.8],false]],"enterrado":false},{"id":"T-HID-S-002","sistema":"HID-AF","dn":"40","pts":[[3.66,-11.6,6.8],[2.21,-11.6,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":1.45,"segs":[[[3.66,-11.6,6.8],[2.21,-11.6,6.8],false]],"enterrado":false},{"id":"T-HID-S-003","sistema":"HID-AF","dn":"40","pts":[[2.21,-11.6,6.8],[-6.39,-11.6,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":8.6,"segs":[[[2.21,-11.6,6.8],[-6.39,-11.6,6.8],false]],"enterrado":false},{"id":"T-HID-S-004","sistema":"HID-AF","dn":"32","pts":[[3.66,-11.6,6.8],[3.66,-8.49,6.8],[3.62,-7.7,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.901,"segs":[[[3.66,-11.6,6.8],[3.66,-8.49,6.8],false],[[3.66,-8.49,6.8],[3.62,-7.7,6.8],false]],"enterrado":false},{"id":"T-HID-S-005","sistema":"HID-AF","dn":"32","pts":[[9.71,-11.85,6.8],[9.79,-15.37,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.521,"segs":[[[9.71,-11.85,6.8],[9.79,-15.37,6.8],false]],"enterrado":false},{"id":"T-HID-S-030","sistema":"HID-AF","dn":"32","pts":[[3.66,-8.49,6.8],[3.57,-8.49,6.8],[3.57,-8.49,5.52],[3.57,-8.49,4.87]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":2.02,"segs":[[[3.66,-8.49,6.8],[3.57,-8.49,6.8],false],[[3.57,-8.49,6.8],[3.57,-8.49,5.52],false],[[3.57,-8.49,5.52],[3.57,-8.49,4.87],false]],"enterrado":false},{"id":"T-HID-S-031","sistema":"HID-AF","dn":"25","pts":[[3.57,-8.49,4.87],[3.57,-8.11,4.87],[3.57,-8.11,5.72]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":1.23,"segs":[[[3.57,-8.49,4.87],[3.57,-8.11,4.87],false],[[3.57,-8.11,4.87],[3.57,-8.11,5.72],false]],"enterrado":false},{"id":"T-HID-S-032","sistema":"HID-AF","dn":"25","pts":[[3.57,-8.49,4.87],[3.57,-8.95,4.87],[3.57,-8.95,4.22]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":1.11,"segs":[[[3.57,-8.49,4.87],[3.57,-8.95,4.87],false],[[3.57,-8.95,4.87],[3.57,-8.95,4.22],false]],"enterrado":false},{"id":"T-HID-S-033","sistema":"HID-AF","dn":"20","pts":[[3.57,-8.95,4.22],[3.57,-9.45,4.22],[3.57,-10.08,4.22]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":1.13,"segs":[[[3.57,-8.95,4.22],[3.57,-9.45,4.22],false],[[3.57,-9.45,4.22],[3.57,-10.08,4.22],false]],"enterrado":false},{"id":"T-HID-S-034","sistema":"HID-AF","dn":"20","pts":[[3.57,-8.95,4.22],[3.57,-8.95,3.82]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.4,"segs":[[[3.57,-8.95,4.22],[3.57,-8.95,3.82],false]],"enterrado":false},{"id":"T-HID-S-035","sistema":"HID-AF","dn":"20","pts":[[3.57,-9.45,4.22],[3.57,-9.45,4.12]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.1,"segs":[[[3.57,-9.45,4.22],[3.57,-9.45,4.12],false]],"enterrado":false},{"id":"T-HID-S-020","sistema":"HID-AF","dn":"40","pts":[[2.21,-11.6,6.8],[2.21,-14.71,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.11,"segs":[[[2.21,-11.6,6.8],[2.21,-14.71,6.8],false]],"enterrado":false},{"id":"T-HID-S-021","sistema":"HID-AF","dn":"32","pts":[[2.21,-14.71,6.8],[2.24,-15.82,6.8]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":1.11,"segs":[[[2.21,-14.71,6.8],[2.24,-15.82,6.8],false]],"enterrado":false},{"id":"T-HID-S-022","sistema":"HID-AF","dn":"32","pts":[[2.21,-14.71,6.8],[2.13,-14.71,6.8],[2.13,-14.71,5.52],[2.13,-14.71,4.77]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":2.11,"segs":[[[2.21,-14.71,6.8],[2.13,-14.71,6.8],false],[[2.13,-14.71,6.8],[2.13,-14.71,5.52],false],[[2.13,-14.71,5.52],[2.13,-14.71,4.77],false]],"enterrado":false},{"id":"T-HID-S-023","sistema":"HID-AF","dn":"25","pts":[[2.13,-14.71,4.77],[2.11,-14.85,4.77],[2.11,-15.42,4.77],[2.11,-15.42,4.87],[2.11,-15.42,5.72]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":1.661,"segs":[[[2.13,-14.71,4.77],[2.11,-14.85,4.77],false],[[2.11,-14.85,4.77],[2.11,-15.42,4.77],false],[[2.11,-15.42,4.77],[2.11,-15.42,4.87],false],[[2.11,-15.42,4.87],[2.11,-15.42,5.72],false]],"enterrado":false},{"id":"T-HID-S-024","sistema":"HID-AF","dn":"25","pts":[[2.11,-14.85,4.77],[2.11,-14.85,4.12]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.65,"segs":[[[2.11,-14.85,4.77],[2.11,-14.85,4.12],false]],"enterrado":false},{"id":"T-HID-S-025","sistema":"HID-AF","dn":"25","pts":[[2.13,-14.71,4.77],[2.13,-14.71,4.22],[2.13,-14.71,3.82]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.95,"segs":[[[2.13,-14.71,4.77],[2.13,-14.71,4.22],false],[[2.13,-14.71,4.22],[2.13,-14.71,3.82],false]],"enterrado":false},{"id":"T-HID-S-026","sistema":"HID-AF","dn":"25","pts":[[2.13,-14.71,4.22],[2.09,-13.53,4.23]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":1.181,"segs":[[[2.13,-14.71,4.22],[2.09,-13.53,4.23],false]],"enterrado":false},{"id":"T-HID-S-040","sistema":"HID-AF","dn":"32","pts":[[-6.39,-11.6,6.8],[-6.39,-11.65,6.8],[-6.39,-11.65,5.52],[-6.39,-11.65,4.87]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":1.98,"segs":[[[-6.39,-11.6,6.8],[-6.39,-11.65,6.8],false],[[-6.39,-11.65,6.8],[-6.39,-11.65,5.52],false],[[-6.39,-11.65,5.52],[-6.39,-11.65,4.87],false]],"enterrado":false},{"id":"T-HID-S-041","sistema":"HID-AF","dn":"32","pts":[[-6.39,-11.65,4.87],[-6.39,-11.32,4.87],[-5.38,-10.13,4.87],[-5.22,-10.0,4.87]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":2.097,"segs":[[[-6.39,-11.65,4.87],[-6.39,-11.32,4.87],false],[[-6.39,-11.32,4.87],[-5.38,-10.13,4.87],false],[[-5.38,-10.13,4.87],[-5.22,-10.0,4.87],false]],"enterrado":false},{"id":"T-HID-S-042","sistema":"HID-AF","dn":"25","pts":[[-5.22,-10.0,4.87],[-5.22,-10.0,3.92]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.95,"segs":[[[-5.22,-10.0,4.87],[-5.22,-10.0,3.92],false]],"enterrado":false},{"id":"T-HID-S-043","sistema":"HID-AF","dn":"25","pts":[[-5.22,-10.0,4.87],[-4.08,-10.0,4.87],[-4.08,-10.0,5.72]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":1.99,"segs":[[[-5.22,-10.0,4.87],[-4.08,-10.0,4.87],false],[[-4.08,-10.0,4.87],[-4.08,-10.0,5.72],false]],"enterrado":false},{"id":"T-HID-S-044","sistema":"HID-AF","dn":"25","pts":[[-6.39,-11.65,4.87],[-6.32,-11.72,4.87],[-4.09,-11.72,4.87],[-4.09,-11.72,5.7]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.159,"segs":[[[-6.39,-11.65,4.87],[-6.32,-11.72,4.87],false],[[-6.32,-11.72,4.87],[-4.09,-11.72,4.87],false],[[-4.09,-11.72,4.87],[-4.09,-11.72,5.7],false]],"enterrado":false},{"id":"T-HID-S-045","sistema":"HID-AF","dn":"25","pts":[[-4.09,-11.72,4.87],[-4.09,-11.72,4.27],[-3.0,-11.72,4.27],[-2.81,-11.72,4.27],[-2.34,-11.72,4.27],[-1.56,-11.72,4.22]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.132,"segs":[[[-4.09,-11.72,4.87],[-4.09,-11.72,4.27],false],[[-4.09,-11.72,4.27],[-3.0,-11.72,4.27],false],[[-3.0,-11.72,4.27],[-2.81,-11.72,4.27],false],[[-2.81,-11.72,4.27],[-2.34,-11.72,4.27],false],[[-2.34,-11.72,4.27],[-1.56,-11.72,4.22],false]],"enterrado":false},{"id":"T-HID-S-046","sistema":"HID-AF","dn":"25","pts":[[-3.0,-11.72,4.27],[-3.0,-11.72,3.82]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.45,"segs":[[[-3.0,-11.72,4.27],[-3.0,-11.72,3.82],false]],"enterrado":false},{"id":"T-HID-S-047","sistema":"HID-AF","dn":"25","pts":[[-2.81,-11.72,4.27],[-2.81,-11.72,4.12]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.15,"segs":[[[-2.81,-11.72,4.27],[-2.81,-11.72,4.12],false]],"enterrado":false},{"id":"T-HID-S-048","sistema":"HID-AF","dn":"25","pts":[[-2.34,-11.72,4.27],[-2.34,-11.72,4.22]],"prancha":"HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":0.05,"segs":[[[-2.34,-11.72,4.27],[-2.34,-11.72,4.22],false]],"enterrado":false},{"id":"T-HID-V-001","sistema":"HID-AF","dn":"25","pts":[[2.24,-15.82,6.8],[2.24,-15.82,1.92],[2.24,-15.82,0.62]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_01D06 - Hidráulico - Planta Térreo (1:100) | HID_TD_04D06 - Hidráulico - Isométricos Pav. Térreo (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"EXTRAÍDO","pav":"S","declividade":null,"comprimento":6.18,"segs":[[[2.24,-15.82,6.8],[2.24,-15.82,1.92],false],[[2.24,-15.82,1.92],[2.24,-15.82,0.62],false]],"enterrado":false},{"id":"T-HID-V-003","sistema":"HID-AF","dn":"25","pts":[[3.62,-7.7,6.8],[3.62,-7.7,3.2],[3.38,-7.66,3.2]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_01D06 - Hidráulico - Planta Térreo (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.843,"segs":[[[3.62,-7.7,6.8],[3.62,-7.7,3.2],false],[[3.62,-7.7,3.2],[3.38,-7.66,3.2],false]],"enterrado":false},{"id":"T-HID-V-002","sistema":"HID-AF","dn":"25","pts":[[9.79,-15.37,6.8],[9.79,-15.37,0.53]],"prancha":"HID_TD_02D06 - Hidráulico - Planta Superior (1:100) | HID_TD_01D06 - Hidráulico - Planta Térreo (1:100) | HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":6.27,"segs":[[[9.79,-15.37,6.8],[9.79,-15.37,0.53],false]],"enterrado":false},{"id":"T-SAN-S-001","sistema":"SAN-ESG","dn":"40","pts":[[2.3,-13.45,3.62],[2.3,-13.45,3.403],[2.41,-13.51,3.4]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":0.342,"segs":[[[2.3,-13.45,3.62],[2.3,-13.45,3.403],false],[[2.3,-13.45,3.403],[2.41,-13.51,3.4],false]],"enterrado":false},{"id":"T-SAN-S-002","sistema":"SAN-ESG","dn":"50","pts":[[2.41,-13.51,3.62],[2.41,-13.51,3.4],[2.65,-14.0,3.387],[2.85,-14.3,3.378],[2.85,-14.65,3.37]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,4% (resultante das cotas inferidas)","comprimento":1.477,"segs":[[[2.41,-13.51,3.62],[2.41,-13.51,3.4],false],[[2.41,-13.51,3.4],[2.65,-14.0,3.387],false],[[2.65,-14.0,3.387],[2.85,-14.3,3.378],false],[[2.85,-14.3,3.378],[2.85,-14.65,3.37],false]],"enterrado":false},{"id":"T-SAN-S-003","sistema":"SAN-ESG","dn":"100","pts":[[2.83,-14.65,3.62],[2.85,-14.65,3.37],[2.85,-15.5,3.36],[2.31,-15.89,3.3]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"4,6% (resultante das cotas inferidas)","comprimento":1.77,"segs":[[[2.83,-14.65,3.62],[2.85,-14.65,3.37],false],[[2.85,-14.65,3.37],[2.85,-15.5,3.36],false],[[2.85,-15.5,3.36],[2.31,-15.89,3.3],false]],"enterrado":false},{"id":"T-SAN-S-004","sistema":"SAN-ESG","dn":"50","pts":[[3.43,-15.71,3.6],[3.43,-15.71,3.33],[2.6,-15.8,3.308],[2.31,-15.89,3.3]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,6% (resultante das cotas inferidas)","comprimento":1.409,"segs":[[[3.43,-15.71,3.6],[3.43,-15.71,3.33],false],[[3.43,-15.71,3.33],[2.6,-15.8,3.308],false],[[2.6,-15.8,3.308],[2.31,-15.89,3.3],false]],"enterrado":false},{"id":"T-SAN-S-005","sistema":"SAN-ESG","dn":"100","pts":[[2.31,-15.89,3.3],[2.31,-15.89,-0.45]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100) | SAN_TD_05D06 - Sanitário - Detalhes de instalação e colunas","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.75,"segs":[[[2.31,-15.89,3.3],[2.31,-15.89,0.02],false],[[2.31,-15.89,0.02],[2.31,-15.89,-0.45],true]],"enterrado":true},{"id":"T-SAN-S-010","sistema":"SAN-ESG","dn":"40","pts":[[4.76,-7.82,3.6],[4.76,-7.82,3.4],[4.76,-9.4,3.358],[3.8,-9.83,3.33]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,7% (resultante das cotas inferidas)","comprimento":2.833,"segs":[[[4.76,-7.82,3.6],[4.76,-7.82,3.4],false],[[4.76,-7.82,3.4],[4.76,-9.4,3.358],false],[[4.76,-9.4,3.358],[3.8,-9.83,3.33],false]],"enterrado":false},{"id":"T-SAN-S-011","sistema":"SAN-ESG","dn":"40","pts":[[3.63,-10.02,3.62],[3.63,-10.02,3.335],[3.8,-9.83,3.33]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":0.54,"segs":[[[3.63,-10.02,3.62],[3.63,-10.02,3.335],false],[[3.63,-10.02,3.335],[3.8,-9.83,3.33],false]],"enterrado":false},{"id":"T-SAN-S-012","sistema":"SAN-ESG","dn":"50","pts":[[3.8,-9.83,3.62],[3.8,-9.83,3.33],[3.94,-9.3,3.313],[3.94,-8.88,3.3]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"3,1% (resultante das cotas inferidas)","comprimento":1.259,"segs":[[[3.8,-9.83,3.62],[3.8,-9.83,3.33],false],[[3.8,-9.83,3.33],[3.94,-9.3,3.313],false],[[3.94,-9.3,3.313],[3.94,-8.88,3.3],false]],"enterrado":false},{"id":"T-SAN-S-013","sistema":"SAN-ESG","dn":"100","pts":[[3.98,-8.88,3.62],[3.94,-8.88,3.3],[3.94,-8.0,3.285],[3.95,-7.81,3.27]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,8% (resultante das cotas inferidas)","comprimento":1.393,"segs":[[[3.98,-8.88,3.62],[3.94,-8.88,3.3],false],[[3.94,-8.88,3.3],[3.94,-8.0,3.285],false],[[3.94,-8.0,3.285],[3.95,-7.81,3.27],false]],"enterrado":false},{"id":"T-SAN-S-014","sistema":"SAN-ESG","dn":"100","pts":[[3.95,-7.81,3.27],[3.95,-7.81,-0.3]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100) | SAN_TD_05D06 - Sanitário - Detalhes de instalação e colunas","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.57,"segs":[[[3.95,-7.81,3.27],[3.95,-7.81,0.02],false],[[3.95,-7.81,0.02],[3.95,-7.81,-0.3],true]],"enterrado":true},{"id":"T-SAN-S-020","sistema":"SAN-ESG","dn":"40","pts":[[-4.97,-10.35,3.62],[-4.97,-10.35,3.35],[-4.16,-10.15,3.33]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,4% (resultante das cotas inferidas)","comprimento":1.105,"segs":[[[-4.97,-10.35,3.62],[-4.97,-10.35,3.35],false],[[-4.97,-10.35,3.35],[-4.16,-10.15,3.33],false]],"enterrado":false},{"id":"T-SAN-S-021","sistema":"SAN-ESG","dn":"50","pts":[[-4.16,-10.15,3.62],[-4.16,-10.15,3.33],[-4.12,-10.6,3.316],[-4.12,-11.12,3.3]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"3,1% (resultante das cotas inferidas)","comprimento":1.262,"segs":[[[-4.16,-10.15,3.62],[-4.16,-10.15,3.33],false],[[-4.16,-10.15,3.33],[-4.12,-10.6,3.316],false],[[-4.12,-10.6,3.316],[-4.12,-11.12,3.3],false]],"enterrado":false},{"id":"T-SAN-S-022","sistema":"SAN-ESG","dn":"40","pts":[[-1.58,-11.67,3.62],[-1.58,-11.67,3.375],[-2.33,-11.67,3.365],[-2.17,-11.47,3.355]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,0% (resultante das cotas inferidas)","comprimento":1.251,"segs":[[[-1.58,-11.67,3.62],[-1.58,-11.67,3.375],false],[[-1.58,-11.67,3.375],[-2.33,-11.67,3.365],false],[[-2.33,-11.67,3.365],[-2.17,-11.47,3.355],false]],"enterrado":false},{"id":"T-SAN-S-023","sistema":"SAN-ESG","dn":"50","pts":[[-2.17,-11.47,3.62],[-2.17,-11.47,3.355],[-2.8,-11.47,3.339],[-3.12,-11.3,3.33]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"2,5% (resultante das cotas inferidas)","comprimento":1.258,"segs":[[[-2.17,-11.47,3.62],[-2.17,-11.47,3.355],false],[[-2.17,-11.47,3.355],[-2.8,-11.47,3.339],false],[[-2.8,-11.47,3.339],[-3.12,-11.3,3.33],false]],"enterrado":false},{"id":"T-SAN-S-024","sistema":"SAN-ESG","dn":"100","pts":[[-3.12,-11.3,3.62],[-3.12,-11.3,3.33],[-3.4,-11.12,3.32],[-4.12,-11.12,3.3],[-6.1,-11.12,3.25],[-6.41,-10.97,3.2]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":"3,8% (resultante das cotas inferidas)","comprimento":3.672,"segs":[[[-3.12,-11.3,3.62],[-3.12,-11.3,3.33],false],[[-3.12,-11.3,3.33],[-3.4,-11.12,3.32],false],[[-3.4,-11.12,3.32],[-4.12,-11.12,3.3],false],[[-4.12,-11.12,3.3],[-6.1,-11.12,3.25],false],[[-6.1,-11.12,3.25],[-6.41,-10.97,3.2],false]],"enterrado":false},{"id":"T-SAN-S-025","sistema":"SAN-ESG","dn":"50","pts":[[-4.09,-11.32,3.6],[-4.09,-11.32,3.305],[-4.12,-11.12,3.3]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":0.497,"segs":[[[-4.09,-11.32,3.6],[-4.09,-11.32,3.305],false],[[-4.09,-11.32,3.305],[-4.12,-11.12,3.3],false]],"enterrado":false},{"id":"T-SAN-S-026","sistema":"SAN-ESG","dn":"100","pts":[[-6.41,-10.97,3.2],[-6.41,-10.97,-0.42]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100) | SAN_TD_05D06 - Sanitário - Detalhes de instalação e colunas","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.62,"segs":[[[-6.41,-10.97,3.2],[-6.41,-10.97,0.0],false],[[-6.41,-10.97,0.0],[-6.41,-10.97,-0.42],true]],"enterrado":true},{"id":"T-SAN-V-001","sistema":"SAN-VENT","dn":"100","pts":[[2.31,-15.89,3.3],[2.31,-15.89,7.5]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100) | SAN_TD_03D06 - Sanitário - Cobertura (1:100) | SAN_TD_05D06 - Sanitário - Detalhes de instalação e colunas","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":4.2,"segs":[[[2.31,-15.89,3.3],[2.31,-15.89,7.5],false]],"enterrado":false},{"id":"T-SAN-V-002","sistema":"SAN-VENT","dn":"50","pts":[[-3.4,-11.12,3.32],[-3.4,-11.05,4.02],[-5.4,-11.05,4.02],[-6.51,-11.45,4.02],[-6.51,-11.45,6.8],[-6.25,-11.36,6.8],[-6.25,-11.36,7.5]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100) | SAN_TD_03D06 - Sanitário - Cobertura (1:100) | SAN_TD_05D06 - Sanitário - Detalhes de instalação e colunas","memoria":"","status":"INFERIDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":7.639,"segs":[[[-3.4,-11.12,3.32],[-3.4,-11.05,4.02],false],[[-3.4,-11.05,4.02],[-5.4,-11.05,4.02],false],[[-5.4,-11.05,4.02],[-6.51,-11.45,4.02],false],[[-6.51,-11.45,4.02],[-6.51,-11.45,6.8],false],[[-6.51,-11.45,6.8],[-6.25,-11.36,6.8],false],[[-6.25,-11.36,6.8],[-6.25,-11.36,7.5],false]],"enterrado":false},{"id":"T-SAN-V-003","sistema":"SAN-VENT","dn":"50","pts":[[3.94,-8.0,3.285],[3.69,-7.64,3.285],[3.69,-7.64,7.5]],"prancha":"SAN_TD_02D06 - Sanitário - Planta Superior (1:100) | SAN_TD_03D06 - Sanitário - Cobertura (1:100)","memoria":"","status":"INFERIDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":4.653,"segs":[[[3.94,-8.0,3.285],[3.69,-7.64,3.285],false],[[3.69,-7.64,3.285],[3.69,-7.64,7.5],false]],"enterrado":false},{"id":"T-DRE-T-001","sistema":"DRE","dn":"75","pts":[[1.88,-1.94,3.62],[1.61,-1.74,3.4],[1.61,-1.74,-0.33]],"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"INFERIDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":4.132,"segs":[[[1.88,-1.94,3.62],[1.61,-1.74,3.4],false],[[1.61,-1.74,3.4],[1.61,-1.74,0.02],false],[[1.61,-1.74,0.02],[1.61,-1.74,-0.33],true]],"enterrado":true},{"id":"T-DRE-T-008","sistema":"DRE","dn":"75","pts":[[16.15,-14.23,3.62],[16.16,-14.19,-1.89]],"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":5.51,"segs":[[[16.15,-14.23,3.62],[16.159,-14.192,-1.57],false],[[16.159,-14.192,-1.57],[16.16,-14.19,-1.89],true]],"enterrado":true},{"id":"T-DRE-C-003","sistema":"DRE","dn":"75","pts":[[9.76,-15.6,6.82],[9.76,-15.6,-0.3]],"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":7.12,"segs":[[[9.76,-15.6,6.82],[9.76,-15.6,0.02],false],[[9.76,-15.6,0.02],[9.76,-15.6,-0.3],true]],"enterrado":true},{"id":"T-DRE-S-001","sistema":"DRE","dn":"75","pts":[[-8.85,-11.19,3.6],[-8.72,-11.24,3.3],[-7.45,-11.69,3.3],[-6.49,-11.27,3.3],[-6.43,-11.6,3.3]],"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100) | DRE_TD_01D03 - Drenagem - Planta Térreo (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":3.061,"segs":[[[-8.85,-11.19,3.6],[-8.72,-11.24,3.3],false],[[-8.72,-11.24,3.3],[-7.45,-11.69,3.3],false],[[-7.45,-11.69,3.3],[-6.49,-11.27,3.3],false],[[-6.49,-11.27,3.3],[-6.43,-11.6,3.3],false]],"enterrado":false},{"id":"T-DRE-S-002","sistema":"DRE","dn":"75","pts":[[-11.8,-15.85,3.6],[-11.77,-15.9,3.3],[-11.3,-14.51,3.3],[-10.99,-13.62,3.3],[-10.85,-13.43,3.3],[-7.58,-11.83,3.3],[-7.45,-11.69,3.3]],"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100) | DRE_TD_01D03 - Drenagem - Planta Térreo (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":6.783,"segs":[[[-11.8,-15.85,3.6],[-11.77,-15.9,3.3],false],[[-11.77,-15.9,3.3],[-11.3,-14.51,3.3],false],[[-11.3,-14.51,3.3],[-10.99,-13.62,3.3],false],[[-10.99,-13.62,3.3],[-10.85,-13.43,3.3],false],[[-10.85,-13.43,3.3],[-7.58,-11.83,3.3],false],[[-7.58,-11.83,3.3],[-7.45,-11.69,3.3],false]],"enterrado":false},{"id":"T-DRE-S-010","sistema":"DRE","dn":"25","pts":[[9.8,-8.64,3.3],[9.53,-8.93,3.3],[9.55,-13.09,3.3],[9.15,-13.59,3.3],[9.15,-15.0,3.3],[9.65,-15.59,3.3]],"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":7.38,"segs":[[[9.8,-8.64,3.3],[9.53,-8.93,3.3],false],[[9.53,-8.93,3.3],[9.55,-13.09,3.3],false],[[9.55,-13.09,3.3],[9.15,-13.59,3.3],false],[[9.15,-13.59,3.3],[9.15,-15.0,3.3],false],[[9.15,-15.0,3.3],[9.65,-15.59,3.3],false]],"enterrado":false},{"id":"T-DRE-S-011","sistema":"DRE","dn":"25","pts":[[2.41,-11.74,3.3],[2.43,-12.89,3.3],[3.47,-13.92,3.3],[7.26,-13.93,3.3],[7.81,-14.51,3.3],[8.56,-14.55,3.3],[9.07,-15.0,3.3],[9.15,-15.0,3.3]],"prancha":"DRE_TD_01D03 - Drenagem - Planta Térreo (1:100) | DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":8.714,"segs":[[[2.41,-11.74,3.3],[2.43,-12.89,3.3],false],[[2.43,-12.89,3.3],[3.47,-13.92,3.3],false],[[3.47,-13.92,3.3],[7.26,-13.93,3.3],false],[[7.26,-13.93,3.3],[7.81,-14.51,3.3],false],[[7.81,-14.51,3.3],[8.56,-14.55,3.3],false],[[8.56,-14.55,3.3],[9.07,-15.0,3.3],false],[[9.07,-15.0,3.3],[9.15,-15.0,3.3],false]],"enterrado":false},{"id":"T-DRE-S-012","sistema":"DRE","dn":"25","pts":[[9.65,-15.59,3.3],[9.66,-15.7,3.3],[9.66,-15.7,-0.3],[9.62,-17.5,-0.4],[9.6,-17.65,-0.4]],"prancha":"DRE_TD_02D03 - Drenagem - Planta Superior (1:100) | DRE_TD_01D03 - Drenagem - Planta Térreo (1:100)","memoria":"","status":"EXTRAÍDO","z_status":"INFERIDO","pav":"S","declividade":null,"comprimento":5.665,"segs":[[[9.65,-15.59,3.3],[9.66,-15.7,3.3],false],[[9.66,-15.7,3.3],[9.66,-15.7,0.02],false],[[9.66,-15.7,0.02],[9.66,-15.7,-0.3],true],[[9.66,-15.7,-0.3],[9.62,-17.5,-0.4],true],[[9.62,-17.5,-0.4],[9.6,-17.65,-0.4],true]],"enterrado":true}],"niveis":[{"id":"N08","pav":"S","descricao":"Fundo da laje do superior","z":3.48,"fonte":"","status":"EXTRAÍDO"},{"id":"N09","pav":"S","descricao":"Piso acabado superior","z":3.62,"fonte":"","status":"EXTRAÍDO"},{"id":"N10","pav":"S","descricao":"Forro superior (gesso)","z":6.5,"fonte":"","status":"EXTRAÍDO"}],"divergencias":[],"arch":{"walls":[{"pav":"S","a":[3.657,-15.976],"b":[3.657,-13.717],"t":0.132,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[8.673,-7.559],"b":[9.941,-8.651],"t":0.149,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[9.957,-15.976],"b":[9.957,-12.858],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[9.957,-12.729],"b":[9.957,-12.329],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[9.957,-11.327],"b":[9.957,-10.404],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[2.139,-12.793],"b":[6.201,-12.793],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[7.192,-12.793],"b":[8.043,-12.793],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[8.843,-12.793],"b":[9.893,-12.793],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-6.611,-11.762],"b":[-1.099,-11.762],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-0.97,-11.762],"b":[-0.02,-11.762],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[2.01,-11.762],"b":[2.603,-11.762],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[7.127,-15.976],"b":[7.127,-12.858],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-6.662,-11.653],"b":[-6.411,-11.362],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-5.495,-10.298],"b":[-5.243,-10.005],"t":0.13,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-5.131,-9.875],"b":[-3.151,-7.575],"t":0.13,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[2.074,-15.976],"b":[2.074,-12.858],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-5.081,-9.982],"b":[-1.959,-9.982],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[3.591,-10.863],"b":[8.862,-10.863],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-3.102,-7.551],"b":[-1.349,-7.551],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-0.02,-7.551],"b":[0.691,-7.551],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[2.751,-7.551],"b":[3.462,-7.551],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[3.591,-7.551],"b":[4.042,-7.551],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[4.542,-7.551],"b":[4.993,-7.551],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[5.122,-7.551],"b":[8.623,-7.551],"t":0.131,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[3.527,-11.827],"b":[3.527,-10.927],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[3.527,-10.798],"b":[3.527,-7.617],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-0.085,-10.838],"b":[-0.085,-7.617],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[-1.034,-11.698],"b":[-1.034,-9.918],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[2.139,-16.041],"b":[2.41,-16.041],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[9.622,-16.041],"b":[9.893,-16.041],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[5.058,-9.937],"b":[5.058,-7.617],"t":0.129,"z0":3.62,"z1":7.05,"muro":false},{"pav":"S","a":[8.928,-10.798],"b":[8.928,-10.404],"t":0.131,"z0":3.62,"z1":7.05,"muro":false}],"openings":[{"pav":"S","a":[9.957,-12.329],"b":[9.957,-11.327],"t":0.129,"tag":"J08","tipo":"janela","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":1.002,"largura_quadro":1.0,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[6.201,-12.793],"b":[7.192,-12.793],"t":0.129,"tag":"P05","tipo":"porta","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.991,"largura_quadro":0.86,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[8.043,-12.793],"b":[8.843,-12.793],"t":0.129,"tag":"P08","tipo":"porta","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.8,"largura_quadro":0.86,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[-0.02,-11.762],"b":[2.01,-11.762],"t":0.129,"tag":"P09","tipo":"porta","sill":3.62,"head":6.12,"z0":3.62,"ztop":7.05,"vao":2.03,"largura_quadro":2.03,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[-6.411,-11.362],"b":[-5.495,-10.298],"t":0.131,"tag":"J12","tipo":"janela","sill":5.52,"head":6.12,"z0":3.62,"ztop":7.05,"vao":1.404,"largura_quadro":1.4,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[-1.349,-7.551],"b":[-0.02,-7.551],"t":0.131,"tag":"J11","tipo":"janela","sill":5.92,"head":6.42,"z0":3.62,"ztop":7.05,"vao":1.329,"largura_quadro":1.2,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[0.691,-7.551],"b":[2.751,-7.551],"t":0.131,"tag":"J10","tipo":"janela","sill":5.12,"head":6.12,"z0":3.62,"ztop":7.05,"vao":2.06,"largura_quadro":2.06,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[4.042,-7.551],"b":[4.542,-7.551],"t":0.131,"tag":"J05","tipo":"janela","sill":5.32,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.5,"largura_quadro":0.5,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[2.41,-16.041],"b":[9.622,-16.041],"t":0.129,"tag":"J02","tipo":"janela","sill":4.92,"head":6.12,"z0":3.62,"ztop":7.05,"vao":7.212,"largura_quadro":7.21,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[5.058,-9.937],"b":[5.058,-10.798],"t":0.129,"tag":"P05","tipo":"porta","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.861,"largura_quadro":0.86,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[2.603,-11.762],"b":[3.463,-11.762],"t":0.129,"tag":"P07","tipo":"porta","sill":3.62,"head":6.12,"z0":3.62,"ztop":7.05,"vao":0.86,"largura_quadro":0.9,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[-0.085,-10.838],"b":[-0.085,-11.697],"t":0.129,"tag":"P05","tipo":"porta","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.86,"largura_quadro":0.86,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[-1.959,-9.982],"b":[-1.099,-9.982],"t":0.129,"tag":"P05","tipo":"porta","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.861,"largura_quadro":0.86,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[3.657,-13.717],"b":[3.657,-12.857],"t":0.132,"tag":"P05","tipo":"porta","sill":3.62,"head":5.72,"z0":3.62,"ztop":7.05,"vao":0.86,"largura_quadro":0.86,"status":"EXTRAÍDO","fonte":""},{"pav":"S","a":[9.957,-8.7],"b":[9.957,-10.404],"t":0.129,"tag":"J09","tipo":"janela","sill":5.12,"head":6.12,"z0":3.62,"ztop":7.05,"vao":1.704,"largura_quadro":1.7,"status":"EXTRAÍDO","fonte":""}],"floors":[{"pav":"S","z":3.48,"poly":[[-14.2,-16.6],[10.05,-16.6],[10.05,-8.75],[8.55,-7.55],[-2.95,-7.55],[-6.55,-11.3],[-7.0,-10.85],[-9.25,-10.85]],"fonte":""},{"pav":"S","z":3.62,"poly":[[-14.2,-16.6],[10.05,-16.6],[10.05,-8.75],[8.55,-7.55],[-2.95,-7.55],[-6.55,-11.3],[-7.0,-10.85],[-9.25,-10.85]],"fonte":""}],"rooms":[{"pav":"S","nome":"VARANDA","x":-4.833,"y":-15.1},{"pav":"S","nome":"B.W.C","x":3.022,"y":-14.704},{"pav":"S","nome":"SUÍTE 2","x":5.382,"y":-14.103},{"pav":"S","nome":"ESCRITÓRIO","x":8.63,"y":-14.156},{"pav":"S","nome":"CIRCULAÇÃO","x":4.325,"y":-11.961},{"pav":"S","nome":"SUÍTE MASTER","x":1.595,"y":-9.347},{"pav":"S","nome":"CLOSET","x":-2.116,"y":-8.467},{"pav":"S","nome":"B.W.C","x":-2.361,"y":-10.24},{"pav":"S","nome":"B.W.C","x":4.476,"y":-9.112},{"pav":"S","nome":"SUÍTE 3","x":6.654,"y":-8.951}]},"premissas":[],"pranchas":["ARQ 02/10 - Planta baixa térreo - cotas (1:50)","ARQ 03/10 - Planta baixa superior - cotas / Corte AA (1:50)","ARQ 04/10 - Cortes BB, CC, DD (1:50)","HID_TD_01D06 - Hidráulico - Planta Térreo (1:100)","HID_TD_02D06 - Hidráulico - Planta Superior (1:100)","HID_TD_03D06 - Hidráulico - Cobertura/Caixa (1:100)","HID_TD_04D06 - Hidráulico - Isométricos Pav. Térreo (1:20)","HID_TD_05D06 - Hidráulico - Isométricos Superior e Serviço (1:20)","HID_TD_06D06 - Hidráulico - Isométrico geral (1:50)","SAN_TD_01D06 - Sanitário - Planta Térreo (1:100)","SAN_TD_02D06 - Sanitário - Planta Superior (1:100)","SAN_TD_03D06 - Sanitário - Cobertura (1:100)","SAN_TD_04D06 - Sanitário - Detalhes caixas e tratamento","SAN_TD_05D06 - Sanitário - Detalhes de instalação e colunas","SAN_TD_06D06 - Sanitário - 3D","DRE_TD_01D03 - Drenagem - Planta Térreo (1:100)","DRE_TD_02D03 - Drenagem - Planta Superior (1:100)","DRE_TD_03D03 - Drenagem - Planta Cobertura (1:100)"]}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const M=JSON.parse($('#model').textContent);
+const esc=s=>String(s==null?'—':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fm=n=>n.toFixed(3).replace('.',',');           // valor numérico com vírgula
+const fmm=n=>fm(n)+' m';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ---------- catálogos ---------- */
+const SIS=[['HID-AF','Água fria','--hid'],['SAN-ESG','Esgoto','--san'],['SAN-VENT','Ventilação','--vent'],['DRE','Pluvial e drenos','--dre']];
+const DISC={'HID-AF':'HID','SAN-ESG':'SAN','SAN-VENT':'SAN','DRE':'DRE'};
+const SISV=Object.fromEntries(SIS.map(s=>[s[0],s[2]]));
+const PAV={T:'Térreo',S:'Superior',C:'Cobertura'};
+const ST=[['EXTRAÍDO','EXT','Posição e altura lidas em prancha'],['INFERIDO','INF','Derivado por regra declarada; trecho pontilhado'],['PENDENTE','PEN','Não determinável']];
+const BAND={T:[-3.2,3.48],S:[3.48,7.05],C:[7.05,10.5]};
+const filt={sis:new Set(SIS.map(s=>s[0])),pav:new Set(Object.keys(PAV)),st:new Set(ST.map(s=>s[0]))};
+const ITEMS=[...M.pontos.map(r=>(r.kind='p',r)),...M.trechos.map(r=>(r.kind='t',r))];
+const BYID=Object.fromEntries(ITEMS.map(r=>[r.id,r]));
+
+/* ---------- tema ---------- */
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let TH={};
+function readTheme(){for(const n of ['--bg','--arch','--grid','--grid2','--accent','--on-accent','--cota','--cia','--pend','--muted','--text','--hid','--san','--vent','--dre','--dr','--panel','--louca']) TH[n]=css(n);}
+readTheme();
+const cvarOf=r=>r.status==='PENDENTE'?'--pend':(r.sistema==='DRE'&&r.dn==='25'?'--dr':SISV[r.sistema]);
+const colorOf=r=>TH[cvarOf(r)];
+
+/* ---------- cena ---------- */
+const canvas=$('#gl'), app=$('#app');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+renderer.setClearColor(0x000000,0);
+renderer.localClippingEnabled=true;
+const scene=new THREE.Scene();
+scene.fog=new THREE.Fog(TH['--bg'],45,130);
+scene.add(new THREE.HemisphereLight(0xffffff,0x40506a,0.95));
+const dl=new THREE.DirectionalLight(0xffffff,0.55); dl.position.set(-12,30,18); scene.add(dl);
+const persp=new THREE.PerspectiveCamera(40,1,0.05,400);
+const ortho=new THREE.OrthographicCamera(-10,10,10,-10,-200,200);
+let cam=persp, topMode=false;
+const V3=(x,y,z)=>new THREE.Vector3(x,z,-y);            // modelo (X,Y,Z) -> three
+const toM=v=>({x:v.x,y:-v.z,z:v.y});                    // three -> modelo
+const UP=new THREE.Vector3(0,1,0);
+
+/* corte: planos locais aplicados aos materiais do modelo */
+const CLIP=[]; const MODELMATS=[];
+const cutLo=new THREE.Plane(new THREE.Vector3(0,1,0),0), cutHi=new THREE.Plane(new THREE.Vector3(0,-1,0),0);
+const reg=m=>{m.clippingPlanes=CLIP; MODELMATS.push(m); return m;};
+const inClip=v=>CLIP.every(p=>p.distanceToPoint(v)>=-0.001);
+
+/* ---------- arquitetura fantasma ---------- */
+const LABELS=[];
+const arch=new THREE.Group(); scene.add(arch);
+const rooms=new THREE.Group(); scene.add(rooms);
+let grid=null; const archPick=[];
+const FL={T:[0.02,3.48],S:[3.62,7.05]};
+function hull(pts){pts=pts.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);const lo=[],up=[];for(const p of pts){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p)}for(const p of pts.slice().reverse()){while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p)}up.pop();lo.pop();return lo.concat(up)}
+function textCanvas(t,color,bg,font,pad){
+  const c=document.createElement('canvas'),x=c.getContext('2d'); x.font=font;
+  const w=Math.ceil(x.measureText(t).width)+pad*2, fs=parseInt(font.match(/(\d+)px/)[1]); c.width=w; c.height=fs+pad*2;
+  if(bg){x.fillStyle=bg; x.fillRect(0,0,w,c.height); x.strokeStyle=color; x.lineWidth=2; x.strokeRect(1,1,w-2,c.height-2);}
+  x.font=font; x.fillStyle=color; x.textBaseline='middle'; x.fillText(t,pad,c.height/2+1); return c;
+}
+function sprite(c,h,opts){const tx=new THREE.CanvasTexture(c); tx.minFilter=THREE.LinearFilter;
+  const s=new THREE.Sprite(new THREE.SpriteMaterial(Object.assign({map:tx,transparent:true,depthWrite:false},opts||{}))); s.scale.set(h*c.width/c.height,h,1); return s;}
+function wallBox(a,b,t,z0,z1,mat,edge,grp,pav,surf){
+  const L=Math.hypot(b[0]-a[0],b[1]-a[1]); if(L<0.01||z1-z0<0.01) return;
+  const g=new THREE.BoxGeometry(L,z1-z0,t); const m=new THREE.Mesh(g,mat);
+  m.position.copy(V3((a[0]+b[0])/2,(a[1]+b[1])/2,(z0+z1)/2)); m.rotation.y=Math.atan2(b[1]-a[1],b[0]-a[0]);
+  m.userData={pav,surf}; grp.add(m); archPick.push(m);
+  const l=new THREE.LineSegments(new THREE.EdgesGeometry(g),edge); l.position.copy(m.position); l.rotation.copy(m.rotation); l.userData.pav=pav; grp.add(l);
+}
+const ARCHLAB=[];
+function buildArch(){
+  for(const o of ARCHLAB.splice(0)){ const i=LABELS.indexOf(o); if(i>=0) LABELS.splice(i,1); }
+  for(const o of arch.children.slice()){arch.remove(o); o.geometry&&o.geometry.dispose();}
+  archPick.length=0;
+  const fill=reg(new THREE.MeshBasicMaterial({color:TH['--arch'],transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
+  const fillMuro=reg(new THREE.MeshBasicMaterial({color:TH['--arch'],transparent:true,opacity:.04,side:THREE.DoubleSide,depthWrite:false}));
+  const edge=reg(new THREE.LineBasicMaterial({color:TH['--arch'],transparent:true,opacity:.55}));
+  const edgeF=reg(new THREE.LineBasicMaterial({color:TH['--arch'],transparent:true,opacity:.3}));
+  const glass=reg(new THREE.MeshBasicMaterial({color:TH['--hid'],transparent:true,opacity:.05,side:THREE.DoubleSide,depthWrite:false}));
+  for(const w of M.arch.walls) wallBox(w.a,w.b,w.t,w.z0,w.z1,w.muro?fillMuro:fill,edge,arch,w.pav,w.muro?'Muro':'Parede');
+  for(const o of M.arch.openings){
+    const g=new THREE.Group(); g.userData.pav=o.pav; arch.add(g);
+    if(o.head<o.ztop-0.01) wallBox(o.a,o.b,o.t,o.head,o.ztop,fill,edge,g,o.pav,'Verga '+(o.tag||''));
+    if(o.sill>o.z0+0.01) wallBox(o.a,o.b,o.t,o.z0,o.sill,fill,edge,g,o.pav,'Peitoril '+(o.tag||''));
+    if(o.tipo==='janela'){ const L=Math.hypot(o.b[0]-o.a[0],o.b[1]-o.a[1]); const p=new THREE.Mesh(new THREE.PlaneGeometry(L,o.head-o.sill),glass);
+      p.position.copy(V3((o.a[0]+o.b[0])/2,(o.a[1]+o.b[1])/2,(o.sill+o.head)/2)); p.rotation.y=Math.atan2(o.b[1]-o.a[1],o.b[0]-o.a[0]); g.add(p); }
+    // contorno do vão
+    const A0=V3(o.a[0],o.a[1],o.sill),A1=V3(o.a[0],o.a[1],o.head),B0=V3(o.b[0],o.b[1],o.sill),B1=V3(o.b[0],o.b[1],o.head);
+    const l=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([A0,A1,A1,B1,B1,B0,B0,A0]),edge); g.add(l);
+    if(o.tag){ const s=sprite(textCanvas(o.tag,TH['--muted'],null,'400 30px "IBM Plex Mono", monospace',6),0.16,{opacity:.8}); s.position.copy(V3((o.a[0]+o.b[0])/2,(o.a[1]+o.b[1])/2,o.head+0.12)); s.material.clippingPlanes=CLIP; s.userData.k=0.007; s.userData.max=0.18; LABELS.push(s); ARCHLAB.push(s); g.add(s); }
+  }
+  for(const f of M.arch.floors){
+    const g=new THREE.ShapeGeometry(new THREE.Shape(f.poly.map(p=>new THREE.Vector2(p[0],p[1])))); g.rotateX(-Math.PI/2); g.translate(0,f.z,0);
+    const m=new THREE.Mesh(g,fill); m.userData={pav:f.pav,surf:'Laje/piso'}; arch.add(m); archPick.push(m);
+    const l=new THREE.Line(new THREE.BufferGeometry().setFromPoints(f.poly.concat([f.poly[0]]).map(p=>V3(p[0],p[1],f.z))),edgeF); l.userData.pav=f.pav; arch.add(l);
+  }
+  if(grid){scene.remove(grid);} grid=new THREE.GridHelper(60,60,TH['--grid'],TH['--grid2']); grid.position.set(3,-2.6,9); scene.add(grid);
+  grid.visible=$('#cGrid').checked;
+  for(const o of rooms.children.slice()){ const i=LABELS.indexOf(o); if(i>=0)LABELS.splice(i,1); rooms.remove(o);}
+  for(const r of M.arch.rooms){
+    const s=sprite(textCanvas(r.nome,TH['--muted'],null,'400 40px "IBM Plex Sans", sans-serif',8),0.26,{opacity:.85});
+    const z=r.pav==='T'?((r.x>10&&r.y<-10.5&&r.y>-14.5)?-1.45:0.14):3.74;
+    s.position.copy(V3(r.x,r.y,z)); s.userData.pav=r.pav; s.userData.k=0.0095; s.userData.max=0.32; LABELS.push(s); s.material.clippingPlanes=CLIP; rooms.add(s);
+  }
+}
+
+/* ---------- louças e equipamentos ---------- */
+const fixG=new THREE.Group(); scene.add(fixG);
+function nearestWall(pav,x,y){
+  let best=null;
+  for(const w of M.arch.walls){ if(w.pav!==pav) continue;
+    const ex=w.b[0]-w.a[0],ey=w.b[1]-w.a[1],L2=ex*ex+ey*ey; let t=((x-w.a[0])*ex+(y-w.a[1])*ey)/L2; t=Math.max(0,Math.min(1,t));
+    const d=Math.hypot(w.a[0]+t*ex-x,w.a[1]+t*ey-y); if(!best||d<best.d) best={d,w,t}; }
+  return best;
+}
+function buildFix(){
+  for(const o of fixG.children.slice()){ fixG.remove(o); }
+  const mat=reg(new THREE.MeshStandardMaterial({color:TH['--louca'],roughness:.35,metalness:.05,transparent:true,opacity:.92}));
+  const edge=reg(new THREE.LineBasicMaterial({color:TH['--arch'],transparent:true,opacity:.7}));
+  const add=(geo,pos,rot,grp)=>{const m=new THREE.Mesh(geo,mat); m.position.copy(pos); m.rotation.y=rot; grp.add(m); const l=new THREE.LineSegments(new THREE.EdgesGeometry(geo,30),edge); l.position.copy(pos); l.rotation.y=rot; grp.add(l); return m;};
+  for(const f of M.loucas){
+    const g=new THREE.Group(); g.userData={pav:f.pav,rec:f}; fixG.add(g);
+    const nx=f.nx, ny=f.ny, tx=-ny, ty=nx, cx=f.x, cy=f.y;
+    const rot=Math.atan2(ty,tx);
+    const P=(dx,dz,h)=>V3(cx+tx*dx+nx*dz, cy+ty*dx+ny*dz, f.z+h);
+    if(f.tipo==='vaso'){
+      add(new THREE.BoxGeometry(0.36,0.38,0.17),P(0,-f.d/2+0.085,0.60),rot,g);
+      const bowl=new THREE.CylinderGeometry(0.19,0.13,0.40,24); bowl.scale(1,1,1.35);
+      add(bowl,P(0,0.06,0.20),rot,g);
+    } else if(f.tipo==='bancada'||f.tipo==='bancada2'){
+      add(new THREE.BoxGeometry(f.w,0.04,f.d),P(0,0,f.h-0.02),rot,g);
+      const nc=f.tipo==='bancada2'?2:1;
+      for(let i=0;i<nc;i++){ const dx=nc===1?0:(i?f.w/4:-f.w/4); add(new THREE.BoxGeometry(Math.min(0.42,f.w*0.4),0.16,f.d*0.62),P(dx,0.02,f.h-0.12),rot,g); }
+    } else if(f.tipo==='tanque'){
+      add(new THREE.BoxGeometry(f.w,0.32,f.d),P(0,0,f.h-0.16),rot,g);
+      add(new THREE.CylinderGeometry(0.06,0.08,f.h-0.32,14),P(0,0,(f.h-0.32)/2),rot,g);
+    } else if(f.tipo==='mlr'){
+      add(new THREE.BoxGeometry(f.w,f.h,f.d),P(0,0,f.h/2),rot,g);
+    } else if(f.tipo==='banheira'){
+      add(new THREE.BoxGeometry(f.w,f.h,f.d),P(0,0,f.h/2),rot,g);
+    } else if(f.tipo==='chuveiro'){
+      const B=V3(f.bx,f.by,f.z+0.06), H=V3(f.bx+nx*0.24,f.by+ny*0.24,f.z);
+      add(new THREE.CylinderGeometry(0.11,0.11,0.02,24),H,rot,g);
+      const c=cyl(B,V3(f.bx+nx*0.24,f.by+ny*0.24,f.z+0.01),0.012,mat); c&&g.add(c);
+    }
+  }
+  for(const e of M.equip){
+    const g=new THREE.Group(); g.userData={pav:e.z1>7?'C':(e.z0>3.4?'S':'T'),equip:e}; fixG.add(g);
+    const col=e.sistema?TH[SISV[e.sistema]]:TH['--louca'];
+    const em=reg(new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.10,side:THREE.DoubleSide,depthWrite:false}));
+    const ee=reg(new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.65}));
+    const h=e.z1-e.z0; let geo;
+    if(e.forma==='cilindro') geo=new THREE.CylinderGeometry(e.w/2,e.w/2,h,32); else geo=new THREE.BoxGeometry(e.w,h,e.d);
+    const m=new THREE.Mesh(geo,em); m.position.copy(V3(e.x,e.y,(e.z0+e.z1)/2)); m.rotation.y=-e.rot*Math.PI/180; g.add(m);
+    const l=new THREE.LineSegments(new THREE.EdgesGeometry(geo,20),ee); l.position.copy(m.position); l.rotation.copy(m.rotation); g.add(l);
+  }
+}
+
+/* ---------- tubulação e pontos ---------- */
+function cyl(a,b,r,mat){const d=new THREE.Vector3().subVectors(b,a),L=d.length(); if(L<1e-4)return null;
+  const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,L,12,1,false),mat); m.position.copy(a).addScaledVector(d,.5); m.quaternion.setFromUnitVectors(UP,d.divideScalar(L)); return m;}
+const dnR=(dn,sis)=>{const n=parseFloat(dn); let r=isNaN(n)?0.02:Math.max(0.012+n/4000,0.014); return sis==='SAN-VENT'?r*.6:r;};
+const BIG=/Caixa|Fossa|Filtro|Sumidouro|Reservat|Hidrômetro|Motobomba/;
+function buildItem(r){
+  const g=new THREE.Group(); r._g=g; scene.add(g); const col=new THREE.Color(colorOf(r)); r._mats=[];
+  if(r.kind==='p'){
+    const pos=V3(r.x,r.y,r.z); r._pos=pos; const s=BIG.test(r.tipo)?0.15:0.09; let m;
+    if(r.status==='INFERIDO'){
+      m=new THREE.Mesh(new THREE.OctahedronGeometry(s*1.1),reg(new THREE.MeshBasicMaterial({color:col,wireframe:true})));
+      const core=new THREE.Mesh(new THREE.SphereGeometry(s*.35,12,8),reg(new THREE.MeshBasicMaterial({color:col}))); core.position.copy(pos); g.add(core); r._mats.push(m.material,core.material);
+    } else {
+      m=new THREE.Mesh(new THREE.OctahedronGeometry(s),reg(new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.45,roughness:.4,metalness:.1}))); r._mats.push(m.material);
+    }
+    m.position.copy(pos); g.add(m);
+    if(r.status==='PENDENTE'){
+      const ring=new THREE.Mesh(new THREE.RingGeometry(s*1.7,s*2.05,48),reg(new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.85,side:THREE.DoubleSide,depthWrite:false})));
+      ring.position.copy(pos); g.add(ring); r._ring=ring; r._mats.push(ring.material);
+    }
+  } else {
+    const P=r.pts.map(p=>V3(...p)), rad=dnR(r.dn,r.sistema);
+    const mat=reg(new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.18,roughness:.5,metalness:.1,transparent:r.status!=='EXTRAÍDO',opacity:r.status==='EXTRAÍDO'?1:.9}));
+    r._mats=[mat];
+    const SG=(r.segs||r.pts.slice(1).map((p,i)=>[r.pts[i],p,false])).map(([p,q,e])=>[V3(...p),V3(...q),e]);
+    for(const [a,b,ent] of SG){
+      const d=new THREE.Vector3().subVectors(b,a),L=d.length(); if(L<1e-4) continue; const u=d.clone().divideScalar(L);
+      if(r.status!=='EXTRAÍDO'){            // inferido: pontilhado
+        for(let s=0;s<=L;s+=0.14){ const k=new THREE.Mesh(new THREE.SphereGeometry(rad*1.05,8,6),mat); k.position.copy(a).addScaledVector(u,Math.min(s,L)); g.add(k); }
+      } else if(ent){                       // enterrado: tracejado
+        for(let s=0;s<L;s+=0.26){ const c=cyl(a.clone().addScaledVector(u,s),a.clone().addScaledVector(u,Math.min(s+0.16,L)),rad,mat); c&&g.add(c); }
+      } else { const c=cyl(a,b,rad,mat); c&&g.add(c); }
+    }
+    for(let i=1;i<P.length-1;i++){const j=new THREE.Mesh(new THREE.SphereGeometry(rad*1.15,10,8),mat); j.position.copy(P[i]); g.add(j);}
+    r._P=P; r._pos=new THREE.Box3().setFromPoints(P).getCenter(new THREE.Vector3());
+  }
+}
+ITEMS.forEach(buildItem);
+
+/* divergências */
+const divG=new THREE.Group(); scene.add(divG);
+function buildDiv(){
+  for(const o of divG.children.slice()){ const i=LABELS.indexOf(o); if(i>=0)LABELS.splice(i,1); divG.remove(o);}
+  for(const d of M.divergencias){
+    const p=V3(d.x,d.y,d.z);
+    const o=new THREE.Mesh(new THREE.OctahedronGeometry(0.2,0),reg(new THREE.MeshBasicMaterial({color:TH['--pend'],wireframe:true}))); o.position.copy(p); o.userData.div=d; o.userData.d=d; divG.add(o);
+    const l=new THREE.Line(new THREE.BufferGeometry().setFromPoints([V3(d.x,d.y,d.z+0.2),V3(d.x,d.y,d.z+0.75)]),reg(new THREE.LineBasicMaterial({color:TH['--pend']}))); l.userData.d=d; divG.add(l);
+    const s=sprite(textCanvas(d.id,TH['--pend'],null,'500 36px "IBM Plex Mono", monospace',6),0.2); s.position.copy(V3(d.x,d.y,d.z+0.9)); s.material.clippingPlanes=CLIP; s.userData.k=0.011; s.userData.d=d; LABELS.push(s); divG.add(s);
+  }
+}
+/* origem */
+const origin=new THREE.Group(); scene.add(origin);
+function buildOrigin(){for(const o of origin.children.slice()) origin.remove(o);
+  const m=new THREE.LineBasicMaterial({color:TH['--muted']});
+  for(const b of [V3(1.2,0,0),V3(0,1.2,0),V3(0,0,1.2)]) origin.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([V3(0,0,0),b]),m));
+  const s=sprite(textCanvas('0,0,0',TH['--muted'],null,'400 32px "IBM Plex Mono", monospace',6),0.18); s.position.copy(V3(0.15,0.25,0.3)); origin.add(s);}
+
+/* seleção */
+const halo=new THREE.Mesh(new THREE.IcosahedronGeometry(0.27,1),new THREE.MeshBasicMaterial({color:TH['--cota'],wireframe:true,transparent:true,opacity:.9})); halo.visible=false; scene.add(halo);
+const divHalo=new THREE.Mesh(new THREE.IcosahedronGeometry(0.5,1),new THREE.MeshBasicMaterial({color:TH['--pend'],wireframe:true,transparent:true,opacity:.8})); divHalo.visible=false; scene.add(divHalo);
+
+/* ---------- cotas (sessão) ---------- */
+const cotG=new THREE.Group(); scene.add(cotG);
+const COTAS=[]; let cotSeq=0;
+function cotaMat(){return new THREE.LineBasicMaterial({color:TH['--cota'],depthTest:false,transparent:true});}
+function dimension(grp,A,B,n,text,small){
+  // A,B em three; n = vetor de deslocamento (pode ser zero)
+  const mat=cotaMat(), seg=[];
+  const A2=A.clone().add(n), B2=B.clone().add(n);
+  const L=A.distanceTo(B); if(L<1e-4) return;
+  if(n.length()>1e-4){ const ext=n.clone().normalize().multiplyScalar(0.06); seg.push(A,A2.clone().add(ext),B,B2.clone().add(ext)); }
+  seg.push(A2,B2);
+  const u=new THREE.Vector3().subVectors(B2,A2).normalize();
+  let side=n.length()>1e-4?n.clone().normalize():(Math.abs(u.y)<0.9?new THREE.Vector3(0,1,0):new THREE.Vector3(1,0,0));
+  side.sub(u.clone().multiplyScalar(side.dot(u))).normalize();
+  const tk=u.clone().add(side).normalize().multiplyScalar(small?0.05:0.075);
+  for(const P of [A2,B2]) seg.push(P.clone().sub(tk),P.clone().add(tk));
+  const g=new THREE.BufferGeometry().setFromPoints(seg); const ls=new THREE.LineSegments(g,mat); ls.renderOrder=10; grp.add(ls);
+  const s=sprite(textCanvas(text,TH['--on-accent'],TH['--accent'],(small?'400 30px':'500 34px')+' "IBM Plex Mono", monospace',8),1,{depthTest:false});
+  s.position.copy(A2).lerp(B2,.5).addScaledVector(side,small?0.0:0.06); s.renderOrder=11; s.userData.k=small?0.012:0.015; grp.add(s); LABELS.push(s);
+}
+function offsetFor(A,B){
+  const u=new THREE.Vector3().subVectors(B,A); const L=u.length(); u.normalize();
+  const o=Math.min(0.35,Math.max(0.18,L*0.06));
+  if(Math.abs(u.y)<0.7) return new THREE.Vector3(0,o,0);
+  const cd=new THREE.Vector3(); cam.getWorldDirection(cd); let n=new THREE.Vector3().crossVectors(u,cd); n.y=0;
+  if(n.length()<1e-3) n.set(1,0,0); return n.normalize().multiplyScalar(o);
+}
+function drawCota(c){
+  if(c.g){ c.g.traverse(o=>{const i=LABELS.indexOf(o); if(i>=0)LABELS.splice(i,1);}); cotG.remove(c.g); }
+  const g=new THREE.Group(); c.g=g; cotG.add(g);
+  const A=V3(c.a.x,c.a.y,c.a.z), B=V3(c.b.x,c.b.y,c.b.z);
+  dimension(g,A,B,offsetFor(A,B),fmm(c.d3));
+  if(c.decomp){
+    const P1=V3(c.b.x,c.a.y,c.a.z), P2=V3(c.b.x,c.b.y,c.a.z);
+    [[A,P1,'ΔX '+fmm(Math.abs(c.dx))],[P1,P2,'ΔY '+fmm(Math.abs(c.dy))],[P2,B,'ΔZ '+fmm(Math.abs(c.dz))]].forEach(([p,q,t])=>{ if(p.distanceTo(q)>1e-3) dimension(g,p,q,new THREE.Vector3(),t,true); });
+  }
+  const mk=new THREE.MeshBasicMaterial({color:TH['--cota'],depthTest:false});
+  for(const P of [A,B]){const s=new THREE.Mesh(new THREE.SphereGeometry(0.03,10,8),mk); s.position.copy(P); s.renderOrder=12; g.add(s);}
+}
+function addCota(a,b){
+  const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z;
+  const c={id:'C-'+String(++cotSeq).padStart(2,'0'),a,b,dx,dy,dz,d3:Math.hypot(dx,dy,dz),dh:Math.hypot(dx,dy),decomp:$('#cDec')?$('#cDec').checked:false};
+  COTAS.push(c); drawCota(c); renderCotas(); tab('cot');
+}
+function delCota(id){const i=COTAS.findIndex(c=>c.id===id); if(i<0)return; const c=COTAS[i]; c.g.traverse(o=>{const j=LABELS.indexOf(o); if(j>=0)LABELS.splice(j,1);}); cotG.remove(c.g); COTAS.splice(i,1); renderCotas();}
+const endTxt=e=>e.ref?`${e.ref}${e.kind?` (${e.kind})`:''}`:`(${fm(e.x)}; ${fm(e.y)}; ${fm(e.z)})`;
+function renderCotas(){
+  const show=$('#cShow')?$('#cShow').checked:true, dec=$('#cDec')?$('#cDec').checked:false;
+  $('#p-cot').innerHTML=`<div class="sec-h"><span>${COTAS.length} cota${COTAS.length===1?'':'s'} nesta sessão</span><span class="mono">não altera os dados de projeto</span></div>
+   <label class="chk"><input type="checkbox" id="cShow" ${show?'checked':''}> Mostrar cotas</label>
+   <label class="chk"><input type="checkbox" id="cDec" ${dec?'checked':''}> Decompor novas cotas em ΔX, ΔY, ΔZ</label>
+   <div class="row" style="margin:8px 0 12px"><button class="btn sm" id="cNew">${measuring?'Medindo…':'Nova cota'}</button><button class="btn sm" id="cCsv">Exportar CSV</button><button class="btn sm" id="cClr">Limpar</button></div>`+
+   (COTAS.length?COTAS.map(c=>`<div class="ct ${c.decomp?'dec':''}" role="button" tabindex="0" data-cot="${c.id}">
+     <div class="h"><b>${c.id}</b><span class="acts"><button class="link" data-dec="${c.id}">${c.decomp?'Total':'ΔX ΔY ΔZ'}</button><button class="link" data-del="${c.id}">Excluir</button></span></div>
+     <div class="ends">De ${esc(endTxt(c.a))}<br>até ${esc(endTxt(c.b))}</div>
+     <div class="vals"><span>3D</span><span>${fmm(c.d3)}</span><span>Horiz.</span><span>${fmm(c.dh)}</span><span>ΔX</span><span>${fm(c.dx)}</span><span>ΔY</span><span>${fm(c.dy)}</span><span>ΔZ</span><span>${fm(c.dz)}</span></div></div>`).join('')
+   :`<p class="empty">Ative <b>Medir</b> na barra superior e clique em dois pontos. O cursor captura, nesta ordem: ponto de tubulação, vértice de trecho, eixo do trecho e superfície da arquitetura. Shift trava o segundo ponto no eixo dominante. Esc cancela.</p>`);
+  $('#cShow').onchange=e=>{cotG.visible=e.target.checked;};
+  $('#cDec').onchange=()=>{};
+  $('#cNew').onclick=()=>setMeasure(true);
+  $('#cCsv').onclick=()=>exportCotas();
+  $('#cClr').onclick=()=>{ for(const c of COTAS.slice()) delCota(c.id); };
+  $$('[data-del]').forEach(b=>b.onclick=e=>{e.stopPropagation(); delCota(b.dataset.del);});
+  $$('[data-dec]').forEach(b=>b.onclick=e=>{e.stopPropagation(); const c=COTAS.find(x=>x.id===b.dataset.dec); c.decomp=!c.decomp; drawCota(c); renderCotas();});
+  $$('[data-cot]').forEach(el=>{const go=()=>{const c=COTAS.find(x=>x.id===el.dataset.cot); const A=V3(c.a.x,c.a.y,c.a.z),B=V3(c.b.x,c.b.y,c.b.z); focusAt(A.clone().lerp(B,.5),Math.max(3,c.d3*1.6));}; el.onclick=go; el.onkeydown=e=>{if(e.key==='Enter')go();};});
+}
+
+
+/* ---------- cotas de locação do ponto selecionado (faces de parede + altura sobre o piso) ---------- */
+const locG=new THREE.Group(); scene.add(locG);
+function clearLoc(){ locG.traverse(o=>{const i=LABELS.indexOf(o); if(i>=0)LABELS.splice(i,1);}); for(const o of locG.children.slice()) locG.remove(o); }
+function inPoly(x,y,P){let c=false; for(let i=0,j=P.length-1;i<P.length;j=i++){const [xi,yi]=P[i],[xj,yj]=P[j]; if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi) c=!c;} return c;}
+function floorAt(pav,x,y,z,h){
+  if(h!=null) return {z:z-h,ref:'piso do ambiente informado no registro (Z − h)'};
+  if(pav==='S'){ const F=M.arch.floors.find(f=>f.pav==='S'&&Math.abs(f.z-3.62)<0.01); if(!F||inPoly(x,y,F.poly)) return Math.abs(z-3.60)<0.006?{z:3.60,ref:'box / varanda +3.60 (ARQ 03/10)'}:{z:3.62,ref:'piso acabado do superior +3.62 (ARQ 03/10)'}; return null; }
+  if(pav==='C') return {z:7.20,ref:'laje de cobertura / apoio das caixas +7.20 (Corte AA)'};
+  const F=M.arch.floors.filter(f=>f.pav==='T'&&inPoly(x,y,f.poly)).sort((a,b)=>a.z-b.z);
+  if(F.length) return {z:F[0].z,ref:F[0].fonte};
+  return (x>9.9&&y<-14.0)?{z:-1.59,ref:'terreno da área aberta sul -1.59 (N06)'}:{z:0.00,ref:'terreno externo 0.00 (adotado; não cotado na ARQ)'};
+}
+function segX(p,q,a,b){const d=(q[0]-p[0])*(b[1]-a[1])-(q[1]-p[1])*(b[0]-a[0]); if(Math.abs(d)<1e-9) return false;
+  const t=((a[0]-p[0])*(b[1]-a[1])-(a[1]-p[1])*(b[0]-a[0]))/d, u=((a[0]-p[0])*(q[1]-p[1])-(a[1]-p[1])*(q[0]-p[0]))/d; return t>0.001&&t<0.999&&u>0&&u<1;}
+function wallLoc(r){
+  const wp=r.pav==='C'?null:r.pav; if(!wp) return [];
+  const W=M.arch.walls.filter(w=>w.pav===wp), host=[], out=[];
+  const geo=w=>{const ex=w.b[0]-w.a[0],ey=w.b[1]-w.a[1],L=Math.hypot(ex,ey); return {L,ux:ex/L,uy:ey/L};};
+  for(const w of W){ const {L,ux,uy}=geo(w); const t=(r.x-w.a[0])*ux+(r.y-w.a[1])*uy; if(t<-0.08||t>L+0.08) continue;
+    const sd=(r.x-w.a[0])*(-uy)+(r.y-w.a[1])*ux; if(Math.abs(sd)-w.t/2<0.03) host.push({w,ux,uy,sd}); }
+  for(const w of W){
+    if(host.some(h=>h.w===w)) continue;
+    const {L,ux,uy}=geo(w);
+    const t=(r.x-w.a[0])*ux+(r.y-w.a[1])*uy; if(t<-0.15||t>L+0.15) continue;
+    const sd=(r.x-w.a[0])*(-uy)+(r.y-w.a[1])*ux, dist=Math.abs(sd)-w.t/2; if(dist<0.03) continue;
+    const s=Math.sign(sd), fx=w.a[0]+ux*t+(-uy)*s*w.t/2, fy=w.a[1]+uy*t+ux*s*w.t/2;
+    let occ=false;
+    for(const v of W){ if(v===w||host.some(h=>h.w===v)) continue; const g=geo(v), nx=-g.uy*v.t/2, ny=g.ux*v.t/2;
+      for(const k of [1,-1]) if(segX([r.x,r.y],[fx,fy],[v.a[0]+k*nx,v.a[1]+k*ny],[v.b[0]+k*nx,v.b[1]+k*ny])){occ=true;break;} if(occ) break; }
+    if(occ) continue;
+    out.push({w,dist,fx,fy,ux,uy,ang:(Math.atan2(uy,ux)*180/Math.PI+180)%180});
+  }
+  out.sort((a,b)=>a.dist-b.dist);
+  const par=(a,b)=>Math.abs(a.ux*b.uy-a.uy*b.ux)<Math.sin(20*Math.PI/180);
+  const res=[];
+  if(host.length){
+    const h=host[0]; res.push({host:true,w:h.w,ux:h.ux,uy:h.uy,dist:Math.abs(h.sd)-h.w.t/2,ang:(Math.atan2(h.uy,h.ux)*180/Math.PI+180)%180});
+    const a=out.find(o=>!par(o,h)); if(a) res.push(a);
+  } else if(out.length){ res.push(out[0]); const b=out.find(o=>!par(o,out[0])); if(b) res.push(b); }
+  return res;
+}
+function showLoc(r){
+  clearLoc(); if(!r||r.kind!=='p') return null;
+  const P=V3(r.x,r.y,r.z), fl=floorAt(r.pav,r.x,r.y,r.z,r.h), L=wallLoc(r), info={walls:[],floor:fl,h:null};
+  let kk=0; for(const o of L){ if(o.host){ info.walls.push(o); continue; } const F=V3(o.fx,o.fy,r.z); dimension(locG,P,F,new THREE.Vector3(),'AB'[kk++]+'  '+fc(o.dist)); info.walls.push(o); }
+  if(fl){ const h=r.z-fl.z; info.h=h; if(Math.abs(h)>0.005){ dimension(locG,P,V3(r.x,r.y,fl.z),new THREE.Vector3(),(h<0?'prof. ':'h ')+fc(Math.abs(h)));
+      const ring=new THREE.Mesh(new THREE.RingGeometry(0.05,0.07,24),new THREE.MeshBasicMaterial({color:TH['--cota'],side:THREE.DoubleSide,depthTest:false})); ring.rotation.x=-Math.PI/2; ring.position.copy(V3(r.x,r.y,fl.z)); ring.renderOrder=12; locG.add(ring);} }
+  locG.visible=true; return info;
+}
+
+/* ---------- tema: aplicar ---------- */
+function applyTheme(){
+  readTheme(); scene.fog.color.set(TH['--bg']);
+  for(const m of MODELMATS.splice(0)) if(m.dispose) m.dispose();
+  buildArch(); buildFix(); buildDiv(); buildOrigin();
+  for(const r of ITEMS){ for(const m of r._mats) if(!MODELMATS.includes(m)){ MODELMATS.push(m); m.clippingPlanes=CLIP; }
+    const c=colorOf(r); r._mats.forEach(m=>{m.color.set(c); m.emissive&&m.emissive.set(c);}); }
+  halo.material.color.set(TH['--cota']); divHalo.material.color.set(TH['--pend']);
+  for(const c of COTAS) drawCota(c);
+  if(sel) showLoc(sel);
+  previewMat.color.set(TH['--cota']);
+  applyFilters();
+}
+
+/* ---------- filtros ---------- */
+const vis=r=>filt.sis.has(r.sistema)&&filt.pav.has(r.pav)&&filt.st.has(r.status);
+function applyFilters(){
+  for(const r of ITEMS) r._g.visible=vis(r);
+  arch.visible=$('#cArq').checked; rooms.visible=$('#cRooms').checked; divG.visible=$('#cDiv').checked; if(grid) grid.visible=$('#cGrid').checked;
+  for(const o of arch.children) o.visible=filt.pav.has(o.userData.pav);
+  for(const o of rooms.children) o.visible=filt.pav.has(o.userData.pav);
+  fixG.visible=$('#cFix').checked; for(const o of fixG.children) o.visible=filt.pav.has(o.userData.pav)&&(!o.userData.equip||!o.userData.equip.sistema||filt.sis.has(o.userData.equip.sistema));
+  for(const o of divG.children){ const d=o.userData.d; if(d) o.visible=divVis(d); }
+  if(sel&&!vis(sel)) select(null);
+  renderSide(); renderDivs(); hudUpd();
+}
+const cnt=f=>M.pontos.filter(f).length;
+const activeDisc=()=>{const s=new Set(); for(const k of filt.sis) s.add(DISC[k]); if($('#cArq').checked) s.add('ARQ'); return s;};
+function divVis(d){ const a=activeDisc(); const inst=d.disc.filter(x=>x!=='ARQ'); return inst.length? inst.some(x=>a.has(x)) : a.has('ARQ'); }
+const DNAME={HID:'Hidráulica · água fria',SAN:'Sanitário · esgoto e ventilação',DRE:'Drenagem pluvial e drenos',ARQ:'Arquitetura'};
+function renderDivs(){
+  const groups=['HID','SAN','DRE','ARQ'];
+  const vis_=M.divergencias.filter(divVis);
+  let h=`<div class="sec-h"><span>Divergências visíveis pelos filtros de disciplina</span><span class="mono">${vis_.length}/${M.divergencias.length}</span></div>`;
+  for(const g of groups){
+    const A_=activeDisc(); const L=vis_.filter(d=>(d.disc.find(x=>x!=='ARQ'&&A_.has(x))||'ARQ')===g); if(!L.length) continue;
+    h+=`<h3>${DNAME[g]} <span class="mono" style="color:var(--muted);font-weight:400">${L.length}</span></h3>`+L.map(dvCard).join('');
+  }
+  const pend=M.pontos.filter(p=>p.status==='PENDENTE'&&filt.sis.has(p.sistema));
+  h+=`<div class="sec-h" style="margin-top:14px"><span>Pontos pendentes</span><span class="mono">${pend.length}</span></div>`+pend.map(p=>`<button class="dv" data-pid="${p.id}"><code>${p.id}</code>${esc(p.tipo)}<small>${esc(p.memoria)}</small></button>`).join('');
+  $('#p-div').innerHTML=h; bindDv($('#p-div')); $$('#p-div [data-pid]').forEach(b=>b.onclick=()=>goId(b.dataset.pid));
+}
+function renderSide(){
+  $('#stats').innerHTML=`<div class="stat"><b class="mono">${M.pontos.length}</b><span>pontos</span></div><div class="stat"><b class="mono">${M.trechos.length}</b><span>trechos</span></div>
+   <div class="stat"><b class="mono">${cnt(p=>p.status==='INFERIDO')}</b><span>pontos inferidos</span></div><div class="stat pen"><b class="mono">${cnt(p=>p.status==='PENDENTE')}</b><span>pendentes · ${M.divergencias.length} divergências</span></div>`;
+  $('#sysList').innerHTML=SIS.map(([k,n,v])=>`<button class="tog" style="--c:var(${v})" data-sys="${k}" aria-pressed="${filt.sis.has(k)}"><span class="sw ${k==='SAN-VENT'?'thin':''}"></span><span class="n">${n}<small class="mono">${k}</small></span><span class="c mono">${cnt(p=>p.sistema===k)} pt · ${M.trechos.filter(t=>t.sistema===k).length} tr${k!=='SAN-VENT'?'<br>'+M.divergencias.filter(d=>d.disc.includes(DISC[k])).length+' div':''}</span></button>`).join('');
+  $('#pavList').innerHTML=Object.entries(PAV).map(([k,n])=>`<button class="tog pv" data-pav="${k}" aria-pressed="${filt.pav.has(k)}"><span class="n">${n}</span><span class="c mono">${cnt(p=>p.pav===k)} pt · ${M.trechos.filter(t=>t.pav===k).length} tr</span></button>`).join('');
+  $('#stList').innerHTML=ST.map(([k,g,d])=>`<button class="tog st" data-st="${k}" aria-pressed="${filt.st.has(k)}"><span class="gl ${g}"></span><span class="n">${k[0]+k.slice(1).toLowerCase()}<small>${d}</small></span><span class="c mono">${cnt(p=>p.status===k)}</span></button>`).join('');
+}
+$('#side').addEventListener('click',e=>{
+  const s=e.target.closest('[data-sys]'),p=e.target.closest('[data-pav]'),t=e.target.closest('[data-st]');
+  const tg=(set,v)=>set.has(v)?set.delete(v):set.add(v);
+  if(s)tg(filt.sis,s.dataset.sys); if(p)tg(filt.pav,p.dataset.pav); if(t)tg(filt.st,t.dataset.st);
+  if(s||p||t) applyFilters();
+});
+['cArq','cRooms','cDiv','cGrid','cFix'].forEach(id=>$('#'+id).onchange=applyFilters);
+$('#collapse').onclick=()=>{const c=$('#side').classList.toggle('collapsed'); $('#collapse').textContent=c?'Expandir':'Minimizar';};
+$('#legT').onclick=()=>{const c=$('#legend').classList.toggle('mini'); $('#legT').textContent=c?'Mostrar':'Ocultar';};
+if(innerWidth<900){$('#side').classList.add('collapsed'); $('#collapse').textContent='Expandir';}
+
+/* ---------- corte ---------- */
+let cutInfo='';
+function setCut(){
+  const v=$('#cutSel').value;
+  CLIP.length=0;
+  if(v==='none'){ $('#cutBox').classList.add('hidden'); $('#cutZ').textContent=''; cutInfo=''; }
+  else{ $('#cutBox').classList.remove('hidden'); const [lo,hi]=BAND[v], z=lo+(hi-lo)*parseFloat($('#cutR').value);
+    cutLo.constant=-(lo-0.05); cutHi.constant=z; CLIP.push(cutLo,cutHi); $('#cutZ').textContent='Z '+fm(z); cutInfo=`corte ${PAV[v].toLowerCase()} até Z ${fm(z)}`; }
+  for(const m of MODELMATS){ m.clippingPlanes=CLIP; m.needsUpdate=true; }
+  for(const o of rooms.children.concat(divG.children)) if(o.material){o.material.needsUpdate=true;}
+  hudUpd();
+}
+$('#cutSel').onchange=()=>{$('#cutR').value=1; setCut();};
+$('#cutR').oninput=setCut;
+
+/* ---------- câmera ---------- */
+const HOME=new THREE.Vector3(3,1.6,9.5);
+const target=HOME.clone(); const sph={r:44,th:-0.75,ph:1.0}; const oz={cx:3,cz:9.5,half:13};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function updCam(){
+  if(topMode){const w=app.clientWidth,h=app.clientHeight,a=w/h; ortho.left=-oz.half*a; ortho.right=oz.half*a; ortho.top=oz.half; ortho.bottom=-oz.half; ortho.position.set(oz.cx,80,oz.cz); ortho.up.set(0,0,-1); ortho.lookAt(oz.cx,0,oz.cz); ortho.updateProjectionMatrix(); ortho.updateMatrixWorld(); return;}
+  const s=Math.sin(sph.ph); persp.position.set(target.x+sph.r*s*Math.sin(sph.th),target.y+sph.r*Math.cos(sph.ph),target.z+sph.r*s*Math.cos(sph.th)); persp.lookAt(target); persp.updateMatrixWorld();
+}
+let tw=null;
+function animTo(t,r,th,ph){
+  if(topMode){oz.cx=t.x; oz.cz=t.z; oz.half=clamp(r*0.5,1.2,60); return;}
+  const to={t:t.clone(),r,th:th??sph.th,ph:ph??sph.ph}; let d=to.th-sph.th; d=((d+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI; to.th=sph.th+d;
+  tw={t0:performance.now(),ms:reduce.matches?1:600,from:{t:target.clone(),r:sph.r,th:sph.th,ph:sph.ph},to};
+}
+const VIEWS={'3d':[44,-0.75,1.0],under:[38,-0.6,2.08]};
+function setView(v){
+  $('#snap').classList.add('hidden');
+  $$('[data-view]').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
+  if(v==='top'){ topMode=true; cam=ortho; oz.cx=target.x; oz.cz=target.z; }
+  else { topMode=false; cam=persp; animTo(HOME,...VIEWS[v]); }
+}
+$$('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+$('#fit').onclick=()=>{ if(topMode){oz.cx=HOME.x;oz.cz=HOME.z;oz.half=13;} else animTo(HOME,44,-0.75,1.0); };
+function focusAt(v,r){ animTo(v,r); }
+
+/* ---------- picking ---------- */
+const ray=new THREE.Raycaster();
+function scr(v){const p=v.clone().project(cam), rc=canvas.getBoundingClientRect(); return {x:(p.x+1)/2*rc.width+rc.left, y:(1-p.y)/2*rc.height+rc.top, ok:p.z>-1&&p.z<1};}
+function pickItem(cx,cy,tol=10){
+  let best=null;
+  for(const r of ITEMS){ if(!r._g.visible) continue;
+    if(r.kind==='p'){ if(!inClip(r._pos)) continue; const p=scr(r._pos); if(!p.ok) continue; const d=Math.hypot(p.x-cx,p.y-cy)-3; if(d<tol&&(!best||d<best.d)) best={d,r,v:r._pos.clone()}; }
+    else for(let i=0;i<r._P.length-1;i++){ const a=r._P[i],b=r._P[i+1],pa=scr(a),pb=scr(b); if(!pa.ok||!pb.ok) continue;
+      const dx=pb.x-pa.x,dy=pb.y-pa.y,L2=dx*dx+dy*dy; let t=L2?((cx-pa.x)*dx+(cy-pa.y)*dy)/L2:0; t=clamp(t,0,1); const q=a.clone().lerp(b,t); if(!inClip(q)) continue;
+      const d=Math.hypot(pa.x+t*dx-cx,pa.y+t*dy-cy); if(d<tol&&(!best||d<best.d)) best={d,r,v:q,i,t}; }
+  }
+  return best;
+}
+/* snap da medição: 1 ponto · 2 vértice · 3 eixo · 4 superfície */
+function snapAt(cx,cy){
+  let b=null;
+  for(const r of ITEMS){ if(r.kind!=='p'||!r._g.visible||!inClip(r._pos)) continue; const p=scr(r._pos); if(!p.ok) continue; const d=Math.hypot(p.x-cx,p.y-cy); if(d<13&&(!b||d<b.d)) b={d,v:r._pos.clone(),type:'pt',ref:r.id,kind:'ponto'}; }
+  if(b) return b;
+  for(const r of ITEMS){ if(r.kind!=='t'||!r._g.visible) continue; for(const P of r._P){ if(!inClip(P)) continue; const p=scr(P); if(!p.ok) continue; const d=Math.hypot(p.x-cx,p.y-cy); if(d<10&&(!b||d<b.d)) b={d,v:P.clone(),type:'vx',ref:r.id,kind:'vértice'}; } }
+  if(b) return b;
+  const it=pickItem(cx,cy,8); if(it&&it.r.kind==='t') return {v:it.v,type:'ax',ref:it.r.id,kind:'eixo'};
+  if(arch.visible){ const rc=canvas.getBoundingClientRect(); ray.setFromCamera(new THREE.Vector2(((cx-rc.left)/rc.width)*2-1,-((cy-rc.top)/rc.height)*2+1),cam);
+    const hs=ray.intersectObjects(archPick.filter(m=>m.visible),false).filter(h=>inClip(h.point)); if(hs.length) return {v:hs[0].point.clone(),type:'sf',ref:null,kind:hs[0].object.userData.surf}; }
+  return null;
+}
+
+/* ---------- medição ---------- */
+let measuring=false, mA=null, cur=null;
+const previewMat=new THREE.LineDashedMaterial({color:TH['--cota'],dashSize:0.08,gapSize:0.05,depthTest:false,transparent:true});
+const preview=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]),previewMat); preview.renderOrder=9; preview.visible=false; scene.add(preview);
+const mAmark=new THREE.Mesh(new THREE.SphereGeometry(0.04,10,8),new THREE.MeshBasicMaterial({color:0xffffff,depthTest:false})); mAmark.renderOrder=12; mAmark.visible=false; scene.add(mAmark);
+function setMeasure(on){
+  measuring=on; app.classList.toggle('measuring',on); $('#bMeas').classList.toggle('on',on); $('#bMeas').setAttribute('aria-pressed',on);
+  mA=null; preview.visible=false; mAmark.visible=false; $('#snap').classList.add('hidden'); hudUpd(); renderCotas();
+}
+$('#bMeas').onclick=()=>setMeasure(!measuring);
+function constrain(s,shift){
+  if(!mA||!shift) return s;
+  const A=toM(mA.v), B=toM(s.v), d={x:B.x-A.x,y:B.y-A.y,z:B.z-A.z};
+  const ax=['x','y','z'].reduce((m,k)=>Math.abs(d[k])>Math.abs(d[m])?k:m,'x');
+  const P={x:A.x,y:A.y,z:A.z}; P[ax]=B[ax];
+  return {v:V3(P.x,P.y,P.z),type:s.type,ref:null,kind:'travado em '+ax.toUpperCase(),axis:ax.toUpperCase()};
+}
+function measureMove(e){
+  let s=snapAt(e.clientX,e.clientY); const el=$('#snap');
+  if(!s){ el.classList.add('hidden'); cur=null; preview.visible=false; return; }
+  s=constrain(s,e.shiftKey); cur=s;
+  const p=scr(s.v); el.className=s.type; el.style.left=p.x+'px'; el.style.top=p.y+'px';
+  const lab={pt:'Ponto',vx:'Vértice',ax:'Eixo',sf:''}[s.type];
+  el.querySelector('em').textContent=(s.axis?`Travado em ${s.axis}`:`${lab?lab+' · ':''}${s.ref||s.kind}`)+(mA?' · '+fmm(mA.v.distanceTo(s.v)):'');
+  if(mA){ preview.geometry.setFromPoints([mA.v,s.v]); preview.computeLineDistances(); preview.visible=true; }
+}
+function measureClick(){
+  if(!cur) return;
+  const e={...toM(cur.v),ref:cur.ref,kind:cur.ref?cur.kind:null};
+  if(!mA){ mA={v:cur.v.clone(),e}; mAmark.position.copy(cur.v); mAmark.visible=true; hudUpd(); return; }
+  addCota(mA.e,e); mA=null; mAmark.visible=false; preview.visible=false; hudUpd();
+}
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&measuring){ if(mA){mA=null; mAmark.visible=false; preview.visible=false; hudUpd();} else setMeasure(false); }
+});
+
+/* ---------- interação ---------- */
+const ptrs=new Map(); let btn=0,shift=false,moved=0,pinch0=null;
+const pinchInfo=()=>{const [a,b]=[...ptrs.values()];return{d:Math.hypot(a.x-b.x,a.y-b.y)||1,mx:(a.x+b.x)/2,my:(a.y+b.y)/2};};
+function rotate(dx,dy){ if(topMode){pan(dx,dy);return;} sph.th-=dx*0.006; sph.ph=clamp(sph.ph-dy*0.006,0.02,2.6); }
+function pan(dx,dy){
+  if(topMode){const k=2*oz.half/app.clientHeight; oz.cx-=dx*k; oz.cz-=dy*k; return;}
+  const s=sph.r*0.0016,e=persp.matrixWorld.elements; target.addScaledVector(new THREE.Vector3(e[0],e[1],e[2]),-dx*s).addScaledVector(new THREE.Vector3(e[4],e[5],e[6]),dy*s);
+}
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY}); btn=e.button; shift=e.shiftKey&&!measuring; tw=null; if(ptrs.size===1)moved=0; else{moved=99; pinch0=pinchInfo();}});
+canvas.addEventListener('pointermove',e=>{
+  const p=ptrs.get(e.pointerId);
+  if(!p){ if(measuring) measureMove(e); else hover(e); return; }
+  const dx=e.clientX-p.x,dy=e.clientY-p.y; p.x=e.clientX; p.y=e.clientY; moved+=Math.abs(dx)+Math.abs(dy);
+  if(ptrs.size===1){(btn===2||btn===1||shift)?pan(dx,dy):rotate(dx,dy);}
+  else if(ptrs.size===2){const pi=pinchInfo(); if(pinch0){ if(topMode) oz.half=clamp(oz.half*pinch0.d/pi.d,0.6,60); else sph.r=clamp(sph.r*pinch0.d/pi.d,1.2,150); pan(pi.mx-pinch0.mx,pi.my-pinch0.my);} pinch0=pi;}
+  $('#tip').classList.add('hidden');
+});
+const end=e=>{ if(!ptrs.has(e.pointerId))return; ptrs.delete(e.pointerId); if(ptrs.size<2)pinch0=null;
+  if(e.type==='pointerup'&&ptrs.size===0&&moved<6&&btn===0){ if(measuring){ measureMove(e); measureClick(); } else onClick(e); } };
+canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end);
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+canvas.addEventListener('wheel',e=>{e.preventDefault(); tw=null; const f=Math.exp(e.deltaY*0.0012); if(topMode) oz.half=clamp(oz.half*f,0.6,60); else sph.r=clamp(sph.r*f,1.2,150);},{passive:false});
+canvas.addEventListener('pointerleave',()=>{$('#tip').classList.add('hidden'); $('#snap').classList.add('hidden');});
+function hover(e){
+  if(e.pointerType==='touch')return; const h=pickItem(e.clientX,e.clientY), tip=$('#tip');
+  canvas.style.cursor=h?'pointer':'grab'; if(!h){tip.classList.add('hidden');return;}
+  tip.textContent=`${h.r.id}  ${h.r.tipo||('DN '+h.r.dn)}`; tip.classList.remove('hidden'); tip.style.left=(e.clientX+14)+'px'; tip.style.top=(e.clientY+14)+'px';
+}
+function onClick(e){
+  const h=pickItem(e.clientX,e.clientY);
+  if(h){ select(h.r,false); return; }
+  if(divG.visible){ for(const o of divG.children){ if(!o.userData.div||!o.visible) continue; const p=scr(o.position); if(p.ok&&Math.hypot(p.x-e.clientX,p.y-e.clientY)<14){ focusDiv(o.userData.div); return; } } }
+  select(null);
+}
+
+/* ---------- seleção e painéis ---------- */
+let sel=null;
+function tab(n){ if(typeof openPanel==='function') openPanel(); $$('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===n)); $$('.pane').forEach(p=>p.classList.toggle('act',p.id==='p-'+n)); }
+$$('.tabs button[data-tab]').forEach(b=>b.onclick=()=>{ $('#detail').classList.remove('mini'); $('#dMin').textContent='Minimizar'; tab(b.dataset.tab); });
+$('#dMin').onclick=()=>{ const m=$('#detail').classList.toggle('mini'); $('#dMin').textContent=m?'Abrir painel':'Minimizar'; $('#dMin').setAttribute('aria-expanded',!m); };
+function openPanel(){ $('#detail').classList.remove('mini'); $('#dMin').textContent='Minimizar'; }
+const AMB={LAV:'Lavabo',BWC01:'WC Suíte 01',BWCG:'WC Varanda Gourmet',COZ:'Cozinha',VGO:'Varanda Gourmet',SER:'Área de serviço',EXT:'Área externa',GAR:'Garagem',BWC02:'WC Suíte 02',BWC03:'WC Suíte 03',BWCM:'WC Suíte Master',RES:'Caixas d\'água',COB:'Cobertura',VAR:'Varanda',CIRC:'Circulação'};
+const PAVF={T:'térreo',S:'superior',C:'cobertura'};
+const sisNome=r=>r.sistema==='DRE'?(r.dn==='25'?'Dreno de ar-condicionado':'Águas pluviais'):({'HID-AF':'Água fria','SAN-ESG':'Esgoto','SAN-VENT':'Ventilação'}[r.sistema]);
+const fc=n=>n.toFixed(2).replace('.',',')+' m';      // campo: centímetro
+function folhas(pr){ const out=[]; const re=/(HID|SAN|DRE|ARQ)_TD_(\d\d)D\d\d - [^-]+ - ([^(|]+)/g; let m;
+  while((m=re.exec(pr))) out.push(`${m[1]} ${m[2]} · ${m[3].trim()}`);
+  if(/Detalhe 0(\d)/.test(pr)&&!out.length) out.push(pr.match(/Detalhe 0\d/)[0]);
+  return out.length?out:[pr.split('|')[0].trim()]; }
+const STF={EXTRAÍDO:['Conforme projeto','Posição e altura lidas na prancha.'],INFERIDO:['Confirmar antes de executar','Posição ou altura estimada — não está cotada na prancha.'],PENDENTE:['Não executar — pendente','Falta informação de projeto.']};
+function onde(r){
+  if(r.kind!=='t') return '';
+  const fl=r.pav==='S'?3.62:(r.pav==='C'?7.20:0.02), forro=r.pav==='S'?6.50:2.90;
+  const zs=r.pts.map(p=>p[2]), horiz=r.pts.some((p,i)=>i&&Math.hypot(p[0]-r.pts[i-1][0],p[1]-r.pts[i-1][1])>0.3);
+  if(r.enterrado&&(r.segs||[]).every(s=>s[2]||Math.hypot(s[1][0]-s[0][0],s[1][1]-s[0][1])<0.05)) return 'Enterrado / sob o piso';
+  if(r.enterrado) return 'Parte enterrada (tracejado) e parte aparente/na parede';
+  if(!horiz) return 'Vertical (prumada / descida na parede)';
+  if(Math.min(...zs)>forro-0.05&&r.pav!=='C') return 'Sobre o forro';
+  if(r.pav==='C') return 'Na cobertura';
+  if(r.pav==='S'&&Math.max(...zs)<3.62) return 'Sob a laje do superior (sobre o forro do térreo)';
+  return 'Na parede, a '+fc(Math.min(...zs)-fl)+' do piso';
+}
+function select(r,focus){
+  if(sel&&sel.kind==='t') sel._mats.forEach(m=>m.emissiveIntensity=.18);
+  sel=r; halo.visible=false; divHalo.visible=false;
+  const LOC=showLoc(r);
+  const box=$('#detail');
+  if(!r){ box.style.removeProperty('--c'); $('#p-rec').innerHTML='<p class="empty">Toque em um ponto ou tubo do modelo, ou busque pelo código.</p>'; return; }
+  if(r.kind==='p'){ halo.position.copy(r._pos); halo.scale.setScalar(BIG.test(r.tipo)?1.5:1); halo.visible=true; } else r._mats.forEach(m=>m.emissiveIntensity=1.15);
+  box.style.setProperty('--c',`var(${cvarOf(r)})`);
+  const dn=/^\d+$/.test(r.dn)?`Ø${r.dn} mm`:'';
+  const local=r.amb?`${AMB[r.amb]||r.amb} · ${PAVF[r.pav]}`:`Pavimento ${PAVF[r.pav]}`;
+  const tipo=(r.tipo||'').replace(/\s*\((CH|RP|RG|VS|LV|DC|BA|MLR|T|PIA|RS|RB|VC)\)/g,'');
+  let big=[];
+  if(r.kind==='p'){
+    if(LOC&&LOC.floor&&Math.abs(LOC.h)>0.005) big.push([LOC.h<0?'Profundidade (abaixo do piso)':'Altura do piso', fc(Math.abs(LOC.h))]);
+    else if(LOC&&LOC.floor) big.push(['Altura do piso','no nível do piso']);
+    if(LOC){ let k=0; for(const o of LOC.walls){ if(o.host) big.push(['Posição','embutido na parede']); else big.push([`Até a parede (cota ${'AB'[k++]})`,fc(o.dist)]); } }
+  } else {
+    big.push(['Comprimento',fc(r.comprimento)]);
+    if(r.declividade) big.push(['Caimento',r.declividade.split(' ')[0]]);
+    big.push(['Onde passa',onde(r)]);
+  }
+  const rel=M.divergencias.filter(d=>d.refs.includes(r.id));
+  const st=STF[r.status];
+  const tech=r.kind==='p'?[['Código',r.id],['Coordenadas X; Y; Z',`${fm(r.x)}; ${fm(r.y)}; ${fm(r.z)}`]]:[['Código',r.id],['Vértices X; Y; Z',r.pts.map(p=>p.map(fm).join('; ')).join('<br>')]];
+  $('#p-rec').innerHTML=`<div class="d-top"><span class="badge ${r.status}">${st[0]}</span><span><button class="link" id="dFocus">Centralizar</button> · <button class="link" id="dClose">Fechar</button></span></div>
+   <div class="d-title" style="margin-top:12px">${esc(r.kind==='t'?'Tubo de '+sisNome(r).toLowerCase():tipo)}</div>
+   <div class="d-sub">${esc(sisNome(r))}${dn?' · '+dn:''}<br>${esc(local)}</div>
+   <div class="field">${big.map(([k,v])=>`<div class="fr"><span>${k}</span><b class="${/^[\d,.\s%m−-]+( abaixo do piso)?$/.test(v)?'mono':'txt'}">${esc(v)}</b></div>`).join('')}</div>
+   ${r.kind==='p'&&LOC&&LOC.walls.some(o=>!o.host)?`<p class="note" style="margin-top:6px">${LOC.walls.filter(o=>!o.host).length>1?'Cotas A e B':'Cota A'} desenhada${LOC.walls.filter(o=>!o.host).length>1?'s':''} no modelo, até a face acabada da parede, em esquadro com a parede.</p>`:''}
+   ${r.status!=='EXTRAÍDO'?`<div class="memo warn"><p><b>${st[0]}.</b> ${r.status==='PENDENTE'?esc(r.memoria.split(/;\s|\.\s/)[0]):st[1]}</p></div>`:''}
+   <div class="memo"><div class="sec-h">Ver na prancha</div><p class="mono" style="font-size:12px">${folhas(r.prancha).map(esc).join('<br>')}</p></div>
+   ${rel.length?`<div class="memo"><div class="sec-h">Atenção — divergência de projeto</div>${rel.map(d=>`<button class="dv" data-div="${d.id}"><code>${d.id}</code>${esc(d.tipo)}</button>`).join('')}</div>`:''}
+   <details class="tech"><summary>Detalhes técnicos (escritório)</summary>
+     <dl>${tech.map(([k,v])=>`<dt>${k}</dt><dd class="mono">${k.startsWith('Vértices')?v:esc(v)}</dd>`).join('')}${r.kind==='t'?`<dt>Declividade</dt><dd>${esc(r.declividade||'—')}</dd><dt>Cota Z</dt><dd>${r.z_status==='EXTRAÍDO'?'extraída':'inferida'}</dd>`:''}${LOC&&LOC.floor?`<dt>Piso de referência</dt><dd>${fm(LOC.floor.z)} — ${esc(LOC.floor.ref)}</dd>`:''}</dl>
+     <p class="note" style="margin-top:8px"><b>Prancha:</b> ${esc(r.prancha)}</p>
+     <p class="note" style="margin-top:6px"><b>Memória de cálculo:</b> ${esc(r.memoria)}</p>
+   </details>`;
+  $('#dClose').onclick=()=>select(null);
+  $('#dFocus').onclick=()=>focusItem(r);
+  bindDv($('#p-rec')); tab('rec');
+  if(focus) focusItem(r);
+}
+function focusItem(r){ if(r.kind==='p') focusAt(r._pos,5); else { const b=new THREE.Box3().setFromPoints(r._P); focusAt(r._pos,Math.max(5,b.getSize(new THREE.Vector3()).length()*1.4)); } }
+const dvCard=d=>`<button class="dv" data-div="${d.id}"><code>${d.id}<span>${d.disc.join(' · ')} · ${d.gravidade}</span></code>${esc(d.tipo)}: ${esc(d.descricao)}<small>${esc(d.pranchas)}${d.refs.length?' · '+d.refs.join(', '):''}</small></button>`;
+function bindDv(root){ root.querySelectorAll('[data-div]').forEach(b=>b.onclick=()=>focusDiv(M.divergencias.find(d=>d.id===b.dataset.div))); }
+function focusDiv(d){
+  for(const k of Object.keys(DISC)) if(d.disc.includes(DISC[k])) filt.sis.add(k);
+  if(d.disc.includes('ARQ')&&!d.disc.some(x=>x!=='ARQ')) $('#cArq').checked=true;
+  $('#cDiv').checked=true; applyFilters(); select(null);
+  divHalo.position.copy(V3(d.x,d.y,d.z)); divHalo.visible=true; focusAt(V3(d.x,d.y,d.z),8);
+  tab('div'); $$('#p-div .dv').forEach(b=>b.classList.toggle('cur',b.dataset.div===d.id));
+  const el=$(`#p-div .dv[data-div="${d.id}"]`); el&&el.scrollIntoView({block:'nearest'});
+}
+(function(){
+  const t=(h,rows)=>`<h3>${h}</h3><table class="t">${rows.map(([a,b])=>`<tr><th>${a}</th><td>${b}</td></tr>`).join('')}</table>`;
+  const c=(s,k)=>M.pontos.filter(p=>p.sistema===s&&p.status===k).length;
+  $('#p-res').innerHTML=t('Pontos por sistema · extraído / inferido / pendente',SIS.map(([s])=>[s,`<span class="mono">${c(s,'EXTRAÍDO')} / ${c(s,'INFERIDO')} / ${c(s,'PENDENTE')} · ${M.pontos.filter(p=>p.sistema===s).length}</span>`]))+
+   t('Trechos',SIS.map(([s])=>{const L=M.trechos.filter(x=>x.sistema===s); return [s,`<span class="mono">${L.length} · ${fm(L.reduce((a,x)=>a+x.comprimento,0))} m</span>`];}))+
+   t('Verificação cruzada',M.verificacoes.map(v=>[esc(v.item),(v.ok?'':'<span class="badge PENDENTE">ver divergência</span> ')+esc(v.resultado)]))+
+   t('Níveis (ARQ)',M.niveis.map(n=>[`<span class="mono">${n.id} · ${fm(n.z)}</span>`,esc(n.descricao)+`<div class="note">${esc(n.fonte)}</div>`]))+
+   `<h3>Premissas</h3>${M.premissas.map(p=>`<p class="note" style="margin-bottom:6px">${esc(p)}</p>`).join('')}`+
+   `<h3>Pranchas</h3>${M.pranchas.map(p=>`<p class="note mono" style="margin-bottom:3px">${esc(p)}</p>`).join('')}`;
+})();
+
+/* busca */
+const sIn=$('#search'), sg=$('#sugg');
+sIn.oninput=()=>{const q=sIn.value.trim().toUpperCase(); if(!q){sg.innerHTML='';return;} const ids=Object.keys(BYID).filter(i=>i.includes(q)).slice(0,40);
+  sg.innerHTML=ids.map(i=>`<button data-id="${i}">${i}</button>`).join('')||'<p class="note">Sem resultado</p>'; sg.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>goId(b.dataset.id));};
+sIn.onkeydown=e=>{if(e.key==='Enter'){const q=sIn.value.trim().toUpperCase(); const id=BYID[q]?q:Object.keys(BYID).find(i=>i.includes(q)); if(id)goId(id);}};
+function goId(id){const r=BYID[id]; if(!r)return; filt.sis.add(r.sistema); filt.pav.add(r.pav); filt.st.add(r.status); applyFilters(); select(r,true); sIn.value=id; sg.innerHTML='';}
+
+/* hud */
+function hudUpd(){
+  const h=$('#hud'); h.classList.toggle('msr',measuring);
+  if(measuring) h.textContent=mA?'Medir: clique no 2º ponto · Shift trava eixo · Esc cancela':'Medir: clique no 1º ponto · Esc sai';
+  else h.textContent=`${ITEMS.filter(r=>r.kind==='p'&&r._g.visible).length} pontos · ${ITEMS.filter(r=>r.kind==='t'&&r._g.visible).length} trechos visíveis`+(cutInfo?' · '+cutInfo:'');
+}
+
+/* ---------- CSV ---------- */
+function csv(rows,cols,name){
+  const q=v=>{v=v==null?'':(Array.isArray(v)?JSON.stringify(v):String(v)); return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  const txt='﻿'+cols.join(',')+'\n'+rows.map(r=>cols.map(c=>q(r[c])).join(',')).join('\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv;charset=utf-8'})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);
+}
+const cotRows=()=>COTAS.map(c=>({id:c.id,inicio:c.a.ref||'',xa:c.a.x.toFixed(3),ya:c.a.y.toFixed(3),za:c.a.z.toFixed(3),fim:c.b.ref||'',xb:c.b.x.toFixed(3),yb:c.b.y.toFixed(3),zb:c.b.z.toFixed(3),dist_3d:c.d3.toFixed(3),dist_horizontal:c.dh.toFixed(3),dx:c.dx.toFixed(3),dy:c.dy.toFixed(3),dz:c.dz.toFixed(3)}));
+function exportCotas(){ if(COTAS.length) csv(cotRows(),['id','inicio','xa','ya','za','fim','xb','yb','zb','dist_3d','dist_horizontal','dx','dy','dz'],'cotas.csv'); }
+$('#bCsv').onclick=()=>{ csv(M.pontos,['id','tipo','sistema','dn','x','y','z','h','pav','amb','status','prancha','memoria'],'pontos.csv'); setTimeout(exportCotas,400); };
+$('#bCsvT').onclick=()=>csv(M.trechos,['id','sistema','dn','pav','status','z_status','declividade','comprimento','pts','prancha','memoria'],'trechos.csv');
+$('#bCsvD').onclick=()=>csv(M.divergencias,['id','tipo','gravidade','descricao','pranchas','x','y','z','refs'],'divergencias.csv');
+$('#bCsvN').onclick=()=>csv(M.niveis,['id','pav','descricao','z','fonte','status'],'niveis.csv');
+
+/* ---------- tema ---------- */
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{ if(!document.documentElement.dataset.theme) applyTheme(); });
+$('#theme').onclick=()=>{ const r=document.documentElement; const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme=dark?'light':'dark'; applyTheme(); };
+
+/* ---------- loop ---------- */
+function resize(){const w=app.clientWidth,h=app.clientHeight; renderer.setSize(w,h,false); persp.aspect=w/h; persp.updateProjectionMatrix();}
+new ResizeObserver(resize).observe(app); resize();
+buildArch(); buildFix(); buildDiv(); buildOrigin(); renderCotas(); applyFilters(); updCam();
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ buildArch(); buildFix(); buildDiv(); buildOrigin(); for(const c of COTAS) drawCota(c); setCut(); applyFilters(); });
+const tmp=new THREE.Vector3();
+function loop(t){
+  if(tw){const k=Math.min(1,(t-tw.t0)/tw.ms),e=1-Math.pow(1-k,3),f=tw.from,o=tw.to; target.lerpVectors(f.t,o.t,e); sph.r=f.r+(o.r-f.r)*e; sph.th=f.th+(o.th-f.th)*e; sph.ph=f.ph+(o.ph-f.ph)*e; if(k>=1)tw=null;}
+  updCam();
+  for(const r of ITEMS) if(r._ring){ r._ring.quaternion.copy(cam.quaternion); r._ring.scale.setScalar(reduce.matches?1:1+0.22*Math.sin(t/320)); }
+  if(!reduce.matches){ if(halo.visible){halo.rotation.y+=0.012; halo.rotation.x+=0.006;} if(divHalo.visible) divHalo.rotation.y+=0.01; }
+  for(const s of LABELS){ const d=topMode?oz.half*2.2:cam.position.distanceTo(s.getWorldPosition(tmp)); const h=Math.min(d*s.userData.k,s.userData.max||99); s.scale.set(h*s.material.map.image.width/s.material.map.image.height,h,1); }
+  renderer.render(scene,cam); requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+window.__M3D={wallLoc,floorAt,select:id=>select(BYID[id],true),goId,setView,focusDiv,addCota,setMeasure,COTAS,snapAt,scr,BYID,V3};
+})();
+</script>
+<div id="demo-capa" role="button" tabindex="0"><b>Prévia · pavimento superior</b><p>Um pedaço do modelo que o prompt devolveu. Clique num ponto para ver a altura do piso e a distância até a parede, ou use Medir.</p><button type="button">Explorar o 3D</button></div><script>(function(){var c=document.getElementById("demo-capa");function abrir(){c.remove();}c.addEventListener("click",abrir);c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();abrir();}});})();</script></body>
+</html>

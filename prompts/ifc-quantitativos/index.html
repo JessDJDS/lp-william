@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de IFC e quantitativos do mesmo projeto com a confiança de cada tubo · William Moura</title>
+<meta name="description" content="Prompt aberto que gera o IFC da tubulação a partir das pranchas e tira os quantitativos do próprio modelo, com a confiança de cada tubo. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/ifc-quantitativos/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/ifc-quantitativos/">
+<meta property="og:title" content="IFC e quantitativos com a confiança de cada tubo">
+<meta property="og:description" content="Quantitativo tirado de prancha não diz qual metro foi lido e qual foi deduzido. Este prompt gera o IFC, tira os quantitativos dele e marca a confiança de cada tubo. Passo 02 de 02.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-ifc-quantitativos.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IFC e quantitativos com a confiança de cada tubo">
+<meta name="twitter:description" content="Quantitativo tirado de prancha não diz qual metro foi lido e qual foi deduzido. Este prompt gera o IFC, tira os quantitativos dele e marca a confiança de cada tubo. Passo 02 de 02.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-ifc-quantitativos.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 02 de 02 · Modelo IFC e quantitativos de instalações hidrossanitárias</p>
+
+    <div class="p-cabeca">
+      <h1>IFC e quantitativos do mesmo projeto <span class="marca">com a confiança de cada tubo</span></h1>
+    </div>
+
+    <p class="p-sub">Ele lê as mesmas pranchas em PDF e devolve o IFC da rede, que abre num visualizador BIM tubo por tubo com a confiança da leitura, e a planilha de quantitativos tirada do próprio IFC, com uma aba só do que conferir antes de comprar.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-ifc-quantitativos" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-ifc-quantitativos" tabindex="0" role="region" aria-label="Prompt do passo 02, rolável"><span class="ph"># PAPEL</span>
+Você é engenheiro de instalações prediais hidrossanitárias, com domínio de leitura de projeto, BIM/IFC e levantamento de quantitativos. A partir APENAS das pranchas em PDF, você vai:
+(1) reconstruir a rede de tubulação em 3D como dados;
+(2) gerar um modelo IFC4 válido;
+(3) avaliar a própria confiança em cada trecho e item lido, apontando o que precisa ser conferido de novo;
+(4) extrair os quantitativos lendo somente o IFC, com a confiança ao lado de cada quantidade.
+
+<span class="ph"># ENTRADA</span>
+- Pasta com as pranchas em PDF: arquitetura (plantas, cortes, quadro de esquadrias) e instalações. Os prefixos usuais são HID (água fria/quente), SAN (esgoto e ventilação) e DRE (águas pluviais e drenos).
+- Não há modelo 3D, IFC nem planilha prévia. Se existirem outros arquivos na pasta, ignore-os, salvo se eu pedir.
+
+<span class="ph"># REGRAS INEGOCIÁVEIS</span>
+1. A prancha é a fonte. Nenhuma posição, cota, diâmetro ou quantidade é inventada.
+2. Todo elemento recebe um status:
+   - EXTRAÍDO: lido na prancha (cota, isométrico, tabela ou medida em escala sobre prancha registrada).
+   - INFERIDO: derivado por regra escrita no próprio registro (ex.: "Z do ramal = +3,20, entre o forro +2,90 e o fundo da laje +3,48; cota não indicada").
+   - PENDENTE: não determinável; o motivo vem escrito e o item não é quantificado.
+3. Toda quantidade tem memória de cálculo ao lado (fórmula, elementos somados e prancha de origem), unidade em coluna própria e código hierárquico por linha.
+4. Não estimar, não arredondar, não completar. Altura ou dimensão usual de mercado só entra como INFERIDO, declarada como tal. Não atribuir a uma norma valor que não está nela.
+5. Não identificar cidade nem país do projeto nos entregáveis. A natureza do projeto pode aparecer.
+6. Antes de cada entrega: rodar as verificações automáticas descritas abaixo e relatar o resultado. Nunca declarar "pronto" sem a verificação.
+7. Status e confiança são coisas diferentes. Status diz de onde veio o dado (extraído, inferido, pendente). Confiança diz quão provável é que a leitura esteja certa. Um DN EXTRAÍDO de um rótulo ambíguo tem confiança baixa. A confiança é calculada só com sinais internos às pranchas e ao modelo, nunca com as tabelas de quantitativo do projeto. A autoavaliação não altera nenhuma quantidade: ela aponta o que conferir.
+
+<span class="ph"># FERRAMENTAS</span>
+Python 3 com pymupdf (vetor e texto dos PDFs), numpy/scipy/opencv/scikit-image (registro e esqueletização), shapely (geometria 2D), networkx (grafo da rede), ifcopenshell (IFC) e openpyxl (planilhas). Instale o que faltar.
+Trabalhe com scripts versionados e reexecutáveis:
+- extrair.py → rede.json
+- gerar_ifc.py → modelo.ifc
+- quantificar_ifc.py → quantitativos.xlsx
+- confianca.py → confianca.json
+
+<span class="ph"># ETAPA 1 — INVENTÁRIO</span>
+1. Liste cada prancha: código, disciplina, pavimento, escala, revisão, data e orientação (rotação da página).
+2. Verifique se cada PDF é vetorial (get_drawings, get_text). Prefira sempre vetor e texto a OCR. Use imagem só para conferência ou para tabela em texto rotacionado que o extrator não capture.
+3. Leia legendas, notas e simbologia por disciplina. Símbolo sem legenda vira PENDENTE.
+4. Transcreva o texto integral das NOTAS de cada prancha para notas.json. Notas que condicionam diâmetro, traçado, altura ou peça (ex.: "diâmetro depende do dimensionamento da bomba", "traçado conforme locação das máquinas", "conexões com bucha de latão em todos os pontos", "altura conforme torneira de parede ou bancada") alimentam a autoavaliação da Etapa 7.
+   Se as pranchas trouxerem tabelas de quantitativo, NÃO as use para gerar o modelo nem para calcular a confiança.
+5. Se faltar algo essencial (corte com pé-direito, planta de algum pavimento, isométricos), pare e me diga o que falta antes de seguir.
+
+<span class="ph"># ETAPA 2 — COORDENADAS, ESCALA E NÍVEIS</span>
+- Origem (0,0,0) num ponto inequívoco da arquitetura (interseção de eixos ou vértice externo). Declare qual foi escolhido. Unidade: metro. Z = cota de projeto (RN declarada).
+- Escala da ARQ: compare os textos de cota com o comprimento vetorial das linhas de cota. Relate quantas conferem a ±1%.
+- Registro das plantas de instalação sobre a ARQ: rasterize as paredes da ARQ e cada planta de instalação na mesma escala e encontre a translação por correlação (FFT). Admita rotação só se a correlação indicar. Confira com uma imagem de sobreposição por prancha e registre qualquer divergência de escala, rotação ou deslocamento.
+- Tabela de níveis por pavimento (fonte = cortes e plantas): piso acabado de cada ambiente (atenção a áreas rebaixadas, boxes, garagem, áreas externas), forro, fundo e topo de laje, laje e base dos reservatórios. Cada nível com a fonte.
+- Polígonos de piso/terreno por pavimento e nível. Servem para decidir o que está enterrado e para as alturas sobre o piso.
+
+<span class="ph"># ETAPA 3 — PAREDES E AMBIENTES (contexto e referência)</span>
+- Paredes a partir do vetor da ARQ (pela espessura e cor de traço): pares de linhas paralelas → eixo + espessura; una segmentos colineares. Não presuma ortogonalidade: paredes inclinadas são segmentos genéricos.
+- Vãos de portas e janelas associados às etiquetas (P01, J03…) e ao quadro de esquadrias (largura, altura, peitoril). Etiqueta sem vão = divergência.
+- Nomes dos ambientes por texto da ARQ. Registre equivalências de nome entre ARQ e instalações (ex.: "B.W.C PNE" = "WC Suíte 01").
+
+<span class="ph"># ETAPA 4 — EXTRAÇÃO DA REDE</span>
+Para cada planta de instalação:
+- Identifique os traços de tubulação por cor e espessura do vetor (ex.: água fria azul, esgoto verde, ventilação verde-escuro, pluvial vinho, dreno rosa, conforme a legenda daquele projeto) e diferencie "enterrado/no pavimento abaixo" de "embutido/sobre o forro" pelo tipo de traço indicado na legenda.
+- Traço em contorno duplo → linha de eixo pelo par paralelo. Traço em mancha → esqueletize a máscara de cor e simplifique (approxPolyDP).
+- Converta para coordenadas do modelo pela transformação da Etapa 2.
+- Leia rótulos de DN e guarde TODOS em rotulos_dn.json (prancha, DN, X, Y no sistema do modelo). Atribua o DN ao trecho pelo rótulo mais próximo, registrando a distância e o segundo rótulo mais próximo de outro DN. Leia também os rótulos de coluna (AF01, TQ02, TV03, AP04, DR01…), setas e percentuais de declividade e indicações "vem de / vai para".
+- Símbolos de pontos e peças: registros, pontos de utilização, ralos, caixas sifonadas, caixas de inspeção, de gordura e de passagem, condutores, tubos de queda, ventiladores, hidrômetro, reservatórios, bomba, fossa, filtro, sumidouro.
+Isométricos e detalhes:
+- Alturas (h=) de cada ponto e traçado interno dos ramais (descida da coluna, registro, ramal alto, ramal baixo, derivações). Altura de ramal não cotada = medida em escala no iso (INFERIDO, declarar).
+- Detalhes de reservatórios, hidrômetro, caixas e tratamento: dimensões e profundidades.
+
+<span class="ph"># ETAPA 5 — MODELO DE DADOS DA REDE (rede.json)</span>
+- Pontos: ID hierárquico [SISTEMA]-[PAV]-[AMBIENTE]-[SEQ], tipo, sistema, DN, X/Y/Z, h sobre o piso, pavimento, ambiente, prancha, memória e status. IDs estáveis: nunca renomear depois de criados.
+- Trechos: ID, sistema, DN, lista de vértices XYZ, prancha, memória, status do traçado, status da cota Z e declividade.
+- Construção por NÓS COMPARTILHADOS: cada vértice é um nó nomeado e os trechos referenciam nós. A continuidade é garantida por construção.
+- Água fria, cadeia completa: rede pública → ramal predial → hidrômetro → alimentação (direta e/ou reservatório inferior com boia) → sucção → bomba → recalque → reservatório superior → barrilete → limpeza/extravasor → colunas → ramais → pontos. Não deixe de fora a entrada da rua, o abastecimento do reservatório inferior nem o recalque.
+- Colunas cujo XY muda entre plantas: procure o desvio no isométrico; se não houver, modele como INFERIDO e registre divergência.
+- Esgoto, pluvial e drenos por gravidade: cota nos nós (saída do aparelho, caixa sifonada, junções, base de TQ, fundo de caixa), Z intermediário interpolado pelo comprimento e declividade resultante calculada e validada contra o mínimo e o máximo das notas. Quando a rede não fecha em nível (ex.: rede da frente mais alta que a caixa de uma área rebaixada), modele queda dentro da caixa e registre divergência.
+- Ventilação até o terminal acima da cobertura (altura da nota).
+- Oriente cada trecho no sentido do fluxo (água fria: da fonte para o ponto; gravidade: de montante para jusante). A Etapa 7 depende disso.
+- Só modele trechos que estejam na prancha. Ligação evidente não desenhada = trecho INFERIDO.
+- Marque cada segmento como ENTERRADO quando estiver abaixo do polígono de piso/terreno, dividindo o segmento exatamente no cruzamento.
+
+<span class="ph"># ETAPA 6 — VERIFICAÇÃO DA REDE (obrigatória antes do IFC)</span>
+- Continuidade: toda extremidade de trecho toca outro trecho, um ponto ou um equipamento (tolerância de 1 cm). Exceções só nos limites do lote (rede pública, saída para a rua), listadas.
+- Todo ponto está sobre algum trecho.
+- Declividades dentro das notas.
+- Sobreposição do modelo (trechos e pontos) sobre cada planta de instalação: imagem por prancha, olhada antes de seguir.
+- Contagem de pontos por ambiente: isométrico × planta × modelo.
+- Divergências entre disciplinas, cada uma com ID, descrição, pranchas, XYZ, IDs relacionados, gravidade e disciplinas. Exemplos:
+  - ponto fora de parede/ambiente; ralo em ambiente seco;
+  - TQ sem correspondência entre pavimentos; condutor sem caixa de destino;
+  - shafts citados em nota e não desenhados; ARQ × instalações (fossa, poço, reservatórios);
+  - diâmetros incoerentes; níveis não cotados.
+
+<span class="ph"># ETAPA 7 — AUTOAVALIAÇÃO DE CONFIANÇA (confianca.py → confianca.json)</span>
+Para cada trecho, atribua ALTA, MÉDIA ou BAIXA em três dimensões e escreva o motivo de cada rebaixamento em linguagem de obra. Confiança geral = a pior das três. Todos os limites abaixo são parâmetros declarados nas PREMISSAS, não valores de norma.
+DN
+- Pelos rótulos (trechos com parte horizontal &gt; 0,25 m), na planta do pavimento do trecho, usando rotulos_dn.json:
+  - BAIXA se o rótulo de OUTRO DN está mais perto do trecho do que o rótulo do DN atribuído, e este está a mais de 0,60 m;
+  - BAIXA se não há rótulo do DN atribuído a menos de 2,50 m, em trecho horizontal ≥ 1,60 m sem confirmação no isométrico;
+  - MÉDIA se a diferença entre os dois rótulos mais próximos (DN atribuído × outro DN) é menor que 0,60 m;
+  - MÉDIA se o DN vem só do isométrico, da saída do aparelho (trecho curto) ou do rótulo da coluna (prumada).
+  - Rótulos de subsistemas que dividem a mesma prancha e nunca compartilham DN (ex.: dreno de ar-condicionado × pluvial) não concorrem entre si.
+- Pela coerência hidráulica, com os vizinhos do grafo no sentido do fluxo:
+  - água fria (pressurizada): BAIXA se o trecho é menor que o trecho a montante E menor que o trecho a jusante (estrangulamento);
+  - esgoto, pluvial e drenos (gravidade): BAIXA se o diâmetro reduz a jusante, ou seja, o trecho recebe de um maior ou descarrega em um menor. Ventilação fica fora desta regra.
+- Por nota: BAIXA se uma nota da prancha diz que o diâmetro depende de algo ainda não definido (ex.: dimensionamento da bomba).
+TRAÇADO
+- BAIXA se o caminho foi deduzido (status INFERIDO) ou se o traço não tem correspondência na legenda;
+- MÉDIA se uma nota condiciona o caminho (ex.: locação de equipamento).
+COTA
+- Comprimento vertical que depende de cota Z INFERIDA: até 2,00 m = MÉDIA; acima = BAIXA.
+CONEXÕES E ITENS UNITÁRIOS
+- Conexões deduzidas do grafo: MÉDIA; BAIXA se ligadas a trecho com DN ou traçado BAIXA.
+- Itens unitários: EXTRAÍDO = ALTA, INFERIDO = MÉDIA, PENDENTE = BAIXA. Rebaixe para no mínimo MÉDIA quando uma nota condiciona o item (ex.: altura do ponto dependente do tipo de torneira).
+- Peças exigidas por nota e não desenhadas (ex.: conexão com bucha de latão em todo ponto de utilização) entram como linha própria, com quantidade = nº de pontos, tipo a definir e confiança MÉDIA. Não as modele como elemento.
+Saída: confianca.json com, por trecho, {nivel: {DN, TRACADO, COTA}, geral, motivos[], evidências (distâncias dos rótulos, DNs vizinhos, comprimento vertical inferido)}.
+Calibração: imprima a contagem ALTA/MÉDIA/BAIXA por dimensão e por sistema e leia a lista de BAIXA. Se um critério marcar como BAIXA um sistema inteiro, verifique se ele é falso positivo (ex.: rótulos de outro subsistema concorrendo). Ajuste o critério, declare o ajuste nas PREMISSAS e nunca rebaixe ou suba um trecho individual à mão.
+
+<span class="ph"># ETAPA 8 — GERAR O IFC4 (gerar_ifc.py, ifcopenshell)</span>
+Estrutura:
+- IfcProject (unidades em metro) → IfcSite → IfcBuilding → IfcBuildingStorey por pavimento (Elevation = piso acabado).
+- IfcDistributionSystem por sistema, com PredefinedType: DOMESTICCOLDWATER, SEWAGE, VENT, STORMWATER, DRAINAGE (drenos de ar-condicionado). Elementos atribuídos ao sistema; IfcRelServicesBuildings.
+- Cada elemento contido no pavimento em que está o seu ponto mais baixo.
+Elementos:
+- IfcPipeSegment (RIGIDSEGMENT): um por segmento reto, com IfcExtrudedAreaSolid de perfil circular (raio = DN/2) ao longo do eixo. ObjectType "Tubo enterrado" / "Tubo aparente/embutido". Tag = "&lt;ID do trecho&gt;#&lt;n&gt;".
+- IfcPipeFitting deduzido do grafo da rede (networkx):
+  - nó com 2 tubos e desvio ≥5° = BEND, classificado em 90°/45°/≤30°;
+  - nó com 3 ou mais tubos = JUNCTION (tê/junção, com DN do ramal);
+  - mudança de DN = TRANSITION (redução).
+  Status INFERIDO, com a regra na memória.
+- Pontos e peças:
+  - Pontos de utilização = IfcPipeFitting EXIT.
+  - Registros = IfcValve (ISOLATING / REGULATING); válvula de pé = IfcValve CHECK; boia = IfcValve USERDEFINED.
+  - Hidrômetro = IfcFlowMeter WATERMETER; bomba = IfcPump.
+  - Reservatórios = IfcTank STORAGE.
+  - Ralos e caixas sifonadas = IfcWasteTerminal (FLOORWASTE / FLOORTRAP); captação de condutor = IfcWasteTerminal ROOFDRAIN.
+  - Caixas de inspeção/passagem = IfcDistributionChamberElement INSPECTIONCHAMBER; sumidouro = SOAKAWAY; caixa de gordura = IfcInterceptor GREASE; fossa e filtro = IfcTank USERDEFINED.
+  - Terminais de ventilação = IfcFlowTerminal; louças, quando desenhadas na ARQ = IfcSanitaryTerminal.
+  - Geometria das caixas e tanques com as dimensões dos detalhes; peças pequenas com geometria simbólica.
+- Contexto (opcional, sem quantificar): IfcWall (eixo + espessura + altura), IfcDoor/IfcWindow nos vãos, IfcSlab nos polígonos de piso.
+Propriedades:
+- Pset_PipeSegmentTypeCommon.NominalDiameter, Pset_PipeFittingTypeCommon, Pset_ValveTypeCommon conforme o caso.
+- Qto_PipeSegmentBaseQuantities.Length em todo IfcPipeSegment.
+- Pset próprio (ex.: Pset_Obra) em TODO elemento: ID, ID_Trecho/Segmento, Sistema, DN_mm, Status, Enterrado, Declividade, Orientação (vertical/horizontal/inclinado), Ambiente, Altura_sobre_piso, Prancha, Memória.
+- No mesmo Pset, a confiança da Etapa 7: ConfiancaDN, ConfiancaTracado, ConfiancaCota (nos tubos), ConfiancaGeral e MotivosConferir (em todo elemento quantificável). Nos pontos de utilização, ConexaoTerminal quando houver nota exigindo peça específica.
+Validação:
+- ifcopenshell.validate sem erros de schema.
+- Geometria de todos os produtos triangulada com ifcopenshell.geom sem falhas.
+- Render de conferência (planta e perspectiva) colorido por sistema, olhado antes de entregar.
+
+<span class="ph"># ETAPA 9 — QUANTITATIVOS LIDOS DO IFC (quantificar_ifc.py)</span>
+Leia SOMENTE o IFC (não o rede.json):
+- Tubos: Σ Qto Length por sistema × DN × pavimento × enterrado/aparente. Confira com Σ Depth das extrusões (conferência geométrica) e, separadamente, contra o rede.json (diferença esperada &lt; 1 mm por sistema).
+- Conexões: contagem por tipo × ângulo × DN (e DN do ramal ou da redução).
+- Peças, caixas, tanques, terminais e louças: contagem por classe IFC × tipo × DN × pavimento.
+- Separe em colunas a quantidade EXTRAÍDA e a INFERIDA/PENDENTE de cada linha (linha MISTO quando houver as duas).
+- Leia a confiança do Pset (não do confianca.json). Cada linha recebe: CONFIANÇA (pior parcela), QUANT CONF. ALTA, QUANT CONF. MÉDIA e QUANT CONF. BAIXA (A CONFERIR). As três somam a quantidade total. A memória cita os trechos BAIXA da linha.
+- Planilha com abas:
+  - QUANTITATIVO: código hierárquico | item | pavimento | DN | unid | quant | quant extraída | quant inferida | status | confiança | quant alta | quant média | quant baixa | memória (Σ de quais elementos e trechos);
+  - CONFERIR: um registro por trecho com confiança BAIXA (prioridade 1, conferir antes de comprar ou executar) ou MÉDIA (prioridade 2, conferir na liberação da frente). Colunas: prioridade | ID do trecho | sistema | DN | pavimento(s) | comprimento | unid | confiança DN/traçado/cota | conexões afetadas | motivos | onde conferir (prancha/isométrico) | ação sugerida. Depois, os itens unitários BAIXA e as peças exigidas por nota e não modeladas;
+  - RESUMO por sistema, com metros de tubo BAIXA, % do tubo a conferir e conexões BAIXA;
+  - POR_ELEMENTO: GlobalId, classe, Tag/ID, sistema, DN, pavimento, unid, quant, status, confiança, origem, prancha;
+  - PENDENCIAS;
+  - PREMISSAS: comprimento por eixo, sem perdas e sem arredondar para barra; conexões deduzidas; critério de pavimento; critérios e limites da autoavaliação de confiança.
+
+<span class="ph"># ENTREGA</span>
+1. rede.json, confianca.json, modelo.ifc, quantitativos.xlsx e os quatro scripts.
+2. Imagens de conferência: sobreposição por prancha, render do IFC.
+3. Resumo curto no chat:
+   - pontos e trechos por sistema e status;
+   - continuidade (pontas soltas);
+   - validação do IFC (erros de schema, elementos com geometria);
+   - totais de tubo por sistema × DN;
+   - confiança: metros de tubo e conexões em BAIXA por sistema, e os 10 itens de maior impacto da aba CONFERIR, com o motivo;
+   - pendências e divergências mais graves;
+   - premissas adotadas (origem, níveis, alturas inferidas).</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Quantitativo de tubulação tirado de prancha é régua, soma de trecho e fé: depois ninguém sabe qual metro foi lido e qual foi deduzido. E a IA que faz isso rápido devolve todo número com a mesma cara de certeza, o tubo do rótulo e o tubo adivinhado valendo igual na planilha.</p>
+      <p>Esse prompt monta o IFC primeiro e só depois quantifica, <strong>lendo apenas o IFC</strong>: metros por diâmetro, pavimento e enterrado ou aparente, com memória ao lado. Cada tubo leva nota de confiança no diâmetro, no traçado e na cota, e a geral é a pior das três. A autoavaliação <strong>não mexe em nenhuma quantidade</strong>, só aponta o que conferir, e o que não dá pra determinar fica pendente e não vira número.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1000" height="758" poster="../../assets/prompts/ifc-quantitativos/ifc-cor-por-sistema.jpg" aria-label="O IFC das tubulações aberto no navegador, dando uma volta completa: arquitetura em cinza transparente e cada tubo na cor do seu sistema, água fria em azul, esgoto sanitário em verde claro, ventilação em verde escuro e águas pluviais em vinho; ao lado, a árvore do modelo com as classes IFC (408 IfcPipeSegment) e os sistemas com a contagem de elementos"><source src="../../assets/prompts/ifc-quantitativos/ifc-cor-por-sistema.mp4" type="video/mp4"></video><figcaption><b>01 · O IFC no navegador</b> O modelo inteiro com Cor por sistema: 578 elementos, 408 tubos (IfcPipeSegment), cada um com classe, pavimento e sistema que qualquer visualizador BIM lê.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito p-shot-destaque"><a class="p-shot-zoom" href="../../assets/prompts/ifc-quantitativos/tubo-confianca-baixa.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/ifc-quantitativos/tubo-confianca-baixa.webp" alt="Painel de propriedades do tubo de esgoto T-SAN-S-005#01, DN100, no IFC: Pset_ObraDigital com status EXTRAÍDO, cota Z INFERIDO, orientação vertical, memória do detalhe da prumada, ConfiancaDN MÉDIA, ConfiancaTracado ALTA, ConfiancaCota BAIXA, ConfiancaGeral BAIXA e o motivo para conferir: DN100 pelo rótulo da coluna, sem rótulo na planta, e 3,75 m de trecho vertical dependendo de cota inferida" width="1200" height="1976" loading="lazy"></a><figcaption><b>02 · Confiança baixa</b> Prumada de esgoto DN100: confiança geral BAIXA, e o próprio tubo diz por quê. 3,75 m de vertical dependem de cota inferida. É uma das 43 linhas de prioridade 1 da aba CONFERIR.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/ifc-quantitativos/tubo-confianca-alta.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/ifc-quantitativos/tubo-confianca-alta.webp" alt="Painel de propriedades do tubo de esgoto enterrado T-SAN-T-031#04, DN100, no IFC: Pset_ObraDigital com status EXTRAÍDO, declividade de 1,0% resultante das cotas inferidas, orientação inclinado, e ConfiancaDN, ConfiancaTracado, ConfiancaCota e ConfiancaGeral todas ALTA, sem motivo para conferir" width="1200" height="1590" loading="lazy"></a><figcaption><b>03 · Confiança alta</b> Esgoto enterrado DN100 do térreo: diâmetro, traçado e cota com confiança ALTA e declividade de 1,0% calculada. Nada a conferir neste tubo.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Recorte da aba QUANTITATIVO da planilha gerada a partir do IFC: código, item com pavimento, unidade, quantidade, confiança da pior parcela e quanto da quantidade tem confiança alta, média e baixa</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Serviço / item</th>
+              <th scope="col">Unid</th>
+              <th scope="col" class="col-num">Quant</th>
+              <th scope="col">Confiança</th>
+              <th scope="col" class="col-num">Conf. alta</th>
+              <th scope="col" class="col-num">Conf. média</th>
+              <th scope="col" class="col-num">Conf. baixa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">1</td>
+              <td class="col-serv">Água fria (HID-AF)</td>
+              <td></td>
+              <td class="col-num"></td>
+              <td></td>
+              <td class="col-num"></td>
+              <td class="col-num"></td>
+              <td class="col-num"></td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.1.1</td>
+              <td class="col-serv">Tubo DN20 — aparente / embutido · Térreo</td>
+              <td>m</td>
+              <td class="col-num">37,006</td>
+              <td>BAIXA</td>
+              <td class="col-num">0,000</td>
+              <td class="col-num">26,198</td>
+              <td class="col-num">10,809</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.1.5</td>
+              <td class="col-serv">Tubo DN25 — aparente / embutido · Térreo</td>
+              <td>m</td>
+              <td class="col-num">43,680</td>
+              <td>BAIXA</td>
+              <td class="col-num">11,491</td>
+              <td class="col-num">6,180</td>
+              <td class="col-num">26,009</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.1.11</td>
+              <td class="col-serv">Tubo DN40 — aparente / embutido · Cobertura</td>
+              <td>m</td>
+              <td class="col-num">11,723</td>
+              <td>ALTA</td>
+              <td class="col-num">11,723</td>
+              <td class="col-num">0,000</td>
+              <td class="col-num">0,000</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">1.8.1</td>
+              <td class="col-serv">Motobomba de recalque · Térreo <span class="tag-pend">Pendência</span></td>
+              <td>un</td>
+              <td class="col-num">1</td>
+              <td>BAIXA</td>
+              <td class="col-num">0</td>
+              <td class="col-num">0</td>
+              <td class="col-num">1</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2</td>
+              <td class="col-serv">Esgoto sanitário (SAN-ESG)</td>
+              <td></td>
+              <td class="col-num"></td>
+              <td></td>
+              <td class="col-num"></td>
+              <td class="col-num"></td>
+              <td class="col-num"></td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.1.4</td>
+              <td class="col-serv">Tubo DN50 — enterrado · Térreo</td>
+              <td>m</td>
+              <td class="col-num">14,617</td>
+              <td>MÉDIA</td>
+              <td class="col-num">1,690</td>
+              <td class="col-num">12,927</td>
+              <td class="col-num">0,000</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.1.6</td>
+              <td class="col-serv">Tubo DN100 — aparente / embutido · Térreo</td>
+              <td>m</td>
+              <td class="col-num">22,825</td>
+              <td>BAIXA</td>
+              <td class="col-num">3,672</td>
+              <td class="col-num">6,643</td>
+              <td class="col-num">12,510</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2.1.7</td>
+              <td class="col-serv">Tubo DN100 — enterrado · Térreo</td>
+              <td>m</td>
+              <td class="col-num">59,305</td>
+              <td>BAIXA</td>
+              <td class="col-num">28,991</td>
+              <td class="col-num">27,261</td>
+              <td class="col-num">3,053</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · IFC no visualizador e aba QUANTITATIVO · Dados reais anonimizados</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Status e confiança são coisas diferentes, e o prompt separa as duas de propósito. A prumada de esgoto do exemplo tem traçado <strong>extraído</strong> e mesmo assim cai pra confiança geral baixa, porque 3,75 m de vertical dependem de cota inferida. Antes de discordar da nota, lê o <strong>MotivosConferir</strong>: ele diz qual das três puxou pra baixo.</li>
+          <li>Confiança de cota mede só o trecho vertical que depende de cota inferida. No tubo enterrado do exemplo, tudo sai alta, mas a declividade de 1,0% vem de cotas que o modelo <strong>inferiu</strong>. Pra quantitativo tá ótimo; pra abrir vala, a cota de fundo ainda pede a prancha.</li>
+          <li>A aba CONFERIR é a lista de trabalho antes do pedido de compra. No exemplo são 43 linhas de prioridade 1 (40 trechos de confiança baixa e os 3 itens da aba PENDENCIAS) e 77 de prioridade 2, pra conferir na liberação da frente. A motobomba de recalque aparece com 1 un na QUANTITATIVO, mas é pendência: o diâmetro depende do dimensionamento da bomba. Item pendente não entra no pedido.</li>
+          <li>O quantitativo sai do IFC, não da prancha: se o modelo errou um trecho, a planilha erra junto, com memória impecável. Comprimento é por eixo, sem perda e sem arredondar pra barra, e as conexões são deduzidas da rede, não desenhadas. Soma a perda e converte em barra antes de cotar com fornecedor; os limites da confiança estão na aba PREMISSAS como parâmetros, não como norma.</li>
+          <li>É o mesmo projeto do passo 01: o 3D é pra obra achar o tubo, o IFC é pra coordenar e comprar. No visualizador do exemplo, a cor por sistema pinta 4 sistemas; o dreno de ar-condicionado está na planilha, mas não ganha cor própria ali. Antes de achar que um sistema sumiu, confere a aba RESUMO, que traz cada sistema com o percentual do tubo a conferir. Confiança alta é a IA dando nota pra ela mesma: ajuda a priorizar, não assina ART.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">O segundo prompt usa o mesmo projeto</p>
+      <nav class="p-cadeia p-cadeia--n2" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../visualizador-3d/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Modelo 3D</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 02</span>
+          <span class="nome">IFC</span>
+        </span>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de lista de compras com o link de cada preço a partir do escopo · William Moura</title>
+<meta name="description" content="Prompt aberto que monta a lista de compras da reforma com ficha de cada produto no 3D e o link de cada preço, com loja e data. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/lista-de-compras/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/lista-de-compras/">
+<meta property="og:title" content="Lista de compras com o link de cada preço">
+<meta property="og:description" content="Sem link, a IA inventa preço que parece real. Este prompt devolve ficha de cada produto e planilha com loja, data e o link de cada preço. Passo 02 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-lista-de-compras.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lista de compras com o link de cada preço">
+<meta name="twitter:description" content="Sem link, a IA inventa preço que parece real. Este prompt devolve ficha de cada produto e planilha com loja, data e o link de cada preço. Passo 02 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-lista-de-compras.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 02 de 04 · Lista de compras com referência de preço</p>
+
+    <div class="p-cabeca">
+      <h1>Lista de compras <span class="marca">com o link de cada preço</span> a partir do escopo</h1>
+    </div>
+
+    <p class="p-sub">Ele lê o relatório de escopo e as pranchas, busca cada produto no fabricante ou numa loja online e devolve duas coisas: o relatório com uma ficha por produto (foto, preço, loja, data e link), que também abre no clique do 3D, e a lista de compras em Excel com quantidade, memória de cálculo e o link de cada preço.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-lista-de-compras" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-lista-de-compras" tabindex="0" role="region" aria-label="Prompt do passo 02, rolável"># Etapa 2/2 — Referências de produto e lista de compras
+
+<span class="ph">## Contexto</span>
+Continuação de um trabalho feito em outra sessão. Entradas:
+1. O relatório HTML da etapa 1: [caminho ou anexo — [PROJ]_Relatorio_Reforma_Antes_Depois.html]. Ele já tem 3D antes/depois com chaves de acabamento em cada elemento, um mapa de acabamentos, um objeto `PRODUTOS = []` vazio e um painel que abre ao clicar num elemento. Leia o código antes de mexer; não refaça o 3D nem o escopo.
+2. As pranchas do projeto: [pasta conectada ou anexos].
+3. A lista de marcas/modelos extraída na etapa 1 (colada abaixo em "Lista de especificações").
+Mesma regra de confidencialidade: sem cidade, endereço, cliente ou escritório; código do projeto "[PROJ]".
+
+<span class="ph">## Entregável A — atualizar o HTML (mesmo arquivo, mesmo nome)</span>
+1. **Pesquisa de produtos**: para cada item da lista de especificações, buscar no site do fabricante e, se ele não publicar preço, numa loja online brasileira confiável. Para cada um: nome oficial e código, fabricante, 2–4 frases de detalhes (acabamento, dimensões, formato, características), preço com loja e data ou "não disponível", **URL da página consultada**, URL de uma imagem vista de fato na página. Se o produto saiu de linha ou está indisponível, dizer isso, indicar o equivalente e o que muda (cor, formato, material). Não inventar URLs. Se possível baixar e embutir as imagens como data URI; se o ambiente bloquear, referenciar por URL com fallback visual e me avisar.
+2. **Preencher `PRODUTOS`** associando cada produto às chaves de acabamento do 3D e ao ambiente. O clique no elemento passa a mostrar as fichas (imagem, detalhes, preço, link da fonte). As linhas do mapa de acabamentos abrem a mesma ficha.
+3. **Nova seção "Referências de produto"** antes das pendências: grade com todas as fichas, aviso de data dos preços e de que variam por região/revenda, destaque para itens fora de linha.
+4. **Atualizar as pendências** com o que a pesquisa revelou (produto descontinuado, material diferente do que o nome sugere, acabamento a confirmar).
+5. Corrigir no mapa de acabamentos o que a pesquisa esclarecer (ex.: material que a prancha chama de quartzo e o fabricante classifica como aglomerado).
+
+<span class="ph">## Entregável B — lista de compras em Excel</span>
+Nome: [PROJ]_Lista_de_Compras.xlsx. Abas: **Lista de compras**, **Resumo por pacote**, **Fontes**, **Parâmetros**.
+Colunas da lista: código hierárquico · pacote · item/especificação · marca/modelo · ambiente · **unidade (coluna própria)** · quantidade líquida · **memória de cálculo** (fórmula, dimensões e prancha de onde saiu — ex.: "largura 2,53 do det. const.; profundidade = 2,74 m² ÷ 2,53; perímetro × forro 2,40 − porta 0,70×2,10 − janela 0,70×0,50") · prancha de origem · fator de perda (editável, lookup na aba Parâmetros, declarado como proposta) · quantidade a comprar (fórmula) · preço unitário de referência (editável, vindo da pesquisa) · loja/data · subtotal (fórmula) · hyperlink da fonte · status/pendência.
+Pacotes: pisos, revestimento de parede, pintura, forro, bancadas (marmoraria, por peça: tampo, rodapia, traves, frente, rodapé, testeira, nicho), louças e metais (por ponto), vidraçaria, marcenaria (por peça do detalhamento; chapas ficam para a marcenaria), iluminação, elétrica, cobertura.
+<span class="ph">Regras:</span>
+- Quantidade só do que é extraível das pranchas: áreas cotadas, dimensões dos detalhamentos, perímetros medidos na planta na escala declarada (dizendo que foram medidos e devem ser conferidos no local). Descontar vãos cotados.
+- **O que não for extraível entra sem quantidade e com o motivo escrito** (ex.: "comprimento não cotado", "símbolos não contáveis na rasterização — contar no DWG", "altura da mureta não cotada", "divergência entre paginação e detalhamento"). Não estimar, não arredondar, não completar.
+- Preço por lata ou por chapa não multiplica m² — deixar o preço como referência na célula/comentário e o subtotal vazio.
+- Resumo por pacote com COUNTIF/SUMIF e nota do que não entra no total. Aba Fontes com todos os produtos e links. Aba Parâmetros com os fatores de perda editáveis.
+- Legenda de células editáveis; zero erros de fórmula (recalcular antes de entregar); fonte legível; sem resultado digitado onde cabe fórmula.
+
+<span class="ph">## Identidade visual</span>
+[Seguir a do HTML da etapa 1 / "a seu critério, sóbrio".]
+
+<span class="ph">## Como trabalhar</span>
+- Primeiro leia o HTML e as pranchas; depois a pesquisa (pode paralelizar por família: metais/louças, cerâmicos/tintas, MDF/pedras/box); só então monte as fichas e a planilha.
+- Renderize o HTML e teste o clique em pelo menos três elementos diferentes. Abra a planilha recalculada e confira 3–4 linhas à mão.
+- No fim, diga: quantos produtos foram encontrados, quais saíram de linha, quantas linhas da lista ficaram sem quantidade e por quê, e qual é o total de referência com a ressalva do que ele não cobre.
+
+<span class="ph">## Lista de especificações (saída da etapa 1 — exemplo fictício, substitua)</span>
+| Chave 3D | Item em prancha | Ambiente | Prancha |
+|---|---|---|---|
+| redgold | Torneira de mesa bica alta Tube 1198 Red Gold — Deca | Living (bancada) | Det. const. living |
+| goldmatte | Torneira de mesa Tube 1197 Gold Matte — Deca | Lavabo | Det. const. lavabo |
+| louca | Bacia c/ caixa acoplada Monte Carlo — Deca | Lavabo | Det. const. lavabo |
+| onix | Porcelanato Onix Cristal acetinado 60x120 — Eliane | Sanit. 01 (piso e parede) | Det. const. sanit. 01 |
+| cristallo | Porcelanato Cristallo Nude 60x60 — Biancogres | Cozinha/A.S. (piso) | Det. const. cozinha |
+| carvalho | MDF Carvalho Malva — Duratex | Living (armário, prateleiras) | Det. living 01/02 |
+| paint | SW 9166 Névoa Passageira, acrílica acetinada — Sherwin-Williams | Paredes gerais | Paginação pintura |
+| macchia | Textura Macchia na cor SW 9165 — Textura &amp; Cia | Mureta | Paginação pintura |
+| calacata | Quartzo Calacata (bancada 2,59x0,60 c/ cuba esculpida) | Living | Det. const. living |
+| vidro | Kit box Elegance, vidro temperado 8 mm | Sanit. 01 e 02 | Det. const. sanit. 01/02 |</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Lista de compras de reforma é tirar quantidade da prancha, achar o produto certo e cotar item por item. O pulo do gato eu aprendi errando: se você não pedir link, a IA inventa preço que parece real. Com link eu confiro em dois cliques: um na peça do 3D, que abre a ficha com foto, preço e loja, e outro no link FONTE, que leva pra página de onde o preço saiu.</p>
+      <p>Aqui cada preço vem com loja, data e a <strong>URL da página consultada</strong>, na ficha do relatório e na coluna Fonte da planilha, e o prompt proíbe inventar URL. Produto esgotado ou fora de linha não ganha preço chutado: a torneira esgotada fica com o link e sem preço, e o porcelanato fora de linha sai marcado em vermelho com o equivalente da linha atual. Quantidade que não sai da prancha entra vazia, com o motivo escrito.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><video muted autoplay loop playsinline preload="metadata" width="1076" height="620" poster="../../assets/prompts/lista-de-compras/ficha-3d.jpg" aria-label="Modelo 3D da reforma em Só depois, com os acabamentos ligados: o clique na geladeira da cozinha abre ao lado a ficha da peça, com prancha Det. cozinha 01/02, o acabamento inox e, em Referências de produto, a cuba Lavínia 56 BL com foto, R$ 349,00 (Loja Tramontina, 01/10/2026) e o link FONTE"><source src="../../assets/prompts/lista-de-compras/ficha-3d.mp4" type="video/mp4"></video><figcaption><b>01 · O clique no 3D</b> No modelo 3D do relatório, em Só depois com os acabamentos ligados, o clique na geladeira da cozinha abre ao lado a ficha da peça: prancha, acabamento e as referências de produto desse acabamento, com foto, preço e link.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/lista-de-compras/ficha-cuba.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/lista-de-compras/ficha-cuba.webp" alt="Ficha aberta no 3D: elemento Geladeira (projeção 0,82), prancha Det. cozinha 01/02, acabamento inox da cozinha e, em Referências de produto, a cuba de embutir Lavínia 56 BL inox 56x34 cm com foto, especificação, R$ 349,00 (Loja Tramontina, 01/10/2026) em amarelo e o link FONTE" width="628" height="958" loading="lazy"></a><figcaption><b>02 · A ficha aberta</b> A peça clicada é a geladeira (projeção 0,82), da prancha Det. cozinha 01/02. A ficha lista os produtos do acabamento inox da cozinha; o primeiro é a cuba Lavínia 56 BL: R$ 349,00 na Loja Tramontina em 01/10/2026 e o link FONTE.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/lista-de-compras/referencias-produto.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/lista-de-compras/referencias-produto.webp" alt="Duas fichas da seção Referências de produto, no layout de celular do relatório: torneira Tube Red Gold com foto, especificação, R$ 1.758,84 (Condec, 01/10/2026) em amarelo e link FONTE; torneira Tube Gold Matte com foto e o preço marcado como não disponível, esgotado na loja consultada" width="744" height="1394" loading="lazy"></a><figcaption><b>03 · Referências de produto</b> Seção 05 do relatório: 28 fichas, cada uma com foto, especificação, preço com loja e data da pesquisa e o link FONTE. A Tube Red Gold sai com R$ 1.758,84 na Condec; a Tube Gold Matte, esgotada, fica sem preço, e a ficha diz por quê.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito p-shot-pend"><a class="p-shot-zoom" href="../../assets/prompts/lista-de-compras/fora-de-linha.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/lista-de-compras/fora-de-linha.webp" alt="Duas fichas de porcelanato no relatório marcadas em tijolo: provável fora de linha e fora de linha, definir substituto, com o preço do equivalente da linha atual e o link da fonte" width="744" height="1744" loading="lazy"></a><figcaption><b>04 · Fora de linha</b> 2 dos 3 itens que a pesquisa achou fora de linha. Em vez de preço inventado, a ficha mostra o equivalente da linha atual e pede o substituto definido com a arquitetura. A foto quase branca é a do Cristallo Bianco, porcelanato branco, como o fabricante publica.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/lista-de-compras/planilha-preco.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/lista-de-compras/planilha-preco.webp" alt="Planilha da lista de compras, colunas Preço unit. ref. e Loja / data do preço nas linhas de louças e metais: 1,758.84 Condec, 254.84 Girardi, célula vazia com esgotado na loja consultada, 228.90 Horus, 1,746.90 Loja Obra Fácil e 815.31 Construmarques, as datas em 01/10/2026" width="430" height="416" loading="lazy"></a><figcaption><b>05 · Preço, loja e data</b> Trecho da gravação do reel, aba Lista de compras, louças e metais (itens 6 a 6.5): preço unitário de referência e a loja com a data da pesquisa. A torneira esgotada fica com o preço em branco.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/lista-de-compras/planilha-fonte.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/lista-de-compras/planilha-fonte.webp" alt="Planilha da lista de compras, coluna Fonte nas mesmas linhas: um hyperlink por item, para páginas de loja (Condec, Construmarques) e fichas técnicas do fabricante" width="378" height="416" loading="lazy"></a><figcaption><b>06 · Um link por linha</b> A coluna Fonte, nas mesmas linhas: cada item sai com o hyperlink da página consultada, loja ou ficha técnica do fabricante.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Exemplo de saída do prompt: lista de compras com item, unidade, quantidade extraída da prancha, preço de referência, loja e data da pesquisa, link da fonte de cada preço e pendência quando falta quantidade, material ou preço</caption>
+          <thead>
+            <tr>
+              <th scope="col">Cód.</th>
+              <th scope="col">Item / especificação</th>
+              <th scope="col">Un</th>
+              <th scope="col">Qtd. líquida</th>
+              <th scope="col">Preço unit. ref. (R$)</th>
+              <th scope="col">Loja / data do preço</th>
+              <th scope="col">Fonte</th>
+              <th scope="col">Status / pendência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pendente">
+              <td class="col-cod">1</td>
+              <td class="col-serv">Piso living integrado — material A DEFINIR</td>
+              <td>m²</td>
+              <td class="col-num">51,92</td>
+              <td class="col-num">—</td>
+              <td>—</td>
+              <td class="col-pr">—</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> A DEFINIR — tabela de revestimento sem especificação</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">1.4</td>
+              <td class="col-serv">Porcelanato Cristallo Nude 60x60 acetinado</td>
+              <td>m²</td>
+              <td class="col-num">11,56</td>
+              <td class="col-num">64,90</td>
+              <td>Sodimac 01/10/2026 (Cristallo Bianco)</td>
+              <td class="col-pr"><a href="https://www.biancogres.com.br/produto/cristallo-bianco" rel="noopener">biancogres.com.br</a></td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> FORA DE LINHA — definir substituto (P08)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">1.5</td>
+              <td class="col-serv">Porcelanato Onix Cristal acetinado 60x120</td>
+              <td>m²</td>
+              <td class="col-num">2,74</td>
+              <td class="col-num">84,47</td>
+              <td>Balaroti 01/10/2026</td>
+              <td class="col-pr"><a href="https://www.eliane.com/produtos/onix-cristal-ac-60x120-sc-8056014" rel="noopener">eliane.com</a></td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">2.2</td>
+              <td class="col-serv">Pedra natural — parede 01 do living (tipo não especificado)</td>
+              <td>m²</td>
+              <td class="col-num">—</td>
+              <td class="col-num">—</td>
+              <td>—</td>
+              <td class="col-pr">—</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> NÃO EXTRAÍVEL — comprimento e tipo de pedra a definir</td>
+            </tr>
+            <tr>
+              <td class="col-cod">5.1</td>
+              <td class="col-serv">Quartzo Branco Cintilante — cozinha, A.S. e testeira do shaft</td>
+              <td>m²</td>
+              <td class="col-num">9,77</td>
+              <td class="col-num">4.258,80</td>
+              <td>Silestone Blanco Stellar — Milano Marmoraria 01/10/2026</td>
+              <td class="col-pr"><a href="https://www.pedrasveneza.com.br/produto/quartzo-stone-branco-stellar/" rel="noopener">pedrasveneza.com.br</a></td>
+              <td class="col-mem">Preço de referência por m²</td>
+            </tr>
+            <tr>
+              <td class="col-cod">6</td>
+              <td class="col-serv">Torneira de mesa bica alta Tube Red Gold 1198.GL.TUB.RD</td>
+              <td>un</td>
+              <td class="col-num">1</td>
+              <td class="col-num">1.758,84</td>
+              <td>Condec 01/10/2026</td>
+              <td class="col-pr"><a href="https://www.condec.com.br/torneira-de-mesa-bica-alta-para-lavatorio-tube-1198-gl-tub-rd-red-gold-matte-deca" rel="noopener">condec.com.br</a></td>
+              <td class="col-mem">—</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">6.2</td>
+              <td class="col-serv">Torneira de mesa bica baixa Tube Gold Matte 1197.GL.TUB.MT</td>
+              <td>un</td>
+              <td class="col-num">1</td>
+              <td class="col-num">—</td>
+              <td>esgotado na loja consultada</td>
+              <td class="col-pr"><a href="https://www.construmarques.com.br/produto/torneira-para-banheiro-deca-tube-bica-baixa-mesa-gold-matte-1197-gl-tub-mt-75962" rel="noopener">construmarques.com.br</a></td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> Preço não disponível</td>
+            </tr>
+            <tr>
+              <td class="col-cod">6.7</td>
+              <td class="col-serv">Chuveiro elétrico Acqua Storm Ultra (prancha: 'Acqua Stom')</td>
+              <td>un</td>
+              <td class="col-num">1</td>
+              <td class="col-num">569,90</td>
+              <td>Condec 01/10/2026 (PIX, 7.800 W 220 V)</td>
+              <td class="col-pr"><a href="https://www.lorenzetti.com.br/produto/acqua-storm" rel="noopener">lorenzetti.com.br</a></td>
+              <td class="col-mem">Tensão/potência a confirmar; cor a definir</td>
+            </tr>
+            <tr>
+              <td class="col-cod">6.9</td>
+              <td class="col-serv">Cuba de embutir inox 56x34 cm (Lavínia 56 BL)</td>
+              <td>un</td>
+              <td class="col-num">1</td>
+              <td class="col-num">349,00</td>
+              <td>Loja Tramontina 01/10/2026</td>
+              <td class="col-pr"><a href="https://www.tramontina.com.br/cuba-de-embutir-tramontina-lavinia-56-bl-em-aco-inox-acetinado-56x34-cm/94024103.html" rel="noopener">tramontina.com.br</a></td>
+              <td class="col-mem">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Relatório e aba lista de compras · 9 de 64 itens · Dados reais</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>Link na ficha não é conferência feita. Clica em umas e vê se a página é do mesmo produto, código e acabamento da prancha. O link pode ser do fabricante e o preço, da loja escrita ao lado: na linha 1.4 o link é da Biancogres e o preço é da Sodimac, do Cristallo Bianco, porque o Cristallo Nude saiu de linha. Equivalente indicado é sugestão; quem aprova a troca é o projetista, não a planilha.</li>
+          <li>Preço vazio é o prompt funcionando. A torneira Tube Gold Matte, na captura 03 e na linha 6.2, tem link e não tem preço porque estava esgotada na loja consultada. Não completa com o preço que você <em>acha</em> que é: cota e preenche com a sua fonte, senão você inventou o preço que ele se recusou a inventar.</li>
+          <li>Preço tem loja e data porque vale pra aquela loja naquele dia, às vezes numa condição de pagamento específica — na linha 6.7 é o preço no PIX. Varia por região e revenda: antes de virar orçamento pro cliente, refaz a cotação com quem vai entregar na obra.</li>
+          <li>Quantidade líquida não é quantidade a comprar. O fator de perda é proposta dele, editável na aba Parâmetros, e perímetro medido em planta vem com aviso de conferir no local. Item sem quantidade, tipo a pedra natural da linha 2.2, é pergunta pro projetista, não buraco pra você preencher no olho.</li>
+          <li>A foto da ficha vem da página de origem. Se o ambiente bloquear o download, ela fica apontando pro site da loja e some quando a loja mexer na página; neste exemplo, 26 das 28 fichas saíram com foto. Ele tem que te avisar quando não conseguiu embutir; se não avisou, pergunta antes de mandar o relatório pro cliente.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Do escopo ao custo, na ordem da obra</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../escopo/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Escopo</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 02</span>
+          <span class="nome">Compras</span>
+        </span>
+        <a class="p-passo" href="../equalizacao/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Equalização</span>
+        </a>
+        <a class="p-passo" href="../desembolso/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Desembolso</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

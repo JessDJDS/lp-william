@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de equalização que mostra quem cobrou menos e quem deixou escopo de fora · William Moura</title>
+<meta name="description" content="Prompt aberto que equaliza propostas no mesmo escopo e devolve o painel: ranking ajustado, lacunas precificadas com fonte e incompletas fora. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/equalizacao/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/equalizacao/">
+<meta property="og:title" content="Quem cobrou menos e quem deixou escopo de fora">
+<meta property="og:description" content="Comparar total com total premia quem deixou escopo de fora. Este prompt equaliza as propostas no mesmo escopo e devolve um painel com o ranking pelo preço ajustado e as incompletas fora. Passo 03 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-equalizacao.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quem cobrou menos e quem deixou escopo de fora">
+<meta name="twitter:description" content="Comparar total com total premia quem deixou escopo de fora. Este prompt equaliza as propostas no mesmo escopo e devolve um painel com o ranking pelo preço ajustado e as incompletas fora. Passo 03 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-equalizacao.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YRDBRNBY71');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 03 de 04 · Equalização de propostas</p>
+
+    <div class="p-cabeca">
+      <h1>Equalização que mostra quem cobrou menos e <span class="marca">quem deixou escopo de fora</span></h1>
+    </div>
+
+    <p class="p-sub">Ele monta as planilhas de escopo e de propostas, equaliza tudo no mesmo escopo e devolve um painel com o ranking pelo preço ajustado contra o cotado, as lacunas precificadas com a fonte, o que pedir a cada fornecedor e as pendências abertas.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-equalizacao" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-equalizacao" tabindex="0" role="region" aria-label="Prompt do passo 03, rolável">Quero montar do zero um módulo de EQUALIZAÇÃO DE PROPOSTAS para obra/reforma. Ainda não tenho nenhum input: sua primeira tarefa é criar os templates de entrada com dados de exemplo (mock), que eu vou substituir pelos reais. Depois que eu preencher, você gera as saídas.
+
+PRINCÍPIOS (valem para tudo)
+- Nada inferido: campo sem fonte vira "não declarado" / VERIFICAR / lacuna. O motor só faz aritmética e aplica critérios explícitos, nunca estima preço.
+- Nada apagado: antes de sobrescrever uma saída, copie a versão anterior para &lt;pacote&gt;/_versoes/.
+- Idempotente: rodar de novo sem mudar os inputs gera o mesmo resultado.
+- Stack: Node + exceljs. Não dependa de Python.
+
+<span class="ph">ESTRUTURA</span>
+Equalizacao/
+  _motor/   (código + README.md)
+  &lt;pacote&gt;/ (um por pacote de compra; crie "exemplo-guarda-corpo")
+    escopo.xlsx      ← eu preencho
+    propostas.xlsx   ← eu preencho
+    propostas/       ← PDFs/imagens das propostas
+    EQUALIZACAO.xlsx + EQUALIZACAO.html  ← saídas geradas
+
+ETAPA 1: TEMPLATES (crie, preencha com mock e PARE para eu preencher)
+Comando: node _motor/novo.js &lt;pacote&gt; cria a pasta com os dois templates.
+
+escopo.xlsx
+- Aba ESCOPO:
+  - cabeçalho: pacote, título, origem do escopo, status (RASCUNHO/VALIDADO);
+  - tabela: item (R1, R2…), descrição, un, qtd, PU de referência interno (opcional), observação.
+- Aba EXIGENCIAS: o que a obra exige em prazo, pagamento, frete, impostos, garantia, validade mínima, mobilização/descarga/montagem, documentação (ART, NF, seguro).
+
+propostas.xlsx
+- Aba FORNECEDORES (1 linha por proposta vigente): fornecedor, data, nº do orçamento, arquivo (caminho em propostas/), leitura (TEXTO/IMAGEM/MISTO), total declarado pelo fornecedor, validade, prazo, pagamento, frete, impostos, garantia, exclusões, escopo adicional oferecido, observação.
+- Aba ITENS (formato longo, 1 linha por fornecedor × item de referência): fornecedor, item, situação (INCLUSO / DIVERGENTE / NAO INCLUSO / GLOBAL = só preço global), descrição cotada, un cotada, qtd cotada, PU, total, página/trecho, lido de imagem (S/N), o que diverge.
+- Aba ATENDE (fornecedor × exigência): S / N / VERIFICAR. Eu marco; você não julga.
+- Aba VERIFICAR (opcional): fornecedor, onde, o que conferir, motivo.
+- Aba REVISOES (opcional): fornecedor, versão anterior (arquivo), data, valor, o que mudou.
+- Use validação de dados (listas suspensas) para item, situação, leitura, S/N.
+- Inclua uma aba LEIA-ME curta em cada arquivo.
+
+Dados mock:
+- 2 itens (guarda-corpo de vidro em cj; corrimão de parede em m) e 4 fornecedores fictícios, montados para exercitar todas as regras:
+  - um completo e aderente;
+  - um líder com item DIVERGENTE;
+  - um barato mas INCOMPLETO (sem o corrimão);
+  - um só com preço GLOBAL e total declarado ≠ soma das linhas.
+- Marque o mock de forma visível: célula "DADOS DE EXEMPLO" no topo e linhas em cinza itálico. Enquanto a marca existir, as saídas exibem a faixa "DADOS DE EXEMPLO".
+
+ETAPA 2: VALIDAÇÃO (quando eu disser que preenchi)
+Comando: node _motor/validar.js &lt;pacote&gt;. Liste erros de forma objetiva, sem gerar nada se houver erro bloqueante:
+- item fora do escopo;
+- fornecedor sem linha em ITENS;
+- unidade cotada ≠ unidade da referência;
+- PU × qtd ≠ total;
+- arquivo inexistente.
+
+ETAPA 3: MOTOR (node _motor/gerar.js &lt;pacote&gt;…)
+Regras de cálculo:
+- Normalizado por item: se tem PU e a unidade bate, PU × qtd da referência; senão, total cotado, marcado "não normalizável".
+- Lacuna (NAO INCLUSO): precificar com o PU interno do escopo; se não houver, com o menor PU ADERENTE (INCLUSO, &gt; 0) dos demais × qtd. Sempre citar a origem. Sem preço possível → lacuna não precificável → proposta INCOMPLETA.
+- Total declarado ≠ soma das linhas (&gt; 1%): VERIFICAR e INCOMPLETA (valor comprometido em aberto).
+- Ajustado = normalizado + lacunas. Ranking só entre as COMPLETAS. Mostrar quantas posições cada uma subiu ou desceu (cotado → ajustado).
+- Pendências automáticas:
+  - LACUNA por item não incluso;
+  - DIVERGENCIA por item divergente;
+  - VERIFICAR para os itens da aba VERIFICAR, valores lidos de imagem e total inconsistente.
+- Avisos da rodada:
+  - escopo em RASCUNHO;
+  - exigências vazias;
+  - propostas vencidas (pela validade declarada);
+  - ATENDE com N ou VERIFICAR.
+
+Escopo divergente (padrão). Toda proposta INCOMPLETA, com item NÃO INCLUSO ou com item DIVERGENTE recebe:
+- Comparação item a item nos itens que ela cobre com preço próprio, contra o líder (ou o 2º, se ela for a líder) e contra o menor preço aderente dos demais. Só preço global = "não comparável".
+- A · Follow-up: folga = ajustado do líder − ajustado dela.
+  - VALE se ficar ≥ 3% abaixo do líder, ou se for a própria líder (firmar o escopo antes de contratar).
+  - AVALIAR se estiver até 5% acima do líder e tiver divergência.
+  - Caso contrário, NÃO VALE.
+  - Gerar checklist do que pedir a partir das pendências dela.
+- B · 2º fornecedor só para o remanescente:
+  - só vale para item NÃO INCLUSO em linha própria (lacuna dentro de um item só o próprio fornecedor resolve);
+  - combo = o que ela cobre + menor preço aderente dos demais para o que falta;
+  - VIÁVEL se o remanescente for ≥ 5% do pacote e a economia ≥ 5% (cobre 2ª mobilização e interface);
+  - ressalvas: confirmar que o outro fornecedor aceita fornecer só aquele item; quem responde pela interface; lacunas internas que o combo não resolve.
+- Encaminhamento: FOLLOW-UP + PLANO B / FOLLOW-UP / AVALIAR 2º FORNECEDOR / AVALIAR FOLLOW-UP / NÃO PRIORITÁRIO.
+- Os 4 limiares ficam editáveis numa aba CRITERIOS do escopo.xlsx.
+
+<span class="ph">SAÍDAS</span>
+EQUALIZACAO.html: painel para o tomador de decisão, visual moderno/tech de "engenheiro da nova geração". Arquivo único, offline, tema escuro por padrão com alternância para claro, botão de imprimir/PDF. Conteúdo:
+- topo com avisos e indicadores (menor ajustado, vantagem sobre o 2º, propostas no ranking, pendências) e uma leitura rápida em texto, só com fatos, sem recomendar fornecedor;
+- 01 Escopo de referência: status, origem, itens, cobertura por item (conforme / divergente / não cotou / só global, com nomes no hover) e faixa de preço aderente;
+- 02 Ranking em barras (barra = ajustado, traço = cotado, incompletas hachuradas);
+- 03 Escopo divergente;
+- 04 Matriz item × fornecedor com tooltip (o que foi cotado, memória de cálculo, fonte);
+- 05 Condições comerciais × exigências (com S/N/VERIFICAR);
+- 06 Pendências com filtro;
+- 07 Revisões de preço;
+- 08 Rastreabilidade com link para os arquivos.
+
+EQUALIZACAO.xlsx: enxuta e só com o essencial; o detalhe vai para comentário de célula e abas de detalhe. Abas:
+- RESUMO: escopo no topo, depois ranking com Δ por fórmula, status, prazo, pagamento, pontos de atenção, encaminhamento;
+- REFERENCIA;
+- COMPARATIVO: cor = status, ◉ = lido de imagem, menor do item em destaque, comentário com PU, especificação e memória;
+- ESCOPO;
+- CONDICOES;
+- PENDENCIAS: lista única com filtro;
+- FONTE: com hyperlinks;
+- ARQUIVOS.
+
+<span class="ph">ENTREGA DESTA SESSÃO</span>
+1. Crie o motor, os templates e o pacote exemplo-guarda-corpo com mock.
+2. Gere as saídas a partir do mock, abra o HTML no navegador e confira (inclusive o tema claro e uma largura de celular). Confira o conteúdo da planilha.
+3. Me diga em 5 linhas como preencher e rodar, e PARE para eu preencher.
+4. Se eu pedir, leia os PDFs em propostas/ e pré-preencha propostas.xlsx, marcando "lido de imagem" e deixando VERIFICAR onde não tiver certeza.
+5. Salve na memória do projeto que a regra de escopo divergente é padrão.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Mapa de cotação que compara total com total engana: a proposta mais barata muitas vezes é a que deixou alguma coisa de fora, tipo frete, imposto ou um item que ela nem cotou. E quando a gente descobre isso depois de contratar, o barato vira aditivo.</p>
+      <p>Esse prompt equaliza tudo no mesmo escopo antes de comparar: o que falta vira lacuna precificada, com <strong>a memória de cálculo e a origem de cada número</strong>, e a proposta que não dá pra completar sai do ranking com o motivo e o que pedir no follow-up. Ele recusa estimar preço e recusa escolher fornecedor por você: só faz conta e aplica os critérios que você deixou escritos.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito p-shot-destaque"><a class="p-shot-zoom" href="../../assets/prompts/equalizacao/ranking-ajustado.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/equalizacao/ranking-ajustado.webp" alt="Ranking pelo preço ajustado no layout de celular do painel: Fornecedor F em 1º com R$ 35.268, seguido de B, E, D e G; Fornecedor A (R$ 31.088) e Fornecedor C em barra hachurada, incompletos e fora do ranking" width="808" height="1904" loading="lazy"></a><figcaption><b>01 · Ranking ajustado</b> Barra é o preço ajustado, traço é o preço que veio na proposta. O Fornecedor A cotou o menor valor (R$ 31.088) e ficou fora do ranking, hachurado, porque a proposta está incompleta.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/equalizacao/topo-indicadores.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/equalizacao/topo-indicadores.webp" alt="Indicadores do painel: menor preço ajustado R$ 35.268 do Fornecedor F, vantagem de R$ 205 sobre o 2º, 5 de 7 propostas no ranking, 23 pendências abertas, e a leitura automática do resultado" width="808" height="1362" loading="lazy"></a><figcaption><b>02 · Indicadores</b> Menor preço ajustado, vantagem sobre o 2º, 5 de 7 propostas no ranking e 23 pendências abertas, com a leitura de como a ordem mudou.</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito p-shot-pend"><a class="p-shot-zoom" href="../../assets/prompts/equalizacao/escopo-divergente.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/equalizacao/escopo-divergente.webp" alt="Escopo divergente do Fornecedor A: proposta incompleta, divergente em R1 a R5, comparada item a item com o líder Fornecedor F (cesta R$ 31.088 contra R$ 35.268, -11,9%) e o follow-up com o que pedir ao fornecedor" width="776" height="1740" loading="lazy"></a><figcaption><b>03 · Escopo divergente</b> O Fornecedor A diverge em R1 a R5 e declara impostos não inclusos sem quantificar: o painel compara item a item com o líder (cesta 11,9% abaixo) e diz o que pedir no follow-up.</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/equalizacao/matriz-lacuna.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/equalizacao/matriz-lacuna.webp" alt="Recorte da matriz item a item na coluna do Fornecedor E: frete (R6) não incluso; totais R$ 35.607,00 cotado, R$ 69,90 de lacuna e R$ 35.676,90 ajustado; abaixo, o detalhe da célula: a lacuna é precificada pelo menor frete cotado entre as propostas" width="808" height="1260" loading="lazy"></a><figcaption><b>04 · Lacuna precificada</b> Recorte da matriz na coluna do Fornecedor E, que não cotou frete. O painel precifica a lacuna pelo menor frete das outras propostas (R$ 69,90), mostra de onde saiu e soma ao total: R$ 35.607,00 cotado, R$ 35.676,90 ajustado.</figcaption></figure>
+      </div>
+      <p class="p-rolar">Role a tabela para o lado →</p>
+      <div class="p-print">
+        <table>
+          <caption class="sr-only">Exemplo de saída do prompt: ranking de sete propostas de máquinas de ar-condicionado equalizadas no mesmo escopo, com posição pelo preço ajustado, total cotado, lacunas precificadas, total ajustado e situação de cada proposta, incluindo as incompletas fora do ranking</caption>
+          <thead>
+            <tr>
+              <th scope="col">Posição</th>
+              <th scope="col">Proposta</th>
+              <th scope="col">Cotado (R$)</th>
+              <th scope="col">Lacunas (R$)</th>
+              <th scope="col">Ajustado (R$)</th>
+              <th scope="col">Situação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-cod">1</td>
+              <td class="col-serv">Fornecedor F</td>
+              <td class="col-num">35.267,90</td>
+              <td class="col-num">—</td>
+              <td class="col-num">35.267,90</td>
+              <td class="col-mem">cotado em 2º lugar</td>
+            </tr>
+            <tr>
+              <td class="col-cod">2</td>
+              <td class="col-serv">Fornecedor B</td>
+              <td class="col-num">35.472,67</td>
+              <td class="col-num">—</td>
+              <td class="col-num">35.472,67</td>
+              <td class="col-mem">cotado em 3º lugar</td>
+            </tr>
+            <tr>
+              <td class="col-cod">3</td>
+              <td class="col-serv">Fornecedor E</td>
+              <td class="col-num">35.607,00</td>
+              <td class="col-num">69,90</td>
+              <td class="col-num">35.676,90</td>
+              <td class="col-mem">cotado em 4º lugar; R6 Frete até a obra NÃO INCLUSO, lacuna precificada pelo menor frete cotado (R$ 69,90)</td>
+            </tr>
+            <tr>
+              <td class="col-cod">4</td>
+              <td class="col-serv">Fornecedor D</td>
+              <td class="col-num">38.337,90</td>
+              <td class="col-num">—</td>
+              <td class="col-num">38.337,90</td>
+              <td class="col-mem">cotado em 5º lugar</td>
+            </tr>
+            <tr>
+              <td class="col-cod">5</td>
+              <td class="col-serv">Fornecedor G</td>
+              <td class="col-num">40.519,00</td>
+              <td class="col-num">—</td>
+              <td class="col-num">40.519,00</td>
+              <td class="col-mem">cotado em 6º lugar</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">—</td>
+              <td class="col-serv">Fornecedor A</td>
+              <td class="col-num">31.087,86</td>
+              <td class="col-num">—</td>
+              <td class="col-num">31.087,86</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> cotado em 1º lugar, mas INCOMPLETO · fora do ranking. Impostos declarados como NÃO inclusos e não quantificados; lacuna não precificável, preço parcial</td>
+            </tr>
+            <tr class="pendente">
+              <td class="col-cod">—</td>
+              <td class="col-serv">Fornecedor C</td>
+              <td class="col-num">46.420,00</td>
+              <td class="col-num">—</td>
+              <td class="col-num">46.420,00</td>
+              <td class="col-mem"><span class="tag-pend">Pendência</span> cotado em 7º lugar; INCOMPLETO · fora do ranking. Total declarado pelo fornecedor (R$ 24.232,00) diverge da soma das linhas (R$ 46.420,00): erro de fórmula, VERIFICAR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p-print-carimbo">Saída de exemplo · Painel de equalização, 7 propostas · Escopo de referência em rascunho · Dados reais anonimizados</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>O menor total cotado não é o menor preço. Aqui em cima, o Fornecedor A cotou R$ 31.088, 11,9% abaixo do líder, e ficou fora do ranking porque declarou impostos <em>não inclusos</em> sem dizer quanto. O cartão dele no painel diz que o follow-up vale: às vezes a ligação certa é pro A, pedindo o imposto em valor e a recotação do R1. Antes de ligar pra qualquer um, abre a lista de pendências (são 23 nesta rodada, filtráveis por divergência, verificar e lacuna): ela já é o checklist do que pedir.</li>
+          <li>Lacuna precificada é preço de outro fornecedor, não de quem deixou o item de fora. No Fornecedor E, o frete que faltava entrou pelo menor frete cotado na rodada, R$ 69,90, e o detalhe da célula mostra de onde saiu. Serve pra comparar, não pra contratar: o valor que vale é o que o próprio E mandar por escrito. Se você preencher o PU de referência interno no escopo, é ele que entra no lugar.</li>
+          <li>O líder ganhou do 2º por R$ 205, 0,6%. Isso não decide nada sozinho: o painel tem a seção de condições comerciais com prazo, pagamento, frete, garantia, validade, impostos e exclusões de cada proposta, lado a lado. E a aba ATENDE é você quem marca; ele não julga se a condição comercial serve pra sua obra.</li>
+          <li>O Fornecedor C declarou R$ 24.232,00, mas as linhas somam R$ 46.420,00: erro de fórmula. O prompt marca VERIFICAR, não escolhe nenhum dos dois valores e deixa a proposta fora do ranking. E o ranking inteiro só vale contra o escopo de referência: nesta saída ele está em rascunho, com a cobertura de cada proposta item por item, e o próprio painel avisa que o quadro é provisório enquanto ninguém validar o escopo. Fecha o escopo antes de mostrar o ranking pra alguém, e ajusta os limiares de follow-up e de 2º fornecedor (3% e 5%, proposta do prompt) na aba CRITERIOS.</li>
+          <li>Ele começa criando os templates com dados mock e para pra você preencher; enquanto a marca DADOS DE EXEMPLO estiver na planilha, a saída mostra a faixa. Se pedir pra ele ler os PDFs das propostas, valor lido de imagem vem marcado e vira VERIFICAR: confere número por número, porque PDF escaneado torto já engana gente, imagina máquina. Proposta revisada entra no histórico de revisões de preço, e a rastreabilidade lista o arquivo de origem de cada proposta: é ali que você confere antes de citar valor em reunião.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Do escopo ao custo, na ordem da obra</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../escopo/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Escopo</span>
+        </a>
+        <a class="p-passo" href="../lista-de-compras/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Compras</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 03</span>
+          <span class="nome">Equalização</span>
+        </span>
+        <a class="p-passo" href="../desembolso/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Desembolso</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>
