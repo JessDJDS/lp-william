@@ -1,194 +1,47 @@
 [
   {
     "id": "v001",
-    "cargo": "Estágio em Engenharia Civil / Arquitetura",
-    "empresa": "CBA Corp",
-    "cidade": "Florianópolis",
+    "cargo": "Engenheiro de Projetos - Especialização Estrutura Metálica",
+    "empresa": "Grupo SERENG",
+    "cidade": "Vitória",
     "pais": "Brasil",
-    "lat": -27.5954,
-    "lon": -48.548,
-    "senioridade": "Estágio",
+    "lat": -20.3155,
+    "lon": -40.3128,
+    "senioridade": null,
     "idioma": "Português",
     "visto": null,
-    "resumo": "Estágio em Engenharia Civil - Jurerê — CBA Corp (Florianópolis, Santa Catarina).",
+    "resumo": "Engenheiro de Projetos - Civil Especialização Estrutura Metálica — Grupo SERENG (Vitória, Espírito Santo).",
     "requisitos": [
-      "Cursando graduação em Engenharia Civil, Arquitetura e Urbanismo, ou correlatas."
+      "Experiência: projetos industriais mineração e siderurgia",
+      "Disponibilidade para viagens",
+      "Modelagem a nível conceitual (LOD200) para orientação da equipe de projetistas 3D",
+      "Conhecimento de metodologia BIM com pacote AEC Collection / BIM Collaborate Autodesk"
     ],
     "fonte": "gupy",
-    "url": "https://cbaempreendimentos.gupy.io/job/eyJqb2JJZCI6MTIwOTU2NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-13",
-    "publicado": "2026-08-28"
+    "url": "https://gruposereng.gupy.io/job/eyJqb2JJZCI6MTI0MTk5ODAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-11-02",
+    "publicado": "2026-10-26"
   },
-  {
+   {
     "id": "v002",
-    "cargo": "Engenheiro Civil - Gestão de Obra",
-    "empresa": "Construtora Baptista Leal",
-    "cidade": "Recife",
+    "cargo": "Analista Orçamento, Planejamento E Controle de Obras",
+    "empresa": "SPL ENGENHARIA",
+    "cidade": "Belo Horizonte",
     "pais": "Brasil",
-    "lat": -8.0476,
-    "lon": -34.877,
+    "lat": -19.9167,
+    "lon": -43.9345,
     "senioridade": "Pleno",
     "idioma": "Português",
     "visto": null,
-    "resumo": "Engenheiro(a) Civil - Gestão de Obra — Construtora Baptista Leal (Recife, Pernambuco).",
-    "requisitos": [
-      "Formação superior completa em Engenharia Civil.",
-      "Experiência mínima de 3 anos com gerenciamento e coordenação de obras.",
-      "Domínio intermediário de Excel e AutoCAD.",
-      "Desejável conhecimento no sistema SIENGE.",
-      "Diferencial: experiência com sistema construtivo de parede de concreto."
-    ],
+    "resumo": "Analista Orçamento, Planejamento E Controle de Obras — SPL ENGENHARIA (Belo Horizonte, Minas Gerais).",
+    "requisitos": [],
     "fonte": "gupy",
-    "url": "https://baptistaleal.gupy.io/job/eyJqb2JJZCI6MTIwNTgwMTIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-30",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v003",
-    "cargo": "Engenheiro Civil Junior",
-    "empresa": "7LM",
-    "cidade": "Brasília",
-    "pais": "Brasil",
-    "lat": -15.7939,
-    "lon": -47.8828,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Engenheiro Civil Junior — 7LM (Brasília, Distrito Federal).",
-    "requisitos": [
-      "Superior completo em Engenharia Civil.",
-      "Experiência com parede de concreto e obras mais rápidas/dinâmicas."
-    ],
-    "fonte": "gupy",
-    "url": "https://vemser7lm.gupy.io/job/eyJqb2JJZCI6MTIwNzE3NzMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-12",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v004",
-    "cargo": "Estágio em Engenharia Civil",
-    "empresa": "Grupo Direcional Engenharia",
-    "cidade": "Manaus",
-    "pais": "Brasil",
-    "lat": -3.1190,
-    "lon": -60.0217,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "ESTÁGIO EM ENGENHARIA CIVIL — Grupo Direcional Engenharia (Manaus, Amazonas).",
-    "requisitos": [
-      "Cursando Engenharia Civil (2° ao 7° período)."
-    ],
-    "fonte": "gupy",
-    "url": "https://direcionalengenharia.gupy.io/job/eyJqb2JJZCI6MTIxNjM0MzksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-17",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v005",
-    "cargo": "ANALISTA DE PLANEJAMENTO DE OBRAS JR",
-    "empresa": "@novarotadooeste",
-    "cidade": "Cuiabá",
-    "pais": "Brasil",
-    "lat": -15.599,
-    "lon": -56.095,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Tem como missão apoiar o planejamento, acompanhamento e controle das obras de adequação e implantação, contribuindo para o cumprimento dos cronogramas, prazos, custos e metas estabelecidas. Atua na coleta, consolidação e análise de informações técnicas, atualização dos cronogramas, elaboração de relatórios e indicadores, fornecendo suporte às equipes de Engenharia e Obras para a tomada de decisão e acompanhamento da evolução física e financeira dos contratos.",
-    "requisitos": ["Possuir CNH B e disponibilidade para viagens, conforme necessidade da área."],
-    "fonte": "gupy",
-    "url": "https://rotadooeste.gupy.io/job/eyJqb2JJZCI6MTIzODc0NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-31",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v006",
-    "cargo": "Project & Construction Manager",
-    "empresa": "Braskem",
-    "cidade": "Marcus Hook",
-    "pais": "USA",
-    "lat": 39.8182,
-    "lon": -75.4155,
-    "senioridade": "Sênior",
-    "idioma": "Inglês",
-    "visto": false,
-    "resumo": "O Gerente de Projetos para a unidade de Marcus Hook é responsável pela entrega integral de projetos de capital, atuando como ponto focal tanto para a gestão do projeto quanto para a gestão da construção no local.",
-    "requisitos": ["Bacharelado em Engenharia Mecânica, Civil, Elétrica ou Química, com pelo menos 10 anos de experiência em gerenciamento de projetos/engenharia."],
-    "fonte": "greenhouse:braskem",
-    "url": "https://job-boards.greenhouse.io/braskem/jobs/7985382003",
-    "prazo": "2026-10-31",
-    "publicado": "2026-09-11"
-  },
-  {
-    "id": "v007",
-    "cargo": "Engenheiro Civil de Planejamento Sênior",
-    "empresa": "7LM",
-    "cidade": "Formosa",
-    "pais": "Brasil",
-    "lat": -15.5372,
-    "lon": -47.3346,
-    "senioridade": "Sênior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Desenvolver o cronograma físico detalhado, curva física da obra e linha de balanço para o projeto de construção. Detalhar o caminho crítico do cronograma, prazos, marcos importantes e restrições para cada pacote de trabalho com lógica executiva. Acompanhar o avanço físico semanal e mensal do cronograma, identificar e justificar desvios e realizar as divulgações de resultados apurados.",
-    "requisitos": [
-      "Superior completo em Engenharia Civil",
-      "Pós-graduação na área",
-      "Sólida experiência na área de Planejamento e controle de obras",
-      "Experiência com obras MCMV"
-    ],
-    "fonte": "gupy",
-    "url": "https://vemser7lm.gupy.io/job/eyJqb2JJZCI6MTIwNDYxNDEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-10-10",
-    "publicado": "2026-09-11"
-  },
-    {
-    "id": "v008",
-    "cargo": "PROJETISTA JR. / MODELADOR BIM - Hidrossanitários",
-    "empresa": "Singular Projetos",
-    "cidade": "Aracaju",
-    "pais": "Brasil",
-    "lat": -10.9472,
-    "lon": -37.0731,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Profissional organizado e proativo, com disponibilidade para trabalho PRESENCIAL em Aracaju/SE. Desejo de atuar no desenvolvimento de projetos de instalações elétricas e hidrossanitárias prediais em BIM.",
-    "requisitos": [
-      "Noções de projetos de instalações hidrossanitárias",
-      "Domínio de Revit e AutoCAD",
-      "Conhecimento em BIM"
-    ],
-    "fonte": "WhatsApp",
-    "url": "mailto:recrutamento@singularprojetos.com.br?subject=Candidatura%20-%20Projetista%20Jr.%20Modelador%20BIM",
-    "prazo": "2026-10-31",
-    "publicado": "2026-09-11"
-  },
-      {
-    "id": "v009",
-    "cargo": "PROJETISTA JR. / MODELADOR BIM - Incêndio",
-    "empresa": "Singular Projetos",
-    "cidade": "Aracaju",
-    "pais": "Brasil",
-    "lat": -10.9472,
-    "lon": -37.0731,
-    "senioridade": "Júnior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Profissional organizado e proativo, com disponibilidade para trabalho PRESENCIAL em Aracaju/SE. Desejo de atuar no desenvolvimento de projetos de instalações elétricas e hidrossanitárias prediais em BIM.",
-    "requisitos": [
-      "Noções de projetos de prevenção e combate à incêndio",
-      "Domínio de Revit e AutoCAD",
-      "Conhecimento em BIM"
-    ],
-    "fonte": "WhatsApp",
-    "url": "mailto:recrutamento@singularprojetos.com.br?subject=Candidatura%20-%20Projetista%20Jr.%20Modelador%20BIM",
-    "prazo": "2026-10-31",
-    "publicado": "2026-09-11"
+    "url": "https://spl.gupy.io/job/eyJqb2JJZCI6MTI0OTIyNjcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-12-31",
+    "publicado": "2026-10-26"
   },
    {
-    "id": "v010",
+    "id": "v003",
     "cargo": "Analista de Engenharia I - Planejamento e Orçamento de Obras",
     "empresa": "Cidade Center Norte",
     "cidade": "São Paulo",
@@ -211,7 +64,7 @@
     "publicado": "2026-09-24"
   },
   {
-    "id": "v011",
+    "id": "v004",
     "cargo": "Estágio Votorantim Cimentos",
     "empresa": "Votorantim Cimentos",
     "cidade": "Laranjeiras",
@@ -230,7 +83,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v012",
+    "id": "v005",
     "cargo": "Erasmus Mundus - Bolsas Internacionais de Estudo",
     "empresa": "Comissão Europeia",
     "cidade": "Nacional",
@@ -247,7 +100,7 @@
     "publicado": "2026-08-28"
   },
   {
-    "id": "v013",
+    "id": "v006",
     "cargo": "NASA Space Apps Challenge - Hackathon",
     "empresa": "NASA",
     "cidade": "Internacional",
@@ -261,6 +114,28 @@
     "requisitos": [],
     "fonte": "programas:nasa-space-apps-challenge",
     "url": "https://www.spaceappschallenge.org/",
+    "publicado": "2026-08-28"
+  },
+  {
+    "id": "v007",
+    "cargo": "Trainee 2027 Projetos de Capital e Infraestrutura",
+    "empresa": "Verum Partners",
+    "cidade": null,
+    "pais": "Brasil",
+    "lat": null,
+    "lon": null,
+    "senioridade": "Trainee",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Buscamos profissionais em início de carreira com potencial para se desenvolver em ambientes de alta complexidade, aprender rapidamente e construir soluções de forma colaborativa.",
+    "requisitos": [
+      "Formação concluída entre 2022 e 2026",
+      "Engenharias, Administração, Economia, Dados, Tecnologia e áreas correlatas",
+      "Inglês Avançado"
+      ],
+    "fonte": "Verum Partners",
+    "url": "https://verumpartners.com.br/programa-trainee-2027/",
+    "prazo": "2026-11-15",
     "publicado": "2026-08-28"
   }
 ]
