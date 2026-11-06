@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt das pranchas 2D ao canteiro em 3D no navegador · William Moura</title>
+<meta name="description" content="Prompt aberto que transforma as pranchas 2D e a foto do terreno num canteiro 3D offline, com camadas, tour guiado e seletor de semana. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/canteiro-3d/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/canteiro-3d/">
+<meta property="og:title" content="O canteiro da obra em 3D no navegador">
+<meta property="og:description" content="O layout do canteiro muda toda semana e o PDF fica parado. Este prompt devolve o canteiro em 3D, com camadas e tour guiado. Passo 01 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-canteiro-3d.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="O canteiro da obra em 3D no navegador">
+<meta name="twitter:description" content="O layout do canteiro muda toda semana e o PDF fica parado. Este prompt devolve o canteiro em 3D, com camadas e tour guiado. Passo 01 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-canteiro-3d.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YRDBRNBY71');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 01 de 04 · Visualizador 3D do canteiro</p>
+
+    <div class="p-cabeca">
+      <h1>Das pranchas 2D ao canteiro <span class="marca">em 3D no navegador</span></h1>
+    </div>
+
+    <p class="p-sub">Você manda as pranchas 2D e a foto do terreno e volta um HTML que abre offline: o canteiro em 3D com guindaste, camadas que ligam e desligam, tour guiado pela rota de visita e seletor de semana.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-canteiro-3d" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-canteiro-3d" tabindex="0" role="region" aria-label="Prompt do passo 01, rolável"><span class="ph"># PEDIDO</span>
+Usando as pranchas 2D e a foto do terreno em anexo, monta um HTML 3D interativo do canteiro: camadas que eu ligo e desligo, um tour guiado pela rota de visita e um seletor de semana. Quero abrir offline, sem instalar nada.
+
+<span class="ph"># FERRAMENTAS</span>
+Este comando precisa de um chat que execute código (Python) e grave arquivos: o HTML leva dentro dele a foto aérea, os dados do canteiro e a biblioteca 3D (three.js), e isso não se escreve à mão. Se o seu chat não executa código, entregue só o inventário por folha (passo 1 da ETAPA 1) e o pendencias.md, sem coordenadas calibradas, e registre "GeoJSON e HTML não gerados: chat sem execução de código".
+Precisa ler PDF. Prancha exportada como imagem não tem texto selecionável: renderize cada folha em alta resolução e leia por partes, ampliando. Folha que não abrir fica de fora e vira pendência; não desenhe o que ela teria.
+O three.js vai embutido no arquivo, de uma cópia local ou baixado uma vez. Link de CDN não serve, porque o arquivo tem que abrir offline. Sem internet e sem cópia local, a ETAPA 1 sai mesmo assim (features.geojson, ortofoto.jpg e pendencias.md); só a ETAPA 2 para, e você me avisa.
+Para testar, abra o HTML num navegador. Sem navegador, registre "HTML não testado no navegador" em pendencias.md.
+
+<span class="ph"># CONTEXTO</span>
+Obra: [NATUREZA DA OBRA — ex.: galpão industrial com quatro zonas de trabalho].
+Cabeçalho do HTML: [NOME DO PROJETO — ex.: PROJETO A] · [CLIENTE — ex.: CONSTRUTORA].
+Idioma da interface: [IDIOMA — ex.: português].
+Pasta de saída: [PASTA — ex.: ./canteiro]. É a mesma dos próximos comandos.
+Escala para calibrar: [ESCALA — ex.: tamanho do pixel da foto, 0,20 m; ou uma medida conhecida, "a via de caminhões tem 8 m de largura"; ou "use a escala gráfica da prancha"].
+Norte: [NORTE — ex.: norte para cima na foto e na prancha; ou "não sei"].
+Semanas: [SEMANAS — ex.: 4 semanas, a terceira folha mostra as fases S1 a S4; ou "a prancha não tem fases"].
+Modelo de elevação do terreno: [ELEVAÇÃO — ex.: "não tenho"; ou o arquivo do modelo de superfície].
+
+<span class="ph"># ENTRADA</span>
+Arquivos anexados:
+- plano.pdf: as pranchas 2D do plano de logística do canteiro (ex.: planta sobre a foto aérea, planta sem fundo, fases por semana). Pode ser só imagem.
+- ortofoto.jpg: a foto aérea do terreno, vista de cima.
+- pendencias.md, se já existir de uma volta anterior.
+
+<span class="ph"># TAREFA</span>
+Faça o PEDIDO em duas etapas, nesta ordem.
+
+<span class="ph">ETAPA 1 — DIGITALIZAR O PLANO (features.geojson)</span>
+1. Leia cada folha e faça o inventário do que ela mostra, com a legenda da própria prancha: limite, zonas de trabalho, vivência, estacionamento, canteiros e estoques, escavações, via de caminhões, passarelas, faixas de pedestres, portaria, catracas, cancelas, portões, cercas, áreas reservadas, pontos de segurança, placas, guindaste, rota de visita e paradas.
+2. Alinhe a prancha à foto por pontos que aparecem nas duas (cantos do limite, cruzamentos de via) e calibre com a ESCALA. Coordenadas em metros locais: X para leste, Y para norte, origem declarada. Copie a foto para a [PASTA] como ortofoto.jpg. No topo do arquivo, grave "meta" com estas chaves, com estes nomes: ortho ("ortofoto.jpg"), gsd_m (metros por pixel da foto), ortho_bbox_m ([xmin, ymin, xmax, ymax] em metros locais: o retângulo que a foto cobre) e baseline_week (0: só a foto).
+3. Uma feição por elemento. Em properties, com estes nomes, porque os próximos comandos leem por eles: id (prefixo por tipo + número, ex.: ZON-A, WLK-01, CRN-01), name, layer (boundary, campus, zones, welfare, compound, excavation, haul_route, walkways, safety, access, fences, reserved, signage, cranes, visit_route, ifc_context), kind (ex.: tower_crane, pedestrian_walkway, turnstile, security_gate, crossing_gate, ped_crossing, haul_road, work_zone, fire_point, first_aid, aed, assembly_point, route_stop), week (inteiro), caption (frase curta da ficha e do tour), source (folha da prancha, "informado" ou "SUPOSIÇÃO") e os campos do tipo: height (m, extrusão), width_m, barrier_side (none, left, right ou both), barrier_type, direction (one-way ou two-way), radius_m, height_m e rotation_deg (guindaste), stop_no e target (parada: número e id do alvo), purpose (área reservada), levels (andares de contêineres).
+4. A rota de visita segue as passarelas. Cada parada tem número e uma legenda do que o visitante faz ali (ex.: "Passe pelas catracas. Pedestres nunca usam a via de caminhões.").
+5. A semana de cada item vem da folha de fases. Item sem fase na prancha leva semana adotada como SUPOSIÇÃO.
+
+<span class="ph">ETAPA 2 — CANTEIRO 3D (canteiro_3d.html)</span>
+Um HTML só, gerado por script a partir do features.geojson, com o three.js, a foto e o GeoJSON embutidos. Abre com dois cliques, sem internet, sem servidor e sem instalar nada. Tem:
+- a foto aérea como chão; terreno plano, salvo se vier o modelo de elevação;
+- zonas e áreas como blocos translúcidos; via e passarelas no chão, com setas de sentido e barreiras; cercas, placas e pontos de segurança como ícones;
+- vivência e canteiro como prédios de contêineres gerados, com o número de andares da prancha;
+- guindaste de torre modelado (mastro e lança), com o raio de giro numa camada própria;
+- camadas que ligam e desligam, com "Ocultar tudo". Lista de referência, ajuste ao seu canteiro: Limite do canteiro, Galpão (projeto), Zonas de trabalho, Vivência e estacionamento, Canteiros e estoques, Escavação, Via de caminhões, Passarelas de pedestres, Segurança e emergência, Acessos, Cercas e tapumes, Áreas reservadas, Sinalização, Guindaste, Raio de giro (exclusão), Rota de visita e paradas, Contexto (volumetria). Volume da obra e de contexto só entra se a prancha mostrar ou se vier o arquivo de volumetria. Camada sem item aparece apagada ou fica fora;
+- ficha ao clicar num item: nome, camada, tipo, semana, legenda, medidas e source, com um botão para aproximar;
+- seletor de semana: a semana 0 mostra só a foto, o terreno como foi capturado; cada semana mostra o que já está implantado até ela;
+- tour guiado: play e pausa, a câmera anda pela rota de visita e para em cada parada com a legenda;
+- modos Esquema (planta) e Detalhado (cada elemento vira modelo 3D: portão, catraca, cancela) e vistas 3D e Topo;
+- bússola com o norte e escala gráfica em metros;
+- painel "Verificação do layout" com os avisos que o script achou ao montar (ex.: ponto de incêndio sobre a via, item fora do limite, feição que não deu para desenhar).
+
+<span class="ph"># REGRAS</span>
+- Nada que a prancha não mostre entra no modelo. Não complete o canteiro com o que "costuma ter".
+- O que precisou ser adotado (semana, altura, número de andares, raio, altura e posição do guindaste, largura sem cota, sentido de passarela) leva source "SUPOSIÇÃO", entra em pendencias.md com o valor e o motivo e aparece na ficha do item.
+- Medida vem de cota da prancha ou da calibração. Declare a calibração e o erro nos pontos de controle; não apresente medida tirada da foto como medida de projeto.
+- O features.geojson é a fonte. Para mudar o 3D, muda o GeoJSON e roda o script de novo. O script nunca descarta feição em silêncio: o que não deu para desenhar vira aviso na Verificação do layout e pendência.
+- Via e passarela não podem ficar sob o terreno, e o terreno não pode piscar fora da área do canteiro. Confira com a câmera baixa.
+- Setas de sentido conferidas contra a prancha 2D.
+- Interface no IDIOMA do CONTEXTO: botões, camadas, ficha, tour e avisos. Rótulo que ficar em outro idioma entra em pendencias.md (L3D-), com onde aparece.
+- Quem abrir o arquivo vê o canteiro inteiro. No cabeçalho, nas legendas e nos metadados, só os nomes do CONTEXTO.
+- pendencias.md é acumulado: leia, não apague e acrescente. Prefixos: DIG- (digitalização) e L3D- (HTML 3D). Situação: ABERTA, SUPOSIÇÃO ou RESOLVIDA (com data e fonte).
+
+<span class="ph"># SAÍDA</span>
+Na [PASTA]:
+- features.geojson: a fonte única do canteiro, com as chaves acima. É a entrada dos próximos comandos (o app de layout, as pranchas e o vídeo da rota).
+- ortofoto.jpg: a foto aérea, o arquivo que meta.ortho aponta.
+- canteiro_3d.html
+- pendencias.md, com as entradas DIG- e L3D- acrescentadas.
+Em work, ao lado da [PASTA]: work/gerar_canteiro_3d.py, o script que gera o HTML. Roda da pasta do projeto, com python work/gerar_canteiro_3d.py, lendo [PASTA]/features.geojson e gravando [PASTA]/canteiro_3d.html; rode de novo sempre que o GeoJSON mudar.
+Na resposta: o inventário por folha (item, camada, id), a contagem de feições por camada e a lista das SUPOSIÇÕES com o valor de cada uma, para eu confirmar.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+- Abriu no navegador, sem internet? Gira, as camadas ligam e desligam, o tour anda e para nas paradas, a semana 0 mostra só a foto e as outras mudam o canteiro? Sem erro no console?
+- O features.geojson tem meta.ortho, meta.gsd_m, meta.ortho_bbox_m e meta.baseline_week, e as properties com os nomes do passo 3? A ortofoto.jpg está na [PASTA]?
+- A contagem de feições por camada bate com o inventário da prancha? Diferença tem motivo escrito.
+- Algum item no modelo que não está na prancha? Tire.
+- Toda feição SUPOSIÇÃO está em pendencias.md e na ficha?
+- Via ou passarela sob o chão, chão piscando, seta ao contrário da prancha?
+- Sobrou rótulo fora do IDIOMA na tela? Se sim, está em pendencias.md?
+- Algum nome além dos do CONTEXTO no HTML ou nos metadados?</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>O layout do canteiro muda toda semana, e cada mudança era redesenhar o PDF. E o canteiro tem que fazer sentido também pra quem nunca pisou na obra, coisa que prancha 2D parada na folha não resolve.</p>
+      <p>O prompt diz o que entra, o que sai e o que ele recusa: nada que a prancha não mostre entra no modelo, o que precisou ser adotado (semana, altura, raio do guindaste) vira SUPOSIÇÃO no <code>pendencias.md</code> e na ficha do item, e o terreno fica plano se você não mandar o modelo de elevação. Primeiro ele digitaliza o plano num <code>features.geojson</code>, depois gera por script um HTML só, sem instalar nada: o plano em 3D sobre a foto aérea, com galpão, guindaste e raio de giro, canteiros das empresas, via de caminhões e passarelas, em esquema ou detalhado, 3D ou topo, com camadas que ligam e desligam, ficha com o botão de ir até o item, tour guiado pela rota de visita (aqui, 5 paradas), escala e bússola. No topo fica o seletor de semana, e o <code>features.geojson</code> é a entrada do app de layout do passo 2.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1400" poster="../../assets/prompts/canteiro-3d/canteiro-giro.jpg" aria-label="Canteiro em 3D sobre a foto aérea girando: galpão, guindaste com o raio de giro, canteiros das empresas, via de caminhões e passarelas"><source src="../../assets/prompts/canteiro-3d/canteiro-giro.mp4" type="video/mp4"></video><figcaption><b>01 · O canteiro em 3D</b> O que voltou: o plano montado em 3D sobre a foto aérea, com galpão, guindaste e raio de giro, canteiros das empresas, via de caminhões e passarelas, girando no navegador. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/canteiro-3d/antes-pdf.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/canteiro-3d/antes-pdf.webp" alt="Prancha 2D do plano do canteiro em PDF, desenhada sobre a foto aérea: o insumo parado" width="1920" height="1350" loading="lazy"></a><figcaption><b>02 · Antes: a prancha 2D</b> O que entrou: o plano do canteiro em PDF, desenhado por cima da foto aérea e parado na folha. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/canteiro-3d/antes-foto.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/canteiro-3d/antes-foto.webp" alt="Foto aérea do terreno ainda vazio, o segundo anexo do pedido" width="1920" height="1350" loading="lazy"></a><figcaption><b>03 · Antes: a foto do terreno</b> O segundo anexo, o terreno ainda vazio visto de cima. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="968" poster="../../assets/prompts/canteiro-3d/camadas.jpg" aria-label="Painel de camadas do viewer: zonas de trabalho, via de caminhões, passarelas, guindaste e raio de giro ligando um a um no 3D"><source src="../../assets/prompts/canteiro-3d/camadas.mp4" type="video/mp4"></video><figcaption><b>04 · Camadas e semana</b> Cada camada liga e desliga no painel (zonas de trabalho, via de caminhões, passarelas, guindaste, raio de giro); no topo do painel fica o seletor de semana do cronograma. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1400" poster="../../assets/prompts/canteiro-3d/guindaste-ficha.jpg" aria-label="Ficha do guindaste de torre aberta no viewer e voo da câmera até o guindaste 3D, com o raio de giro marcado no chão"><source src="../../assets/prompts/canteiro-3d/guindaste-ficha.mp4" type="video/mp4"></video><figcaption><b>05 · O guindaste</b> Clique no guindaste: a ficha traz lança de 55 m, altura de 42 m e a semana em que entra, e o “Zoom to” leva a câmera até o modelo 3D com a área de exclusão no chão. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1548" poster="../../assets/prompts/canteiro-3d/tour-guiado.jpg" aria-label="Tour guiado em andamento: a câmera sai do estacionamento pela passarela amarela e chega à portaria, parada 2 de 5"><source src="../../assets/prompts/canteiro-3d/tour-guiado.mp4" type="video/mp4"></video><figcaption><b>06 · Tour guiado</b> A câmera percorre a rota de visita pelas passarelas até a portaria, com a instrução de cada parada na tela.</figcaption></figure>
+      </div>
+      <p class="p-print-carimbo">Saída real do comando · Canteiro 3D em HTML offline · Dados fictícios (PROJETO A)</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>A ficha do guindaste traz lança, altura e a semana em que ele entra. O prompt manda marcar como SUPOSIÇÃO o raio, a altura e a posição que não vieram da prancha e listar no <code>pendencias.md</code>, mas suposição continua sendo suposição. Confere com a ficha técnica do equipamento que vai de fato pra obra antes de usar o raio de giro pra marcar área de exclusão.</li>
+          <li>O 3D é montado em cima da foto do terreno. Se a prancha e a foto não batem em escala ou orientação, as zonas caem no lugar errado e ninguém percebe olhando de longe. Compara um elemento que aparece nas duas (a via, o limite do terreno) e confere a escala do rodapé contra uma medida que você conhece.</li>
+          <li>O seletor de semana só mostra o que cada item tem marcado de semana. Item sem fase na prancha leva semana adotada, e o prompt manda registrar como SUPOSIÇÃO no <code>pendencias.md</code>, com o valor e o motivo, mas no 3D ele aparece na semana igual aos outros. Lê as SUPOSIÇÕES e confere a semana de cada item contra o cronograma antes de mostrar o canteiro de uma fase pra alguém.</li>
+          <li>O idioma da interface é o campo <code>[IDIOMA]</code> do CONTEXTO, e rótulo que sobrar em outro idioma o prompt manda listar no <code>pendencias.md</code> com prefixo <code>L3D-</code>. No exemplo da página, a ficha veio com <em>Layer</em>, <em>Kind</em> e <em>Week</em> e o tour anda com <em>Walking to</em> na tela. Preenche o idioma e lê as <code>L3D-</code> antes de mandar o 3D pra equipe ou pra visita.</li>
+          <li>Tour bonito não é rota liberada. Quem aprova o caminho da visita é a segurança do trabalho, não o navegador, né.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo usa o canteiro do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 01</span>
+          <span class="nome">Canteiro 3D</span>
+        </span>
+        <a class="p-passo" href="../layout-canteiro/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Layout</span>
+        </a>
+        <a class="p-passo" href="../pranchas-a0/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Pranchas A0</span>
+        </a>
+        <a class="p-passo" href="../rota-de-visita/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Rota</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

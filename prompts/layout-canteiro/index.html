@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt de um app pra mexer no layout do canteiro sem redesenhar o PDF · William Moura</title>
+<meta name="description" content="Prompt aberto que gera um app no navegador pra mexer no layout do canteiro sobre a foto aérea: guindaste, catracas, passarelas, semana e PDF. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/layout-canteiro/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/layout-canteiro/">
+<meta property="og:title" content="Um app pra mexer no layout do canteiro">
+<meta property="og:description" content="O layout do canteiro muda toda semana. Este prompt gera o app em que você arrasta guindaste, catraca e passarela e já vê o PDF. Passo 02 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-layout-canteiro.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Um app pra mexer no layout do canteiro">
+<meta name="twitter:description" content="O layout do canteiro muda toda semana. Este prompt gera o app em que você arrasta guindaste, catraca e passarela e já vê o PDF. Passo 02 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-layout-canteiro.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YRDBRNBY71');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 02 de 04 · Editor de layout do canteiro</p>
+
+    <div class="p-cabeca">
+      <h1>Um app pra mexer no layout do canteiro <span class="marca">sem redesenhar o PDF</span></h1>
+    </div>
+
+    <p class="p-sub">Ele lê o GeoJSON que saiu do passo 1 e a foto aérea na mesma pasta e devolve um app no navegador: guindaste, catracas, passarelas e cercas que você arrasta em cima da foto, filtro por semana e o PDF pronto pra imprimir.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-layout-canteiro" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-layout-canteiro" tabindex="0" role="region" aria-label="Prompt do passo 02, rolável"><span class="ph"># PEDIDO</span>
+Faz um appzinho em HTML pra eu mesmo desenhar o layout do canteiro em cima da ortofoto: catracas, passarelas com barreira, áreas reservadas, portões, cercas e guindaste com o raio de giro. Quero arrastar, girar, filtrar por semana e já ver o PDF.
+
+<span class="ph"># ANTES DE COMEÇAR</span>
+Precisa de um chat que executa código e grava arquivos (ex.: Claude Code ou Cowork) e de um navegador para testar. Sem execução de código, pare e avise: o app e o 3D saem de script, e app que ninguém abriu não é entregue.
+O app carrega as bibliotecas de mapa e de PDF (Leaflet, Geoman, jsPDF, pdf-lib, JSTS) pela internet (CDN). Se o navegador bloquear algo aberto com dois cliques, rode python -m http.server 8000 na pasta e abra pelo endereço local.
+Sem internet onde o app vai rodar: baixe essas bibliotecas para uma pasta lib/ ao lado do HTML e aponte o HTML para elas (abrindo com o http.server, se preciso). Sem internet e sem cópia local, o app não abre: registre isso em pendencias.md e me avise.
+Ele continua o comando do canteiro 3D. Use a mesma pasta de saída: [PASTA — ex.: ./canteiro].
+
+<span class="ph"># ENTRADA</span>
+- features.geojson: saída do comando 1, em metros locais (X leste, Y norte), uma feição por elemento, com id, name, layer, kind, week e os campos do tipo (width_m, barrier_side, barrier_type, direction, purpose, levels, radius_m, height_m, rotation_deg, stop_no, target). É a fonte única: o app lê e devolve esse mesmo arquivo, no mesmo esquema. O Export mantém as chaves do meta e das properties e pode acrescentar as suas (ex.: data da edição); nunca apaga.
+- ortofoto.jpg, na mesma pasta: meta.ortho dá o nome, meta.gsd_m os metros por pixel e meta.ortho_bbox_m o retângulo [xmin, ymin, xmax, ymax] que a foto cobre.
+- pendencias.md: o acumulado do comando 1.
+Sem o comando 1: comece de um features.geojson vazio sobre a foto aérea, gravando meta.gsd_m e meta.ortho_bbox_m a partir da escala informada aqui: [ESCALA DA FOTO — ex.: 0,25 m por pixel, ou "o portão de veículos tem 6 m"]. Sem escala, pergunte antes de desenhar.
+Padrões do canteiro, se houver: [PADRÕES — ex.: passarela de 2 m, via de 7,3 m mão dupla, cerca de 2 m].
+Idioma dos rótulos da interface: [IDIOMA — ex.: português].
+
+<span class="ph"># TAREFA</span>
+Gere com work/gerar_editor_layout.py (na mesma pasta work do comando 1) um editor_layout.html com o features.geojson e a ortofoto embutidos (planta, norte para cima).
+1. Catálogo por camada, com os campos de cada tipo: catraca (quantidade); portão (tipo, largura); portaria com o lado da placa de entrada; cancela como elemento separado, antes do portão, para o veículo não bater nele; cerca (tipo, altura); passarela (largura; barreira nenhuma, à esquerda, à direita ou nos dois lados; tipo de barreira); faixa de pedestres; via de caminhões (largura, mão única ou dupla); área reservada (finalidade: estoque, equipamentos, exclusão, estacionamento); vivência e canteiro com o número de níveis de contêiner; zona de trabalho; escavação e acesso à escavação; ponto de incêndio, primeiros socorros, DEA, ponto de encontro; água potável, sanitários, área de fumantes, bancos, lixeiras; placa com texto; limite de velocidade; kit de derrame, gerador, abastecimento; "você está aqui" editável; rota de visita e parada (número e alvo); guindaste de torre com raio de giro, altura e rotação.
+2. Edição: selecionar, arrastar, girar pela alça (Shift = passos de 15°), desfazer e refazer, snap.
+3. Passarelas que se cruzam se fundem sozinhas, inclusive com larguras diferentes, sem trecho deslocado da borda. A barreira segue a borda externa da superfície fundida: nada de barreira no meio do cruzamento, e abertura nos cruzamentos, catracas e portões.
+4. Faixa de pedestres cobre a via de lado a lado, pela largura da via mapeada.
+5. Guindaste: o círculo do raio de giro e a área de exclusão acompanham quando eu arrasto o guindaste ou mudo o raio.
+6. Semana: cada item tem semana; um controle no topo mostra só o que tem semana menor ou igual à escolhida.
+7. Preview da simbologia como vai sair no PDF.
+8. PDF: pré-visualização dentro do app e exportação em A4, A3 ou A1, retrato ou paisagem, recorte retangular da vista, escala automática ou manual (ex.: 1:1750), título, revisão, legenda, símbolos com tamanho automático pela escala, rótulo na área e não no ícone. Opção de markups editáveis no Bluebeam: cada elemento vira um markup com o tipo no Subject, em camadas do PDF, com a escala de medição gravada no PDF (para medir no editor de PDF); a legenda também editável.
+9. Import e Export GeoJSON. O Export grava features.geojson no mesmo esquema, com áreas e comprimentos recalculados. O rascunho no navegador não vale: vale o arquivo exportado.
+10. Painel de validação com avisos: id repetido, nome vazio, item sem semana, faixa fora de via mapeada, cancela fora da via, área ou item sobre a via, placa e cancela a menos de 2 m.
+11. O 3D muda junto assim: salve o features.geojson exportado por cima do anterior e rode de novo work/gerar_canteiro_3d.py do comando 1 para regerar o canteiro_3d.html. Não há 3D dentro do editor. As pranchas e o vídeo (comandos 3 e 4) leem esse mesmo arquivo.
+
+<span class="ph"># REGRAS</span>
+- O features.geojson é a fonte. Nada se perde ao salvar: feição ou propriedade que o app não conhece passa intacta pelo Export. Nenhum item é descartado em silêncio.
+- Medidas em metros.
+- Item fora da via ou sobre a via vira aviso no painel. Encaixe automático (ex.: cancela no eixo da via) só com aviso visível na tela; nada é corrigido em silêncio.
+- O app não grava pendencias.md. Quem grava é você, ao gerar o app: cada valor padrão do catálogo que você definiu (largura de passarela e de via, altura de barreira e de cerca, raio e altura do guindaste) entra em pendencias.md como SUPOSIÇÃO até eu confirmar. Dentro do app, o valor padrão fica visível no campo do elemento.
+- O que não dá para extrair, verificar ou medir na foto entra em pendencias.md com o motivo, sem estimar.
+- pendencias.md é acumulado: leia, não apague nem renumere, acrescente ao fim com prefixo E- e situação ABERTA, SUPOSIÇÃO ou RESOLVIDA (com data e fonte).
+
+<span class="ph"># SAÍDA</span>
+O que você entrega agora, na mesma pasta:
+- editor_layout.html e work/gerar_editor_layout.py, o script que o gera.
+- pendencias.md com as entradas E- acrescentadas.
+O que eu faço depois de editar (e você, se eu pedir):
+- features.geojson: o mesmo nome, sobrescrito pelo Export (copie o download por cima do anterior).
+- canteiro_3d.html regerado por work/gerar_canteiro_3d.py a partir do features.geojson novo.
+O features.geojson é a entrada do comando das pranchas.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+Abra no navegador e faça. Sem navegador, me passe esta lista para eu fazer:
+- Desenhe uma passarela cruzando outra de largura diferente: fundiu, a barreira contornou o cruzamento e a opção "nos dois lados" funciona?
+- Arraste o guindaste e mude o raio: o círculo e a exclusão vieram junto?
+- Mude a semana: some o que é de semana posterior?
+- Exporte um PDF A1 com markups, abra num editor de PDF (ex.: Bluebeam) e confira que elementos e legenda se editam e que os rótulos estão nas áreas.
+- Exporte o GeoJSON, compare o número de feições com o da entrada, rode work/gerar_canteiro_3d.py e veja a mudança no 3D.
+- O resumo da entrega cita algum número ou recurso que o app não mostra? Se sim, corte.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>O layout do canteiro muda toda semana, e cada mudança era redesenhar o PDF. A catraca mudou de lugar, o guindaste chegou, a passarela ganhou barreira: abre o desenho, refaz, exporta e manda de novo pra todo mundo.</p>
+      <p>Aqui você não pede um desenho, pede a ferramenta: um app em cima da foto aérea em que você arrasta o guindaste com o raio de giro e a área de exclusão, muda a catraca, desenha passarela com barreira que se funde sozinha no cruzamento, filtra por semana e tira o PDF até A1, com título, revisão, legenda e markups editáveis no Bluebeam. E ele não decide calado: largura de passarela e de via, altura de barreira e de cerca, raio e altura do guindaste, todo padrão que ele definir vai pro <code>pendencias.md</code> como SUPOSIÇÃO até você confirmar, e encaixe automático só acontece com aviso na tela. O <code>features.geojson</code> é a fonte, nada se perde ao salvar, e é dele que o 3D do passo 1 sai de novo.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><video muted autoplay loop playsinline preload="metadata" width="1570" height="1098" poster="../../assets/prompts/layout-canteiro/guindaste-raio.jpg" aria-label="Editor de layout sobre a foto aérea: o guindaste é arrastado e o círculo do raio de giro com a área de exclusão vai junto; no painel, raio de giro de 55 m"><source src="../../assets/prompts/layout-canteiro/guindaste-raio.mp4" type="video/mp4"></video><figcaption><b>01 · Guindaste com raio de giro</b> Arrasto o guindaste e o círculo do raio de giro, a área de exclusão, vai junto; no painel, raio de giro de 55 m, altura e rotação editáveis. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1600" height="754" poster="../../assets/prompts/layout-canteiro/catraca.jpg" aria-label="A catraca é selecionada e arrastada para baixo no mapa do canteiro"><source src="../../assets/prompts/layout-canteiro/catraca.mp4" type="video/mp4"></video><figcaption><b>02 · Catraca no lugar certo</b> Seleciono a catraca e arrasto para outro ponto da passarela, sem redesenhar nada. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="814" poster="../../assets/prompts/layout-canteiro/passarela-barreira.jpg" aria-label="Uma passarela nova é desenhada cruzando a passarela existente, ganha barreira dos dois lados e se junta à outra no cruzamento"><source src="../../assets/prompts/layout-canteiro/passarela-barreira.mp4" type="video/mp4"></video><figcaption><b>03 · Passarela com barreira</b> Desenho uma passarela nova cruzando a existente, escolho barreira dos dois lados (Both) e, no cruzamento, as duas se juntam sozinhas. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1680" height="1080" poster="../../assets/prompts/layout-canteiro/semana-editor.jpg" aria-label="O controle WEEK no topo do editor vai da semana 4 para a 1 e volta; zonas, raio do guindaste e cercas somem e reaparecem no mapa, e o painel conta os itens da semana"><source src="../../assets/prompts/layout-canteiro/semana-editor.mp4" type="video/mp4"></video><figcaption><b>04 · Filtro por semana</b> O controle WEEK leva o layout da semana 4 para a 1 e volta: o que ainda não foi implantado some do mapa e o painel conta 31 de 56 itens na semana 1. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1260" poster="../../assets/prompts/layout-canteiro/semana-3d.jpg" aria-label="Vista 3D do canteiro sobre a foto aérea: a semana do cronograma passa de S0 (só a foto aérea) para S1, S2 e S3 e o canteiro aparece e cresce a cada semana"><source src="../../assets/prompts/layout-canteiro/semana-3d.mp4" type="video/mp4"></video><figcaption><b>05 · A semana no 3D</b> O layout exportado pelo editor alimenta a vista 3D do passo 1 da série: de S0, só a foto aérea, até S3, com 322 itens implantados. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/layout-canteiro/pdf-a1-folha.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/layout-canteiro/pdf-a1-folha.webp" alt="Prévia do PDF gerado pelo editor: folha A1 inteira com o layout do canteiro sobre a foto aérea, legenda à direita e carimbo" width="2296" height="1630" loading="lazy"></a><figcaption><b>06 · O PDF já pronto</b> A prévia do PDF que o editor gera: folha A1 com o layout sobre a foto aérea, legenda e carimbo. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/layout-canteiro/pdf-a1-carimbo.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/layout-canteiro/pdf-a1-carimbo.webp" alt="Detalhe da folha A1: legenda com os símbolos do canteiro e carimbo com Site Logistics Layout, semana S4, Rev01 e escala 1:1,250 @ A1" width="532" height="1564" loading="lazy"></a><figcaption><b>07 · Legenda e carimbo</b> De perto: a legenda com cada símbolo do canteiro e o carimbo com semana S4, Rev01 e escala 1:1,250 em A1. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <p class="p-print-carimbo">Saída real · Editor de layout do canteiro · Dados fictícios (PROJETO A)</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>O raio de giro e a área de exclusão são o número que você digita, não o da máquina. Pega a tabela de carga do guindaste que vai de fato pra obra e confere raio e altura no painel antes de liberar circulação embaixo dele.</li>
+          <li>Antes de colar, preenche os quatro campos entre colchetes: <code>[PASTA]</code>, <code>[ESCALA DA FOTO]</code>, <code>[PADRÕES]</code> e <code>[IDIOMA]</code>; sem o passo 1 e sem escala, ele pergunta antes de desenhar. O PDF sai com a escala de medição gravada, mas ela só vale se a foto estiver na escala certa: abre no editor de PDF (no Bluebeam, por exemplo), mede uma distância que você conhece no terreno e só cota em cima da folha se bater.</li>
+          <li>O 3D não muda sozinho, e o rascunho no navegador não vale. Exporta o GeoJSON, salva por cima do <code>features.geojson</code> anterior, confere se o número de feições bate com o da entrada e só então roda de novo o <code>work/gerar_canteiro_3d.py</code>.</li>
+          <li>O filtro por semana só mostra o que você marcou em cada item. Item com a semana errada aparece no canteiro antes de existir, então confere a semana de cada catraca, cerca e passarela contra o cronograma antes de mandar o layout pra equipe.</li>
+          <li>O app desenha o canteiro, não aprova. Passarela embaixo de guindaste quem libera é a segurança do trabalho, não o navegador, né.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo usa o canteiro do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../canteiro-3d/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Canteiro 3D</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 02</span>
+          <span class="nome">Layout</span>
+        </span>
+        <a class="p-passo" href="../pranchas-a0/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Pranchas A0</span>
+        </a>
+        <a class="p-passo" href="../rota-de-visita/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Rota</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

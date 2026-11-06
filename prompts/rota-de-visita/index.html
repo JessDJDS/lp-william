@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt da rota de visita do canteiro em vídeo no Blender · William Moura</title>
+<meta name="description" content="Prompt aberto que escreve o roteiro e renderiza no Blender o vídeo da rota de visita do canteiro, parada por parada, com o guindaste girando. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/rota-de-visita/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/rota-de-visita/">
+<meta property="og:title" content="A rota de visita do canteiro em vídeo">
+<meta property="og:description" content="A visita chega sem saber por onde andar. Este prompt devolve o vídeo da rota no Blender, parada por parada, com o guindaste girando. Passo 04 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-rota-de-visita.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A rota de visita do canteiro em vídeo">
+<meta name="twitter:description" content="A visita chega sem saber por onde andar. Este prompt devolve o vídeo da rota no Blender, parada por parada, com o guindaste girando. Passo 04 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-rota-de-visita.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YRDBRNBY71');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 04 de 04 · Vídeo da rota de visita</p>
+
+    <div class="p-cabeca">
+      <h1>A rota de visita do canteiro <span class="marca">em vídeo no Blender</span></h1>
+    </div>
+
+    <p class="p-sub">Ele lê o GeoJSON do canteiro e a ortofoto, escreve o roteiro cena a cena, espera o seu ok e devolve do Blender a câmera andando pela rota de visita, parando em cada parada (no exemplo, 5) com o guindaste girando devagar em quadro.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-rota-de-visita" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-rota-de-visita" tabindex="0" role="region" aria-label="Prompt do passo 04, rolável"><span class="ph"># PEDIDO</span>
+Escreve o roteiro e renderiza no Blender um vídeo seguindo a rota de visita do canteiro, parando em cada parada, com o guindaste girando devagar.
+
+<span class="ph"># CONTEXTO</span>
+Este comando exige o Blender instalado e um chat com acesso a terminal e aos arquivos da máquina (ex.: Claude Code ou Cowork). O vídeo sai do Blender por script Python em background, e o próprio Blender grava o MP4. O ffmpeg é opcional: se houver, pode codificar e sobrepor os textos por ele; sem ffmpeg, o Blender entrega o MP4 final.
+Sem Blender: faça só a ETAPA 1 (roteiro), pare e registre em pendencias.md "Blender não disponível".
+Render é lento. Só renderize com o layout fechado: se eu ainda estiver mexendo no editor, faça só o roteiro.
+O features.geojson é a fonte única: este comando só lê.
+Nome do projeto nas cartelas: [NOME DO PROJETO — ex.: PROJETO A].
+Marca no canto do vídeo: [CLIENTE — ex.: CONSTRUTORA], só o nome, sem logo.
+
+<span class="ph"># ENTRADA</span>
+Na pasta [PASTA — ex.: ./canteiro]:
+- features.geojson exportado do editor de layout (comando 2), em metros locais (X leste, Y norte), com meta.ortho, meta.gsd_m e meta.ortho_bbox_m. Tem a rota de visita, as paradas (stop_no, name, caption, target), as zonas, a via de caminhões, as passarelas com barreira, as catracas, os pontos de segurança e o guindaste (radius_m, height_m, rotation_deg).
+- A ortofoto do terreno indicada em meta.ortho (ortofoto.jpg), que cobre o retângulo de meta.ortho_bbox_m.
+- Opcional: a volumetria de contexto.
+- pendencias.md dos comandos anteriores.
+Campos:
+- Câmera: [CÂMERA — ex.: vista aérea inclinada, uns 40 m acima da rota].
+- Tempo em cada parada: [TEMPO NA PARADA — ex.: 3 s].
+- Resolução: [RESOLUÇÃO — ex.: 1920×1080, 30 fps, que dá rota_visita_1080p.mp4]. O sufixo do nome do MP4 segue a resolução escolhida.
+
+<span class="ph"># TAREFA</span>
+<span class="ph">ETAPA 1 — ROTEIRO</span>
+- Leia as paradas do GeoJSON na ordem de stop_no. Se não houver rota de visita ou paradas, pare e me avise: sem rota não há vídeo.
+- Escreva roteiro_video.md cena por cena, com tempo estimado, o que a câmera faz, o que anima e o texto em tela. Base:
+  1. Abertura: plano geral sobre a ortofoto, cartela com [NOME DO PROJETO], "Plano de logística do canteiro" e "Rota de visita guiada"; as zonas sobem do chão como blocos translúcidos.
+  2. A câmera se aproxima da entrada (estacionamento e vivência) e passa a seguir a rota pelas passarelas, passando pelas catracas. Faixa fixa no topo: "ROTA DE VISITA · [N — ex.: 5] PARADAS · SÓ PELAS PASSARELAS", com o número de paradas do GeoJSON.
+  3. Em cada parada a câmera para; entra um cartão com "PARADA nn DE nn", o nome (name) e a legenda (caption) da parada, como estão no GeoJSON.
+  4. Ao longo do caminho: o guindaste com a lança girando devagar e o raio de giro desenhado no chão; os pontos de segurança que estiverem no GeoJSON (incêndio, primeiros socorros, ponto de encontro) pulsando; a via de caminhões com setas de sentido.
+  5. Fecho: a câmera se afasta para a vista geral, com uma legenda lateral de tudo o que aparece no vídeo e a cartela "Pedestres nas passarelas · veículos na via · travessia só nas faixas".
+- A duração total é a soma das cenas, não um número fixo.
+- Pare e me mostre o roteiro. Só siga para a ETAPA 2 com o meu ok.
+
+<span class="ph">ETAPA 2 — RENDER</span>
+- Ache o Blender; se não achar, pergunte o caminho.
+- Monte a cena por script: terreno plano com a ortofoto como chão, posicionada pelo retângulo de meta.ortho_bbox_m (meta.gsd_m confere a escala); cada feição do GeoJSON extrudada ou desenhada sobre o chão, na posição do arquivo, com altura e largura do arquivo quando existirem; o guindaste com a altura e o raio do arquivo.
+- Câmera num caminho que acompanha a rota de visita e para em cada parada pelo tempo do roteiro.
+- Antes do final, renderize um teste em baixa resolução, abra os quadros e confira: câmera atravessando prédio, contêiner ou guindaste; parada fora do quadro; elemento flutuando ou afundado; terreno piscando. Corrija; só então o final.
+- Cartelas, cartões e legendas entram por cima dos quadros, depois do render: no compositor do Blender, por script de imagem quadro a quadro antes de codificar, ou pelo ffmpeg se houver. Assim texto errado se corrige sem renderizar a cena de novo.
+
+<span class="ph"># REGRAS</span>
+- Terreno plano, salvo se eu mandar um modelo de elevação. Nada que não esteja no GeoJSON entra no vídeo: nenhuma pessoa, máquina, placa ou prédio para enfeitar.
+- Feição que o script não souber representar não some calada: vai para pendencias.md com o id e o motivo.
+- Texto em tela só em português.
+- Nenhum nome real de cliente, obra ou local, nenhum logo e nenhuma data. Só [CLIENTE] e [NOME DO PROJETO].
+- O que o roteiro precisou adotar (tempo de cena, altura e velocidade da câmera, ordem quando stop_no faltar ou repetir) entra em pendencias.md como SUPOSIÇÃO, com o valor adotado.
+- Scripts e quadros numa pasta work ao lado da [PASTA]; entregáveis na própria [PASTA].
+- pendencias.md é acumulado: leia, não apague nem renumere, acrescente ao fim. Prefixo deste comando: VID-. Situação: ABERTA, SUPOSIÇÃO ou RESOLVIDA.
+
+<span class="ph"># SAÍDA</span>
+Na [PASTA]:
+- roteiro_video.md, o aprovado
+- rota_visita_1080p.mp4 (sufixo conforme a [RESOLUÇÃO])
+- pendencias.md, com as entradas VID- acrescentadas
+Em work: os scripts do Blender e os quadros de teste.
+Na resposta: a duração final, o número de paradas e a lista de SUPOSIÇÕES para eu confirmar.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+- Abra o vídeo e confira quadro a quadro (com o ffmpeg, se houver, ou pausando o player): cada parada do GeoJSON tem cartão, com número, nome e legenda certos?
+- A câmera atravessa algum objeto? Sobrou texto em inglês?
+- A ordem e a duração das cenas batem com o roteiro aprovado?
+- Toda SUPOSIÇÃO e toda feição não representada estão em pendencias.md?</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>Visita no canteiro chega com o PDF do plano na mão e a mesma pergunta de sempre: por onde eu ando? Alguém da obra larga o que está fazendo pra explicar passarela, catraca e onde não pisar, e na próxima visita explica tudo de novo.</p>
+      <p>O prompt lê o <code>features.geojson</code> do editor de layout e a ortofoto, escreve o roteiro cena a cena (cartela de abertura com as zonas subindo, câmera pelas passarelas, cartão em cada parada, guindaste girando, pontos de segurança pulsando, legenda no fim) e para ali até você aprovar; só depois renderiza, com um teste em baixa antes do final, e não põe no vídeo nada que não esteja no GeoJSON. No exemplo voltou um vídeo de 35 s em 1080p, sem corte de edição: do estacionamento, pela portaria e pela vivência, até a frente de obra da Zona A com o guindaste girando sobre o raio de giro, terminando no canteiro da Empresa B. É o último dos quatro comandos: o canteiro que virou 3D no passo 1, layout no passo 2 e prancha no passo 3 agora vira o passeio que a visita assiste antes de entrar.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1080" poster="../../assets/prompts/rota-de-visita/rota-guindaste.jpg" aria-label="A câmera segue a rota até a frente de obra da Zona A, com o guindaste girando em quadro, o raio de giro no chão e o cartão da parada 04"><source src="../../assets/prompts/rota-de-visita/rota-guindaste.mp4" type="video/mp4"></video><figcaption><b>01 · A câmera na rota</b> A câmera segue a passarela até a parada 04, na frente de obra da Zona A, com o guindaste girando em quadro sobre o raio de giro e o cartão da parada na tela. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1080" poster="../../assets/prompts/rota-de-visita/paradas.jpg" aria-label="Paradas numeradas da rota: cartão da parada 02, Portaria, e depois da parada 03, Vivência, cada um com a instrução para a visita"><source src="../../assets/prompts/rota-de-visita/paradas.mp4" type="video/mp4"></video><figcaption><b>02 · Paradas numeradas</b> Cada parada tem número e cartão com a instrução para a visita: 02, Portaria (passe pelas catracas), e 03, Vivência (registre a entrada e participe do briefing de segurança). Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1080" poster="../../assets/prompts/rota-de-visita/abertura-zonas.jpg" aria-label="Abertura do vídeo: o canteiro monta sobre a foto aérea, com zonas de trabalho A e B, vivência, passarelas e o guindaste com o raio de giro, sob o título PROJETO A"><source src="../../assets/prompts/rota-de-visita/abertura-zonas.mp4" type="video/mp4"></video><figcaption><b>03 · O canteiro antes da rota</b> A abertura monta o canteiro sobre a foto aérea, com as zonas de trabalho A e B, a vivência, a via de caminhões e o guindaste, sob o título do plano. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1920" height="1080" poster="../../assets/prompts/rota-de-visita/fim-rota.jpg" aria-label="Fim da rota: sobrevoo do canteiro inteiro com as paradas numeradas e a legenda do plano de logística ao lado"><source src="../../assets/prompts/rota-de-visita/fim-rota.mp4" type="video/mp4"></video><figcaption><b>04 · Fim da rota</b> No fim, a câmera sobe e mostra o canteiro inteiro com as cinco paradas numeradas e a legenda do plano de logística ao lado. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <p class="p-print-carimbo">Saída real · Vídeo renderizado no Blender · 35 s, 1080p · Dados fictícios (PROJETO A)</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>O prompt não desenha o canteiro: ele lê o <code>features.geojson</code> exportado do editor de layout (passo 2) e a <code>ortofoto.jpg</code>, então os dois têm que estar na pasta. E o vídeo sai do <strong>Blender</strong>, que precisa estar instalado; sem ele, você recebe só o roteiro e a pendência registrada.</li>
+          <li>O arquivo que voltou passa de 100 MB pra 35 s de vídeo. Se for mandar por aplicativo de mensagem, assiste antes no celular, do jeito que a visita vai receber, e confere se dá pra ler a instrução de cada parada.</li>
+          <li>O cartão de cada parada mostra o nome e a legenda que estão no GeoJSON ("fique na passarela", "pedestres nunca usam a via de caminhões"). Confere esse texto contra as regras da obra antes de mandar o vídeo pra visita, porque visita decora o que lê na tela.</li>
+          <li>O prompt pede que os pontos de segurança do GeoJSON (incêndio, primeiros socorros, ponto de encontro) apareçam pulsando no caminho. Confere a posição deles contra o lugar real do kit e dos extintores no canteiro: se o GeoJSON estiver desatualizado, o vídeo aponta o lugar errado pra quem vai entrar.</li>
+          <li>Vídeo bonito não substitui o briefing de segurança. Tanto que o próprio vídeo, na parada 03, manda a visita participar dele, né.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo usa o canteiro do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../canteiro-3d/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Canteiro 3D</span>
+        </a>
+        <a class="p-passo" href="../layout-canteiro/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Layout</span>
+        </a>
+        <a class="p-passo" href="../pranchas-a0/">
+          <span class="n">Passo 03</span>
+          <span class="nome">Pranchas A0</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 04</span>
+          <span class="nome">Rota</span>
+        </span>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>

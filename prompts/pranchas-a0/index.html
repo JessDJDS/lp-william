@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt do layout do editor às pranchas A0 editáveis no Bluebeam · William Moura</title>
+<meta name="description" content="Prompt aberto que exporta o layout do canteiro em duas pranchas A0 editáveis no Bluebeam, com a vista aérea e as placas em 3D. Sem cadastro.">
+<link rel="canonical" href="https://www.owilliamoura.com.br/prompts/pranchas-a0/">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="William Moura">
+<meta property="og:url" content="https://www.owilliamoura.com.br/prompts/pranchas-a0/">
+<meta property="og:title" content="Do layout às pranchas A0 editáveis">
+<meta property="og:description" content="A obra precisa do PDF pra imprimir e marcar. Este prompt devolve duas pranchas A0 editáveis, com as placas em 3D na vista aérea. Passo 03 de 04.">
+<meta property="og:image" content="https://www.owilliamoura.com.br/assets/og/prompt-pranchas-a0.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Do layout às pranchas A0 editáveis">
+<meta name="twitter:description" content="A obra precisa do PDF pra imprimir e marcar. Este prompt devolve duas pranchas A0 editáveis, com as placas em 3D na vista aérea. Passo 03 de 04.">
+<meta name="twitter:image" content="https://www.owilliamoura.com.br/assets/og/prompt-pranchas-a0.jpg">
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../../assets/icons/favicon.ico">
+<link rel="icon" href="../../assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YRDBRNBY71"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YRDBRNBY71');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/prompts.css">
+</head>
+<body>
+
+<!-- ============ HEADER (idêntico ao da landing) ============ -->
+<header>
+  <div class="wrap">
+    <a href="../../index.html" class="wordmark">WILLIAM MOURA</a>
+    <nav class="principal" aria-label="Navegação principal">
+      <a href="../../index.html#vagas">Oportunidades</a>
+      <a href="../../index.html#trajetoria">Trajetória</a>
+      <a href="../../index.html#arquivo">O que você encontra aqui</a>
+      <a href="../../index.html#geracao">A nova geração</a>
+      <a href="../../index.html#me-encontre">Me encontre</a>
+    </nav>
+    <a class="btn-insta" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">Instagram<span class="seta-mobile"> ↗</span></a>
+  </div>
+</header>
+
+<main class="p-pagina base-papel malha">
+  <div class="p-wrap p-topo">
+
+    <!-- ============ CARIMBO DE ORIGEM + TÍTULO ============ -->
+    <p class="p-origem">Passo 03 de 04 · Pranchas A0 do canteiro</p>
+
+    <div class="p-cabeca">
+      <h1>Do layout do editor às pranchas A0 <span class="marca">editáveis no Bluebeam</span></h1>
+    </div>
+
+    <p class="p-sub">Você preenche os campos entre colchetes (projeto, cliente, revisão, escalas, recorte e pasta), aponta o GeoJSON que saiu do editor e voltam duas pranchas A0 em PDF, o layout geral e a vista aérea com as placas em 3D (em 2D, se não houver Blender), com cada guindaste, placa e legenda como marcação solta que o Bluebeam seleciona e move.</p>
+
+    <!-- ============ BLOCO DO PROMPT ============ -->
+    <section class="p-bloco" aria-label="Texto do prompt">
+      <div class="p-bloco-barra">
+        <button type="button" class="p-copiar" data-alvo="prompt-pranchas-a0" aria-live="polite">COPIAR</button>
+      </div>
+      <div class="p-bloco-corpo">
+<pre id="prompt-pranchas-a0" tabindex="0" role="region" aria-label="Prompt do passo 03, rolável"><span class="ph"># PEDIDO</span>
+Exporta as pranchas do layout que fiz no editor em A0 paisagem, tudo editável no Bluebeam. Uma delas com a foto aérea de fundo e as placas em 3D.
+
+<span class="ph"># CONTEXTO</span>
+O botão PDF do editor vai só até A1: as pranchas A0 saem por script, a partir do features.geojson, não pelo botão.
+Este comando precisa de um chat que execute código e grave arquivos (ex.: Python com uma biblioteca de PDF que escreva anotações e camadas, como PyMuPDF). Se o seu chat não executa código, diga isso na primeira linha da resposta e não diga que gerou as pranchas: entregue em texto a lista do que iria em cada prancha (markups, camadas, legenda, carimbo) e a parte de pendencias.md.
+As placas em 3D da prancha 2 saem do Blender, rodando por script em background. Sem Blender, use as placas em 2D na prancha 2 e registre em pendencias.md com o motivo "Blender não disponível".
+
+O layout do canteiro foi desenhado no editor do comando anterior. Agora são as pranchas para imprimir e para a equipe marcar por cima num editor de PDF como o Bluebeam.
+Nome do projeto: [NOME DO PROJETO — ex.: PROJETO A].
+Cliente: [CLIENTE — ex.: CONSTRUTORA].
+Revisão: [REVISÃO — ex.: R0].
+Escalas: [ESCALAS — ex.: 1:1000 na prancha 1 e 1:400 na prancha 2].
+Recorte da prancha 2: [RECORTE — ex.: portaria, vivência, estacionamento e guindaste].
+
+<span class="ph"># ENTRADA</span>
+- features.geojson: o layout exportado do editor (Export GeoJSON), em metros locais (X leste, Y norte), uma feição por elemento, com id, name, layer, kind, week e caption; o guindaste traz o raio de giro em radius_m.
+- ortofoto.jpg: a foto aérea do terreno, na [PASTA — ex.: ./canteiro], a mesma dos comandos 1 e 2 (é a que meta.ortho indica). Posicione a foto sob o GeoJSON pelo retângulo que ela cobre, meta.ortho_bbox_m ([xmin, ymin, xmax, ymax] em metros locais), e pelo metro por pixel, meta.gsd_m. Se o GeoJSON não trouxer essas chaves, pergunte.
+Se faltar o features.geojson, pare e peça. Não redesenhe o layout a partir de print ou de memória.
+
+<span class="ph"># TAREFA</span>
+Gere duas pranchas A0 paisagem (1189 × 841 mm), folha branca fora da foto (a ortofoto fica só dentro do recorte, como markup travado), as duas a partir do mesmo features.geojson.
+1. Prancha 1, layout geral: o canteiro inteiro na escala da prancha 1, sobre a ortofoto.
+2. Prancha 2, vista aérea e placas: o recorte na escala da prancha 2, com a ortofoto de fundo e, no lugar de cada ponto de placa ou equipamento, a placa renderizada em 3D. Renderize cada tipo de placa uma vez no Blender (PNG com fundo transparente) e coloque como carimbo (Stamp) no ponto. A placa 3D segue o mesmo símbolo da legenda 2D.
+
+Em cada prancha:
+- Carimbo neutro: cliente, projeto, desenho, escala, folha, revisão e coordenadas (ex.: "Grade local (m), norte para cima"). Sem "generated by", sem campo de frame, sem fundo colorido, sem notas soltas.
+- Norte e escala gráfica.
+- Legenda completa: tudo o que aparece na prancha está na legenda (áreas, linhas e cada tipo de placa e equipamento). Na prancha 2, a legenda mostra cada placa em 2D e em 3D.
+- Rótulo na área, não no ícone que está dentro dela.
+- Texto que não cabe quebra linha. Nada sai da folha.
+- Ortofoto como fundo trocável: um markup de imagem travado, em camada própria, com uma nota dizendo como destravar.
+
+Tudo editável no Bluebeam:
+- Cada elemento do GeoJSON vira um markup: área em Polygon ou Square, linha em PolyLine, ponto em Stamp, texto em FreeText.
+- Áreas e linhas: Subject = nome do elemento (name), nota = o caption. Placas e equipamentos (Stamps): Subject = o tipo (ex.: "Combate a incêndio"), nota = o nome do elemento. Em todos, o id do GeoJSON fica no nome interno do markup.
+- Camadas do PDF (a camada é o tipo do elemento), mais fundo, moldura, rótulos, carimbo e legenda, para ligar e desligar.
+- Legenda, quadros, nomes e carimbo também são markups editáveis, não desenho achatado.
+- Texto com fonte, tamanho e cor gravados no próprio markup, para não mudar de cor ou formato quando alguém editar no Bluebeam.
+
+<span class="ph"># REGRAS</span>
+1. Só entra o que está no features.geojson. Elemento que você não sabe desenhar ou posicionar não some calado: vai para pendencias.md com o id e o motivo.
+2. Nada de cidade, endereço, nome de pessoa ou data no carimbo, nos rótulos e nos metadados do PDF. Título e autor dos metadados só com o nome do projeto e o cliente dos campos acima.
+3. A escala escrita no carimbo bate com a escala gráfica e com o desenho: 1 m do GeoJSON vira a medida certa na folha.
+4. Não invente placa, medida ou raio que não esteja no GeoJSON.
+
+<span class="ph"># SAÍDA</span>
+- [PASTA]/prancha01_layout_A0.pdf
+- [PASTA]/prancha02_vista-aerea_A0.pdf
+- [PASTA]/pendencias.md: o mesmo arquivo dos outros comandos (o comando 4 lê); é acumulado. Leia, não apague nem renumere as entradas anteriores e acrescente ao fim as deste comando, com prefixo PR- (PR-01, PR-02...) e situação ABERTA, SUPOSIÇÃO ou RESOLVIDA (com data e fonte).
+- Na resposta, em poucas linhas: quantos markups e camadas tem cada prancha e o que ficou pendente.
+
+<span class="ph"># CHECAGEM ANTES DE ENTREGAR</span>
+Reabra os PDFs gravados e confira:
+- Página A0 paisagem, fundo branco, as camadas aparecem com os nomes certos.
+- Todo elemento do GeoJSON que cai na folha tem um markup, com Subject e nota.
+- Num editor de PDF: selecione um markup, mova, edite o texto. O texto não muda de cor nem de formato.
+- Meça a escala gráfica contra uma distância conhecida do GeoJSON (ex.: o raio de giro do guindaste).
+- Todo símbolo da prancha está na legenda.
+- Metadados sem nome de pessoa, cidade ou data.</pre>
+      </div>
+    </section>
+
+    <!-- ============ O QUE ELE RESOLVE ============ -->
+    <section class="p-secao p-resolve">
+      <h2 class="p-rotulo">O que ele resolve</h2>
+      <p>O layout mudou no editor, só que a obra precisa também dos PDFs pra imprimir. E prancha que sai como imagem chapada não deixa ninguém mexer: o guindaste andou, é redesenhar a folha inteira de novo.</p>
+      <p>Aqui o prompt lê o <code>features.geojson</code> do passo 2 e devolve duas pranchas A0 paisagem nas escalas que você preencher (no exemplo, 1:1000 e 1:400), com 148 e 143 marcações soltas, legenda e carimbo inclusive; pra isso ele precisa de um chat que execute código, e as placas em 3D saem do Blender: sem ele, vão em 2D e a falta fica anotada em <code>pendencias.md</code>. E ele recusa o atalho: só entra o que está no GeoJSON, o que ele não sabe posicionar vai pra <code>pendencias.md</code> em vez de sumir calado, e carimbo, rótulos e metadados do PDF saem sem cidade, endereço, nome de pessoa ou data. A marcação vermelha que aparece no vídeo não é do prompt, é a equipe marcando por cima, como já faz.</p>
+    </section>
+
+    <!-- ============ PRINT DA SAÍDA ============ -->
+    <section class="p-secao">
+      <h2 class="p-rotulo">O que ele devolve</h2>
+      <div class="p-galeria">
+        <figure class="p-shot p-shot-destaque"><a class="p-shot-zoom" href="../../assets/prompts/pranchas-a0/prancha02-vista-aerea-a0.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/pranchas-a0/prancha02-vista-aerea-a0.webp" alt="Prancha A0 em paisagem com a vista aérea do terreno ao fundo, placas de sinalização em 3D com sombra sobre portaria, vivência, passarelas e estacionamento, guindaste com o raio de giro e, à direita, legenda e carimbo neutro" width="1800" height="1273" loading="lazy"></a><figcaption><b>01 · Prancha A0 com placas em 3D</b> A folha inteira, em A0 paisagem e escala 1:400: a vista aérea de fundo, as placas da sinalização em pé, com haste e sombra, no lugar de cada uma, o guindaste com o raio de giro, a legenda e o carimbo neutro. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/pranchas-a0/prancha02-placas-3d.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/pranchas-a0/prancha02-placas-3d.webp" alt="Recorte de perto da prancha: placas em 3D de primeiros socorros, desfibrilador, água, sanitários, combate a incêndio e paradas numeradas da visita, em pé sobre a vista aérea, e o guindaste de torre no centro do raio de giro" width="1800" height="829" loading="lazy"></a><figcaption><b>02 · As placas de perto</b> Primeiros socorros, desfibrilador, água, sanitários, combate a incêndio, catraca e as paradas numeradas da visita em 3D sobre a foto, com o guindaste no centro do raio de giro. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1780" height="1258" poster="../../assets/prompts/pranchas-a0/bluebeam-seleciona-guindaste.jpg" aria-label="No Bluebeam, o cursor passa no raio de giro, seleciona o raio e a placa 3D do guindaste como marcações separadas e arrasta o conjunto sobre a vista aérea"><source src="../../assets/prompts/pranchas-a0/bluebeam-seleciona-guindaste.mp4" type="video/mp4"></video><figcaption><b>03 · Editável no Bluebeam</b> Aberta no Bluebeam, a prancha não é imagem chapada: o raio de giro e a placa 3D do guindaste são marcações separadas, que a gente seleciona e arrasta. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><video muted autoplay loop playsinline preload="metadata" width="1780" height="1258" poster="../../assets/prompts/pranchas-a0/bluebeam-nuvem-revisar.jpg" aria-label="No Bluebeam, a equipe desenha uma caixa de revisão vermelha na travessia da via com a passarela e escreve REVISAR TRAVESSIA por cima da prancha"><source src="../../assets/prompts/pranchas-a0/bluebeam-nuvem-revisar.mp4" type="video/mp4"></video><figcaption><b>04 · A equipe marca por cima</b> A caixa de revisão vermelha e o texto REVISAR TRAVESSIA foram desenhados na gravação, no Bluebeam, para mostrar a revisão; não vêm do prompt. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria">
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/pranchas-a0/prancha01-layout-a0.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/pranchas-a0/prancha01-layout-a0.webp" alt="Prancha A0 do layout geral do canteiro em escala 1:1000 sobre a vista aérea: zonas de trabalho A a D, canteiros das empresas A, B e C, via de caminhões, passarelas, guindaste com raio de giro, placas 2D, legenda e carimbo" width="1800" height="1273" loading="lazy"></a><figcaption><b>05 · Layout geral em A0</b> A outra prancha da mesma pasta: o canteiro inteiro em escala 1:1000, com zonas A a D, canteiros das empresas A, B e C, via de caminhões, passarelas, guindaste e placas em 2D. Foto aérea: USDA NAIP / USGS (domínio público).</figcaption></figure>
+      </div>
+      <div class="p-galeria p-galeria-2">
+        <figure class="p-shot p-shot-estreito"><a class="p-shot-zoom" href="../../assets/prompts/pranchas-a0/prancha02-legenda-2d-3d.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/pranchas-a0/prancha02-legenda-2d-3d.webp" alt="Legenda da prancha: cores das zonas, via de caminhões, passarela com barreira, rota de visita, cerca e raio de giro, e a lista de placas com a versão 2D ao lado da versão 3D" width="1200" height="1821" loading="lazy"></a><figcaption><b>06 · Legenda 2D e 3D</b> Cada placa aparece duas vezes na legenda: o ícone 2D e a versão 3D com haste, ao lado do nome.</figcaption></figure>
+        <figure class="p-shot"><a class="p-shot-zoom" href="../../assets/prompts/pranchas-a0/prancha02-carimbo.webp" aria-label="Abrir em tamanho real"><img src="../../assets/prompts/pranchas-a0/prancha02-carimbo.webp" alt="Carimbo neutro da prancha: cliente CONSTRUTORA, projeto PROJETO A, escala 1:400 em A0, folha A0 paisagem, revisão R0, grade local com norte para cima" width="1600" height="435" loading="lazy"></a><figcaption><b>07 · Carimbo neutro</b> Cliente, projeto, desenho, escala 1:400 em A0, folha, revisão R0 e coordenadas em grade local, sem nome de obra.</figcaption></figure>
+      </div>
+      <p class="p-print-carimbo">Saída real · 2 pranchas A0 em PDF editável · Abertas no Bluebeam · Dados fictícios (PROJETO A)</p>
+    </section>
+
+    <!-- ============ O QUE CONFERIR ANTES DE USAR ============ -->
+    <section class="p-secao">
+      <div class="p-alerta">
+        <h2>Macete(ando o apocalipse)</h2>
+        <ul>
+          <li>Esse processo tende a ser mais preciso depois que você configurar as skills e agentes. Te explico como fazer essas coisas na nossa newsletter, o Campo Minado. Só clicar <a href="https://owilliamoura.substack.com/" target="_blank" rel="noopener">aqui</a>.</li>
+          <li>O engenheiro da nova geração é, acima de tudo, responsável. Lembre-se que IA pode cometer erros. Use ela como um facilitador, não como verdade definitiva. O prompt organiza e explicita o cálculo — quem responde pelo número continua sendo você.</li>
+          <li>A escala do carimbo (1:1000 numa folha, 1:400 na outra) só vale impressa em A0 no tamanho real. Impressora em "ajustar à página" encolhe tudo sem avisar, então mede a escala gráfica com régua na primeira cópia antes de alguém sair cotando em cima do papel.</li>
+          <li>A prancha com as placas em 3D é um recorte, não o canteiro inteiro: aqui ficaram de fora a zona D e dois dos canteiros das empresas. Se a folha vai sozinha pra parede, deixa claro que ela é o detalhe e que o geral é a outra prancha.</li>
+          <li>Mexer na prancha não mexe no layout. Arrastou o guindaste no Bluebeam, o editor do passo 2 continua com ele no lugar antigo e a próxima exportação desfaz o que você fez. Mudança de layout se faz no editor e exporta de novo; no PDF a equipe só marca.</li>
+          <li>O carimbo sai com a revisão que você escreveu em <code>[REVISÃO]</code>, e ela não sobe sozinha. Toda vez que o layout mudar, troca o campo antes de exportar de novo, senão a obra imprime duas folhas R0 diferentes e ninguém sabe qual vale.</li>
+          <li>Caixa de revisão vermelha escrita REVISAR TRAVESSIA não resolve travessia. Quem libera pedestre cruzando a via de caminhão é a segurança do trabalho, não o Bluebeam, né.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NAVEGAÇÃO DA CADEIA ============ -->
+    <section class="p-secao">
+      <p class="p-cadeia-rotulo">Cada passo usa o canteiro do anterior</p>
+      <nav class="p-cadeia" aria-label="Passos do pipeline">
+        <a class="p-passo" href="../canteiro-3d/">
+          <span class="n">Passo 01</span>
+          <span class="nome">Canteiro 3D</span>
+        </a>
+        <a class="p-passo" href="../layout-canteiro/">
+          <span class="n">Passo 02</span>
+          <span class="nome">Layout</span>
+        </a>
+        <span class="p-passo" aria-current="page">
+          <span class="n">Passo 03</span>
+          <span class="nome">Pranchas A0</span>
+        </span>
+        <a class="p-passo" href="../rota-de-visita/">
+          <span class="n">Passo 04</span>
+          <span class="nome">Rota</span>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <!-- ============ FECHO COM CTA ============ -->
+  <section class="p-cta base-grafite">
+    <div class="p-wrap">
+      <h2>Esse é só um dos prompts que uso no meu dia a dia pra ganhar <span class="marca">mais tempo livre</span>.</h2>
+      <p class="p-cta-sub">Posto isso e muito mais no Instagram.</p>
+      <div class="p-cta-acoes">
+        <a class="p-btn" href="https://instagram.com/owilliamoura" target="_blank" rel="noopener">@owilliamoura ↗</a>
+        <a class="p-link-sec" href="https://owilliamoura.substack.com" target="_blank" rel="noopener">Newsletter ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ (idêntico ao da landing) ============ -->
+<footer class="sec-rodape base-grafite">
+  <div class="wrap">
+      <nav class="p-rodape-nav" aria-label="Seções do site">
+        <a href="../../index.html#vagas">Oportunidades</a>
+        <a href="../../index.html#trajetoria">Trajetória</a>
+        <a href="../../index.html#arquivo">O que você encontra aqui</a>
+        <a href="../../index.html#geracao">A nova geração</a>
+        <a href="../../index.html#me-encontre">Me encontre</a>
+      </nav>
+    <div class="prancha">
+      <div class="cel"><span class="k">Contato</span><span class="v"><a href="mailto:william@engnextgen.com.br">william@engnextgen.com.br</a></span></div>
+      <div class="cel-full">Copyright © 2026. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/prompts.js"></script>
+</body>
+</html>
