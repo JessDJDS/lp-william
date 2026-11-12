@@ -1,46 +1,5 @@
 [
   {
-    "id": "v001",
-    "cargo": "Engenheiro de Projetos - Especialização Estrutura Metálica",
-    "empresa": "Grupo SERENG",
-    "cidade": "Vitória",
-    "pais": "Brasil",
-    "lat": -20.3155,
-    "lon": -40.3128,
-    "senioridade": null,
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Engenheiro de Projetos - Civil Especialização Estrutura Metálica — Grupo SERENG (Vitória, Espírito Santo).",
-    "requisitos": [
-      "Experiência: projetos industriais mineração e siderurgia",
-      "Disponibilidade para viagens",
-      "Modelagem a nível conceitual (LOD200) para orientação da equipe de projetistas 3D",
-      "Conhecimento de metodologia BIM com pacote AEC Collection / BIM Collaborate Autodesk"
-    ],
-    "fonte": "gupy",
-    "url": "https://gruposereng.gupy.io/job/eyJqb2JJZCI6MTI0MTk5ODAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-11-02",
-    "publicado": "2026-10-26"
-  },
-   {
-    "id": "v002",
-    "cargo": "Analista Orçamento, Planejamento E Controle de Obras",
-    "empresa": "SPL ENGENHARIA",
-    "cidade": "Belo Horizonte",
-    "pais": "Brasil",
-    "lat": -19.9167,
-    "lon": -43.9345,
-    "senioridade": "Pleno",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Analista Orçamento, Planejamento E Controle de Obras — SPL ENGENHARIA (Belo Horizonte, Minas Gerais).",
-    "requisitos": [],
-    "fonte": "gupy",
-    "url": "https://spl.gupy.io/job/eyJqb2JJZCI6MTI0OTIyNjcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-12-31",
-    "publicado": "2026-10-26"
-  },
-   {
     "id": "v003",
     "cargo": "Analista de Engenharia I - Planejamento e Orçamento de Obras",
     "empresa": "Cidade Center Norte",
@@ -132,7 +91,7 @@
       "Formação concluída entre 2022 e 2026",
       "Engenharias, Administração, Economia, Dados, Tecnologia e áreas correlatas",
       "Inglês Avançado"
-      ],
+    ],
     "fonte": "Verum Partners",
     "url": "https://verumpartners.com.br/programa-trainee-2027/",
     "prazo": "2026-11-15",
