@@ -63,7 +63,7 @@ def hoje_brasil() -> date:
 
 def eh_gupy(url: str) -> bool:
     partes = urlsplit(url)
-    return partes.netloc.lower().endswith(".gupy.io") and "/job/" in partes.path
+    return partes.netloc.lower().endswith(".gupy.io") and partes.path.startswith(("/job/", "/jobs/"))
 
 
 def parse_estado_gupy(html: str) -> tuple[bool, date | None]:
