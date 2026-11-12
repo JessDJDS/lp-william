@@ -1,0 +1,45 @@
+# Todo dia: checa cada vaga do vagas.json ao vivo e remove as encerradas.
+# Se algo mudou, commita no main — o GitHub Pages republica o site sozinho.
+# Rodar na mão: aba Actions → "Verificar vagas" → Run workflow.
+name: Verificar vagas
+
+on:
+  schedule:
+    - cron: "0 10 * * *" # 10:00 UTC = 07:00 em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verificar-vagas
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verificar vagas ao vivo
+        id: verificar
+        run: python .github/scripts/verificar_vagas.py
+
+      - name: Publicar mudanças
+        run: |
+          if git diff --quiet -- vagas.json; then
+            echo "Nenhuma mudança."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vagas.json
+          if [ -f .github/vagas_removidas.json ]; then git add .github/vagas_removidas.json; fi
+          git commit -m "Verificação automática $(TZ=America/Sao_Paulo date +%F): remove vagas encerradas (${{ steps.verificar.outputs.removidas }})"
+          git pull --rebase
+          git push
