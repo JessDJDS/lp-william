@@ -55,6 +55,14 @@
     }
 
     btn.addEventListener('click', function () {
+      /* registra no Google Analytics quem copiou qual prompt;
+         sem a tag carregada (bloqueador, offline), segue sem medir */
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'copiar_prompt', {
+          prompt_id: btn.getAttribute('data-alvo')
+        });
+      }
+
       /* textContent, não innerText: preserva as quebras exatas e ignora
          a marcação dos cabeçalhos (<span class="ph">) sem tratar string */
       var texto = alvo.textContent;
