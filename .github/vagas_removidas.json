@@ -112,5 +112,33 @@
       "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters-scholarships",
       "publicado": "2026-08-28"
     }
+  },
+  {
+    "removida_em": "2026-11-13",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v014",
+      "cargo": "Estágio em Projetos (Engenharia Civil)",
+      "empresa": "Otus Engenharia",
+      "cidade": "Florianópolis",
+      "pais": "Brasil",
+      "lat": -27.5954,
+      "lon": -48.548,
+      "senioridade": "Estágio",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "No time de Projetos, você vai federar modelos BIM, operar regras de verificação, organizar o ambiente comum de dados e acompanhar entregas e apontamentos junto aos projetistas, sob orientação de compatibilizadores. É uma boa porta de entrada para coordenação BIM e gestão de projetos, com formação técnica regular e modelo híbrido em Florianópolis.",
+      "requisitos": [
+        "Graduação em andamento em Arquitetura, Engenharia Civil, técnico em edificações ou áreas correlatas",
+        "Disponibilidade para 30h semanais em modelo híbrido (2 dias presenciais)",
+        "Residir em Florianópolis ou região",
+        "Noções de leitura e interpretação de projetos técnicos",
+        "Desejável familiaridade com Revit e Solibri"
+      ],
+      "fonte": "gupy-empresa:otusengenharia",
+      "url": "https://otusengenharia.gupy.io/jobs/11843012?jobBoardSource=gupy_public_page",
+      "prazo": "2026-11-30",
+      "publicado": "2026-11-12"
+    }
   }
 ]
