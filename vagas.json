@@ -23,25 +23,6 @@
     "publicado": "2026-09-24"
   },
   {
-    "id": "v004",
-    "cargo": "Estágio Votorantim Cimentos",
-    "empresa": "Votorantim Cimentos",
-    "cidade": "Laranjeiras",
-    "pais": "Brasil",
-    "lat": -10.8039,
-    "lon": -37.1704,
-    "senioridade": "Estágio",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Oportunidade única para estudantes do último ano de Engenharia que desejam vivenciar a realidade da indústria em um ambiente que valoriza a ética e a colaboração.",
-    "requisitos": [
-      "Cursando último ano da graduação"
-    ],
-    "fonte": "programas:trainee-votorantim-cimentos",
-    "url": "https://www.ciadeestagios.com.br/vagas/votorantimcimentos/",
-    "publicado": "2026-08-28"
-  },
-  {
     "id": "v005",
     "cargo": "Erasmus Mundus - Bolsas Internacionais de Estudo",
     "empresa": "Comissão Europeia",
@@ -56,23 +37,6 @@
     "requisitos": [],
     "fonte": "programas:erasmus-mundus",
     "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters-scholarships",
-    "publicado": "2026-08-28"
-  },
-  {
-    "id": "v006",
-    "cargo": "NASA Space Apps Challenge - Hackathon",
-    "empresa": "NASA",
-    "cidade": "Internacional",
-    "pais": "Mundo",
-    "lat": null,
-    "lon": null,
-    "senioridade": "Geral",
-    "idioma": "Inglês",
-    "visto": null,
-    "resumo": "Oferece oportunidades para qualquer pessoa interessada em espaço e ciência enfrentar desafios do mundo real por meio de um hackathon e da comunidade global.",
-    "requisitos": [],
-    "fonte": "programas:nasa-space-apps-challenge",
-    "url": "https://www.spaceappschallenge.org/",
     "publicado": "2026-08-28"
   },
   {
