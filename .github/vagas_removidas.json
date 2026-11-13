@@ -91,5 +91,26 @@
       "url": "https://www.spaceappschallenge.org/",
       "publicado": "2026-08-28"
     }
+  },
+  {
+    "removida_em": "2026-11-12",
+    "motivo": "revisão da IA (nota 5/10): bolsa de prestígio, mas sem curso ligado a construção ou arquitetura na página",
+    "vaga": {
+      "id": "v005",
+      "cargo": "Erasmus Mundus - Bolsas Internacionais de Estudo",
+      "empresa": "Comissão Europeia",
+      "cidade": "Nacional",
+      "pais": "Brasil",
+      "lat": null,
+      "lon": null,
+      "senioridade": "Geral",
+      "idioma": "Inglês",
+      "visto": null,
+      "resumo": "Estude em diversas universidades na Europa e em outras regiões. Bolsas de estudo integrais estão disponíveis para os melhores alunos.",
+      "requisitos": [],
+      "fonte": "programas:erasmus-mundus",
+      "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters-scholarships",
+      "publicado": "2026-08-28"
+    }
   }
 ]
