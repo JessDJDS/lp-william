@@ -55,12 +55,12 @@ function rotuloPrazo(prazoIso){
 const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 /* selos: por que a vaga está no mural (Inovação, Planejamento, Trainee...).
-   "Escolha do curador" ganha destaque visual. Campo opcional no vagas.json. */
+   "★ Escolha do Will" ganha destaque visual. Campo opcional no vagas.json. */
 function htmlSelos(v, classe){
   const selos = Array.isArray(v.selos) ? v.selos : [];
   if(!selos.length) return "";
   return `<span class="${classe}">${selos.map(s =>
-    `<span class="selo${s === "Escolha do curador" ? " selo-escolha" : ""}">${esc(s)}</span>`
+    `<span class="selo${s === "★ Escolha do Will" ? " selo-escolha" : ""}">${esc(s)}</span>`
   ).join("")}</span>`;
 }
 
