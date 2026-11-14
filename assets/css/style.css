@@ -412,6 +412,28 @@ body.no-scroll{overflow:hidden}
 .linha-vaga .meta .prazo{color:var(--ciano)}
 .linha-vaga .meta .prazo-urgente{color:var(--tijolo);font-weight:700}
 
+/* selos (por que a vaga está no mural) e "por que vale" */
+.selos{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.selo{
+  font-family:'Space Mono',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.12em;line-height:1;
+  border:1px solid var(--grafite);padding:4px 6px;
+  background:var(--papel);color:var(--grafite);
+}
+.selo-escolha{background:var(--amarelo)}
+.selos-linha{display:inline-flex;flex-wrap:wrap;gap:4px;margin-left:8px;vertical-align:2px}
+.selos-linha .selo{font-size:9px;padding:3px 5px}
+.painel .porque{
+  margin:0 0 16px;padding:10px 12px;
+  border-left:3px solid var(--amarelo);background:var(--papel);
+  font-weight:600;font-size:14px;line-height:1.4;
+}
+.painel .porque-rotulo{
+  display:block;margin-bottom:4px;
+  font-family:'Space Mono',monospace;font-size:10px;font-weight:400;
+  text-transform:uppercase;letter-spacing:.16em;color:var(--ciano);
+}
+
 /* lista de vagas */
 .lista-vagas{border-top:1px solid var(--grafite)}
 .linha-vaga{

@@ -51,6 +51,19 @@ function rotuloPrazo(prazoIso){
   return `Encerra em ${dias} dias`;
 }
 
+/* textos que vêm da curadoria (IA): escapados antes de entrar no HTML */
+const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* selos: por que a vaga está no mural (Inovação, Planejamento, Trainee...).
+   "Escolha do curador" ganha destaque visual. Campo opcional no vagas.json. */
+function htmlSelos(v, classe){
+  const selos = Array.isArray(v.selos) ? v.selos : [];
+  if(!selos.length) return "";
+  return `<span class="${classe}">${selos.map(s =>
+    `<span class="selo${s === "Escolha do curador" ? " selo-escolha" : ""}">${esc(s)}</span>`
+  ).join("")}</span>`;
+}
+
 /* ============ PAINEL ============ */
 function renderPainel(){
   const lista = vagasFiltradas();
@@ -63,8 +76,10 @@ function renderPainel(){
   const pad = n => String(n).padStart(2,"0");
   painel.innerHTML = `
     <p class="veyebrow">Vaga ${pad(idx)} / ${pad(lista.length)}</p>
+    ${htmlSelos(v, "selos")}
     <h3>${v.cargo}</h3>
     <p class="empresa">${v.empresa}</p>
+    ${v.destaque ? `<p class="porque"><span class="porque-rotulo">Por que vale</span>${esc(v.destaque)}</p>` : ''}
     <ul class="metas">
       ${localDaVaga(v) ? `<li>${localDaVaga(v)}</li>` : ''}
       ${v.senioridade ? `<li>${v.senioridade}</li>` : ''}
@@ -133,7 +148,7 @@ function renderLista(){
       aria-current="${v.id === vagaAtiva}"
       aria-label="${[v.cargo, v.empresa, v.cidade, v.pais].filter(Boolean).join(", ")}">
       <span>
-        <span class="cargo">${v.cargo}</span><br>
+        <span class="cargo">${v.cargo}</span>${htmlSelos(v, "selos-linha")}<br>
         <span class="meta">${[v.empresa, v.cidade].filter(Boolean).join(" · ")}${rotuloPrazo(v.prazo) ? ` · <span class="prazo${diasRestantes(v.prazo) <= 3 ? ' prazo-urgente' : ''}">${rotuloPrazo(v.prazo)}</span>` : ''}</span>
       </span>
       <span class="pais">${v.pais}</span>
@@ -776,7 +791,22 @@ fetch("vagas.json")
   .then(data => {
     VAGAS = data;
     vagaAtiva = VAGAS[0] ? VAGAS[0].id : null;
+    // link direto para uma vaga (newsletter, compartilhamento): #vaga-v010
+    const alvo = (location.hash.match(/^#vaga-(v\d+)$/) || [])[1];
+    const linkDireto = alvo && VAGAS.some(v => v.id === alvo);
+    if(linkDireto) vagaAtiva = alvo;
     iniciarVagas();
+    if(linkDireto){
+      // depois do layout (fontes e globo mudam a altura da página)
+      // topo do painel logo abaixo do menu fixo (no celular o painel é mais alto que a tela)
+      const rolar = () => {
+        const topo = document.getElementById("painel").getBoundingClientRect().top + window.scrollY;
+        const menu = document.querySelector("header, nav");
+        window.scrollTo(0, Math.max(0, topo - (menu ? menu.offsetHeight : 0) - 16));
+      };
+      requestAnimationFrame(rolar);
+      if(document.readyState !== "complete") window.addEventListener("load", rolar, {once: true});
+    }
   })
   .catch(err => {
     console.error("Não foi possível carregar vagas.json:", err);
