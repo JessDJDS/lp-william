@@ -140,5 +140,99 @@
       "prazo": "2026-11-30",
       "publicado": "2026-11-12"
     }
+  },
+  {
+    "removida_em": "2026-11-16",
+    "motivo": "prazo vencido em 2026-11-15",
+    "vaga": {
+      "id": "v007",
+      "cargo": "Trainee 2027 Projetos de Capital e Infraestrutura",
+      "empresa": "Verum Partners",
+      "cidade": null,
+      "pais": "Brasil",
+      "lat": null,
+      "lon": null,
+      "senioridade": "Trainee",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Buscamos profissionais em início de carreira com potencial para se desenvolver em ambientes de alta complexidade, aprender rapidamente e construir soluções de forma colaborativa.",
+      "destaque": "Trainee em consultoria de projetos de capital ligada à Accenture, com trilhas de planejamento (AWP), Lean e contratos.",
+      "selos": [
+        "★ Escolha do Will",
+        "Trainee",
+        "Inovação"
+      ],
+      "requisitos": [
+        "Formação concluída entre 2022 e 2026",
+        "Engenharias, Administração, Economia, Dados, Tecnologia e áreas correlatas",
+        "Inglês Avançado"
+      ],
+      "fonte": "Verum Partners",
+      "url": "https://verumpartners.com.br/programa-trainee-2027/",
+      "prazo": "2026-11-15",
+      "publicado": "2026-08-28"
+    }
+  },
+  {
+    "removida_em": "2026-11-16",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v022",
+      "cargo": "Estágio em Engenharia Civil – Engenharia a Montante",
+      "empresa": "OR",
+      "cidade": "Salvador",
+      "pais": "Brasil",
+      "lat": -12.9714,
+      "lon": -38.5014,
+      "senioridade": "Estágio",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Estágio na área de Engenharia a Montante da OR em Salvador, participando do planejamento e da orçamentação de empreendimentos, de análises financeiras de soluções construtivas, da compatibilização de projetos e da equalização de propostas e contratos. É uma boa porta de entrada para a fase de pré-obra e a gestão de custos, com contato direto com projetos complementares e processos de licenciamento.",
+      "destaque": "Foco na pré-obra: orçamentação, análise financeira de soluções construtivas, equalização de propostas e licenciamento.",
+      "selos": [],
+      "requisitos": [
+        "Cursando Engenharia Civil",
+        "Disponibilidade mínima de 1 ano e 6 meses",
+        "Pacote Office intermediário",
+        "AutoCAD básico",
+        "Revit básico (desejável)"
+      ],
+      "fonte": "gupy-empresa:or",
+      "url": "https://or.gupy.io/jobs/12433565?jobBoardSource=gupy_public_page",
+      "prazo": "2026-12-07",
+      "publicado": "2026-11-12"
+    }
+  },
+  {
+    "removida_em": "2026-11-16",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v032",
+      "cargo": "Estágio em Projetos (Engenharia Civil)",
+      "empresa": "Otus Engenharia",
+      "cidade": "Florianópolis",
+      "pais": "Brasil",
+      "lat": -27.5954,
+      "lon": -48.548,
+      "senioridade": "Estágio",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "No time de Projetos, você vai federar modelos BIM, operar regras de verificação, organizar o ambiente comum de dados e acompanhar entregas e apontamentos junto aos projetistas, sob orientação de compatibilizadores. É uma boa porta de entrada para coordenação BIM e gestão de projetos, com formação técnica regular e modelo híbrido em Florianópolis.",
+      "requisitos": [
+        "Graduação em andamento em Arquitetura, Engenharia Civil, técnico em edificações ou áreas correlatas",
+        "Disponibilidade para 30h semanais em modelo híbrido (2 dias presenciais)",
+        "Residir em Florianópolis ou região",
+        "Noções de leitura e interpretação de projetos técnicos",
+        "Desejável familiaridade com Revit e Solibri"
+      ],
+      "fonte": "gupy-empresa:otusengenharia",
+      "url": "https://otusengenharia.gupy.io/jobs/11843012?jobBoardSource=gupy_public_page",
+      "prazo": "2026-11-30",
+      "publicado": "2026-11-16",
+      "selos": [
+        "Inovação"
+      ],
+      "destaque": "Prática real de coordenação BIM: federação de modelos, verificação no Solibri e gestão de issues numa empresa de compatibilização."
+    }
   }
 ]
