@@ -805,7 +805,9 @@ fetch("vagas.json")
     return r.json();
   })
   .then(data => {
-    VAGAS = data;
+    // vaga com prazo vencido nunca aparece, mesmo que o verificador diário
+    // (GitHub Actions, que costuma atrasar horas) ainda não a tenha tirado
+    VAGAS = data.filter(v => { const d = diasRestantes(v.prazo); return d === null || d >= 0; });
     vagaAtiva = VAGAS[0] ? VAGAS[0].id : null;
     // link direto para uma vaga (newsletter, compartilhamento): #vaga-v010
     const alvo = (location.hash.match(/^#vaga-(v\d+)$/) || [])[1];
