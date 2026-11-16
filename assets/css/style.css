@@ -419,8 +419,15 @@ body.no-scroll{overflow:hidden}
   text-transform:uppercase;letter-spacing:.12em;line-height:1;
   border:1px solid var(--grafite);padding:4px 6px;
   background:var(--papel);color:var(--grafite);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.selo-icone{
+  width:1.15em;height:1.15em;flex:none;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
 }
 .selo-escolha{background:var(--amarelo)}
+.selo-inovacao{color:var(--ciano);border-color:var(--ciano)}
+.selo-trainee{color:var(--tijolo);border-color:var(--tijolo)}
 .selos-linha{display:inline-flex;flex-wrap:wrap;gap:4px;margin-left:8px;vertical-align:2px}
 .selos-linha .selo{font-size:9px;padding:3px 5px}
 .painel .porque{

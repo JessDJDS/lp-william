@@ -54,14 +54,30 @@ function rotuloPrazo(prazoIso){
 /* textos que vêm da curadoria (IA): escapados antes de entrar no HTML */
 const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-/* selos: por que a vaga está no mural (Inovação, Planejamento, Trainee...).
-   "★ Escolha do Will" ganha destaque visual. Campo opcional no vagas.json. */
+/* selos: por que a vaga está no mural. Cada tipo tem um ícone de traço
+   fino (mesma cor do texto) e, nos que mais importam, uma cor da paleta:
+   ★ Escolha do Will = amarelo; Inovação = ciano; Trainee = tijolo.
+   Selo desconhecido sai neutro, sem ícone. Campo opcional no vagas.json. */
+const ICONE_SELO = {
+  "Inovação":      '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/>',
+  "Trainee":       '<path d="M2 9l10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>',
+  "Internacional": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+  "Remoto":        '<path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/>'
+};
+const CLASSE_SELO = {
+  "★ Escolha do Will": "selo-escolha",
+  "Inovação": "selo-inovacao",
+  "Trainee": "selo-trainee"
+};
 function htmlSelos(v, classe){
   const selos = Array.isArray(v.selos) ? v.selos : [];
   if(!selos.length) return "";
-  return `<span class="${classe}">${selos.map(s =>
-    `<span class="selo${s === "★ Escolha do Will" ? " selo-escolha" : ""}">${esc(s)}</span>`
-  ).join("")}</span>`;
+  return `<span class="${classe}">${selos.map(s => {
+    const icone = ICONE_SELO[s]
+      ? `<svg class="selo-icone" viewBox="0 0 24 24" aria-hidden="true">${ICONE_SELO[s]}</svg>` : "";
+    const extra = CLASSE_SELO[s] ? " " + CLASSE_SELO[s] : "";
+    return `<span class="selo${extra}">${icone}${esc(s)}</span>`;
+  }).join("")}</span>`;
 }
 
 /* ============ PAINEL ============ */
