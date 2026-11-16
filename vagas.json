@@ -530,5 +530,384 @@
     "url": "https://programadeestagiomrveco.gupy.io/jobs/12662797?jobBoardSource=gupy_public_page",
     "prazo": "2026-11-30",
     "publicado": "2026-11-12"
+  },
+  {
+    "id": "v027",
+    "cargo": "Especialista de PMO - Grandes Obras",
+    "empresa": "Arteris",
+    "cidade": "São José dos Pinhais",
+    "pais": "Brasil",
+    "lat": -25.5302,
+    "lon": -49.2061,
+    "senioridade": "Sênior",
+    "idioma": "Inglês",
+    "visto": null,
+    "resumo": "Você vai estruturar o planejamento dos projetos de infraestrutura rodoviária, com cronogramas, baseline, orçamento, riscos e indicadores, e fazer a governança do portfólio de CAPEX junto ao PMO Corporativo. É uma chance de atuar em grandes obras reguladas pela ANTT, com dashboards executivos, engenharia de valor e implantação de metodologias de gestão de projetos.",
+    "requisitos": [
+      "Ensino superior completo",
+      "Experiência em PMO integrando Engenharia, Obras e Operações",
+      "Conhecimento em grandes obras de infraestrutura rodoviária",
+      "MS Project e Pacote Office avançados; Power BI intermediário",
+      "Inglês"
+    ],
+    "fonte": "gupy",
+    "url": "https://arterisengenharia.gupy.io/job/eyJqb2JJZCI6MTI4Nzg2OTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2027-01-31",
+    "publicado": "2026-11-16",
+    "destaque": "Governança do CAPEX de grandes obras rodoviárias numa das maiores concessionárias do país, com engenharia de valor e Project Review.",
+    "selos": [
+      "★ Escolha do Will"
+    ]
+  },
+  {
+    "id": "v028",
+    "cargo": "Engenheiro(a) de Planejamento",
+    "empresa": "Opus Construtech",
+    "cidade": "Itagibá",
+    "pais": "Brasil",
+    "lat": -14.2836,
+    "lon": -39.8428,
+    "senioridade": null,
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai elaborar e controlar cronogramas físico-financeiros, definir caminhos críticos e acompanhar o avanço e a produtividade dos projetos, junto com as equipes de Engenharia, Suprimentos e Produção. É uma chance de aplicar planejamento de obras na construção modular, numa empresa que usa automação e robótica para construir.",
+    "requisitos": [
+      "Engenharia Civil, de Produção ou áreas correlatas",
+      "Experiência em planejamento e controle de obras",
+      "MS Project e Excel avançado",
+      "Cronogramas, curva S e indicadores de desempenho",
+      "Análise de produtividade"
+    ],
+    "fonte": "gupy",
+    "url": "https://opusconstrutech.gupy.io/job/eyJqb2JJZCI6MTI4NDUyMjQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-12-01",
+    "publicado": "2026-11-16",
+    "destaque": "Planejamento de obras numa construtech de construção modular que usa automação e robótica avançada.",
+    "selos": [
+      "★ Escolha do Will",
+      "Inovação"
+    ]
+  },
+  {
+    "id": "v029",
+    "cargo": "Analista Orçamento de Obra Júnior",
+    "empresa": "Construtora Tenda",
+    "cidade": "São Paulo",
+    "pais": "Brasil",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai montar orçamentos de obra a partir dos projetos: levantar quantidades, aplicar as bases de custo da Tenda, cotar serviços atípicos e comparar versões até a apresentação para a gerência. É uma chance de entrar em engenharia de custos numa das maiores construtoras do país, com regime híbrido e subsídio educacional.",
+    "requisitos": [
+      "Superior completo em Engenharia Civil, Arquitetura e Urbanismo ou Tecnólogo em Edificações",
+      "Excel intermediário",
+      "Leitura de projetos em AutoCAD",
+      "BIM/Revit (diferencial)",
+      "Experiência prévia na área (diferencial)"
+    ],
+    "fonte": "gupy-empresa:tenda",
+    "url": "https://tenda.gupy.io/jobs/12618154?jobBoardSource=gupy_public_page",
+    "prazo": "2026-11-27",
+    "publicado": "2026-11-16",
+    "selos": []
+  },
+  {
+    "id": "v030",
+    "cargo": "Analista de Planejamento de Obras Jr. | Botucatu",
+    "empresa": "BRN Construtora",
+    "cidade": "Botucatu",
+    "pais": "Brasil",
+    "lat": -22.8858,
+    "lon": -48.445,
+    "senioridade": "Júnior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "A pessoa vai elaborar e replanejar cronogramas de obras, conferir quantitativos e produção física e apropriar custos conforme a EAP do orçamento, com acompanhamento semanal na plataforma Prevision. É uma boa porta de entrada em planejamento e controle de custos em uma construtora em expansão e certificada GPTW.",
+    "requisitos": [
+      "Ensino superior cursando em Engenharia Civil",
+      "Conhecimento em Pacote Office",
+      "Desejável experiência na área"
+    ],
+    "fonte": "gupy",
+    "url": "https://brnpar.gupy.io/job/eyJqb2JJZCI6MTE1MjU4MTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-11-30",
+    "publicado": "2026-11-16",
+    "selos": [
+      "Inovação"
+    ]
+  },
+  {
+    "id": "v031",
+    "cargo": "Banco de Talentos - Processos e Lean Construction | São Paulo/SP",
+    "empresa": "Cyrela",
+    "cidade": "São Paulo",
+    "pais": "Brasil",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "senioridade": null,
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai conduzir a implantação de Lean Construction nas obras e nas áreas de apoio da Cyrela, com diagnósticos baseados em dados, workshops e treinamentos para equipes multidisciplinares. É uma chance de atuar com gestão e melhoria de processos em uma das maiores incorporadoras do país, com atuação entre a Av. Paulista e os canteiros.",
+    "requisitos": [
+      "Ensino superior completo em Engenharia Civil ou de Produção",
+      "Conhecimento em Lean Construction e metodologias de gestão",
+      "Conhecimento em gerenciamento de projetos",
+      "Domínio de Excel e PowerPoint",
+      "Disponibilidade para atuar em diferentes locais em São Paulo"
+    ],
+    "fonte": "gupy",
+    "url": "https://cyrela.gupy.io/job/eyJqb2JJZCI6MTI0NTkxMjgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-12-01",
+    "publicado": "2026-11-16",
+    "selos": [
+      "Inovação"
+    ]
+  },
+  {
+    "id": "v032",
+    "cargo": "Estágio em Projetos (Engenharia Civil)",
+    "empresa": "Otus Engenharia",
+    "cidade": "Florianópolis",
+    "pais": "Brasil",
+    "lat": -27.5954,
+    "lon": -48.548,
+    "senioridade": "Estágio",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "No time de Projetos, você vai federar modelos BIM, operar regras de verificação, organizar o ambiente comum de dados e acompanhar entregas e apontamentos junto aos projetistas, sob orientação de compatibilizadores. É uma boa porta de entrada para coordenação BIM e gestão de projetos, com formação técnica regular e modelo híbrido em Florianópolis.",
+    "requisitos": [
+      "Graduação em andamento em Arquitetura, Engenharia Civil, técnico em edificações ou áreas correlatas",
+      "Disponibilidade para 30h semanais em modelo híbrido (2 dias presenciais)",
+      "Residir em Florianópolis ou região",
+      "Noções de leitura e interpretação de projetos técnicos",
+      "Desejável familiaridade com Revit e Solibri"
+    ],
+    "fonte": "gupy-empresa:otusengenharia",
+    "url": "https://otusengenharia.gupy.io/jobs/11843012?jobBoardSource=gupy_public_page",
+    "prazo": "2026-11-30",
+    "publicado": "2026-11-16",
+    "selos": [
+      "Inovação"
+    ]
+  },
+  {
+    "id": "v033",
+    "cargo": "Analista de Orçamentos de Engenharia Civil Sênior",
+    "empresa": "CBA Empreendimentos",
+    "cidade": "Florianópolis",
+    "pais": "Brasil",
+    "lat": -27.5954,
+    "lon": -48.548,
+    "senioridade": "Sênior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai elaborar orçamentos executivos e estimativas preliminares, revisar quantitativos e usar modelagem em Revit para extrair quantitativos em orçamentos integrados à metodologia BIM. É uma posição de referência técnica no processo orçamentário, orientando outros analistas e apoiando decisões de viabilidade.",
+    "requisitos": [
+      "Ensino superior em Engenharia Civil",
+      "Experiência em orçamentos de obras civis residenciais (desejável)",
+      "Domínio de softwares de orçamento como Sienge, Revit, Visus e Excel avançado",
+      "Conhecimento em orçamentação em BIM",
+      "Leitura e interpretação de projetos executivos"
+    ],
+    "fonte": "gupy-empresa:cbaempreendimentos",
+    "url": "https://cbaempreendimentos.gupy.io/jobs/12182156?jobBoardSource=gupy_public_page",
+    "prazo": "2026-11-23",
+    "publicado": "2026-11-16",
+    "destaque": "Orçamentação integrada ao BIM com extração de quantitativos em Revit, atuando como referência técnica da área.",
+    "selos": [
+      "Inovação"
+    ]
+  },
+  {
+    "id": "v034",
+    "cargo": "Construction Client Manager",
+    "empresa": "Doxel",
+    "cidade": "Dallas",
+    "pais": "Estados Unidos",
+    "lat": 32.7767,
+    "lon": -96.797,
+    "senioridade": "Sênior",
+    "idioma": "Inglês",
+    "visto": null,
+    "resumo": "Você vai acompanhar clientes estratégicos da Doxel, entre grandes construtoras e donos de obra nos EUA: fazer treinamentos e visitas a canteiros, conduzir reuniões de resultados com executivos e levar ao time de engenharia o que os clientes pedem. É uma chance de usar a experiência de obra numa construtech de IA que já atende empresas como Turner, Shell e Kaiser, com salário de US$ 100 mil a US$ 120 mil por ano mais participação acionária.",
+    "requisitos": [
+      "5+ anos na construção comercial como engenheiro(a) de projeto, gerente de projeto, planejador(a), superintendente ou controle de projetos",
+      "Conhecimento dos processos de construtoras (general contractors)",
+      "Facilidade com tecnologia e vontade de aprender novas ferramentas",
+      "Autonomia para trabalhar com pouca supervisão",
+      "Disponibilidade para viagens semanais (até 50%)"
+    ],
+    "fonte": "lever:doxel",
+    "url": "https://jobs.lever.co/doxel/ce3a4f82-8bca-4bca-9a57-b7bf9ec4c9dd",
+    "prazo": null,
+    "publicado": "2026-11-16",
+    "destaque": "Leve IA e visão computacional aos maiores canteiros dos EUA numa construtech apoiada pela Andreessen Horowitz.",
+    "selos": [
+      "Inovação",
+      "Internacional"
+    ]
+  },
+  {
+    "id": "v035",
+    "cargo": "Project & Construction Manager",
+    "empresa": "Braskem",
+    "cidade": "Marcus Hook",
+    "pais": "Estados Unidos",
+    "lat": 39.8195,
+    "lon": -75.4185,
+    "senioridade": "Sênior",
+    "idioma": "Inglês",
+    "visto": false,
+    "resumo": "Responsável por entregar do início ao fim os projetos de capital da unidade de Marcus Hook, do FEL à engenharia, suprimentos, execução em campo, comissionamento e encerramento, liderando também a gestão da obra no site. Vaga sênior nos Estados Unidos na Braskem America, com controle de escopo, custo, cronograma e contratadas, além de pacote completo de benefícios.",
+    "requisitos": [
+      "Graduação em Engenharia Civil, Mecânica, Elétrica ou Química",
+      "Mínimo de 10 anos de experiência em gestão de projetos/engenharia",
+      "Experiência liderando projetos de processo do projeto à implantação em campo",
+      "Desejável: metodologia FEL, P6 ou MS Project e certificação PMI",
+      "Autorização para trabalhar nos EUA sem patrocínio"
+    ],
+    "fonte": "greenhouse:braskem",
+    "url": "https://job-boards.greenhouse.io/braskem/jobs/7985382003",
+    "prazo": null,
+    "publicado": "2026-11-16",
+    "destaque": "Gestão integrada de projeto e obra, do FEL ao comissionamento, nos EUA, numa multinacional brasileira de referência.",
+    "selos": [
+      "Internacional"
+    ]
+  },
+  {
+    "id": "v036",
+    "cargo": "Engenheiro(a) de Orçamento Sênior",
+    "empresa": "7LM",
+    "cidade": "Brasília",
+    "pais": "Brasil",
+    "lat": -15.7939,
+    "lon": -47.8828,
+    "senioridade": "Sênior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai elaborar orçamentos completos de obras, com custos diretos e indiretos, composições e quantitativos, e vai analisar projetos para encontrar inconsistências e propor alternativas técnicas. A vaga dá autonomia em engenharia de custos e trabalho junto com Planejamento, Engenharia, Suprimentos e Produção.",
+    "requisitos": [
+      "Superior completo em Engenharia Civil",
+      "Pós-graduação na área",
+      "Sólida experiência em orçamento de obras",
+      "Experiência com obras MCMV",
+      "Visão analítica e pensamento crítico"
+    ],
+    "fonte": "gupy",
+    "url": "https://vemser7lm.gupy.io/job/eyJqb2JJZCI6MTI4NzE1NjksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2027-01-10",
+    "publicado": "2026-11-16",
+    "destaque": "Orçamento de obras com autonomia técnica e poder de questionar premissas, integrado a Planejamento e Suprimentos.",
+    "selos": []
+  },
+  {
+    "id": "v037",
+    "cargo": "Pessoa Engenheira de Projetos (Civil)",
+    "empresa": "Timenow",
+    "cidade": "Juruti",
+    "pais": "Brasil",
+    "lat": -2.1525,
+    "lon": -56.0922,
+    "senioridade": "Sênior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Coordenar projetos de engenharia civil de barragens de rejeitos, drenagem, contenções e estradas na mineração, garantindo prazos, escopo, custos e qualidade e integrando projetistas, construção e stakeholders. É uma oportunidade em consultoria de referência nacional, com atuação em projetos CapEx de grande porte e uso de ferramentas como Civil 3D, ArcGIS, BIM e Primavera P6.",
+    "requisitos": [
+      "Ensino superior completo em Engenharia Civil",
+      "Experiência consolidada em gestão de projetos de capital (CapEx) em ambiente industrial",
+      "Conhecimento avançado em metodologias FEL e gestão de portfólio de projetos",
+      "Experiência em projetos de barragens de disposição de rejeitos",
+      "AutoCAD, Civil 3D e ArcGIS avançados; BIM intermediário"
+    ],
+    "fonte": "gupy",
+    "url": "https://time-now.gupy.io/job/eyJqb2JJZCI6MTI2NzA2NTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-12-01",
+    "publicado": "2026-11-16",
+    "selos": []
+  },
+  {
+    "id": "v038",
+    "cargo": "Consultor Dedicado - Engenheiro Civil",
+    "empresa": "Trimble",
+    "cidade": "Remoto",
+    "pais": "Estados Unidos",
+    "lat": null,
+    "lon": null,
+    "senioridade": "Pleno",
+    "idioma": "Inglês fluente",
+    "visto": null,
+    "resumo": "Você será o parceiro técnico dedicado do Departamento de Transportes de Nevada, configurando e validando o software de gestão de ativos de infraestrutura da Trimble para manutenção de pavimentos e redes viárias. É uma porta de entrada para unir engenharia civil, dados e software numa líder global de tecnologia para construção, com salário de US$ 63,9 mil a 87,9 mil por ano e trabalho remoto.",
+    "requisitos": [
+      "Graduação em Engenharia Civil, Ciência da Computação ou área técnica correlata",
+      "Pelo menos 2 anos de experiência com infraestrutura rodoviária, operações de DOT ou sistemas de gerência de pavimentos",
+      "Capacidade de ler e revisar código SQL, JavaScript ou Groovy",
+      "Experiência com testes de aceitação, regressão e validação de releases",
+      "Disponibilidade para viagens de até 10%"
+    ],
+    "fonte": "workday:trimble",
+    "url": "https://trimble.wd1.myworkdayjobs.com/TrimbleCareers/job/US---Remote-NV/Dedicated-Consultant---Civil-Engineer_R58288-1",
+    "prazo": "2026-12-11",
+    "publicado": "2026-11-16",
+    "destaque": "Engenharia civil e software juntos: gestão digital de ativos rodoviários de um DOT americano, numa líder global de construtech.",
+    "selos": [
+      "Inovação",
+      "Internacional",
+      "Remoto"
+    ]
+  },
+  {
+    "id": "v039",
+    "cargo": "Engenheiro Especialista em Planejamento",
+    "empresa": "ENERWATT Engenharia e Comércio Ltda",
+    "cidade": "Manaus",
+    "pais": "Brasil",
+    "lat": -3.119,
+    "lon": -60.0217,
+    "senioridade": "Sênior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai elaborar e controlar cronogramas em MS Project, acompanhar o avanço físico de obras de linhas de transmissão e subestações e montar indicadores e dashboards para apoiar as decisões da gestão. É uma boa chance de atuar no planejamento de obras de infraestrutura de energia na Região Norte, com participação também no controle de custos e na produtividade.",
+    "requisitos": [
+      "Ensino superior em Engenharia Elétrica, Engenharia Civil ou áreas correlatas",
+      "Experiência com obras de linhas de transmissão e subestações",
+      "Conhecimento em MS Project",
+      "Conhecimento em Power BI",
+      "Excel intermediário ou avançado"
+    ],
+    "fonte": "gupy",
+    "url": "https://enerwatt.gupy.io/job/eyJqb2JJZCI6MTI3MDgzMTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-11-20",
+    "publicado": "2026-11-16",
+    "destaque": "Planejamento e controle de obras de linhas de transmissão e subestações em Manaus, com MS Project e Power BI.",
+    "selos": []
+  },
+  {
+    "id": "v040",
+    "cargo": "Engenheiro(a) de Planejamento Sênior",
+    "empresa": "Jirau Energia",
+    "cidade": "Porto Velho",
+    "pais": "Brasil",
+    "lat": -8.7612,
+    "lon": -63.9004,
+    "senioridade": "Sênior",
+    "idioma": "Português",
+    "visto": null,
+    "resumo": "Você vai elaborar cronogramas e calendários de manutenção, gerir grandes paradas, ordens de serviço, recursos e KPIs, e ajudar a montar o orçamento anual das áreas de Engenharia e Manutenção. É uma chance de liderar o planejamento numa usina hidrelétrica de grande porte, com interface entre equipes multidisciplinares.",
+    "requisitos": [
+      "Graduação em Engenharia Elétrica, Mecânica, Civil, de Produção ou áreas afins",
+      "CREA ativo",
+      "Excel intermediário, Power BI e MS Project",
+      "MBA em Projetos ou área afim ao PPCM (desejável)",
+      "Disponibilidade para residir em Nova Mutum Paraná - Porto Velho/RO"
+    ],
+    "fonte": "gupy",
+    "url": "https://jirauenergia.gupy.io/job/eyJqb2JJZCI6MTI2ODU3MzEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "prazo": "2026-12-05",
+    "publicado": "2026-11-16",
+    "destaque": "Planejamento de grandes paradas de manutenção na 4ª maior usina hidrelétrica do Brasil, com MS Project e Power BI.",
+    "selos": []
   }
 ]
