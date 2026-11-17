@@ -234,5 +234,37 @@
       ],
       "destaque": "Prática real de coordenação BIM: federação de modelos, verificação no Solibri e gestão de issues numa empresa de compatibilização."
     }
+  },
+  {
+    "removida_em": "2026-11-17",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v012",
+      "cargo": "Analista de Orçamentos Junior",
+      "empresa": "MRV&CO",
+      "cidade": "Belo Horizonte",
+      "pais": "Brasil",
+      "lat": -19.9167,
+      "lon": -43.9345,
+      "senioridade": "Júnior",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Você vai fazer o orçamento completo dos empreendimentos da MRV&CO, com levantamento de quantitativos a partir de projetos e de modelos BIM, comparativos e análises estratégicas de custos. É uma boa porta de entrada em engenharia de custos numa das maiores construtoras da América Latina.",
+      "destaque": "Levantamento de quantitativos direto de modelos BIM (Revit e Navisworks) numa das maiores construtoras da América Latina.",
+      "selos": [
+        "Inovação"
+      ],
+      "requisitos": [
+        "Formação completa em Engenharia Civil ou Engenharia de Produção Civil",
+        "AutoCAD e Excel",
+        "Leitura e interpretação de projetos",
+        "BIM (Revit e Navisworks) desejável",
+        "BI e conhecimento em instalações desejáveis"
+      ],
+      "fonte": "gupy",
+      "url": "https://vagas-mrveco.gupy.io/job/eyJqb2JJZCI6MTI3OTg1NjQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+      "prazo": "2026-12-27",
+      "publicado": "2026-11-12"
+    }
   }
 ]
