@@ -346,32 +346,6 @@
     "publicado": "2026-11-12"
   },
   {
-    "id": "v023",
-    "cargo": "Engenheiro Civil",
-    "empresa": "Santa Casa de Porto Alegre",
-    "cidade": "Porto Alegre",
-    "pais": "Brasil",
-    "lat": -30.0346,
-    "lon": -51.2177,
-    "senioridade": null,
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Você vai orçar e planejar obras hospitalares em um dos complexos de saúde mais modernos do país: levantar quantitativos, compor preços, montar cronogramas físico-financeiros, compatibilizar projetos e analisar licitações e aditivos. É uma boa oportunidade para quem quer se aprofundar em engenharia de custos e gestão de contratos de obras públicas, um nicho técnico com instalações especiais.",
-    "destaque": "Nicho de obras hospitalares públicas, com SINAPI, Lei 14.133/2021, análise de licitações e aditivos e instalações especiais.",
-    "selos": [],
-    "requisitos": [
-      "Engenharia Civil com CREA ativo",
-      "Experiência comprovada em orçamentação de obras públicas",
-      "Conhecimento em obras hospitalares e/ou instalações especiais",
-      "Domínio de sistemas de orçamento (SINAPI, OrçaFascio, Volare etc.)",
-      "Conhecimento da Lei 14.133/2021 e normas de obras públicas"
-    ],
-    "fonte": "gupy",
-    "url": "https://santacasa.gupy.io/job/eyJqb2JJZCI6MTI4NTkwMzUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-11-20",
-    "publicado": "2026-11-12"
-  },
-  {
     "id": "v024",
     "cargo": "Engenheiro(a) ou Arquiteto(a) de Obras Jr. (Temporário)",
     "empresa": "Método Grupo",
@@ -726,32 +700,6 @@
       "Internacional",
       "Remoto"
     ]
-  },
-  {
-    "id": "v039",
-    "cargo": "Engenheiro Especialista em Planejamento",
-    "empresa": "ENERWATT Engenharia e Comércio Ltda",
-    "cidade": "Manaus",
-    "pais": "Brasil",
-    "lat": -3.119,
-    "lon": -60.0217,
-    "senioridade": "Sênior",
-    "idioma": "Português",
-    "visto": null,
-    "resumo": "Você vai elaborar e controlar cronogramas em MS Project, acompanhar o avanço físico de obras de linhas de transmissão e subestações e montar indicadores e dashboards para apoiar as decisões da gestão. É uma boa chance de atuar no planejamento de obras de infraestrutura de energia na Região Norte, com participação também no controle de custos e na produtividade.",
-    "requisitos": [
-      "Ensino superior em Engenharia Elétrica, Engenharia Civil ou áreas correlatas",
-      "Experiência com obras de linhas de transmissão e subestações",
-      "Conhecimento em MS Project",
-      "Conhecimento em Power BI",
-      "Excel intermediário ou avançado"
-    ],
-    "fonte": "gupy",
-    "url": "https://enerwatt.gupy.io/job/eyJqb2JJZCI6MTI3MDgzMTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "prazo": "2026-11-20",
-    "publicado": "2026-11-16",
-    "destaque": "Planejamento e controle de obras de linhas de transmissão e subestações em Manaus, com MS Project e Power BI.",
-    "selos": []
   },
   {
     "id": "v040",
