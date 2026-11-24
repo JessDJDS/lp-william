@@ -356,5 +356,160 @@
       "destaque": "Planejamento e controle de obras de linhas de transmissão e subestações em Manaus, com MS Project e Power BI.",
       "selos": []
     }
+  },
+  {
+    "removida_em": "2026-11-24",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v008",
+      "cargo": "Engenheiro de Planejamento Sênior I – Rodovias",
+      "empresa": "Andrade Gutierrez",
+      "cidade": "São Paulo",
+      "pais": "Brasil",
+      "lat": -23.5505,
+      "lon": -46.6333,
+      "senioridade": "Sênior",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Você vai estruturar e controlar cronogramas de obras rodoviárias e de infraestrutura, com EAP, caminho crítico, curvas S, valor agregado e simulações de cenários, além de liderar uma equipe técnica. É uma chance de atuar com planejamento de alto nível em projetos de grande porte da Andrade Gutierrez.",
+      "destaque": "Obras rodoviárias de grande porte com Primavera P6, EVM e BIM 4D/5D, liderando equipe técnica.",
+      "selos": [
+        "★ Escolha do Will",
+        "Inovação"
+      ],
+      "requisitos": [
+        "Bacharel em Engenharia Civil com CREA ativo",
+        "Sólida experiência em obras lineares (rodovia, ferrovia, metrô)",
+        "Domínio de Primavera P6, MS Project e Power BI",
+        "Conhecimento avançado em CPM, EAP, curva S e EVM",
+        "Disponibilidade para viagens e mobilidade total"
+      ],
+      "fonte": "gupy",
+      "url": "https://andradegutierrez.gupy.io/job/eyJqb2JJZCI6MTE2NzM3NjUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+      "prazo": "2026-11-30",
+      "publicado": "2026-11-12"
+    }
+  },
+  {
+    "removida_em": "2026-11-24",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v033",
+      "cargo": "Analista de Orçamentos de Engenharia Civil Sênior",
+      "empresa": "CBA Empreendimentos",
+      "cidade": "Florianópolis",
+      "pais": "Brasil",
+      "lat": -27.5954,
+      "lon": -48.548,
+      "senioridade": "Sênior",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Você vai elaborar orçamentos executivos e estimativas preliminares, revisar quantitativos e usar modelagem em Revit para extrair quantitativos em orçamentos integrados à metodologia BIM. É uma posição de referência técnica no processo orçamentário, orientando outros analistas e apoiando decisões de viabilidade.",
+      "requisitos": [
+        "Ensino superior em Engenharia Civil",
+        "Experiência em orçamentos de obras civis residenciais (desejável)",
+        "Domínio de softwares de orçamento como Sienge, Revit, Visus e Excel avançado",
+        "Conhecimento em orçamentação em BIM",
+        "Leitura e interpretação de projetos executivos"
+      ],
+      "fonte": "gupy-empresa:cbaempreendimentos",
+      "url": "https://cbaempreendimentos.gupy.io/jobs/12182156?jobBoardSource=gupy_public_page",
+      "prazo": "2026-11-23",
+      "publicado": "2026-11-16",
+      "destaque": "Orçamentação integrada ao BIM com extração de quantitativos em Revit, atuando como referência técnica da área.",
+      "selos": [
+        "Inovação"
+      ]
+    }
+  },
+  {
+    "removida_em": "2026-11-24",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v042",
+      "cargo": "Analista de Orçamento de Obra Júnior",
+      "empresa": "Construtora Tenda",
+      "cidade": "São Paulo",
+      "pais": "Brasil",
+      "lat": -23.5505,
+      "lon": -46.6333,
+      "senioridade": "Júnior",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Você vai elaborar orçamentos de obras do início ao fim, do levantamento de quantidades em projetos à montagem do orçamento com as bases de custo da Tenda, além de cotações, estudos comparativos entre versões e apresentações para a gerência. É uma porta de entrada em engenharia de custos numa das maiores construtoras de habitação econômica do Brasil, com regime híbrido e benefícios robustos.",
+      "requisitos": [
+        "Superior completo em Engenharia Civil, Arquitetura e Urbanismo ou Tecnólogo em Edificações",
+        "Excel intermediário",
+        "Leitura de projetos em AutoCAD",
+        "Conhecimento em BIM/Revit (diferencial)",
+        "Experiência prévia na área (diferencial)"
+      ],
+      "fonte": "gupy-empresa:tenda",
+      "url": "https://tenda.gupy.io/jobs/12618154?jobBoardSource=gupy_public_page",
+      "prazo": "2026-11-27",
+      "publicado": "2026-11-24",
+      "destaque": "Orçamento completo de obras com bases de custo próprias numa construtora de capital aberto líder em Minha Casa Minha Vida.",
+      "selos": []
+    }
+  },
+  {
+    "removida_em": "2026-11-24",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v043",
+      "cargo": "Estágio em Projetos (Engenharia Civil)",
+      "empresa": "Otus Engenharia",
+      "cidade": "Florianópolis",
+      "pais": "Brasil",
+      "lat": -27.5954,
+      "lon": -48.548,
+      "senioridade": "Estágio",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Você vai apoiar a compatibilização de projetos, federando modelos BIM, operando regras de verificação e organizando ambientes comuns de dados, além de acompanhar o fluxo de entregas dos projetistas. É uma porta de entrada prática para a coordenação BIM, com tempo dedicado ao estudo técnico e aprendizado mensal no Otus Day.",
+      "requisitos": [
+        "Graduação em andamento em Arquitetura, Engenharia Civil, técnico em edificações ou áreas correlatas",
+        "Disponibilidade para 30h semanais em modelo híbrido (2 dias presenciais)",
+        "Residir em Florianópolis ou região",
+        "Desejável familiaridade com Revit e Solibri",
+        "Noções de leitura e interpretação de projetos técnicos"
+      ],
+      "fonte": "gupy-empresa:otusengenharia",
+      "url": "https://otusengenharia.gupy.io/jobs/11843012?jobBoardSource=gupy_public_page",
+      "prazo": "2026-11-30",
+      "publicado": "2026-11-24",
+      "destaque": "Prática real de coordenação BIM: federação de modelos, verificação no Solibri e gestão de issues numa empresa de compatibilização.",
+      "selos": [
+        "Inovação"
+      ]
+    }
+  },
+  {
+    "removida_em": "2026-11-24",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v044",
+      "cargo": "Estagiário(a) de Engenharia Civil, Produção e Arquitetura",
+      "empresa": "MRV&CO",
+      "cidade": "Sorocaba",
+      "pais": "Brasil",
+      "lat": -23.5015,
+      "lon": -47.4526,
+      "senioridade": "Estágio",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "No canteiro de obras, você acompanha as frentes de serviço, faz levantamento de quantidades, lê projetos e elabora relatórios e diários de obra, sempre ao lado do engenheiro responsável. É uma porta de entrada na MRV&CO, uma das maiores construtoras da América Latina, que oferece capacitações personalizadas e um programa de aceleração de carreira.",
+      "requisitos": [
+        "Cursando Engenharia Civil, Arquitetura, Engenharia de Produção Civil ou Engenharia de Produção",
+        "Conhecimento de Pacote Office",
+        "Disponibilidade para 4h ou 6h diárias"
+      ],
+      "fonte": "gupy-empresa:vagas-mrveco",
+      "url": "https://vagas-mrveco.gupy.io/jobs/12783128?jobBoardSource=gupy_public_page",
+      "prazo": "2026-12-25",
+      "publicado": "2026-11-24",
+      "destaque": "Estágio na rotina de gestão e controle de obras de uma das maiores construtoras da América Latina, com bolsa de R$1.700 por 6h.",
+      "selos": []
+    }
   }
 ]
