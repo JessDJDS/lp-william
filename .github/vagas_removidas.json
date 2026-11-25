@@ -511,5 +511,38 @@
       "destaque": "Estágio na rotina de gestão e controle de obras de uma das maiores construtoras da América Latina, com bolsa de R$1.700 por 6h.",
       "selos": []
     }
+  },
+  {
+    "removida_em": "2026-11-25",
+    "motivo": "fechada na Gupy (candidaturas encerradas)",
+    "vaga": {
+      "id": "v017",
+      "cargo": "Coordenação de Projetos - Engenharia Civil (Home Office)",
+      "empresa": "Otus Engenharia",
+      "cidade": "Remoto",
+      "pais": "Brasil",
+      "lat": null,
+      "lon": null,
+      "senioridade": "Pleno",
+      "idioma": "Português",
+      "visto": null,
+      "resumo": "Você vai coordenar com autonomia projetos de edificações de média complexidade. O trabalho inclui compatibilização multidisciplinar, análise crítica, gestão de cronogramas e condução de reuniões com clientes e projetistas. É uma boa oportunidade para crescer em coordenação BIM em uma empresa especializada, trabalhando de casa e com plano de carreira atrelado ao desempenho.",
+      "destaque": "100% home office, compatibilização BIM no Solibri e plano de carreira atrelado ao desempenho em empresa especializada.",
+      "selos": [
+        "Inovação",
+        "Remoto"
+      ],
+      "requisitos": [
+        "Superior completo em Arquitetura, Engenharia Civil ou áreas correlatas",
+        "Entre 4 e 6 anos de experiência em projetos, com vivência em coordenação ou compatibilização",
+        "Solibri ou semelhantes (nível intermediário)",
+        "Gestão de cronogramas e repactuação de prazos",
+        "Conhecimento intermediário das disciplinas de Arquitetura, Estrutura, Elétrica, Hidrossanitário e Preventivo"
+      ],
+      "fonte": "gupy-empresa:otusengenharia",
+      "url": "https://otusengenharia.gupy.io/jobs/12880054?jobBoardSource=gupy_public_page",
+      "prazo": "2027-01-11",
+      "publicado": "2026-11-12"
+    }
   }
 ]
